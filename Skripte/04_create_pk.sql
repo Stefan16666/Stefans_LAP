@@ -1,0 +1,95 @@
+USE reisebuero;
+GO
+
+ALTER TABLE Rolle
+ADD
+CONSTRAINT PK_Rolle
+PRIMARY KEY (id);
+GO
+
+ALTER TABLE Benutzer
+ADD
+CONSTRAINT PK_Benutzer
+PRIMARY KEY (id);
+GO
+
+ALTER TABLE Buchung
+ADD
+CONSTRAINT PK_Buchung
+PRIMARY KEY (id);
+GO
+
+ALTER TABLE Buchungsdetails
+ADD
+CONSTRAINT PK_Buchungsdetails
+PRIMARY KEY (id);
+GO
+
+ALTER TABLE Bild
+ADD
+CONSTRAINT PK_Bild
+PRIMARY KEY(id);
+GO
+
+ALTER TABLE Bauwerk
+ADD
+CONSTRAINT PK_Bauwerk
+PRIMARY KEY(id);
+GO
+--------
+ALTER TABLE Buchung_Zahlung
+ADD
+CONSTRAINT PK_Buchung_Zahlung
+PRIMARY KEY (buchung_id);
+GO
+
+ALTER TABLE BuchungStorniert
+ADD
+CONSTRAINT PK_BuchungStorniert
+PRIMARY KEY (buchung_id);
+GO
+
+ALTER TABLE Reisedurchfuehrung
+ADD
+CONSTRAINT PK_Reisedurchfuehrung
+PRIMARY KEY (id);
+GO
+
+
+ALTER TABLE Reise
+ADD
+CONSTRAINT PK_Reise
+PRIMARY KEY (id);
+GO
+
+ALTER TABLE Bewertung
+ADD
+CONSTRAINT PK_Bewertung
+PRIMARY KEY (id);
+GO
+
+
+ALTER TABLE Unterkunft
+ADD
+CONSTRAINT PK_Unterkunft
+PRIMARY KEY(id);
+GO
+
+
+ALTER TABLE Verpflegung
+ADD
+CONSTRAINT PK_Verpflegung
+PRIMARY KEY(id);
+GO
+
+ALTER TABLE Zahlung
+ADD
+CONSTRAINT PK_Zahlung
+PRIMARY KEY(id);
+GO
+
+ALTER TABLE Zahlungsart
+ADD
+CONSTRAINT PK_Zahlungsart
+PRIMARY KEY(id);
+GO
