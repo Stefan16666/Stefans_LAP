@@ -1,10 +1,22 @@
-USE reisebuero;
+USE Innovation4austria;
 GO
 
-ALTER TABLE Rolle
+ALTER TABLE Art
 ADD
-CONSTRAINT PK_Rolle
-PRIMARY KEY (id);
+CONSTRAINT PK_Art
+PRIMARY KEY(id);
+GO
+
+ALTER TABLE Ausstattung
+ADD
+CONSTRAINT PK_Ausstattung
+PRIMARY KEY(id);
+GO
+
+ALTER TABLE Bauwerk
+ADD
+CONSTRAINT PK_Bauwerk
+PRIMARY KEY(id);
 GO
 
 ALTER TABLE Benutzer
@@ -19,77 +31,44 @@ CONSTRAINT PK_Buchung
 PRIMARY KEY (id);
 GO
 
-ALTER TABLE Buchungsdetails
-ADD
-CONSTRAINT PK_Buchungsdetails
-PRIMARY KEY (id);
-GO
-
 ALTER TABLE Bild
 ADD
 CONSTRAINT PK_Bild
 PRIMARY KEY(id);
 GO
 
-ALTER TABLE Bauwerk
+ALTER TABLE Buchungsdetails
 ADD
-CONSTRAINT PK_Bauwerk
-PRIMARY KEY(id);
-GO
---------
-ALTER TABLE Buchung_Zahlung
-ADD
-CONSTRAINT PK_Buchung_Zahlung
-PRIMARY KEY (buchung_id);
-GO
-
-ALTER TABLE BuchungStorniert
-ADD
-CONSTRAINT PK_BuchungStorniert
-PRIMARY KEY (buchung_id);
-GO
-
-ALTER TABLE Reisedurchfuehrung
-ADD
-CONSTRAINT PK_Reisedurchfuehrung
+CONSTRAINT PK_Buchungsdetails
 PRIMARY KEY (id);
 GO
 
-
-ALTER TABLE Reise
+ALTER TABLE Buchungsdetails
 ADD
-CONSTRAINT PK_Reise
+CONSTRAINT PK_Buchungsdetails
 PRIMARY KEY (id);
 GO
 
-ALTER TABLE Bewertung
+ALTER TABLE Raum_Ausstattung
 ADD
-CONSTRAINT PK_Bewertung
+CONSTRAINT PK_Raum_Ausstattung
 PRIMARY KEY (id);
 GO
 
-
-ALTER TABLE Unterkunft
+ALTER TABLE Rechnung
 ADD
-CONSTRAINT PK_Unterkunft
-PRIMARY KEY(id);
+CONSTRAINT PK_Rechnung
+PRIMARY KEY (id);
 GO
 
-
-ALTER TABLE Verpflegung
+ALTER TABLE Rechnungsdetails
 ADD
-CONSTRAINT PK_Verpflegung
-PRIMARY KEY(id);
+CONSTRAINT PK_Rechnungsdetails
+PRIMARY KEY (id);
 GO
 
-ALTER TABLE Zahlung
+ALTER TABLE Rolle
 ADD
-CONSTRAINT PK_Zahlung
-PRIMARY KEY(id);
-GO
-
-ALTER TABLE Zahlungsart
-ADD
-CONSTRAINT PK_Zahlungsart
-PRIMARY KEY(id);
+CONSTRAINT PK_Rolle
+PRIMARY KEY (id);
 GO

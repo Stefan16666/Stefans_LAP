@@ -1,4 +1,4 @@
-USE reisebuero;
+USE Innovation4austria;
 GO
 
 CREATE TABLE Ausstattung(
@@ -23,7 +23,6 @@ CREATE TABLE Benutzer (
 	Firma_id INT NOT NULL,
 	Rolle_id INT NOT NULL	
 );
-
 
 CREATE TABLE Bild (
 	id INT IDENTITY NOT NULL,
@@ -61,7 +60,6 @@ CREATE TABLE Raum (
 	preis INT NOT NULL
 );
 
-
 CREATE TABLE RaumArt (
 	id INT IDENTITY NOT NULL,
 	bezeichnung NVARCHAR(50) NOT NULL	
@@ -73,11 +71,6 @@ CREATE TABLE Raum_Ausstattung (
 	raum_id
 );
 
-CREATE TABLE Rolle (
-	id INT IDENTITY NOT NULL,
-	bezeichnung NVARCHAR(255) NOT NULL
-);
-
 CREATE TABLE Rechnung(
 	id INT IDENTITY NOT NULL,
 	datum DATE 
@@ -85,7 +78,13 @@ CREATE TABLE Rechnung(
 
 CREATE TABLE Rechnungsdetails(
 	id INT IDENTITY NOT NULL,
+	rechnung_id INT NOT NULL,
 	buchung_id INT NOT NULL
+);
+
+CREATE TABLE Rolle (
+	id INT IDENTITY NOT NULL,
+	bezeichnung NVARCHAR(255) NOT NULL
 );
 
 GO
