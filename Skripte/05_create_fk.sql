@@ -15,145 +15,84 @@ FOREIGN KEY (raum_id)
 REFERENCES Raum(id);
 GO
 
-ALTER TABLE Buchung
+ALTER TABLE Buchungdetails
 ADD
-CONSTRAINT FK_Buchung_Benutzer
-FOREIGN KEY (benutzer_id)
-REFERENCES Benutzer(id);
-GO
-
-ALTER TABLE Buchung_Zahlung
-ADD
-CONSTRAINT FK_Buchung_Zahlung_Zahlung
-FOREIGN KEY (zahlung_id)
-REFERENCES Zahlung(id);
-GO
-
-ALTER TABLE Buchung_Zahlung
-ADD
-CONSTRAINT FK_Buchung_Zahlung_Buchung
+CONSTRAINT FK_Buchungdeatails_buchung_id
 FOREIGN KEY (buchung_id)
 REFERENCES Buchung(id);
 GO
 
-ALTER TABLE Buchung
+ALTER TABLE Raum
 ADD
-CONSTRAINT FK_Buchung_Reisedatum
-FOREIGN KEY (reisedatum_id)
-REFERENCES Reisedatum(id);
+CONSTRAINT FK_Raum_Ausstattung
+FOREIGN KEY (ausstattung_id)
+REFERENCES Ausstattung(id)
 GO
 
-ALTER TABLE BuchungStorniert
+ALTER TABLE Raum
 ADD
-CONSTRAINT FK_BuchungStorniert_Buchung
+CONSTRAINT FK_Raum_Art
+FOREIGN KEY (art_id)
+REFERENCES Art(id);
+GO
+
+ALTER TABLE Raum
+ADD
+CONSTRAINT FK_Raum_Bauwerk
+FOREIGN KEY (bauwerk_id)
+REFERENCES Bauwerk(id);
+GO
+
+
+ALTER TABLE Raum_Ausstattung
+ADD
+CONSTRAINT FK_Raum_Ausstattung_Raum
+FOREIGN KEY (raum_id)
+REFERENCES Raum(id);
+GO
+
+ALTER TABLE Raum_Ausstattung
+ADD
+CONSTRAINT FK_Raum_Ausstattung_Ausstattung
+FOREIGN KEY (ausstattung_id)
+REFERENCES Ausstattung(id);
+GO
+
+ALTER TABLE Bild
+ADD
+CONSTRAINT FK_Bild_Raum
+FOREIGN KEY (raum_id)
+REFERENCES Raum(id);
+GO
+
+ALTER TABLE Rechnungsdetails
+ADD
+CONSTRAINT FK_Rechnungsdetails_Buchung
 FOREIGN KEY (buchung_id)
-REFERENCES Buchung(id)
+REFERENCES Buchung(id);
 GO
 
-ALTER TABLE Adresse
+ALTER TABLE Rechnungsdetails
 ADD
-CONSTRAINT FK_Adresse_Ort
-FOREIGN KEY (ort_id)
-REFERENCES Ort(id);
-GO
-
-ALTER TABLE Ort
-ADD
-CONSTRAINT FK_Ort_Land
-FOREIGN KEY (land_id)
-REFERENCES Land(id);
-GO
-
-
-ALTER TABLE Benutzer
-ADD
-CONSTRAINT FK_Benutzer_Land
-FOREIGN KEY (land_id)
-REFERENCES Land(id);
+CONSTRAINT FK_Rechnungsdetails_Rechnung
+FOREIGN KEY (rechnung_id)
+REFERENCES Rechnung(id);
 GO
 
 ALTER TABLE Benutzer
 ADD
-CONSTRAINT FK_Benutzer_Adresse
-FOREIGN KEY (adresse_id)
-REFERENCES Adresse(id);
+CONSTRAINT FK_Benutzer_Rolle
+FOREIGN KEY (rolle_id)
+REFERENCES Rolle(id);
 GO
 
-ALTER TABLE Reise
-ADD 
-CONSTRAINT FK_Reise_Unterkunft
-FOREIGN KEY (unterkunft_id)
-REFERENCES Unterkunft(id);
-GO
-
-ALTER TABLE Reise
-ADD 
-CONSTRAINT FK_Reise_Ort
-FOREIGN KEY (ort_id)
-REFERENCES Ort(id);
-GO
-
-ALTER TABLE Reisedatum
+ALTER TABLE Benutzer
 ADD
-CONSTRAINT FK_Reisedatum_Reise
-FOREIGN KEY (reise_id)
-REFERENCES Reise(id)
+CONSTRAINT FK_Benutzer_Firma
+FOREIGN KEY (firma_id)
+REFERENCES Firma(id);
 GO
 
-ALTER TABLE Reisedurchfuehrung
-ADD
-CONSTRAINT FK_Reisedurchfuehrung_Reisedatum
-FOREIGN KEY (reisedatum_id)
-REFERENCES Reisedatum(id)
-GO
 
-ALTER TABLE Reise_Bild
-ADD
-CONSTRAINT FK_Reise_Bild_Reise
-FOREIGN KEY (reise_id)
-REFERENCES Reise(id);
-GO
-
-ALTER TABLE Reise_Bild
-ADD
-CONSTRAINT FK_Reise_Bild_Bild
-FOREIGN KEY (bild_id)
-REFERENCES Bild(id);
-GO
-
-ALTER TABLE Bewertung
-ADD
-CONSTRAINT FK_Bewertung_Reise
-FOREIGN KEY (reise_id)
-REFERENCES Reise(id);
-GO
-
-ALTER TABLE Unterkunft_Bild
-ADD
-CONSTRAINT FK_Unterkunft_Bild_Unterkunft
-FOREIGN KEY (unterkunft_id)
-REFERENCES Unterkunft(id);
-GO
-
-ALTER TABLE Unterkunft_Bild
-ADD
-CONSTRAINT FK_Unterkunft_Bild_Bild
-FOREIGN KEY (bild_id)
-REFERENCES Bild(id);
-GO
-
-ALTER TABLE Unterkunft
-ADD
-CONSTRAINT FK_Unterkunft_Verpflegung
-FOREIGN KEY (verpflegung_id)
-REFERENCES Verpflegung(id);
-GO
-
-ALTER TABLE Zahlung
-ADD
-CONSTRAINT FK_Zahlung_Zahlungsart
-FOREIGN KEY (zahlungsart_id)
-REFERENCES Zahlungsart(id);
-GO
 
 
