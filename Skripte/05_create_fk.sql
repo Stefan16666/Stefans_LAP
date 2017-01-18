@@ -1,4 +1,18 @@
-USE reisebuero;
+USE Innovation4austria;
+GO
+
+ALTER TABLE Buchung
+ADD
+CONSTRAINT FK_Buchung_Firma
+FOREIGN KEY (firma_id)
+REFERENCES Firma(id);
+GO
+
+ALTER TABLE Buchung
+ADD
+CONSTRAINT FK_Buchung_Raum
+FOREIGN KEY (raum_id)
+REFERENCES Raum(id);
 GO
 
 ALTER TABLE Buchung
