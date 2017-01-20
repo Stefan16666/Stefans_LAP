@@ -1,0 +1,8 @@
+c:\users\admin\documents\visual studio 2015\Projects\DatenManipulation\DatenManipulation.logic\bin\Debug\DatenManipulation.logic.dll.config
+c:\users\admin\documents\visual studio 2015\Projects\DatenManipulation\DatenManipulation.logic\bin\Debug\DatenManipulation.logic.dll
+c:\users\admin\documents\visual studio 2015\Projects\DatenManipulation\DatenManipulation.logic\bin\Debug\DatenManipulation.logic.pdb
+c:\users\admin\documents\visual studio 2015\Projects\DatenManipulation\DatenManipulation.logic\bin\Debug\EntityFramework.dll
+c:\users\admin\documents\visual studio 2015\Projects\DatenManipulation\DatenManipulation.logic\bin\Debug\EntityFramework.xml
+c:\users\admin\documents\visual studio 2015\Projects\DatenManipulation\DatenManipulation.logic\obj\Debug\DatenManipulation.logic.csprojResolveAssemblyReference.cache
+c:\users\admin\documents\visual studio 2015\Projects\DatenManipulation\DatenManipulation.logic\obj\Debug\DatenManipulation.logic.dll
+c:\users\admin\documents\visual studio 2015\Projects\DatenManipulation\DatenManipulation.logic\obj\Debug\DatenManipulation.logic.pdb

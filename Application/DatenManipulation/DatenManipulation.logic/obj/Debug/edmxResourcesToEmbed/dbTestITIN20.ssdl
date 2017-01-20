@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="restaurantreservierungModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="raum">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bezeichnung" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tisch">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="personenanzahl" Type="int" Nullable="false" />
+    <Property Name="raum_id" Type="int" Nullable="false" />
+    <Property Name="bezeichnung" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_tisch_raum">
+    <End Role="raum" Type="Self.raum" Multiplicity="1" />
+    <End Role="tisch" Type="Self.tisch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="raum">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tisch">
+        <PropertyRef Name="raum_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="restaurantreservierungModelStoreContainer">
+    <EntitySet Name="raum" EntityType="Self.raum" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tisch" EntityType="Self.tisch" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_tisch_raum" Association="Self.fk_tisch_raum">
+      <End Role="raum" EntitySet="raum" />
+      <End Role="tisch" EntitySet="tisch" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="restaurantreservierungModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Raum">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Bezeichnung" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Tisch" Relationship="Self.fk_tisch_raum" FromRole="raum" ToRole="tisch" />
+  </EntityType>
+  <EntityType Name="Tisch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PersonenAnzahl" Type="Int32" Nullable="false" />
+    <Property Name="Raum_ID" Type="Int32" Nullable="false" />
+    <Property Name="Bezeichnung" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Raum" Relationship="Self.fk_tisch_raum" FromRole="tisch" ToRole="raum" />
+  </EntityType>
+  <Association Name="fk_tisch_raum">
+    <End Role="raum" Type="restaurantreservierungModel.Raum" Multiplicity="1" />
+    <End Role="tisch" Type="restaurantreservierungModel.Tisch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="raum">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tisch">
+        <PropertyRef Name="Raum_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="restaurantreservierungEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AlleRaeume" EntityType="restaurantreservierungModel.Raum" />
+    <EntitySet Name="AlleTische" EntityType="restaurantreservierungModel.Tisch" />
+    <AssociationSet Name="fk_tisch_raum" Association="Self.fk_tisch_raum">
+      <End Role="raum" EntitySet="AlleRaeume" />
+      <End Role="tisch" EntitySet="AlleTische" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

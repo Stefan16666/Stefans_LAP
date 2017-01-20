@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log4net", "Log4net\Log4net.csproj", "{F6D57931-A221-4CD7-B91F-7999A1413D4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verwaltung", "BenutzerVerwaltung\Verwaltung.csproj", "{450D1229-2008-420A-AE27-0B92C97452C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6D57931-A221-4CD7-B91F-7999A1413D4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6D57931-A221-4CD7-B91F-7999A1413D4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6D57931-A221-4CD7-B91F-7999A1413D4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6D57931-A221-4CD7-B91F-7999A1413D4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{450D1229-2008-420A-AE27-0B92C97452C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{450D1229-2008-420A-AE27-0B92C97452C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{450D1229-2008-420A-AE27-0B92C97452C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{450D1229-2008-420A-AE27-0B92C97452C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

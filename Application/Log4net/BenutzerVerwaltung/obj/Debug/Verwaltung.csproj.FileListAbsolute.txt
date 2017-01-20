@@ -1,0 +1,7 @@
+c:\Users\Admin\documents\visual studio 2015\Projects\Log4net\BenutzerVerwaltung\obj\Debug\Verwaltung.csprojResolveAssemblyReference.cache
+c:\Users\Admin\documents\visual studio 2015\Projects\Log4net\BenutzerVerwaltung\bin\Debug\BenutzerVerwaltung.dll
+c:\Users\Admin\documents\visual studio 2015\Projects\Log4net\BenutzerVerwaltung\bin\Debug\BenutzerVerwaltung.pdb
+c:\Users\Admin\documents\visual studio 2015\Projects\Log4net\BenutzerVerwaltung\bin\Debug\log4net.dll
+c:\Users\Admin\documents\visual studio 2015\Projects\Log4net\BenutzerVerwaltung\bin\Debug\log4net.xml
+c:\Users\Admin\documents\visual studio 2015\Projects\Log4net\BenutzerVerwaltung\obj\Debug\BenutzerVerwaltung.dll
+c:\Users\Admin\documents\visual studio 2015\Projects\Log4net\BenutzerVerwaltung\obj\Debug\BenutzerVerwaltung.pdb

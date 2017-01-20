@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="restaurantreservierungModelStoreContainer" CdmEntityContainer="restaurantreservierungEntities">
+    <EntitySetMapping Name="AlleRaeume">
+      <EntityTypeMapping TypeName="restaurantreservierungModel.Raum">
+        <MappingFragment StoreEntitySet="raum">
+          <ScalarProperty Name="ID" ColumnName="id" />
+          <ScalarProperty Name="Bezeichnung" ColumnName="bezeichnung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlleTische">
+      <EntityTypeMapping TypeName="restaurantreservierungModel.Tisch">
+        <MappingFragment StoreEntitySet="tisch">
+          <ScalarProperty Name="ID" ColumnName="id" />
+          <ScalarProperty Name="PersonenAnzahl" ColumnName="personenanzahl" />
+          <ScalarProperty Name="Raum_ID" ColumnName="raum_id" />
+          <ScalarProperty Name="Bezeichnung" ColumnName="bezeichnung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
