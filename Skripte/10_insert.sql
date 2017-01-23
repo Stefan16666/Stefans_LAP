@@ -128,7 +128,7 @@ SELECT BulkColumn
 FROM Openrowset( 
 Bulk 'C:\ITIN20AKT\Datenbank\Skripte\testimages\5_reise_test.jpg', Single_Blob) AS import;
 GO
-
+--------
 INSERT INTO Reise_Bild (bild_id, reise_id) VALUES(1, 1);
 INSERT INTO Reise_Bild (bild_id, reise_id) VALUES(2, 2);
 INSERT INTO Reise_Bild (bild_id, reise_id) VALUES(3, 3);
