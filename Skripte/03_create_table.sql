@@ -21,7 +21,7 @@ CREATE TABLE Benutzer (
 	vorname NVARCHAR(50) NOT NULL,
 	nachname NVARCHAR(50) NOT NULL,	
 	Firma_id INT NOT NULL,
-	Rolle_id INT NOT NULL	
+	Rolle_id INT
 );
 
 CREATE TABLE Bild (

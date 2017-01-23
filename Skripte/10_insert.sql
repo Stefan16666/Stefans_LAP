@@ -1,4 +1,4 @@
-USE reisebuero;
+USE Innovation4austria;
 GO
 
 INSERT INTO Rolle(bezeichnung) VALUES('Firmenansprechpartner');
@@ -60,7 +60,7 @@ VALUES('muster@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Max', 'Muster', 1,
 INSERT INTO Benutzer(benutzername, passwort, vorname, nachname, rolle_id, firma_id)
 VALUES('marco@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Marco', 'Wurz',1, 2);
 INSERT INTO Benutzer(benutzername, passwort, vorname, nachname, rolle_id, firma_id)
-VALUES('claudia@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Claudia', 'Stiegl', 3, 3);
+VALUES('claudia@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Claudia', 'Stiegl', 1, 3);
 INSERT INTO Benutzer(benutzername, passwort, vorname, nachname, rolle_id, firma_id)
 VALUES('daniel@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Daniel', 'Zalli', 2, 4);
 INSERT INTO Benutzer(benutzername, passwort, vorname, nachname, rolle_id, firma_id)
@@ -128,6 +128,13 @@ SELECT BulkColumn
 FROM Openrowset( 
 Bulk 'C:\ITIN20AKT\Datenbank\Skripte\testimages\5_reise_test.jpg', Single_Blob) AS import;
 GO
+
+INSERT INTO Buchung (benutzer_id, Raum_id, firma_id) VALUES (1, 4, 1);
+INSERT INTO Buchung (benutzer_id, Raum_id, firma_id) VALUES (2, 2, 3);
+INSERT INTO Buchung (benutzer_id, Raum_id, firma_id) VALUES (1, 4, 1);
+INSERT INTO Buchung (benutzer_id, Raum_id, firma_id) VALUES (3, 6, 2);
+INSERT INTO Buchung (benutzer_id, Raum_id, firma_id) VALUES (2, 2, 3);
+INSERT INTO Buchung (benutzer_id, Raum_id, firma_id) VALUES (1, 4, 1);
 --------
 INSERT INTO Reise_Bild (bild_id, reise_id) VALUES(1, 1);
 INSERT INTO Reise_Bild (bild_id, reise_id) VALUES(2, 2);
