@@ -15,7 +15,7 @@ FOREIGN KEY (raum_id)
 REFERENCES Raum(id);
 GO
 
-ALTER TABLE Buchungdetails
+ALTER TABLE Buchungsdetails
 ADD
 CONSTRAINT FK_Buchungdeatails_buchung_id
 FOREIGN KEY (buchung_id)
@@ -29,12 +29,6 @@ FOREIGN KEY (benutzer_id)
 REFERENCES Benutzer(id);
 GO
 
-ALTER TABLE Raum
-ADD
-CONSTRAINT FK_Raum_Ausstattung
-FOREIGN KEY (ausstattung_id)
-REFERENCES Ausstattung(id)
-GO
 
 ALTER TABLE Raum
 ADD
@@ -99,7 +93,3 @@ CONSTRAINT FK_Benutzer_Firma
 FOREIGN KEY (firma_id)
 REFERENCES Firma(id);
 GO
-
-
-
-

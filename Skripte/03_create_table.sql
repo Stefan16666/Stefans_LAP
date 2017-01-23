@@ -3,7 +3,7 @@ GO
 
 CREATE TABLE Ausstattung(
 	id INT IDENTITY NOT NULL,
-	bezeichnung INT NOT NULL
+	bezeichnung NVARCHAR(50) NOT NULL
 );
 
 
@@ -12,21 +12,24 @@ CREATE TABLE Bauwerk(
 	strasse NVARCHAR(50) NOT NULL,
 	nummer INT NOT NULL,
 	plz INT NOT NULL,
+	ort NVARCHAR(50) NOT NULL,
 	bezeichnung NVARCHAR(50) NOT NULL	
 );
 
 CREATE TABLE Benutzer (
 	id INT IDENTITY NOT NULL,	
 	passwort VARBINARY(1000) NOT NULL,
+	benutzername NVARCHAR(50) NOT NULL,
 	vorname NVARCHAR(50) NOT NULL,
 	nachname NVARCHAR(50) NOT NULL,	
-	Firma_id INT NOT NULL,
-	Rolle_id INT
+	Firma_id INT,
+	Rolle_id INT NOT NULL
 );
 
 CREATE TABLE Bild (
 	id INT IDENTITY NOT NULL,
-	bilddaten VARBINARY(MAX) NOT NULL
+	bilddaten VARBINARY(MAX) NOT NULL,
+	raum_id INT
 );
 
 CREATE TABLE Buchung (
@@ -35,7 +38,8 @@ CREATE TABLE Buchung (
 	firma_id INT NOT NULL
 );
 
-CREATE TABLE Buchungdetails(
+CREATE TABLE Buchungsdetails(
+	id INT IDENTITY NOT NULL,
 	buchung_id INT NOT NULL,
 	preis DECIMAL NOT NULL,
 	datum DATETIME NOT NULL
@@ -46,6 +50,7 @@ CREATE TABLE Firma(
 	strasse NVARCHAR(50) NOT NULL,
 	nummer INT NOT NULL,
 	plz INT NOT NULL,
+	ort NVARCHAR(50) NOT NULL,
 	bezeichnung NVARCHAR(50) NOT NULL	
 );
 
@@ -66,20 +71,21 @@ CREATE TABLE Raum (
 	beschreibung NVARCHAR(50) NOT NULL,
 	bauwerk_id INT NOT NULL,
 	groesse INT NOT NULL,
-	art_id INT NOT NULL,
-	ausstatung_id INT NOT NULL,
+	art_id INT NOT NULL,	
 	preis INT NOT NULL
 );
 
-CREATE TABLE RaumArt (
+CREATE TABLE Art (
 	id INT IDENTITY NOT NULL,
 	bezeichnung NVARCHAR(50) NOT NULL	
 );
 
 CREATE TABLE Raum_Ausstattung (
 	id INT IDENTITY NOT NULL,
-	kategorie_id INT NOT NULL,
-	raum_id
+	ausstattung_id INT NOT NULL,
+	raum_id INT,
+	Anzahl_Ausstattung INT NOT NULL
+
 );
 
 CREATE TABLE Rechnung(
