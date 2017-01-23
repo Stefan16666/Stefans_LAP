@@ -49,6 +49,17 @@ CREATE TABLE Firma(
 	bezeichnung NVARCHAR(50) NOT NULL	
 );
 
+CREATE TABLE [dbo].[Log] (
+    [Id] [int] IDENTITY (1, 1) NOT NULL,
+    [Date] [datetime] NOT NULL,
+    [Thread] [varchar] (255) NOT NULL,
+    [Level] [varchar] (50) NOT NULL,
+    [Logger] [varchar] (255) NOT NULL,
+    [Message] [varchar] (4000) NOT NULL,
+    [Exception] [varchar] (2000) NULL,
+	benutzer_id INT
+);
+
 CREATE TABLE Raum (
 	id INT IDENTITY NOT NULL,	
 	bezeichnung NVARCHAR(50) NOT NULL,

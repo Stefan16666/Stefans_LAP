@@ -22,6 +22,13 @@ FOREIGN KEY (buchung_id)
 REFERENCES Buchung(id);
 GO
 
+ALTER TABLE [log]
+ADD
+CONSTRAINT FK_Log_benutzer
+FOREIGN KEY (benutzer_id)
+REFERENCES Benutzer(id);
+GO
+
 ALTER TABLE Raum
 ADD
 CONSTRAINT FK_Raum_Ausstattung
