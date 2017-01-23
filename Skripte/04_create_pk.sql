@@ -49,6 +49,12 @@ CONSTRAINT PK_Buchungsdetails
 PRIMARY KEY (id);
 GO
 
+ALTER TABLE [log]
+ADD
+CONSTRAINT PK_Log
+PRIMARY KEY(id);
+GO
+
 ALTER TABLE Raum_Ausstattung
 ADD
 CONSTRAINT PK_Raum_Ausstattung
