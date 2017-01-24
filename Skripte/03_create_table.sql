@@ -19,7 +19,7 @@ CREATE TABLE Bauwerk(
 CREATE TABLE Benutzer (
 	id INT IDENTITY NOT NULL,	
 	passwort VARBINARY(1000) NOT NULL,
-	benutzername NVARCHAR(50) NOT NULL,
+	email NVARCHAR(50) NOT NULL,
 	vorname NVARCHAR(50) NOT NULL,
 	nachname NVARCHAR(50) NOT NULL,	
 	Firma_id INT,
