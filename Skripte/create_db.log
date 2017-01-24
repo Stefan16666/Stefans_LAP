@@ -1,6 +1,6 @@
 ECHO ist ausgeschaltet (OFF).
 . 
-"starting database creation 15:23:49,77" 
+"starting database creation 14:21:23,67" 
 . 
 "try dropping database" 
 1> 2> 1> 2> 3> 4> 1>  
@@ -71,60 +71,62 @@ ECHO ist ausgeschaltet (OFF).
 (1 Zeile betroffen)
 1> 2> 3> 4> 5> 6> 7> 8> Meldung '4861', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 4
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\1_hotel_test.jp
-g' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
-verweigert).
+'C:\Users\Stefan\Documents\GitHub\Stefan16666\Stefans_LAP\testimages\1_hotel_t
+est.jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System
+kann den angegebenen Pfad nicht finden.).
 1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 2
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\2_hotel_test.jp
-g' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
-verweigert).
+'C:\Users\Stefan\Documents\GitHub\Stefan16666\Stefans_LAP\testimages\2_hotel_t
+est.jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System
+kann den angegebenen Pfad nicht finden.).
 1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 2
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\3_hotel_test.jp
-g' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
-verweigert).
+'C:\Users\Stefan\Documents\GitHub\Stefan16666\Stefans_LAP\testimages\3_hotel_t
+est.jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System
+kann den angegebenen Pfad nicht finden.).
 1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 2
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\4_hotel_test.jp
-g' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
-verweigert).
+'C:\Users\Stefan\Documents\GitHub\Stefan16666\Stefans_LAP\testimages\4_hotel_t
+est.jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System
+kann den angegebenen Pfad nicht finden.).
 1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 2
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\5_hotel_test.jp
-g' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
-verweigert).
+'C:\Users\Stefan\Documents\GitHub\Stefan16666\Stefans_LAP\testimages\5_hotel_t
+est.jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System
+kann den angegebenen Pfad nicht finden.).
 1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 2
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\1_reise_test.jp
-g' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
-verweigert).
+'C:\Users\Stefan\Documents\GitHub\Stefan16666\Stefans_LAP\testimages\1_reise_t
+est.jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System
+kann den angegebenen Pfad nicht finden.).
 1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 2
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\2_reise_test.jp
-g' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
-verweigert).
+'C:\Users\Stefan\Documents\GitHub\Stefan16666\Stefans_LAP\testimages\2_reise_t
+est.jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System
+kann den angegebenen Pfad nicht finden.).
 1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 2
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\3_reise_test.jp
-g' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
-verweigert).
+'C:\Users\Stefan\Documents\GitHub\Stefan16666\Stefans_LAP\testimages\3_reise_t
+est.jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System
+kann den angegebenen Pfad nicht finden.).
 1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 2
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\4_reise_test.jp
-g' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
-verweigert).
+'C:\Users\Stefan\Documents\GitHub\Stefan16666\Stefans_LAP\testimages\4_reise_t
+est.jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System
+kann den angegebenen Pfad nicht finden.).
 1> 2> 3> 4> 5> 6> Meldung '4861', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 2
 Das Massenladen ist nicht m”glich, da die Datei
-'C:\Users\groistef\Source\Repos\Stefans_LAP\Skripte\testimages\5_reise_test.jp
-g' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 5(Zugriff
-verweigert).
-1> 2> 3> 4> 5> 6> 7> 8> Meldung '207', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 2
-Ungltiger Spaltenname 'benutzer_id'.
-1> 2> 3> Meldung '208', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 2
-Ungltiger Objektname 'Buchungdetails'.
+'C:\Users\Stefan\Documents\GitHub\Stefan16666\Stefans_LAP\testimages\5_reise_t
+est.jpg' nicht ge”ffnet werden konnte. Betriebssystemfehlercode 3(Das System
+kann den angegebenen Pfad nicht finden.).
+1> 2> 3> 4> 5> 6> 7> 8> (1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
 1> 2>  
  
 . 
-"stopping database creation 15:23:51,23" 
+"stopping database creation 14:21:25,26" 
 . 
