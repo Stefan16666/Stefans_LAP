@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using log4net;
 using log4net.Config;
+using Innovation4Austria.logic;
 
 namespace Innovation4Austria.web.Controllers
 {
@@ -14,7 +15,7 @@ namespace Innovation4Austria.web.Controllers
         {
             /// die Einstellungen aus demn Config-File
             /// sollen für log4net übernommen werden!
-            XmlConfigurator.Configure();
+           
 
             ///erzeuge einen Log-Manager
             /// Name beliebig - sinnvoll wäre natürlich ein sprechender zB. Klassen-Name
