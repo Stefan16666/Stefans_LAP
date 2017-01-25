@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Innovation4AustriaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Art">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ausstattung">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bauwerk">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strasse" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="nummer" Type="int" Nullable="false" />
+    <Property Name="plz" Type="int" Nullable="false" />
+    <Property Name="ort" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Benutzer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="passwort" Type="varbinary" MaxLength="1000" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="vorname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="nachname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Firma_id" Type="int" />
+    <Property Name="Rolle_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bild">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bilddaten" Type="varbinary(max)" Nullable="false" />
+    <Property Name="raum_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Buchung">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="raum_id" Type="int" Nullable="false" />
+    <Property Name="firma_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Buchungsdetails">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="buchung_id" Type="int" Nullable="false" />
+    <Property Name="preis" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="datum" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Firma">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strasse" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="nummer" Type="int" Nullable="false" />
+    <Property Name="plz" Type="int" Nullable="false" />
+    <Property Name="ort" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Thread" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Level" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Logger" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Message" Type="varchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Exception" Type="varchar" MaxLength="2000" />
+    <Property Name="Innerexception" Type="varchar" MaxLength="2000" />
+    <Property Name="benutzer_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Raum">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="beschreibung" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="bauwerk_id" Type="int" Nullable="false" />
+    <Property Name="groesse" Type="int" Nullable="false" />
+    <Property Name="art_id" Type="int" Nullable="false" />
+    <Property Name="preis" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Raum_Ausstattung">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ausstattung_id" Type="int" Nullable="false" />
+    <Property Name="raum_id" Type="int" />
+    <Property Name="Anzahl_Ausstattung" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rechnung">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="datum" Type="date" />
+  </EntityType>
+  <EntityType Name="Rechnungsdetails">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rechnung_id" Type="int" Nullable="false" />
+    <Property Name="buchung_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rolle">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bezeichnung" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Benutzer_Firma">
+    <End Role="Firma" Type="Self.Firma" Multiplicity="0..1" />
+    <End Role="Benutzer" Type="Self.Benutzer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Firma">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Benutzer">
+        <PropertyRef Name="Firma_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Benutzer_Rolle">
+    <End Role="Rolle" Type="Self.Rolle" Multiplicity="1" />
+    <End Role="Benutzer" Type="Self.Benutzer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rolle">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Benutzer">
+        <PropertyRef Name="Rolle_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bild_Raum">
+    <End Role="Raum" Type="Self.Raum" Multiplicity="0..1" />
+    <End Role="Bild" Type="Self.Bild" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Raum">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Bild">
+        <PropertyRef Name="raum_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Buchung_Firma">
+    <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+    <End Role="Buchung" Type="Self.Buchung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Firma">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Buchung">
+        <PropertyRef Name="firma_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Buchung_Raum">
+    <End Role="Raum" Type="Self.Raum" Multiplicity="1" />
+    <End Role="Buchung" Type="Self.Buchung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Raum">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Buchung">
+        <PropertyRef Name="raum_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Buchungdeatails_buchung_id">
+    <End Role="Buchung" Type="Self.Buchung" Multiplicity="1" />
+    <End Role="Buchungsdetails" Type="Self.Buchungsdetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Buchung">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Buchungsdetails">
+        <PropertyRef Name="buchung_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Log_benutzer">
+    <End Role="Benutzer" Type="Self.Benutzer" Multiplicity="0..1" />
+    <End Role="Log" Type="Self.Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Benutzer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="benutzer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Raum_Art">
+    <End Role="Art" Type="Self.Art" Multiplicity="1" />
+    <End Role="Raum" Type="Self.Raum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Art">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Raum">
+        <PropertyRef Name="art_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Raum_Ausstattung_Ausstattung">
+    <End Role="Ausstattung" Type="Self.Ausstattung" Multiplicity="1" />
+    <End Role="Raum_Ausstattung" Type="Self.Raum_Ausstattung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ausstattung">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Raum_Ausstattung">
+        <PropertyRef Name="ausstattung_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Raum_Ausstattung_Raum">
+    <End Role="Raum" Type="Self.Raum" Multiplicity="0..1" />
+    <End Role="Raum_Ausstattung" Type="Self.Raum_Ausstattung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Raum">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Raum_Ausstattung">
+        <PropertyRef Name="raum_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Raum_Bauwerk">
+    <End Role="Bauwerk" Type="Self.Bauwerk" Multiplicity="1" />
+    <End Role="Raum" Type="Self.Raum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bauwerk">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Raum">
+        <PropertyRef Name="bauwerk_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rechnungsdetails_Buchung">
+    <End Role="Buchung" Type="Self.Buchung" Multiplicity="1" />
+    <End Role="Rechnungsdetails" Type="Self.Rechnungsdetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Buchung">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Rechnungsdetails">
+        <PropertyRef Name="buchung_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rechnungsdetails_Rechnung">
+    <End Role="Rechnung" Type="Self.Rechnung" Multiplicity="1" />
+    <End Role="Rechnungsdetails" Type="Self.Rechnungsdetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rechnung">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Rechnungsdetails">
+        <PropertyRef Name="rechnung_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Innovation4AustriaModelStoreContainer">
+    <EntitySet Name="Art" EntityType="Self.Art" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ausstattung" EntityType="Self.Ausstattung" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bauwerk" EntityType="Self.Bauwerk" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Benutzer" EntityType="Self.Benutzer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bild" EntityType="Self.Bild" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Buchung" EntityType="Self.Buchung" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Buchungsdetails" EntityType="Self.Buchungsdetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Firma" EntityType="Self.Firma" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Raum" EntityType="Self.Raum" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Raum_Ausstattung" EntityType="Self.Raum_Ausstattung" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rechnung" EntityType="Self.Rechnung" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rechnungsdetails" EntityType="Self.Rechnungsdetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rolle" EntityType="Self.Rolle" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Benutzer_Firma" Association="Self.FK_Benutzer_Firma">
+      <End Role="Firma" EntitySet="Firma" />
+      <End Role="Benutzer" EntitySet="Benutzer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Benutzer_Rolle" Association="Self.FK_Benutzer_Rolle">
+      <End Role="Rolle" EntitySet="Rolle" />
+      <End Role="Benutzer" EntitySet="Benutzer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bild_Raum" Association="Self.FK_Bild_Raum">
+      <End Role="Raum" EntitySet="Raum" />
+      <End Role="Bild" EntitySet="Bild" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Buchung_Firma" Association="Self.FK_Buchung_Firma">
+      <End Role="Firma" EntitySet="Firma" />
+      <End Role="Buchung" EntitySet="Buchung" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Buchung_Raum" Association="Self.FK_Buchung_Raum">
+      <End Role="Raum" EntitySet="Raum" />
+      <End Role="Buchung" EntitySet="Buchung" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Buchungdeatails_buchung_id" Association="Self.FK_Buchungdeatails_buchung_id">
+      <End Role="Buchung" EntitySet="Buchung" />
+      <End Role="Buchungsdetails" EntitySet="Buchungsdetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Log_benutzer" Association="Self.FK_Log_benutzer">
+      <End Role="Benutzer" EntitySet="Benutzer" />
+      <End Role="Log" EntitySet="Log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Raum_Art" Association="Self.FK_Raum_Art">
+      <End Role="Art" EntitySet="Art" />
+      <End Role="Raum" EntitySet="Raum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Raum_Ausstattung_Ausstattung" Association="Self.FK_Raum_Ausstattung_Ausstattung">
+      <End Role="Ausstattung" EntitySet="Ausstattung" />
+      <End Role="Raum_Ausstattung" EntitySet="Raum_Ausstattung" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Raum_Ausstattung_Raum" Association="Self.FK_Raum_Ausstattung_Raum">
+      <End Role="Raum" EntitySet="Raum" />
+      <End Role="Raum_Ausstattung" EntitySet="Raum_Ausstattung" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Raum_Bauwerk" Association="Self.FK_Raum_Bauwerk">
+      <End Role="Bauwerk" EntitySet="Bauwerk" />
+      <End Role="Raum" EntitySet="Raum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rechnungsdetails_Buchung" Association="Self.FK_Rechnungsdetails_Buchung">
+      <End Role="Buchung" EntitySet="Buchung" />
+      <End Role="Rechnungsdetails" EntitySet="Rechnungsdetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rechnungsdetails_Rechnung" Association="Self.FK_Rechnungsdetails_Rechnung">
+      <End Role="Rechnung" EntitySet="Rechnung" />
+      <End Role="Rechnungsdetails" EntitySet="Rechnungsdetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

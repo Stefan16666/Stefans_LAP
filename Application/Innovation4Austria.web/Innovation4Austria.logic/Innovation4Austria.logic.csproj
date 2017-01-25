@@ -111,6 +111,7 @@
     <Compile Include="Rolle.cs">
       <DependentUpon>Innovation4Austria.tt</DependentUpon>
     </Compile>
+    <Compile Include="Tools.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Innovation4Austria.edmx">

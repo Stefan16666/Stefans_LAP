@@ -57,3 +57,11 @@ C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\In
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\Innovation4Austria.web\bin\de\System.Web.WebPages.Razor.resources.dll
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.dll
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.pdb
+C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\Innovation4Austria.web\bin\Innovation4Austria.logic.dll
+C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\Innovation4Austria.web\bin\log4net.dll
+C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\Innovation4Austria.web\bin\EntityFramework.dll
+C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\Innovation4Austria.web\bin\Innovation4Austria.logic.pdb
+C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\Innovation4Austria.web\bin\log4net.xml
+C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\Innovation4Austria.web\bin\EntityFramework.xml
+C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\Innovation4Austria.web\bin\de\EntityFramework.resources.dll
+C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.csprojResolveAssemblyReference.cache
