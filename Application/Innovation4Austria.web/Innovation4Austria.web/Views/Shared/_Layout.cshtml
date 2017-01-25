@@ -10,6 +10,9 @@
     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="Scripts/jquery.easing.min.js"></script>
     <script type="text/javascript" src="Scripts/jquery.nivo.slider.pack.js"></script>
+    @Styles.Render("~/Content/toastr")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 
 <body>
@@ -43,6 +46,44 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+    <script>
+        $(document).ready(function () {
+            $("#myBtn").click(function () {
+                $("#myModal").modal();
+            });
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-center",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+
+            @{
+                if (TempData["success"]!=null)
+                {
+                    <text>toastr["success"]('@TempData["success"]');</text>
+                } else if (TempData["error"]!=null)
+                {
+                    <text>toastr["error"]('@TempData["error"]');</text>
+                }
+            }
+
+            Globalize.culture('de');
+        });
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
