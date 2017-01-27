@@ -1,4 +1,4 @@
-﻿// Die T4-Codegenerierung ist für Modell 'C:\Users\groistef\Desktop\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.logic\Innovation4Austria.edmx' aktiviert. 
+﻿// Die T4-Codegenerierung ist für Modell 'C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\Innovation4Austria.logic\Innovation4Austria.edmx' aktiviert. 
 // Um die Generierung von Legacycode zu aktivieren, ändern Sie den Wert der Designer-Eigenschaft 'Code Generation Strategy'
 // in 'Legacy ObjectContext'. Diese Eigenschaft wird im Eigenschaftenfenster angezeigt, wenn das Modell
 // im Designer geöffnet ist.

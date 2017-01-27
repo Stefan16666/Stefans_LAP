@@ -25,7 +25,7 @@ namespace Innovation4Austria.logic
         public int Nummer { get; set; }
         public int Plz { get; set; }
         public string Ort { get; set; }
-        public string bezeichnung { get; set; }
+        public string Bezeichnung { get; set; }
     
         public virtual ICollection<Benutzer> AlleBenutzer { get; set; }
         public virtual ICollection<Buchung> AlleBuchungen { get; set; }

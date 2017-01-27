@@ -16,7 +16,7 @@ namespace Innovation4Austria.logic
     {
         public Benutzer()
         {
-            this.AlleLogs = new HashSet<Log>();
+            this.AlleLog = new HashSet<Log>();
         }
     
         public int Id { get; set; }
@@ -29,6 +29,6 @@ namespace Innovation4Austria.logic
     
         public virtual Firma Firma { get; set; }
         public virtual Rolle Rolle { get; set; }
-        public virtual ICollection<Log> AlleLogs { get; set; }
+        public virtual ICollection<Log> AlleLog { get; set; }
     }
 }

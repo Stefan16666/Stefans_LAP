@@ -67,75 +67,21 @@ VALUES('stefan@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Stefan', 'Groinig'
 GO
 
 
-
-INSERT INTO Bild (bilddaten, raum_id)
-SELECT BulkColumn, 1
-FROM Openrowset( 
-Bulk 'C:\Stefans_LAP\Skripte\testimages\1_hotel_test.jpg', Single_Blob) AS import;
+INSERT INTO Buchung (Raum_id, firma_id) VALUES (4, 1);
+INSERT INTO Buchung (Raum_id, firma_id) VALUES (2, 3);
+INSERT INTO Buchung (Raum_id, firma_id) VALUES (4, 1);
+INSERT INTO Buchung (Raum_id, firma_id) VALUES (6, 2);
+INSERT INTO Buchung (Raum_id, firma_id) VALUES (2, 3);
+INSERT INTO Buchung (Raum_id, firma_id) VALUES (4, 1);
 GO
 
-INSERT INTO Bild(bilddaten, raum_id)
-SELECT BulkColumn, 2
-FROM Openrowset( 
-Bulk 'C:\Stefans_LAP\Skripte\testimages\2_hotel_test.jpg', Single_Blob) AS import;
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '16-06-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '14-06-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '08-07-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '10-10-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '08-04-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '23-12-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '16-02-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '28-10-2017', 12.0);
 GO
-
-INSERT INTO Bild (bilddaten, raum_id)
-SELECT BulkColumn, 3
-FROM Openrowset( 
-Bulk 'C:\Stefans_LAP\Skripte\testimages\3_hotel_test.jpg', Single_Blob) AS import;
-GO
-
-INSERT INTO Bild (bilddaten, raum_id)
-SELECT BulkColumn,4
-FROM Openrowset( 
-Bulk 'C:\Stefans_LAP\Skripte\testimages\4_hotel_test.jpg', Single_Blob) AS import;
-GO
-
-INSERT INTO Bild(bilddaten, raum_id)
-SELECT BulkColumn,4
-FROM Openrowset( 
-Bulk 'C:\Stefans_LAP\Skripte\testimages\5_hotel_test.jpg', Single_Blob) AS import;
-GO
-
-INSERT INTO Bild(bilddaten, raum_id)
-SELECT BulkColumn,5
-FROM Openrowset( 
-Bulk 'C:\Stefans_LAP\Skripte\testimages\1_reise_test.jpg', Single_Blob) AS import;	
-GO
-
-INSERT INTO Bild(bilddaten, raum_id)
-SELECT BulkColumn,6
-FROM Openrowset( 
-Bulk 'C:\Stefans_LAP\Skripte\testimages\2_reise_test.jpg', Single_Blob) AS import;
-GO
-
-INSERT INTO Bild(bilddaten, raum_id)
-SELECT BulkColumn,7
-FROM Openrowset( 
-Bulk 'C:\Stefans_LAP\Skripte\testimages\3_reise_test.jpg', Single_Blob) AS import;
-GO
-
-INSERT INTO Bild(bilddaten, raum_id)
-SELECT BulkColumn ,8
-FROM Openrowset( 
-Bulk 'C:\Stefans_LAP\Skripte\testimages\4_reise_test.jpg', Single_Blob) AS import;
-GO
-
-INSERT INTO Bild (bilddaten, raum_id)
-SELECT BulkColumn,9
-FROM Openrowset( 
-Bulk 'C:\Stefans_LAP\Skripte\testimages\5_reise_test.jpg', Single_Blob) AS import;
-GO
-
-INSERT INTO Buchung (Raum_id, firma_id) VALUES (1,1);
-INSERT INTO Buchung (Raum_id, firma_id) VALUES (1,1);
-INSERT INTO Buchung (Raum_id, firma_id) VALUES (1,1);
-INSERT INTO Buchung (Raum_id, firma_id) VALUES (1,1);
-INSERT INTO Buchung (Raum_id, firma_id) VALUES (1,1);
-INSERT INTO Buchung (Raum_id, firma_id) VALUES (1,1);
-GO
-
-INSERT INTO Buchungdetails (buchung_id, datum, preis) VALUES( 1, '2017-06-16', 12.0);
-GO
-
+--------

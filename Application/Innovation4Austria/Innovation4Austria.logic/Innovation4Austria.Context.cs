@@ -29,14 +29,14 @@ namespace Innovation4Austria.logic
         public DbSet<Ausstattung> AlleAusstattungen { get; set; }
         public DbSet<Bauwerk> AlleBauwerke { get; set; }
         public DbSet<Benutzer> AlleBenutzer { get; set; }
-        public DbSet<Bild> Bild { get; set; }
+        public DbSet<Bild> AlleBilder { get; set; }
         public DbSet<Buchung> AlleBuchungen { get; set; }
         public DbSet<Buchungsdetails> AlleBuchungsdetails { get; set; }
         public DbSet<Firma> AlleFirma { get; set; }
-        public DbSet<Log> AlleLogs { get; set; }
-        public DbSet<Raum> AlleRaum { get; set; }
+        public DbSet<Log> Log { get; set; }
+        public DbSet<Raum> AlleRaeum { get; set; }
         public DbSet<Raum_Ausstattung> AlleRaum_Ausstattungen { get; set; }
-        public DbSet<Rechnung> AlleRechnung { get; set; }
+        public DbSet<Rechnung> AlleRechnungen { get; set; }
         public DbSet<Rechnungsdetails> AlleRechnungsdetails { get; set; }
         public DbSet<Rolle> AlleRollen { get; set; }
     }

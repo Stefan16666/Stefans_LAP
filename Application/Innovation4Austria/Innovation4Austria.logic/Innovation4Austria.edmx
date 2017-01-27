@@ -378,7 +378,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Bezeichnung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Raum_Ausstattung" Relationship="Self.FK_Raum_Ausstattung_Ausstattung" FromRole="Ausstattung" ToRole="Raum_Ausstattung" />
+          <NavigationProperty Name="AlleRaum_Ausstattungen" Relationship="Self.FK_Raum_Ausstattung_Ausstattung" FromRole="Ausstattung" ToRole="Raum_Ausstattung" />
         </EntityType>
         <EntityType Name="Bauwerk">
           <Key>
@@ -405,7 +405,7 @@
           <Property Name="Rolle_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Firma" Relationship="Self.FK_Benutzer_Firma" FromRole="Benutzer" ToRole="Firma" />
           <NavigationProperty Name="Rolle" Relationship="Self.FK_Benutzer_Rolle" FromRole="Benutzer" ToRole="Rolle" />
-          <NavigationProperty Name="AlleLogs" Relationship="Self.FK_Log_benutzer" FromRole="Benutzer" ToRole="Log" />
+          <NavigationProperty Name="AlleLog" Relationship="Self.FK_Log_benutzer" FromRole="Benutzer" ToRole="Log" />
         </EntityType>
         <EntityType Name="Bild">
           <Key>
@@ -447,7 +447,7 @@
           <Property Name="Nummer" Type="Int32" Nullable="false" />
           <Property Name="Plz" Type="Int32" Nullable="false" />
           <Property Name="Ort" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="bezeichnung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Bezeichnung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AlleBenutzer" Relationship="Self.FK_Benutzer_Firma" FromRole="Firma" ToRole="Benutzer" />
           <NavigationProperty Name="AlleBuchungen" Relationship="Self.FK_Buchung_Firma" FromRole="Firma" ToRole="Buchung" />
         </EntityType>
@@ -463,7 +463,7 @@
           <Property Name="Message" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Exception" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="Innerexception" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="Benutzer_id" Type="Int32" />
+          <Property Name="Benutzer_Id" Type="Int32" />
           <NavigationProperty Name="Benutzer" Relationship="Self.FK_Log_benutzer" FromRole="Log" ToRole="Benutzer" />
         </EntityType>
         <EntityType Name="Raum">
@@ -588,7 +588,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Log">
-              <PropertyRef Name="Benutzer_id" />
+              <PropertyRef Name="Benutzer_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -681,19 +681,19 @@
           <EntitySet Name="AlleAusstattungen" EntityType="Self.Ausstattung" />
           <EntitySet Name="AlleBauwerke" EntityType="Self.Bauwerk" />
           <EntitySet Name="AlleBenutzer" EntityType="Self.Benutzer" />
-          <EntitySet Name="Bild" EntityType="Self.Bild" />
+          <EntitySet Name="AlleBilder" EntityType="Self.Bild" />
           <EntitySet Name="AlleBuchungen" EntityType="Self.Buchung" />
           <EntitySet Name="AlleBuchungsdetails" EntityType="Self.Buchungsdetails" />
           <EntitySet Name="AlleFirma" EntityType="Self.Firma" />
-          <EntitySet Name="AlleLogs" EntityType="Self.Log" />
-          <EntitySet Name="AlleRaum" EntityType="Self.Raum" />
+          <EntitySet Name="Log" EntityType="Self.Log" />
+          <EntitySet Name="AlleRaeum" EntityType="Self.Raum" />
           <EntitySet Name="AlleRaum_Ausstattungen" EntityType="Self.Raum_Ausstattung" />
-          <EntitySet Name="AlleRechnung" EntityType="Self.Rechnung" />
+          <EntitySet Name="AlleRechnungen" EntityType="Self.Rechnung" />
           <EntitySet Name="AlleRechnungsdetails" EntityType="Self.Rechnungsdetails" />
           <EntitySet Name="AlleRollen" EntityType="Self.Rolle" />
           <AssociationSet Name="FK_Raum_Art" Association="Self.FK_Raum_Art">
             <End Role="Art" EntitySet="AlleArten" />
-            <End Role="Raum" EntitySet="AlleRaum" />
+            <End Role="Raum" EntitySet="AlleRaeum" />
           </AssociationSet>
           <AssociationSet Name="FK_Raum_Ausstattung_Ausstattung" Association="Self.FK_Raum_Ausstattung_Ausstattung">
             <End Role="Ausstattung" EntitySet="AlleAusstattungen" />
@@ -701,7 +701,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_Raum_Bauwerk" Association="Self.FK_Raum_Bauwerk">
             <End Role="Bauwerk" EntitySet="AlleBauwerke" />
-            <End Role="Raum" EntitySet="AlleRaum" />
+            <End Role="Raum" EntitySet="AlleRaeum" />
           </AssociationSet>
           <AssociationSet Name="FK_Benutzer_Firma" Association="Self.FK_Benutzer_Firma">
             <End Role="Firma" EntitySet="AlleFirma" />
@@ -713,18 +713,18 @@
           </AssociationSet>
           <AssociationSet Name="FK_Log_benutzer" Association="Self.FK_Log_benutzer">
             <End Role="Benutzer" EntitySet="AlleBenutzer" />
-            <End Role="Log" EntitySet="AlleLogs" />
+            <End Role="Log" EntitySet="Log" />
           </AssociationSet>
           <AssociationSet Name="FK_Bild_Raum" Association="Self.FK_Bild_Raum">
-            <End Role="Raum" EntitySet="AlleRaum" />
-            <End Role="Bild" EntitySet="Bild" />
+            <End Role="Raum" EntitySet="AlleRaeum" />
+            <End Role="Bild" EntitySet="AlleBilder" />
           </AssociationSet>
           <AssociationSet Name="FK_Buchung_Firma" Association="Self.FK_Buchung_Firma">
             <End Role="Firma" EntitySet="AlleFirma" />
             <End Role="Buchung" EntitySet="AlleBuchungen" />
           </AssociationSet>
           <AssociationSet Name="FK_Buchung_Raum" Association="Self.FK_Buchung_Raum">
-            <End Role="Raum" EntitySet="AlleRaum" />
+            <End Role="Raum" EntitySet="AlleRaeum" />
             <End Role="Buchung" EntitySet="AlleBuchungen" />
           </AssociationSet>
           <AssociationSet Name="FK_Buchungdeatails_buchung_id" Association="Self.FK_Buchungdeatails_buchung_id">
@@ -736,11 +736,11 @@
             <End Role="Rechnungsdetails" EntitySet="AlleRechnungsdetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Raum_Ausstattung_Raum" Association="Self.FK_Raum_Ausstattung_Raum">
-            <End Role="Raum" EntitySet="AlleRaum" />
+            <End Role="Raum" EntitySet="AlleRaeum" />
             <End Role="Raum_Ausstattung" EntitySet="AlleRaum_Ausstattungen" />
           </AssociationSet>
           <AssociationSet Name="FK_Rechnungsdetails_Rechnung" Association="Self.FK_Rechnungsdetails_Rechnung">
-            <End Role="Rechnung" EntitySet="AlleRechnung" />
+            <End Role="Rechnung" EntitySet="AlleRechnungen" />
             <End Role="Rechnungsdetails" EntitySet="AlleRechnungsdetails" />
           </AssociationSet>
         </EntityContainer>
@@ -791,7 +791,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Bild">
+          <EntitySetMapping Name="AlleBilder">
             <EntityTypeMapping TypeName="Innovation4AustriaModel.Bild">
               <MappingFragment StoreEntitySet="Bild">
                 <ScalarProperty Name="Id" ColumnName="id" />
@@ -827,11 +827,11 @@
                 <ScalarProperty Name="Nummer" ColumnName="nummer" />
                 <ScalarProperty Name="Plz" ColumnName="plz" />
                 <ScalarProperty Name="Ort" ColumnName="ort" />
-                <ScalarProperty Name="bezeichnung" ColumnName="bezeichnung" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="bezeichnung" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AlleLogs">
+          <EntitySetMapping Name="Log">
             <EntityTypeMapping TypeName="Innovation4AustriaModel.Log">
               <MappingFragment StoreEntitySet="Log">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -842,11 +842,11 @@
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Exception" ColumnName="Exception" />
                 <ScalarProperty Name="Innerexception" ColumnName="Innerexception" />
-                <ScalarProperty Name="Benutzer_id" ColumnName="benutzer_id" />
+                <ScalarProperty Name="Benutzer_Id" ColumnName="benutzer_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AlleRaum">
+          <EntitySetMapping Name="AlleRaeum">
             <EntityTypeMapping TypeName="Innovation4AustriaModel.Raum">
               <MappingFragment StoreEntitySet="Raum">
                 <ScalarProperty Name="Id" ColumnName="id" />
@@ -869,7 +869,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AlleRechnung">
+          <EntitySetMapping Name="AlleRechnungen">
             <EntityTypeMapping TypeName="Innovation4AustriaModel.Rechnung">
               <MappingFragment StoreEntitySet="Rechnung">
                 <ScalarProperty Name="Id" ColumnName="id" />

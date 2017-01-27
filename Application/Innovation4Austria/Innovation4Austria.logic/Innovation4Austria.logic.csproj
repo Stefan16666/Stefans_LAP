@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{26D9F0F6-F785-4DD3-97E7-A0BDF0E68E04}</ProjectGuid>
+    <ProjectGuid>{BF513080-A4D3-4432-A161-9D9BBF7AC257}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Innovation4Austria.logic</RootNamespace>
@@ -111,6 +111,7 @@
     <Compile Include="Rolle.cs">
       <DependentUpon>Innovation4Austria.tt</DependentUpon>
     </Compile>
+    <Compile Include="Tools.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Innovation4Austria.edmx">

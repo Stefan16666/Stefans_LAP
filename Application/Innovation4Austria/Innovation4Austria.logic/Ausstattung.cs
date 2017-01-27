@@ -16,12 +16,12 @@ namespace Innovation4Austria.logic
     {
         public Ausstattung()
         {
-            this.Raum_Ausstattung = new HashSet<Raum_Ausstattung>();
+            this.AlleRaum_Ausstattungen = new HashSet<Raum_Ausstattung>();
         }
     
         public int Id { get; set; }
         public string Bezeichnung { get; set; }
     
-        public virtual ICollection<Raum_Ausstattung> Raum_Ausstattung { get; set; }
+        public virtual ICollection<Raum_Ausstattung> AlleRaum_Ausstattungen { get; set; }
     }
 }

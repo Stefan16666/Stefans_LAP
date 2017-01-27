@@ -68,9 +68,9 @@ GO
 
 ALTER TABLE Rechnungsdetails
 ADD
-CONSTRAINT FK_Rechnungsdetails_Buchung
-FOREIGN KEY (buchung_id)
-REFERENCES Buchung(id);
+CONSTRAINT FK_Rechnungsdetails_Buchungsdetails
+FOREIGN KEY (buchungsdetails_id)
+REFERENCES Buchungsdetails(id);
 GO
 
 ALTER TABLE Rechnungsdetails

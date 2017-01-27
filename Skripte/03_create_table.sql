@@ -13,7 +13,8 @@ CREATE TABLE Bauwerk(
 	nummer INT NOT NULL,
 	plz INT NOT NULL,
 	ort NVARCHAR(50) NOT NULL,
-	bezeichnung NVARCHAR(50) NOT NULL	
+	bezeichnung NVARCHAR(50) NOT NULL,
+	aktiv bit default 1
 );
 
 CREATE TABLE Benutzer (
@@ -23,7 +24,8 @@ CREATE TABLE Benutzer (
 	vorname NVARCHAR(50) NOT NULL,
 	nachname NVARCHAR(50) NOT NULL,	
 	Firma_id INT,
-	Rolle_id INT NOT NULL
+	Rolle_id INT NOT NULL,
+	aktiv bit default 1
 );
 
 CREATE TABLE Bild (
@@ -35,7 +37,8 @@ CREATE TABLE Bild (
 CREATE TABLE Buchung (
 	id INT IDENTITY NOT NULL,	
 	raum_id INT NOT NULL,
-	firma_id INT NOT NULL
+	firma_id INT NOT NULL,
+	aktiv bit default 1
 );
 
 CREATE TABLE Buchungsdetails(
@@ -72,7 +75,8 @@ CREATE TABLE Raum (
 	bauwerk_id INT NOT NULL,
 	groesse INT NOT NULL,
 	art_id INT NOT NULL,	
-	preis INT NOT NULL
+	preis INT NOT NULL,
+	aktiv bit default 1
 );
 
 CREATE TABLE Art (
@@ -84,7 +88,8 @@ CREATE TABLE Raum_Ausstattung (
 	id INT IDENTITY NOT NULL,
 	ausstattung_id INT NOT NULL,
 	raum_id INT,
-	Anzahl_Ausstattung INT NOT NULL
+	Anzahl_Ausstattung INT NOT NULL,
+	aktiv bit default 1
 
 );
 
@@ -96,7 +101,7 @@ CREATE TABLE Rechnung(
 CREATE TABLE Rechnungsdetails(
 	id INT IDENTITY NOT NULL,
 	rechnung_id INT NOT NULL,
-	buchung_id INT NOT NULL
+	buchungsdetails_id INT NOT NULL
 );
 
 CREATE TABLE Rolle (

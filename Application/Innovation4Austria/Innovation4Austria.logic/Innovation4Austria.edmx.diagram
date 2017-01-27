@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4303f376c74843de94c0dc1dc000ae5e" Name="Diagram1">
+      <Diagram DiagramId="f2bde5b992594cd484ec4ee4630d98bf" Name="Diagram1">
         <EntityTypeShape EntityType="Innovation4AustriaModel.Art" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Innovation4AustriaModel.Ausstattung" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Innovation4AustriaModel.Bauwerk" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
@@ -12,13 +12,13 @@
         <EntityTypeShape EntityType="Innovation4AustriaModel.Bild" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Innovation4AustriaModel.Buchung" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="Innovation4AustriaModel.Buchungsdetails" Width="1.5" PointX="7.5" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Innovation4AustriaModel.Firma" Width="1.5" PointX="2.125" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Firma" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="Innovation4AustriaModel.Log" Width="1.5" PointX="7.5" PointY="10.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Innovation4AustriaModel.Raum" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Innovation4AustriaModel.Raum_Ausstattung" Width="1.5" PointX="5.25" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Innovation4AustriaModel.Rechnung" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Innovation4AustriaModel.Rechnungsdetails" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Innovation4AustriaModel.Rolle" Width="1.5" PointX="4.5" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Rolle" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
         <AssociationConnector Association="Innovation4AustriaModel.FK_Raum_Art" ManuallyRouted="false" />
         <AssociationConnector Association="Innovation4AustriaModel.FK_Raum_Ausstattung_Ausstattung" ManuallyRouted="false" />
         <AssociationConnector Association="Innovation4AustriaModel.FK_Raum_Bauwerk" ManuallyRouted="false" />
