@@ -17,16 +17,15 @@ namespace Innovation4Austria.logic
         public Buchung()
         {
             this.AlleBuchungsdetails = new HashSet<Buchungsdetails>();
-            this.AlleRechnungsdetails = new HashSet<Rechnungsdetails>();
         }
     
         public int Id { get; set; }
         public int Raum_id { get; set; }
         public int Firma_id { get; set; }
+        public Nullable<bool> Aktiv { get; set; }
     
         public virtual Firma Firma { get; set; }
         public virtual Raum Raum { get; set; }
         public virtual ICollection<Buchungsdetails> AlleBuchungsdetails { get; set; }
-        public virtual ICollection<Rechnungsdetails> AlleRechnungsdetails { get; set; }
     }
 }

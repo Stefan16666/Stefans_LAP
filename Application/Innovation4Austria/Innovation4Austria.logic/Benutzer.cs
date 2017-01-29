@@ -21,11 +21,12 @@ namespace Innovation4Austria.logic
     
         public int Id { get; set; }
         public byte[] Passwort { get; set; }
-        public string Email { get; set; }
+        public string Emailadresse { get; set; }
         public string Vorname { get; set; }
         public string Nachname { get; set; }
         public Nullable<int> Firma_id { get; set; }
         public int Rolle_id { get; set; }
+        public Nullable<bool> Aktiv { get; set; }
     
         public virtual Firma Firma { get; set; }
         public virtual Rolle Rolle { get; set; }

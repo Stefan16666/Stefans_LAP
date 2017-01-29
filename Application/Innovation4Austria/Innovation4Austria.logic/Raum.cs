@@ -28,6 +28,7 @@ namespace Innovation4Austria.logic
         public int Groesse { get; set; }
         public int Art_id { get; set; }
         public int Preis { get; set; }
+        public Nullable<bool> Aktiv { get; set; }
     
         public virtual Art Art { get; set; }
         public virtual Bauwerk Bauwerk { get; set; }

@@ -15,10 +15,10 @@ namespace Innovation4Austria.logic
     public partial class Rechnungsdetails
     {
         public int Id { get; set; }
-        public int Rechnung_id { get; set; }
-        public int Buchung_id { get; set; }
+        public int Rechnung_Id { get; set; }
+        public int Buchungsdetail_Id { get; set; }
     
-        public virtual Buchung Buchung { get; set; }
+        public virtual Buchungsdetails Buchungsdetails { get; set; }
         public virtual Rechnung Rechnung { get; set; }
     }
 }

@@ -21,8 +21,8 @@ namespace Innovation4Austria.logic
         public string Logger { get; set; }
         public string Message { get; set; }
         public string Exception { get; set; }
-        public string Innerexception { get; set; }
-        public Nullable<int> Benutzer_Id { get; set; }
+        public string InnerException { get; set; }
+        public Nullable<int> Benutzer_id { get; set; }
     
         public virtual Benutzer Benutzer { get; set; }
     }

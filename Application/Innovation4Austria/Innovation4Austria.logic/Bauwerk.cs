@@ -25,6 +25,7 @@ namespace Innovation4Austria.logic
         public int Plz { get; set; }
         public string Ort { get; set; }
         public string Bezeichnung { get; set; }
+        public Nullable<bool> Aktiv { get; set; }
     
         public virtual ICollection<Raum> AlleRaeume { get; set; }
     }

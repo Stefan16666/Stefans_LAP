@@ -15,9 +15,10 @@ namespace Innovation4Austria.logic
     public partial class Raum_Ausstattung
     {
         public int Id { get; set; }
-        public int Ausstattung_id { get; set; }
+        public int Ausstattungs_Id { get; set; }
         public Nullable<int> Raum_id { get; set; }
-        public int Anzahl_Ausstattung { get; set; }
+        public int Anzahl_Ausstattungen { get; set; }
+        public Nullable<bool> Aktiv { get; set; }
     
         public virtual Ausstattung Ausstattung { get; set; }
         public virtual Raum Raum { get; set; }

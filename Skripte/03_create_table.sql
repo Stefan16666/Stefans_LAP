@@ -65,6 +65,7 @@ CREATE TABLE [dbo].[Log] (
     [Logger] [varchar] (255) NOT NULL,
     [Message] [varchar] (4000) NOT NULL,
     [Exception] [varchar] (2000) NULL,
+	InnerException VARCHAR (2000) NULL,
 	benutzer_id INT
 );
 

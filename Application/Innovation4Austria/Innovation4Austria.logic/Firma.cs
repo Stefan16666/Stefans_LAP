@@ -17,7 +17,7 @@ namespace Innovation4Austria.logic
         public Firma()
         {
             this.AlleBenutzer = new HashSet<Benutzer>();
-            this.AlleBuchungen = new HashSet<Buchung>();
+            this.AlleBuchnungen = new HashSet<Buchung>();
         }
     
         public int Id { get; set; }
@@ -28,6 +28,6 @@ namespace Innovation4Austria.logic
         public string Bezeichnung { get; set; }
     
         public virtual ICollection<Benutzer> AlleBenutzer { get; set; }
-        public virtual ICollection<Buchung> AlleBuchungen { get; set; }
+        public virtual ICollection<Buchung> AlleBuchnungen { get; set; }
     }
 }

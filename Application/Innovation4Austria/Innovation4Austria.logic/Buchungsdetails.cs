@@ -14,11 +14,17 @@ namespace Innovation4Austria.logic
     
     public partial class Buchungsdetails
     {
+        public Buchungsdetails()
+        {
+            this.Rechnungsdetails = new HashSet<Rechnungsdetails>();
+        }
+    
         public int Id { get; set; }
         public int Buchung_id { get; set; }
         public decimal Preis { get; set; }
         public System.DateTime Datum { get; set; }
     
         public virtual Buchung Buchung { get; set; }
+        public virtual ICollection<Rechnungsdetails> Rechnungsdetails { get; set; }
     }
 }
