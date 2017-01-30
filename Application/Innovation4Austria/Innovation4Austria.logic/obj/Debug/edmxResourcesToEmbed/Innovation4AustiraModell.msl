@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Innovation4AustriaModelStoreContainer" CdmEntityContainer="Innovation4AustriaEntities">
+    <EntitySetMapping Name="AlleArten">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Art">
+        <MappingFragment StoreEntitySet="Art">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Bezeichnung" ColumnName="bezeichnung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlleAusstattungen">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Ausstattung">
+        <MappingFragment StoreEntitySet="Ausstattung">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Bezeichnung" ColumnName="bezeichnung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlleBauwerke">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Bauwerk">
+        <MappingFragment StoreEntitySet="Bauwerk">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Strasse" ColumnName="strasse" />
+          <ScalarProperty Name="Nummer" ColumnName="nummer" />
+          <ScalarProperty Name="Plz" ColumnName="plz" />
+          <ScalarProperty Name="Ort" ColumnName="ort" />
+          <ScalarProperty Name="Bezeichnung" ColumnName="bezeichnung" />
+          <ScalarProperty Name="Aktiv" ColumnName="aktiv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlleBenutzer">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Benutzer">
+        <MappingFragment StoreEntitySet="Benutzer">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Passwort" ColumnName="passwort" />
+          <ScalarProperty Name="Emailadresse" ColumnName="email" />
+          <ScalarProperty Name="Vorname" ColumnName="vorname" />
+          <ScalarProperty Name="Nachname" ColumnName="nachname" />
+          <ScalarProperty Name="Firma_id" ColumnName="Firma_id" />
+          <ScalarProperty Name="Rolle_id" ColumnName="Rolle_id" />
+          <ScalarProperty Name="Aktiv" ColumnName="aktiv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlleBilder">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Bild">
+        <MappingFragment StoreEntitySet="Bild">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Bilddaten" ColumnName="bilddaten" />
+          <ScalarProperty Name="Raum_id" ColumnName="raum_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlleBuchungen">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Buchung">
+        <MappingFragment StoreEntitySet="Buchung">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Raum_id" ColumnName="raum_id" />
+          <ScalarProperty Name="Firma_id" ColumnName="firma_id" />
+          <ScalarProperty Name="Aktiv" ColumnName="aktiv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlleBuchungsdetails">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Buchungsdetails">
+        <MappingFragment StoreEntitySet="Buchungsdetails">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Buchung_id" ColumnName="buchung_id" />
+          <ScalarProperty Name="Preis" ColumnName="preis" />
+          <ScalarProperty Name="Datum" ColumnName="datum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlleFirmen">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Firma">
+        <MappingFragment StoreEntitySet="Firma">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Strasse" ColumnName="strasse" />
+          <ScalarProperty Name="Nummer" ColumnName="nummer" />
+          <ScalarProperty Name="Plz" ColumnName="plz" />
+          <ScalarProperty Name="Ort" ColumnName="ort" />
+          <ScalarProperty Name="Bezeichnung" ColumnName="bezeichnung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlleLog">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Log">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Thread" ColumnName="Thread" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Logger" ColumnName="Logger" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Exception" ColumnName="Exception" />
+          <ScalarProperty Name="InnerException" ColumnName="InnerException" />
+          <ScalarProperty Name="Benutzer_id" ColumnName="benutzer_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlleRaeume">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Raum">
+        <MappingFragment StoreEntitySet="Raum">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Bezeichnung" ColumnName="bezeichnung" />
+          <ScalarProperty Name="Beschreibung" ColumnName="beschreibung" />
+          <ScalarProperty Name="Bauwerk_id" ColumnName="bauwerk_id" />
+          <ScalarProperty Name="Groesse" ColumnName="groesse" />
+          <ScalarProperty Name="Art_id" ColumnName="art_id" />
+          <ScalarProperty Name="Preis" ColumnName="preis" />
+          <ScalarProperty Name="Aktiv" ColumnName="aktiv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlleRaum_Ausstattungen">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Raum_Ausstattung">
+        <MappingFragment StoreEntitySet="Raum_Ausstattung">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Ausstattungs_Id" ColumnName="ausstattung_id" />
+          <ScalarProperty Name="Raum_id" ColumnName="raum_id" />
+          <ScalarProperty Name="Anzahl_Ausstattungen" ColumnName="Anzahl_Ausstattung" />
+          <ScalarProperty Name="Aktiv" ColumnName="aktiv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rechnung">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Rechnung">
+        <MappingFragment StoreEntitySet="Rechnung">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Datum" ColumnName="datum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlleRechnungsdetails">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Rechnungsdetails">
+        <MappingFragment StoreEntitySet="Rechnungsdetails">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Rechnung_Id" ColumnName="rechnung_id" />
+          <ScalarProperty Name="Buchungsdetail_Id" ColumnName="buchungsdetails_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlleRollen">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Rolle">
+        <MappingFragment StoreEntitySet="Rolle">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Bezeichnung" ColumnName="bezeichnung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

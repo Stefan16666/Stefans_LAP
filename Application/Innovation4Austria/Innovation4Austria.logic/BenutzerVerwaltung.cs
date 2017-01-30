@@ -26,7 +26,7 @@ namespace Verwaltung
                     {
                         try
                         {
-                            loginbenutzer = context.AlleBenutzer.Where(x => x.Email == emailadresse).FirstOrDefault();
+                            loginbenutzer = context.AlleBenutzer.Where(x => x.Emailadresse == emailadresse).FirstOrDefault();
                             if (loginbenutzer != null)
                             {
                                 if (loginbenutzer.Passwort.SequenceEqual(Tools.GenerierePasswort(passwort)))

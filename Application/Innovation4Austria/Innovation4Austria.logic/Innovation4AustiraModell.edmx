@@ -382,7 +382,7 @@
           <EntitySet Name="AlleRaeume" EntityType="Innovation4AustriaModel.Raum" />
           <EntitySet Name="AlleRaum_Ausstattungen" EntityType="Innovation4AustriaModel.Raum_Ausstattung" />
           <EntitySet Name="Rechnung" EntityType="Innovation4AustriaModel.Rechnung" />
-          <EntitySet Name="Rechnungsdetails" EntityType="Innovation4AustriaModel.Rechnungsdetails" />
+          <EntitySet Name="AlleRechnungsdetails" EntityType="Innovation4AustriaModel.Rechnungsdetails" />
           <EntitySet Name="AlleRollen" EntityType="Innovation4AustriaModel.Rolle" />
           <AssociationSet Name="FK_Raum_Art" Association="Innovation4AustriaModel.FK_Raum_Art">
             <End Role="Art" EntitySet="AlleArten" />
@@ -426,7 +426,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_Rechnungsdetails_Buchungsdetails" Association="Innovation4AustriaModel.FK_Rechnungsdetails_Buchungsdetails">
             <End Role="Buchungsdetails" EntitySet="AlleBuchungsdetails" />
-            <End Role="Rechnungsdetails" EntitySet="Rechnungsdetails" />
+            <End Role="Rechnungsdetails" EntitySet="AlleRechnungsdetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Raum_Ausstattung_Raum" Association="Innovation4AustriaModel.FK_Raum_Ausstattung_Raum">
             <End Role="Raum" EntitySet="AlleRaeume" />
@@ -434,7 +434,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_Rechnungsdetails_Rechnung" Association="Innovation4AustriaModel.FK_Rechnungsdetails_Rechnung">
             <End Role="Rechnung" EntitySet="Rechnung" />
-            <End Role="Rechnungsdetails" EntitySet="Rechnungsdetails" />
+            <End Role="Rechnungsdetails" EntitySet="AlleRechnungsdetails" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Art">
@@ -892,7 +892,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Rechnungsdetails">
+          <EntitySetMapping Name="AlleRechnungsdetails">
             <EntityTypeMapping TypeName="Innovation4AustriaModel.Rechnungsdetails">
               <MappingFragment StoreEntitySet="Rechnungsdetails">
                 <ScalarProperty Name="Id" ColumnName="id" />
