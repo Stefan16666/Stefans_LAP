@@ -70,14 +70,32 @@ namespace Innovation4Austria.authentification
             }
         }
         
+        /// <summary>
+        ///  get all roles which the user has
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public override string[] GetRolesForUser(string username)
         {
-            throw new NotImplementedException();
+            Rolle userRoles = RoleAdministration.GetUserRole(username);
+            if (userRoles != null)
+            {
+                return new string[] { userRoles.Bezeichnung };
+            }
+            else
+            {
+                return null;
+            }
         }
-
+        /// <summary>
+        /// returns all user of a role
+        /// </summary>
+        /// <param name="roleName"></param>
+        /// <returns></returns>
         public override string[] GetUsersInRole(string roleName)
         {
-            throw new NotImplementedException();
+            List<Benutzer> userOfARole = RoleAdministration.GetRoleUser(roleName)
+            return null;
         }
 
         public override bool IsUserInRole(string username, string roleName)

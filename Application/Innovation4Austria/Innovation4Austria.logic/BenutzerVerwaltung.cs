@@ -39,7 +39,7 @@ namespace Verwaltung
                         catch (Exception ex)
                         {
                             log.Error("BenutzerVerwaltung - Anmelden fehlgeschlagen ");
-                          
+                            log.Info(ex.Message);
                         }                         
                     }
                 }

@@ -3,5 +3,3 @@ C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\In
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\Innovation4Austria.authentification\obj\Debug\Innovation4Austria.authentification.dll
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria.web\Innovation4Austria.authentification\obj\Debug\Innovation4Austria.authentification.pdb
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.authentification\obj\Debug\Innovation4Austria.authentification.csprojResolveAssemblyReference.cache
-C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.authentification\obj\Debug\Innovation4Austria.authentification.dll
-C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.authentification\obj\Debug\Innovation4Austria.authentification.pdb
