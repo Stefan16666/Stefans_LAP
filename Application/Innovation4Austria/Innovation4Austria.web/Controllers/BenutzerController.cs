@@ -13,13 +13,14 @@ namespace Innovation4Austria.web.Controllers
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         
         // GET: Benutzer
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Login()
         {
             log.Info("BenutzerController - Index (Login");
             return View();
         }
         [HttpPost]
-        public ActionResult Index(LoginModel model)
+        public ActionResult Login(LoginModel model)
         {
             log.Info("BenutzerController - Index (Login");
             if (ModelState.IsValid)
