@@ -65,6 +65,7 @@
     <Compile Include="Benutzer.cs">
       <DependentUpon>Innovation4AustiraModell.tt</DependentUpon>
     </Compile>
+    <Compile Include="BenutzerAdministrator.cs" />
     <Compile Include="BenutzerVerwaltung.cs" />
     <Compile Include="Bild.cs">
       <DependentUpon>Innovation4AustiraModell.tt</DependentUpon>
@@ -112,6 +113,7 @@
     <Compile Include="Rolle.cs">
       <DependentUpon>Innovation4AustiraModell.tt</DependentUpon>
     </Compile>
+    <Compile Include="RollenAdministrator.cs" />
     <Compile Include="Tools.cs" />
   </ItemGroup>
   <ItemGroup>

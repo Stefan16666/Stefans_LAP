@@ -1,13 +1,12 @@
-﻿using innovation4austria.data;
-using innovation4austria.logic;
-using System;
+﻿using System;
+using Innovation4Austria.logic;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
 
-namespace innovation4austria.authentication
+namespace Innovation4austria.authentication;
 {
     class i4aRoleProvider : RoleProvider
     {
@@ -26,12 +25,12 @@ namespace innovation4austria.authentication
             }
         }
 
-        public override string[] FindUsersInRole(string roleName, string usernameToMatch)
+        public override string[] FindUsersInRole(string rollenName, string gesuchterBenutzer)
         {
-            List<User> roleUsers = RoleAdministration.GetRoleUsers(roleName);
-            if (roleUsers != null)
+            List<Benutzer> Rollenbenutzer = RoleAdministration.GetRoleUsers(gesuchterBenutzer);
+            if (Rollenbenutzer != null)
             {
-                return roleUsers.Where(x => x.Username.Contains(usernameToMatch)).Select(x => x.Username).ToArray();
+                return Rollenbenutzer.Where(x => x.Emailadresse.Contains(gesuchterBenutzer)).Select(x => x.Emailadresse).ToArray();
             }
             else
             {
@@ -41,11 +40,11 @@ namespace innovation4austria.authentication
 
         public override string[] GetAllRoles()
         {
-            List<Role> allRoles = RoleAdministration.GetRoles();
+            List<Rolle> allRoles = RoleAdministration.GetRoles();
 
             if (allRoles != null)
             {
-                return allRoles.Select(x => x.Name).ToArray();
+                return allRoles.Select(x => x.Bezeichnung).ToArray();
             }
             else
             {
@@ -55,11 +54,11 @@ namespace innovation4austria.authentication
 
         public override string[] GetRolesForUser(string username)
         {
-            Role userRoles = RoleAdministration.GetUserRole(username);
+            Rolle userRoles = RoleAdministration.GetUserRole(username);
 
             if (userRoles != null)
             {
-                return new string[] { userRoles.Name };
+                return new string[] { userRoles.Bezeichnung };
             }
             else
             {
@@ -70,7 +69,7 @@ namespace innovation4austria.authentication
         public override string[] GetUsersInRole(string roleName)
         {
 
-            List<User> roleUsers = RoleAdministration.GetRoleUsers(roleName);
+            List<Benutzer> roleUsers = RoleAdministration.GetRoleUsers(roleName);
             if (roleUsers != null)
             {
                 return roleUsers.Select(x => x.Username).ToArray();

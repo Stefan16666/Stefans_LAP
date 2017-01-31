@@ -1,10 +1,12 @@
-﻿using innovation4austria.logic;
+﻿
 using System;
+using Innovation4Austria.logic;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
+using Verwaltung;
 
 namespace innovation4austria.authentication
 {
@@ -115,17 +117,17 @@ namespace innovation4austria.authentication
 
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
         {
-            return UserAdministration.ChangePassword(username, oldPassword, newPassword) == PasswordChangeResult.Success;
+            return BenutzerVerwaltung.Wechselpasswort(username, oldPassword, newPassword) == Passwortwechselergebnis.Success;
         }
 
-        public override bool DeleteUser(string username, bool deleteAllRelatedData)
+        public override bool DeleteUser(string emailadresse, bool deleteAllRelatedData)
         {
-            return UserAdministration.DeactivateUser(username);
+            return BenutzerVerwaltung.DeaktiviereBenutzer(emailadresse);
         }
 
         public override bool UnlockUser(string userName)
         {
-            return UserAdministration.ActivateUser(userName);
+            return BenutzerVerwaltung.AktiviereBenutzer(userName);
         }
 
         public override bool ValidateUser(string username, string password)

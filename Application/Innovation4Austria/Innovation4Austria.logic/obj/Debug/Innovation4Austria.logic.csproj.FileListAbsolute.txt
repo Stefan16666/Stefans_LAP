@@ -17,6 +17,5 @@ C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.logic\bin\Debug
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.logic\bin\Debug\EntityFramework.xml
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.logic\bin\Debug\log4net.xml
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.logic\bin\Debug\de\EntityFramework.resources.dll
-C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.csprojResolveAssemblyReference.cache
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.dll
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.pdb

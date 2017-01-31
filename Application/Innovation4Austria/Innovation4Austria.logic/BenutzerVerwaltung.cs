@@ -20,7 +20,7 @@ namespace Verwaltung
             Benutzer loginbenutzer = new Benutzer();
             if (emailadresse != null)
             {
-                if (passwort !=null)
+                if (passwort != null)
                 {
                     using (var context = new Innovation4AustriaEntities())
                     {
@@ -40,7 +40,7 @@ namespace Verwaltung
                         {
                             log.Error("BenutzerVerwaltung - Anmelden fehlgeschlagen ");
                             log.Info(ex.Message);
-                        }                         
+                        }
                     }
                 }
             }
@@ -54,19 +54,123 @@ namespace Verwaltung
             return true;
         }
 
-        public static List<string> Laden()
+        public static Passwortwechselergebnis Wechselpasswort(string emailadresse, string neuePassword, string altesPasswort)
         {
-            log.Info("Laden()");
 
-            List<string> alleBenutzer = new List<string>();
+            Passwortwechselergebnis result = Passwortwechselergebnis.UsernameInvalid;
 
-            for (int i = 0; i < 10; i++)
+            log.Info("ChangePassword(username, oldPassword, newPassword)");
+
+            if (string.IsNullOrEmpty(emailadresse))
+                throw new ArgumentNullException(nameof(emailadresse));
+            else if (string.IsNullOrEmpty(neuePassword))
+                throw new ArgumentNullException(nameof(neuePassword));
+            else if (string.IsNullOrEmpty(altesPasswort))
+                throw new ArgumentNullException(nameof(altesPasswort));
+            else
             {
-                string benutzer = "Max" + i;
-                alleBenutzer.Add(benutzer);
-            }
-            return alleBenutzer;
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    try
+                    {
+                        Benutzer aktBenutzer = context.AlleBenutzer.Where(x => x.Emailadresse == emailadresse).FirstOrDefault();
 
+                        if (aktBenutzer == null)
+                        {
+                            result = Passwortwechselergebnis.UsernameInvalid;
+                        }
+                        else if (!aktBenutzer.Aktiv == true)
+                        {
+                            result = Passwortwechselergebnis.UserInactive;
+                        }
+                        else if (!aktBenutzer.Passwort.SequenceEqual(Tools.GenerierePasswort(altesPasswort)))
+                        {
+                            result = Passwortwechselergebnis.PasswortInvalid;
+                        }
+                        else
+                        {
+                            log4net.LogicalThreadContext.Properties["idUser"] = aktBenutzer.Id;
+
+                            aktBenutzer.Passwort = Tools.GenerierePasswort(neuePassword);
+                            context.SaveChanges();
+
+                            result = Passwortwechselergebnis.Success;
+                            log.Info("Passwort aufgrund altem Passwort erfolgreich geändert!");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error("Fehler bei BenutzerPasswortÄndern", ex);
+                        if (ex.InnerException != null)
+                            log.Error("Fehler bei BenutzerPasswortÄndern (inner)", ex.InnerException);
+                        throw;
+                    }
+                }
+            }
+            return result;
+        }
+        public static bool DeaktiviereBenutzer(string emailadresse)
+        {
+            bool erfolgreich = false;
+            Benutzer aktBenutzer = null;
+            log.Info("DeaktiviereBenuter(emailadresse)");
+            if (string.IsNullOrEmpty(emailadresse))
+            {
+                return erfolgreich;
+            }
+            else
+            {
+                try
+                {
+                    using (var context = new Innovation4AustriaEntities())
+                    {
+                        aktBenutzer = context.AlleBenutzer.Where(x => x.Emailadresse == emailadresse).FirstOrDefault();
+                        aktBenutzer.Aktiv = false;
+                        int anzahlAenderung = context.SaveChanges();
+                        if (anzahlAenderung>0)
+                        {
+                            erfolgreich = true;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    log.Error("BenutzerVerwaltung-DeaktiviereBenutzer missed");
+                    log.Info(ex.Message, ex.InnerException);
+                }
+            }
+            return true;
+        }
+        public static bool AktiviereBenutzer(string emailadresse)
+        {
+            Benutzer aktBenutzer = null;
+            bool erfolgreich = false;
+            log.Info("BenutzerVerwaltung - AktiviereBenutzer");
+            if (!string.IsNullOrEmpty(emailadresse))
+            {
+                try
+                {
+                    using (var context = new Innovation4AustriaEntities())
+                    {
+                        aktBenutzer = context.AlleBenutzer.Where(x => x.Emailadresse == emailadresse).FirstOrDefault();
+                        aktBenutzer.Aktiv = true;
+                        int anzahlAenderung = context.SaveChanges();
+                        if (anzahlAenderung > 0)
+                        {
+                            erfolgreich = true;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Error("BenutzerVerwaltung - AktiviereBenutzer fahlgeschlagen");
+                    log.Info(ex.Message, ex.InnerException);
+                   
+                }
+            }
+            return erfolgreich;
         }
     }
 }
+
