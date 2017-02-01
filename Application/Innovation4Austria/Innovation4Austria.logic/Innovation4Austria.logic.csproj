@@ -101,6 +101,7 @@
     <Compile Include="Raum.cs">
       <DependentUpon>Innovation4AustiraModell.tt</DependentUpon>
     </Compile>
+    <Compile Include="RaumVerwaltung.cs" />
     <Compile Include="Raum_Ausstattung.cs">
       <DependentUpon>Innovation4AustiraModell.tt</DependentUpon>
     </Compile>

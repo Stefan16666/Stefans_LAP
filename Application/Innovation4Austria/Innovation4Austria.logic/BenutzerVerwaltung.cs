@@ -110,6 +110,51 @@ namespace Verwaltung
             }
             return result;
         }
+        /// <summary>
+        /// search where does the user with the emailadress works and send back the hole stuff of the company
+        /// </summary>
+        /// <param name="emailadresse"></param>
+        /// <returns></returns>
+        public static List<Benutzer> LoadStuffOfACompany(string emailadresse)
+        {
+            Benutzer curUser = new Benutzer();
+            List<Benutzer> AllStuffofCompany = new List<Benutzer>();
+            log.Info("BenutzerVerwaltung - LoadStuffOfACompany");
+            if (!string.IsNullOrEmpty(emailadresse))
+            {
+                try
+                {
+                    using (var context = new Innovation4AustriaEntities())
+                    {
+                        curUser = context.AlleBenutzer.Where(x => x.Emailadresse == emailadresse).FirstOrDefault();
+                        if (curUser!= null)
+                        {
+                            AllStuffofCompany = context.AlleBenutzer.Where(x => x.Firma_id == curUser.Firma_id).ToList();
+                            if (AllStuffofCompany.Count<1)
+                            {
+                                log.Error("BenutzerVerwaltung - LoadStuffOfACompany - There is a mistake by finding stuff from a company");
+                            }
+                            else
+                            {
+                                log.Info("BenutzerVerwaltung - LoadStuffOfACompany - Loading stuff was successful");
+                                return AllStuffofCompany;
+                            }
+                        }
+                        else
+                        {
+                            log.Error("BenutzerVerwaltung - LoadStuffOfACompany - the user was not found");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Error("BenutzerVerwaltung - LoadStuffOfACompany - The connection to database was not possible");
+                    throw;
+                }
+            }
+            return null;
+        }
+
         public static bool DeaktiviereBenutzer(string emailadresse)
         {
             bool erfolgreich = false;

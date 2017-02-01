@@ -16,7 +16,7 @@ namespace Innovation4Austria.web.Models
         public string Emailadresse { get; set; }
 
         [Required]
-        [RegularExpression(@"^[a-zA-Z!'''-'\s]{1,40}$", ErrorMessage = "Das")]
+        [DataType(DataType.Password)]
         public string Passwort { get; set; }
     }
 }
