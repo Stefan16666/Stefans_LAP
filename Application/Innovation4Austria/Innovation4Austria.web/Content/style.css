@@ -1,5 +1,5 @@
 html {
-    height: 100%;
+    min-height: 100%;
 }
 
 * {
@@ -10,7 +10,7 @@ html {
 body {
     font: normal 85% Arial, Helvetica, sans-serif;
     background: #1d1d1d;
-    color: #000;
+    color: #000; 
 }
 
 p {
@@ -25,8 +25,8 @@ img {
 
 h1, h2, h3, h4, h5, h6 {
     font: normal 175% Arial, Helvetica, sans-serif;
-    color: #1162CB;
-    text-shadow: 0px 1px 0px #CCC;
+    color: white;
+    text-shadow: 0px 1px 0px #1162cb;
     letter-spacing: -1px;
     margin: 0 0 10px 0;
 }
@@ -57,7 +57,7 @@ a {
     font-weight: bold;
     background: transparent;
     outline: none;
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 }
 
     a:hover {
