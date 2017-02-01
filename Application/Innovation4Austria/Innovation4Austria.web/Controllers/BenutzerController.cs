@@ -57,12 +57,19 @@ namespace Innovation4Austria.web.Controllers
         public ActionResult Dashboard(LoginModel model)
         {
             log.Info("BenutzerController - Dashboard");
-            List<Benutzer> stuffOfCompany = BenutzerVerwaltung.LoadStuffOfACompany(model.Emailadresse);
-            List<Buchung> bookingsOfCompany = ;
-            
+            Firma company = BenutzerVerwaltung.LoadCompanyOfAUser(model.Emailadresse);
+            List<Benutzer> stuffOfCompany = BenutzerVerwaltung.LoadStuffOfACompany(company.Id);
             if (stuffOfCompany != null)
             {
-
+                List<Buchung> bookingsOfCompany = RaumVerwaltung.BookedRooms(company.Id);
+                if (bookingsOfCompany!=null)
+                {
+                    foreach (var booking in bookingsOfCompany)
+                    {
+                        /// s
+                        booking.
+                    }
+                }
             }
             log.Warn("No stuff was found");
             return View();

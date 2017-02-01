@@ -110,27 +110,65 @@ namespace Verwaltung
             }
             return result;
         }
+
         /// <summary>
-        /// search where does the user with the emailadress works and send back the hole stuff of the company
+        /// Sending back the company where a person works
         /// </summary>
-        /// <param name="emailadresse"></param>
-        /// <returns></returns>
-        public static List<Benutzer> LoadStuffOfACompany(string emailadresse)
+        /// <param name="emailadress"></param>
+        public static Firma LoadCompanyOfAUser(string emailadress)
         {
-            Benutzer curUser = new Benutzer();
-            List<Benutzer> AllStuffofCompany = new List<Benutzer>();
-            log.Info("BenutzerVerwaltung - LoadStuffOfACompany");
-            if (!string.IsNullOrEmpty(emailadresse))
+            log.Info("BenutzerVerwaltung - LoadCompanyOfAUser");
+            Firma lookedCompany = new Firma();
+            if (!string.IsNullOrEmpty(emailadress))
             {
                 try
                 {
                     using (var context = new Innovation4AustriaEntities())
                     {
-                        curUser = context.AlleBenutzer.Where(x => x.Emailadresse == emailadresse).FirstOrDefault();
-                        if (curUser!= null)
+                        Benutzer user = new Benutzer();
+                        user = context.AlleBenutzer.Where(x => x.Emailadresse == emailadress).FirstOrDefault();
+                        if (user != null)
                         {
-                            AllStuffofCompany = context.AlleBenutzer.Where(x => x.Firma_id == curUser.Firma_id).ToList();
-                            if (AllStuffofCompany.Count<1)
+                            lookedCompany = context.AlleFirmen.Where(x => x.Id == user.Firma_id).FirstOrDefault();
+                            if (lookedCompany!= null)
+                            {
+                                return lookedCompany;
+                                log.Error("BenutzerVerwaltung - LoadCompanyOfAUser - the company with the fa_id was not found");
+                            }
+                        }
+                        else
+                        {
+                            log.Error("BenutzerVerwaltung - LoadCompanyOfAUser - the user with the emailadress was not found");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Error("Connection to database failed");
+                    log.Info(ex.Message, ex.InnerException);
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// search where does the user with the emailadress works and send back the hole stuff of the company
+        /// </summary>
+        /// <param name="emailadresse"></param>
+        /// <returns></returns>
+        public static List<Benutzer> LoadStuffOfACompany(int fa_id)
+        {
+            List<Benutzer> AllStuffofCompany = new List<Benutzer>();
+            log.Info("BenutzerVerwaltung - LoadStuffOfACompany");
+            if (fa_id >0)
+            {
+                try
+                {
+                    using (var context = new Innovation4AustriaEntities())
+                    {                                         
+                        {
+                            AllStuffofCompany = context.AlleBenutzer.Where(x => x.Firma_id ==fa_id).ToList();
+                            if (AllStuffofCompany.Count < 1)
                             {
                                 log.Error("BenutzerVerwaltung - LoadStuffOfACompany - There is a mistake by finding stuff from a company");
                             }
@@ -173,7 +211,7 @@ namespace Verwaltung
                         aktBenutzer = context.AlleBenutzer.Where(x => x.Emailadresse == emailadresse).FirstOrDefault();
                         aktBenutzer.Aktiv = false;
                         int anzahlAenderung = context.SaveChanges();
-                        if (anzahlAenderung>0)
+                        if (anzahlAenderung > 0)
                         {
                             erfolgreich = true;
                         }
@@ -212,7 +250,7 @@ namespace Verwaltung
                 {
                     log.Error("BenutzerVerwaltung - AktiviereBenutzer fahlgeschlagen");
                     log.Info(ex.Message, ex.InnerException);
-                   
+
                 }
             }
             return erfolgreich;
