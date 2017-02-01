@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
+using Innovation4austria.logic;
 
-namespace Innovation4austria.authentication;
+namespace Innovation4austria.authentication
 {
     class i4aRoleProvider : RoleProvider
     {
@@ -27,7 +28,7 @@ namespace Innovation4austria.authentication;
 
         public override string[] FindUsersInRole(string rollenName, string gesuchterBenutzer)
         {
-            List<Benutzer> Rollenbenutzer = RoleAdministration.GetRoleUsers(gesuchterBenutzer);
+            List<Benutzer> Rollenbenutzer = RollenAdministrator.GetRoleUsers(gesuchterBenutzer);
             if (Rollenbenutzer != null)
             {
                 return Rollenbenutzer.Where(x => x.Emailadresse.Contains(gesuchterBenutzer)).Select(x => x.Emailadresse).ToArray();
@@ -40,7 +41,7 @@ namespace Innovation4austria.authentication;
 
         public override string[] GetAllRoles()
         {
-            List<Rolle> allRoles = RoleAdministration.GetRoles();
+            List<Rolle> allRoles = RollenAdministrator.GetRoles();
 
             if (allRoles != null)
             {
@@ -54,7 +55,7 @@ namespace Innovation4austria.authentication;
 
         public override string[] GetRolesForUser(string username)
         {
-            Rolle userRoles = RoleAdministration.GetUserRole(username);
+            Rolle userRoles = RollenAdministrator.GetUserRole(username);
 
             if (userRoles != null)
             {
@@ -69,10 +70,10 @@ namespace Innovation4austria.authentication;
         public override string[] GetUsersInRole(string roleName)
         {
 
-            List<Benutzer> roleUsers = RoleAdministration.GetRoleUsers(roleName);
+            List<Benutzer> roleUsers = RollenAdministrator.GetRoleUsers(roleName);
             if (roleUsers != null)
             {
-                return roleUsers.Select(x => x.Username).ToArray();
+                return roleUsers.Select(x => x.Emailadresse).ToArray();
             }
             else
             {

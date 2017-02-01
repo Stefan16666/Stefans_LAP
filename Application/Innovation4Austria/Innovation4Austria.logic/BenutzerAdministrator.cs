@@ -12,67 +12,83 @@ namespace innovation4austria.logic
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public static List<Benutzer> GetRoleUsers(string rollenName)
+        public enum LogonResult
         {
-            log.Info("GetRoleUsers(rolenName)");
+            LogonDataValid,
+            LogonDataInvalid,
+            UserInactive,
+            UnkownUser,
+        }
 
-            if (string.IsNullOrEmpty(rollenName))
-            {
-                throw new ArgumentNullException(nameof(rollenName));
-            }
+        public enum Passwortwechselergebnis
+        {
+            Success,
+            UserInactive,
+            UsernameInvalid,
+            PasswortInvalid
+        }
+
+
+
+        public static Passwortwechselergebnis WechselPasswort(string username, string oldPassword, string newPassword)
+        {
+            Passwortwechselergebnis result = Passwortwechselergebnis.UsernameInvalid;
+
+            log.Info("ChangePassword(username, oldPassword, newPassword)");
+
+            if (string.IsNullOrEmpty(username))
+                throw new ArgumentNullException(nameof(username));
+            else if (string.IsNullOrEmpty(newPassword))
+                throw new ArgumentNullException(nameof(newPassword));
+            else if (string.IsNullOrEmpty(oldPassword))
+                throw new ArgumentNullException(nameof(oldPassword));
             else
             {
-                List<Benutzer> benutzerRollen = null;
-
                 using (var context = new Innovation4AustriaEntities())
                 {
                     try
                     {
-                        Rolle aktRolle = context.AlleRollen.Where(x => x.Bezeichnung == rollenName).FirstOrDefault();
-                        if (aktRolle != null)
+                        Benutzer aktBenutzer = context.AlleBenutzer.Where(x => x.Emailadresse == username).FirstOrDefault();
+
+                        if (aktBenutzer == null)
                         {
-                            benutzerRollen = aktRolle.AlleBenutzer.Where(x => x.Aktiv== true).ToList();
+                            result = Passwortwechselergebnis.UsernameInvalid;
+                        }
+                        else if (!aktBenutzer.Aktiv==true)
+                        {
+                            result = Passwortwechselergebnis.UserInactive;
+                        }
+                        else if (!aktBenutzer.Passwort.SequenceEqual(Tools.GenerierePasswort(oldPassword)))
+                        {
+                            result = Passwortwechselergebnis.PasswortInvalid;
+                        }
+                        else
+                        {
+                            log4net.LogicalThreadContext.Properties["idUser"] = aktBenutzer.Id;
+
+                            aktBenutzer.Passwort = Tools.GenerierePasswort(newPassword);
+                            context.SaveChanges();
+
+                            result = Passwortwechselergebnis.Success;
+                            log.Info("Passwort aufgrund altem Passwort erfolgreich geändert!");
                         }
                     }
                     catch (Exception ex)
                     {
-                        log.Error("Exception in GetRoleUsers", ex);
+                        log.Error("Fehler bei BenutzerPasswortÄndern", ex);
                         if (ex.InnerException != null)
-                            log.Error("Exception in GetRoleUsers (inner)", ex.InnerException);
+                            log.Error("Fehler bei BenutzerPasswortÄndern (inner)", ex.InnerException);
                         throw;
                     }
                 }
-
-                return benutzerRollen;
             }
+            return result;
         }
 
-        public static List<Role> GetRoles()
+        public static bool DeaktiviereBenutzer(string username)
         {
-            log.Info("GetRoles()");
-            List<Role> rollen = null;
-
-            using (var context = new innovation4austriaEntities())
-            {
-                try
-                {
-                    rollen = context.AllRoles.Where(x => x.Active).ToList();
-                }
-                catch (Exception ex)
-                {
-                    log.Error("Exception in GetRoles", ex);
-                    if (ex.InnerException != null)
-                        log.Error("Exception in GetRoles (inner)", ex.InnerException);
-                    throw;
-                }
-            }
-
-            return rollen;
-        }
-
-        public static Role GetUserRole(string username)
-        {
-            log.Info("GetUserRoles(username)");
+            log.Info("DeactivateUser(username)");
+            bool success = false;
 
             if (string.IsNullOrEmpty(username))
             {
@@ -80,29 +96,142 @@ namespace innovation4austria.logic
             }
             else
             {
-                Role userRole = null;
-
-                using (var context = new innovation4austriaEntities())
+                using (var context = new Innovation4AustriaEntities())
                 {
                     try
                     {
-                        User aktBenutzer = context.AllUsers.Where(x => x.Username == username).FirstOrDefault();
+                        Benutzer aktBenutzer = context.AlleBenutzer.Where(x => x.Emailadresse == username).FirstOrDefault();
+
                         if (aktBenutzer != null)
                         {
-                            userRole = aktBenutzer.Role;
+                            aktBenutzer.Aktiv = false;
+                            context.SaveChanges();
+                            success = true;
+                            log.Info("User has been deactivated!");
+                        }
+                        else
+                        {
+                            log.Info("Unknown username");
                         }
                     }
                     catch (Exception ex)
                     {
-                        log.Error("Exception in GetUserRole", ex);
+                        log.Error("Exception in DeactivateUser", ex);
                         if (ex.InnerException != null)
-                            log.Error("Exception in GetUserRole (inner)", ex.InnerException);
+                            log.Error("Exception in DeactivateUser (inner)", ex.InnerException);
                         throw;
                     }
                 }
-
-                return userRole;
             }
+            return success;
+        }
+
+        public static bool AktiviereBenutzer(string username)
+        {
+            log.Info("ActivateUser(username)");
+            bool success = false;
+
+            if (string.IsNullOrEmpty(username))
+            {
+                throw new ArgumentNullException(nameof(username));
+            }
+            else
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    try
+                    {
+                        Benutzer aktBanutzer = context.AlleBenutzer.Where(x => x.Emailadresse == username).FirstOrDefault();
+
+                        if (aktBanutzer != null)
+                        {
+                            aktBanutzer.Aktiv = true;
+                            context.SaveChanges();
+                            success = true;
+                            log.Info("User has been deactivated!");
+                        }
+                        else
+                        {
+                            log.Info("Unknown username");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error("Exception in DeactivateUser", ex);
+                        if (ex.InnerException != null)
+                            log.Error("Exception in DeactivateUser (inner)", ex.InnerException);
+                       
+                    }
+                }
+            }
+            return success;
+        }
+
+        public static LogonResult Anmelden(string username, string password)
+        {
+            log.Info("Logon(username, password)");
+            LogonResult result = LogonResult.LogonDataInvalid;
+
+            if (string.IsNullOrEmpty(username))
+            {
+                log.Error("Username is empty!");
+                throw new ArgumentNullException(nameof(username));
+            }
+            else if (string.IsNullOrEmpty(password))
+            {
+                log.Error("Password is empty!");
+                throw new ArgumentNullException(nameof(password));
+            }
+            else
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    try
+                    {
+
+                        Benutzer aktBenutzer = context.AlleBenutzer.Where(x => x.Emailadresse == username).FirstOrDefault();
+
+                        if (aktBenutzer != null)
+                        {
+                            if (aktBenutzer.Passwort.SequenceEqual(Tools.GenerierePasswort(password)))
+                            {
+                                if (!aktBenutzer.Aktiv== true)
+                                {
+                                    log.Info("User inactive");
+                                    result = LogonResult.UserInactive;
+                                }
+                                else
+                                {
+                                    log.Info("Logon data valid");
+                                    result = LogonResult.LogonDataValid;
+                                }
+                            }
+                            else
+                            {
+                                log.Info("Logon data invalid");
+                                result = LogonResult.LogonDataInvalid;
+                            }
+
+                            int anzahlZeilen = context.SaveChanges();
+                        }
+                        else
+                        {
+                            result = LogonResult.UnkownUser;
+                            log.Info("Unknown username");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error("Exception in Logon", ex);
+                        if (ex.InnerException != null)
+                            log.Error("Exception in Logon (inner)", ex.InnerException);
+                        throw;
+                    }
+                }
+            }
+            return result;
         }
     }
+
 }
+
