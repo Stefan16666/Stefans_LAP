@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using log4net;
+using Innovation4Austria.logic;
 
 namespace Innovation4austria.logic
 {
@@ -11,7 +12,7 @@ namespace Innovation4austria.logic
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public static List<User> GetRoleUsers(string roleName)
+        public static List<Benutzer> GetRoleUsers(string roleName)
         {
             log.Info("GetRoleUsers(rolenName)");
 
@@ -21,16 +22,16 @@ namespace Innovation4austria.logic
             }
             else
             {
-                List<User> roleUsers = null;
+                List<Benutzer> roleUsers = null;
 
-                using (var context = new innovation4austriaEntities())
+                using (var context = new Innovation4AustriaEntities())
                 {
                     try
                     {
-                        Role aktRolle = context.AllRoles.Where(x => x.Name == roleName).FirstOrDefault();
+                        Rolle aktRolle = context.AlleRollen.Where(x => x.Bezeichnung == roleName).FirstOrDefault();
                         if (aktRolle != null)
                         {
-                            roleUsers = aktRolle.AllUsers.Where(x => x.Active).ToList();
+                            roleUsers = aktRolle.AlleBenutzer.Where(x => x.Aktiv==true).ToList();
                         }
                     }
                     catch (Exception ex)
@@ -46,16 +47,16 @@ namespace Innovation4austria.logic
             }
         }
 
-        public static List<Role> GetRoles()
+        public static List<Rolle> GetRoles()
         {
             log.Info("GetRoles()");
-            List<Role> rollen = null;
+            List<Rolle> rollen = null;
 
-            using (var context = new innovation4austriaEntities())
+            using (var context = new Innovation4AustriaEntities())
             {
                 try
                 {
-                    rollen = context.AllRoles.Where(x => x.Active).ToList();
+                    rollen = context.AlleRollen.ToList();
                 }
                 catch (Exception ex)
                 {
@@ -69,26 +70,26 @@ namespace Innovation4austria.logic
             return rollen;
         }
 
-        public static Role GetUserRole(string username)
+        public static Rolle GetUserRole(string emailadresse)
         {
             log.Info("GetUserRoles(username)");
 
-            if (string.IsNullOrEmpty(username))
+            if (string.IsNullOrEmpty(emailadresse))
             {
-                throw new ArgumentNullException(nameof(username));
+                throw new ArgumentNullException(nameof(emailadresse));
             }
             else
             {
-                Role userRole = null;
+                Rolle userRole = null;
 
-                using (var context = new innovation4austriaEntities())
+                using (var context = new Innovation4AustriaEntities())
                 {
                     try
                     {
-                        User aktBenutzer = context.AllUsers.Where(x => x.Username == username).FirstOrDefault();
+                        Benutzer aktBenutzer = context.AlleBenutzer.Where(x => x.Emailadresse == emailadresse).FirstOrDefault();
                         if (aktBenutzer != null)
                         {
-                            userRole = aktBenutzer.Role;
+                            userRole = aktBenutzer.Rolle;
                         }
                     }
                     catch (Exception ex)
@@ -105,5 +106,3 @@ namespace Innovation4austria.logic
         }
     }
 }
-Contact GitHub API Training Shop Blog About
-© 2017 GitHub, Inc.Terms Privacy Security Status Help
