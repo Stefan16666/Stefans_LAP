@@ -11,7 +11,7 @@ namespace Innovation4Austria.web.Controllers
     public class BenutzerController : Controller
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
+
         // GET: Benutzer
         [HttpGet]
         public ActionResult Login()

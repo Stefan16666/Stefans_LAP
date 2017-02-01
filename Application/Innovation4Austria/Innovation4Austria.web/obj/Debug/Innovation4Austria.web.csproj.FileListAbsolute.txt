@@ -82,6 +82,7 @@ C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\Innovat
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\Innovation4Austria.web.dll
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\Innovation4Austria.web.pdb
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\Antlr3.Runtime.dll
+C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\Innovation4Austria.authentification.dll
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\Innovation4Austria.logic.dll
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\log4net.dll
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\Microsoft.AI.Agent.Intercept.dll
@@ -103,6 +104,7 @@ C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\System.
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\System.Web.WebPages.Razor.dll
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\WebGrease.dll
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\EntityFramework.dll
+C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\Innovation4Austria.authentification.pdb
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\Innovation4Austria.logic.pdb
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\log4net.xml
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\Microsoft.AI.DependencyCollector.xml
