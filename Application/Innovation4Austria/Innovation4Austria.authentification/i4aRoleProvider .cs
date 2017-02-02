@@ -9,7 +9,7 @@ using Innovation4austria.logic;
 
 namespace Innovation4austria.authentication
 {
-    class i4aRoleProvider : RoleProvider
+    public class i4aRoleProvider : RoleProvider
     {
         string applicationName = "innovation4austria database";
         public override string ApplicationName

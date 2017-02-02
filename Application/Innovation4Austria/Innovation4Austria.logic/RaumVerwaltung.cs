@@ -1,6 +1,7 @@
 ﻿using log4net;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,9 @@ namespace Innovation4Austria.logic
                     using (var context = new Innovation4AustriaEntities())
                     {
 
-                         bookedRooms = context.AlleBuchungen.Include("Buchungsdetails").Where(x => x.Firma_id == fa_id).ToList();
+                         //bookedRooms = context.AlleBuchungen.Include("Buchungsdetails").Where(x => x.Firma_id == fa_id).ToList();
+                        bookedRooms = context.AlleBuchungen.Where(x => x.Firma_id == fa_id).ToList();
+                        
                         if (bookedRooms==null)
                         {
                             log.Info("RaumVerWaltung - BookedRooms - There are no booked rooms found");
@@ -41,5 +44,6 @@ namespace Innovation4Austria.logic
             }
             return bookedRooms;
         }
+
     }
 }

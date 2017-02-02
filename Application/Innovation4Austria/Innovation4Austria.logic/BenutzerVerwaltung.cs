@@ -115,10 +115,10 @@ namespace Verwaltung
         /// Sending back the company where a person works
         /// </summary>
         /// <param name="emailadress"></param>
-        public static Firma LoadCompanyOfAUser(string emailadress)
+        public static Firma LadeFirmaVonBenutzer(string emailadress)
         {
             log.Info("BenutzerVerwaltung - LoadCompanyOfAUser");
-            Firma lookedCompany = new Firma();
+            Firma gesuchteFirma = new Firma();
             if (!string.IsNullOrEmpty(emailadress))
             {
                 try
@@ -129,10 +129,10 @@ namespace Verwaltung
                         user = context.AlleBenutzer.Where(x => x.Emailadresse == emailadress).FirstOrDefault();
                         if (user != null)
                         {
-                            lookedCompany = context.AlleFirmen.Where(x => x.Id == user.Firma_id).FirstOrDefault();
-                            if (lookedCompany!= null)
+                            gesuchteFirma = context.AlleFirmen.Where(x => x.Id == user.Firma_id).FirstOrDefault();
+                            if (gesuchteFirma != null)
                             {
-                                return lookedCompany;
+                                
                                 log.Error("BenutzerVerwaltung - LoadCompanyOfAUser - the company with the fa_id was not found");
                             }
                         }
@@ -148,7 +148,7 @@ namespace Verwaltung
                     log.Info(ex.Message, ex.InnerException);
                 }
             }
-            return null;
+            return gesuchteFirma;
         }
 
         /// <summary>
@@ -160,37 +160,60 @@ namespace Verwaltung
         {
             List<Benutzer> AllStuffofCompany = new List<Benutzer>();
             log.Info("BenutzerVerwaltung - LoadStuffOfACompany");
-            if (fa_id >0)
+            if (fa_id > 0)
             {
                 try
                 {
                     using (var context = new Innovation4AustriaEntities())
-                    {                                         
+                    {
+
+                        AllStuffofCompany = context.AlleBenutzer.Where(x => x.Firma_id == fa_id).ToList();
+                        if (AllStuffofCompany.Count < 1)
                         {
-                            AllStuffofCompany = context.AlleBenutzer.Where(x => x.Firma_id ==fa_id).ToList();
-                            if (AllStuffofCompany.Count < 1)
-                            {
-                                log.Error("BenutzerVerwaltung - LoadStuffOfACompany - There is a mistake by finding stuff from a company");
-                            }
-                            else
-                            {
-                                log.Info("BenutzerVerwaltung - LoadStuffOfACompany - Loading stuff was successful");
-                                return AllStuffofCompany;
-                            }
+                            log.Error("BenutzerVerwaltung - LoadStuffOfACompany - There is a mistake by finding stuff from a company");
                         }
                         else
                         {
-                            log.Error("BenutzerVerwaltung - LoadStuffOfACompany - the user was not found");
+                            log.Info("BenutzerVerwaltung - LoadStuffOfACompany - Loading stuff was successful");
+                            return AllStuffofCompany;
                         }
+
                     }
                 }
                 catch (Exception ex)
                 {
                     log.Error("BenutzerVerwaltung - LoadStuffOfACompany - The connection to database was not possible");
-                    throw;
+                    log.Info(ex.Message, ex.InnerException);
                 }
             }
             return null;
+        }
+
+        public static List<Firma> LadeAlleFirmen()
+        {
+            List<Firma> alleFirmen = null;
+            log.Info("BenutzerVerwaltung - LadeAlleFirmen");
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    alleFirmen = context.AlleFirmen.ToList();
+                    if (alleFirmen == null)
+                    {
+                        log.Error("BenutzerVerwaltung - ");
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                log.Error("BenutzerVerwaltung - LadeAllefirmen - konnte nicht geladen werden");
+                if (ex.InnerException!=null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+            return alleFirmen;
         }
 
         public static bool DeaktiviereBenutzer(string emailadresse)
