@@ -54,11 +54,13 @@ public partial class Innovation4AustriaEntities : DbContext
 
     public DbSet<Raum_Ausstattung> AlleRaum_Ausstattungen { get; set; }
 
-    public DbSet<Rechnung> Rechnung { get; set; }
+    public DbSet<Rechnung> AlleRechnungen { get; set; }
 
     public DbSet<Rechnungsdetails> AlleRechnungsdetails { get; set; }
 
     public DbSet<Rolle> AlleRollen { get; set; }
+
+    public DbSet<alleRechnungenAllerFirmen> AlleRechnungenAllerFirmen { get; set; }
 
 }
 

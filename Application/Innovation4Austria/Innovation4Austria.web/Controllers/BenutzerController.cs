@@ -40,28 +40,29 @@ namespace Innovation4Austria.web.Controllers
                 {
                     if (model.Passwort != null)
                     {
+                        var logonResult = BenutzerVerwaltung.Anmelden(model.Emailadresse, model.Passwort);
                         if (membershipProvider.ValidateUser(model.Emailadresse, model.Passwort))
-                        {
-                            FormsAuthentication.SetAuthCookie(model.Emailadresse, true);
+                        {                            
                             if (roleProvider.IsUserInRole(model.Emailadresse, "MitarbeiterIVA"))
                             {
                                 return RedirectToAction("FirmenWahl");
                             }
-                            Firma company = BenutzerVerwaltung.LadeFirmaVonBenutzer(model.Emailadresse);                        
+                            FormsAuthentication.SetAuthCookie(model.Emailadresse, true);
+                            Firma company = BenutzerVerwaltung.LadeFirmaVonBenutzer(model.Emailadresse);
                             {
-                                if (company==null)
+                                if (company == null)
                                 {
                                     log.Debug("keine Firma gefunden");
                                 }
                             }
-                         
-                            return RedirectToAction("Dashboard",model);
                         }
-                        else
-                        {
-                            FormsAuthentication.SetAuthCookie(model.Emailadresse, false);
-                        }
+                        return RedirectToAction("Dashboard", model);
                     }
+                    else
+                    {
+                        FormsAuthentication.SetAuthCookie(model.Emailadresse, false);
+                    }
+
                 }
             }
             return View(model);
@@ -102,13 +103,17 @@ namespace Innovation4Austria.web.Controllers
 
 
             }
+
+            ///mapping for receipt
+            List<Rechnung> alleRechungen = null;
+
             return View();
         }
         [HttpGet]
         public ActionResult FirmenWahl()
         {
             List<Firma> alleFirmen = BenutzerVerwaltung.LadeAlleFirmen();
-            if (alleFirmen.Count<=0)
+            if (alleFirmen.Count <= 0)
             {
                 log.Error("BenutzerController - FirmenWahl - keine Firmengefunden");
             }
