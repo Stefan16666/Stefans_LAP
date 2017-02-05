@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Innovation4Austria.web.AppCode;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,11 +12,14 @@ namespace Innovation4Austria.web.Models
     /// </summary>
     public class LoginModel
     {
-        [Required]
-        [DataType(DataType.EmailAddress, ErrorMessage = "Das ist keine gültige Emailadresse")]
+        [Required(AllowEmptyStrings = false,
+    ErrorMessageResourceType = typeof(Validierungen),
+    ErrorMessageResourceName = Validation.REQUIRED)]
+        [EmailAddress(ErrorMessageResourceName = Validation.DATATYPE_MAIL,
+    ErrorMessageResourceType = typeof(Validierungen))]
         public string Emailadresse { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessageResourceType =typeof(Validierungen), ErrorMessageResourceName = Validation.REQUIRED)]            
         [DataType(DataType.Password)]
         public string Passwort { get; set; }
     }

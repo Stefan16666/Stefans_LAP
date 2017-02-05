@@ -12,7 +12,7 @@
     <EntitySet Name="AlleLog" EntityType="Innovation4AustriaModel.Log" />
     <EntitySet Name="AlleRaeume" EntityType="Innovation4AustriaModel.Raum" />
     <EntitySet Name="AlleRaum_Ausstattungen" EntityType="Innovation4AustriaModel.Raum_Ausstattung" />
-    <EntitySet Name="Rechnung" EntityType="Innovation4AustriaModel.Rechnung" />
+    <EntitySet Name="AlleRechnungen" EntityType="Innovation4AustriaModel.Rechnung" />
     <EntitySet Name="AlleRechnungsdetails" EntityType="Innovation4AustriaModel.Rechnungsdetails" />
     <EntitySet Name="AlleRollen" EntityType="Innovation4AustriaModel.Rolle" />
     <AssociationSet Name="FK_Raum_Art" Association="Innovation4AustriaModel.FK_Raum_Art">
@@ -64,9 +64,10 @@
       <End Role="Raum_Ausstattung" EntitySet="AlleRaum_Ausstattungen" />
     </AssociationSet>
     <AssociationSet Name="FK_Rechnungsdetails_Rechnung" Association="Innovation4AustriaModel.FK_Rechnungsdetails_Rechnung">
-      <End Role="Rechnung" EntitySet="Rechnung" />
+      <End Role="Rechnung" EntitySet="AlleRechnungen" />
       <End Role="Rechnungsdetails" EntitySet="AlleRechnungsdetails" />
     </AssociationSet>
+    <EntitySet Name="AlleRechnungenAllerFirmen" EntityType="Innovation4AustriaModel.alleRechnungenAllerFirmen" />
   </EntityContainer>
   <EntityType Name="Art">
     <Key>
@@ -385,4 +386,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="alleRechnungenAllerFirmen">
+    <Key>
+      <PropertyRef Name="Firmen_id" />
+      <PropertyRef Name="Buchungsdetaildatum" />
+      <PropertyRef Name="Preis" />
+      <PropertyRef Name="Rechnungsdetail_id" />
+      <PropertyRef Name="Rechnung_id" />
+    </Key>
+    <Property Name="Firmen_id" Type="Int32" Nullable="false" />
+    <Property Name="Aktiv" Type="Boolean" />
+    <Property Name="Buchungsdetaildatum" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Preis" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Rechnungsdetail_id" Type="Int32" Nullable="false" />
+    <Property Name="datum" Type="DateTime" Precision="0" />
+    <Property Name="Rechnung_id" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>

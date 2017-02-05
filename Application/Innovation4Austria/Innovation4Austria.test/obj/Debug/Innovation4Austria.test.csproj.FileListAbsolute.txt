@@ -13,3 +13,12 @@ C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.test\bin\Debug\
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.test\obj\Debug\Innovation4Austria.test.csprojResolveAssemblyReference.cache
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.test\obj\Debug\Innovation4Austria.test.dll
 C:\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.test\obj\Debug\Innovation4Austria.test.pdb
+C:\Users\Stefan\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.test\bin\Debug\Innovation4Austria.test.dll
+C:\Users\Stefan\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.test\bin\Debug\Innovation4Austria.test.pdb
+C:\Users\Stefan\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.test\bin\Debug\log4net.dll
+C:\Users\Stefan\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Stefan\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.test\bin\Debug\log4net.xml
+C:\Users\Stefan\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.test\bin\Debug\de\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\Stefan\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.test\obj\Debug\Innovation4Austria.test.csprojResolveAssemblyReference.cache
+C:\Users\Stefan\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.test\obj\Debug\Innovation4Austria.test.dll
+C:\Users\Stefan\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.test\obj\Debug\Innovation4Austria.test.pdb

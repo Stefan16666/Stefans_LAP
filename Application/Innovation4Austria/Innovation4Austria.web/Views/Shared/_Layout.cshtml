@@ -92,6 +92,26 @@
 
         </footer>
     </div>
+    @{
+        if (TempData[ConstStrings.WARNING_MESSAGE] != null)
+        {
+            <script>
+                toastr['warning']('@TempData[ConstStrings.WARNING_MESSAGE]');
+            </script>
+        }
+        if (TempData[ConstStrings.ERROR_MESSAGE] != null)
+        {
+            <script>
+                toastr['error']('@TempData[ConstStrings.ERROR_MESSAGE]');
+            </script>
+        }
+        if (TempData[ConstStrings.SUCCESS_MESSAGE] != null)
+        {
+            <script>
+                toastr['success']('@TempData[ConstStrings.SUCCESS_MESSAGE]');
+            </script>
+        }
+    }
 </body>
 </html>
 

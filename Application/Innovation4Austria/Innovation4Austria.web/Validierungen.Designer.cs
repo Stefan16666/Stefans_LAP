@@ -61,7 +61,16 @@ namespace Innovation4Austria.web {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Password, min 5 Zeichen ähnelt.
+        /// </summary>
+        internal static string Passwort {
+            get {
+                return ResourceManager.GetString("Passwort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Pflichtfeld ähnelt.
         /// </summary>
         internal static string Required {
             get {
