@@ -85,7 +85,10 @@ namespace Innovation4Austria.web.Controllers
             // mapping for bookings
             if (stuffOfCompany != null)
             {
-                List<Buchung> bookingsOfCompany = RaumVerwaltung.BookedRooms(fa_id);
+                Rechnungsdetails detail = null;
+                List<Rechnungsdetails>rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();
+                List<Buchungsdetails> BuchungsDetailsVonFirma = null;
+                List<Buchung> bookingsOfCompany = RaumVerwaltung.GebuchteRaeume(fa_id);
                 if (bookingsOfCompany != null)
                 {
                     foreach (var booking in bookingsOfCompany)
@@ -97,7 +100,19 @@ namespace Innovation4Austria.web.Controllers
                         max = (from d1 in booking.AlleBuchungsdetails orderby d1.Datum descending select d1.Datum).FirstOrDefault();
 
                         string roomName = booking.Raum.Bezeichnung;
+
+                        BuchungsDetailsVonFirma = RaumVerwaltung.BuchungsDetailsVonBuchung(booking.Id);
                     }
+                    foreach (var buchungsdetail in BuchungsDetailsVonFirma)
+                    {
+                        if (RechnungsVerwaltung.EinRechnungsDetailsEinerBuchung(buchungsdetail.Id) == null)
+                        {
+                            BuchungsDetailsVonFirma.Remove(buchungsdetail);
+                        }
+                        
+                    }
+
+                    /// hier muss man dann die Models machen. Das RechnungsModel ist eine Liste von Rechnungen, welche Monatsweise erstellt werden
                 }
                 log.Warn("No stuff was found");
 
@@ -105,7 +120,8 @@ namespace Innovation4Austria.web.Controllers
             }
 
             ///mapping for receipt
-            List<Rechnung> alleRechungen = null;
+            
+
 
             return View();
         }
