@@ -61,6 +61,15 @@ namespace Innovation4Austria.web {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Emailadress  ähnelt.
+        /// </summary>
+        internal static string DataTypeMail {
+            get {
+                return ResourceManager.GetString("DataTypeMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Password, min 5 Zeichen ähnelt.
         /// </summary>
         internal static string Passwort {

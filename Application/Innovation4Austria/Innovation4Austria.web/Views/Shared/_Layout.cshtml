@@ -84,7 +84,7 @@
                             </li>
                             <li>
                                 <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
-                            </li>                  
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -92,23 +92,43 @@
 
         </footer>
     </div>
+
+    toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-center",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+    }
     @{
-        if (TempData[ConstStrings.WARNING_MESSAGE] != null)
+
+
+        if (TempData[Innovation4Austria.web.AppCode.ConstStrings.WARNING_MESSAGE] != null)
         {
             <script>
-                toastr['warning']('@TempData[ConstStrings.WARNING_MESSAGE]');
+                toastr['warning']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.WARNING_MESSAGE]');
             </script>
         }
-        if (TempData[ConstStrings.ERROR_MESSAGE] != null)
+        if (TempData[Innovation4Austria.web.AppCode.ConstStrings.ERROR_MESSAGE] != null)
         {
             <script>
-                toastr['error']('@TempData[ConstStrings.ERROR_MESSAGE]');
+                toastr['error']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.ERROR_MESSAGE]');
             </script>
         }
-        if (TempData[ConstStrings.SUCCESS_MESSAGE] != null)
+        if (TempData[Innovation4Austria.web.AppCode.ConstStrings.SUCCESS_MESSAGE] != null)
         {
             <script>
-                toastr['success']('@TempData[ConstStrings.SUCCESS_MESSAGE]');
+                toastr['success']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.SUCCESS_MESSAGE]');
             </script>
         }
     }

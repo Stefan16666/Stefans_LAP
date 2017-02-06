@@ -566,7 +566,6 @@ FROM [dbo].[alleRechnungenAllerFirmen] AS [alleRechnungenAllerFirmen]</DefiningQ
           <Property Name="Logger" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="Message" Type="String" Nullable="false" MaxLength="4000" Unicode="false" FixedLength="false" />
           <Property Name="Exception" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
-          <Property Name="InnerException" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
           <Property Name="Benutzer_id" Type="Int32" />
           <NavigationProperty Name="Benutzer" Relationship="Innovation4AustriaModel.FK_Log_benutzer" FromRole="Log" ToRole="Benutzer" />
         </EntityType>

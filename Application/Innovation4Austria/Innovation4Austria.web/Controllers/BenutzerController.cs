@@ -48,15 +48,20 @@ namespace Innovation4Austria.web.Controllers
                                 return RedirectToAction("FirmenWahl");
                             }
                             FormsAuthentication.SetAuthCookie(model.Emailadresse, true);
-                            Firma company = BenutzerVerwaltung.LadeFirmaVonBenutzer(model.Emailadresse);
+                            Firma company = BenutzerVerwaltung.LadeFirmaVonBenutzer(model.Emailadresse);   
+                                                                                
                             {
                                 if (company == null)
                                 {
                                     log.Debug("keine Firma gefunden");
                                 }
+                                else
+                                {
+                                    return RedirectToAction("Dashboard", new { id = company.Id });
+                                }
                             }
                         }
-                        return RedirectToAction("Dashboard", model);
+                       
                     }
                     else
                     {
@@ -76,19 +81,32 @@ namespace Innovation4Austria.web.Controllers
         [HttpGet]
         //[Authorize]
         //[ValidateAntiForgeryToken]
-        public ActionResult Dashboard(int fa_id)
+        public ActionResult Dashboard(int id)
         {
             log.Info("BenutzerController - Dashboard");
             // mapping for user
-            List<Benutzer> stuffOfCompany = BenutzerVerwaltung.LoadStuffOfACompany(fa_id);
+            DashboardModel dashboard = new DashboardModel();
+            List<MitarbeiterModel> alleMitarbeitereinerFirma = new List<MitarbeiterModel>();
+            List<Benutzer> alleBenutzer = BenutzerVerwaltung.LoadStuffOfACompany(id);
+            foreach (var einBenutzer in alleBenutzer)
+            {
+                MitarbeiterModel einMitarbeiter = new MitarbeiterModel
+                {
+                    emailadresse = einBenutzer.Emailadresse,
+                    nachname = einBenutzer.Nachname
+                };
+                alleMitarbeitereinerFirma.Add(einMitarbeiter);
+            }
+            dashboard.alleMitarbeiter = alleMitarbeitereinerFirma;
+
 
             // mapping for bookings
-            if (stuffOfCompany != null)
+            if (alleBenutzer != null)
             {
                 Rechnungsdetails detail = null;
                 List<Rechnungsdetails>rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();
                 List<Buchungsdetails> BuchungsDetailsVonFirma = null;
-                List<Buchung> bookingsOfCompany = RaumVerwaltung.GebuchteRaeume(fa_id);
+                List<Buchung> bookingsOfCompany = RaumVerwaltung.GebuchteRaeume(id);
                 if (bookingsOfCompany != null)
                 {
                     foreach (var booking in bookingsOfCompany)
@@ -123,8 +141,10 @@ namespace Innovation4Austria.web.Controllers
             
 
 
-            return View();
+            return View(dashboard);
         }
+
+
         [HttpGet]
         public ActionResult FirmenWahl()
         {

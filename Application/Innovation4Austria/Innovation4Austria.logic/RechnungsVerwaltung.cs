@@ -44,27 +44,27 @@ namespace Innovation4Austria.logic
             return detail;
         }
 
-        public static List<Buchungsdetails> alleRechnungsDetails()
-        {
-            List<Rechnungsdetails> alleRechnungsDetails = null;
-            log.Info("RechnungsVerwaltung - AlleRechnnungsDetails");
-            try
-            {
-                using (var context = new Innovation4AustriaEntities())
-                {
-                    alleRechnungsDetails = context.AlleRechnungsdetails.ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                log.Error("RechnungsVerwaltung - alleRechnungsDetails - es konnte keine Datenbankverbindung hergestellt werden", ex);
-                if (ex.InnerException != null)
-                {
-                    log.Info(ex.InnerException);
-                }
+        //public static List<Buchungsdetails> alleRechnungsDetails()
+        //{
+        //    List<Rechnungsdetails> alleRechnungsDetails = null;
+        //    log.Info("RechnungsVerwaltung - AlleRechnnungsDetails");
+        //    try
+        //    {
+        //        using (var context = new Innovation4AustriaEntities())
+        //        {
+        //            alleRechnungsDetails = context.AlleRechnungsdetails.ToList();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Error("RechnungsVerwaltung - alleRechnungsDetails - es konnte keine Datenbankverbindung hergestellt werden", ex);
+        //        if (ex.InnerException != null)
+        //        {
+        //            log.Info(ex.InnerException);
+        //        }
                 
-            }
-            return alleRechnungsDetails;
-        }
+        //    }
+        //    return alleRechnungsDetails;
+        //}
     }
 }
