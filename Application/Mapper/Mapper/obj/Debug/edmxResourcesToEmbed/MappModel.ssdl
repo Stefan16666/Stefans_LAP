@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Innovation4AustriaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bauwerk">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strasse" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="nummer" Type="int" Nullable="false" />
+    <Property Name="plz" Type="int" Nullable="false" />
+    <Property Name="ort" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="aktiv" Type="bit" />
+  </EntityType>
+  <EntityContainer Name="Innovation4AustriaModelStoreContainer">
+    <EntitySet Name="Bauwerk" EntityType="Self.Bauwerk" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

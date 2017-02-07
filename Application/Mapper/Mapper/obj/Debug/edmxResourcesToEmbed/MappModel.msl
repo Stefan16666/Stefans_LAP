@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Innovation4AustriaModelStoreContainer" CdmEntityContainer="Innovation4AustriaEntities">
+    <EntitySetMapping Name="Bauwerk">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Bauwerk">
+        <MappingFragment StoreEntitySet="Bauwerk">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="strasse" ColumnName="strasse" />
+          <ScalarProperty Name="nummer" ColumnName="nummer" />
+          <ScalarProperty Name="plz" ColumnName="plz" />
+          <ScalarProperty Name="ort" ColumnName="ort" />
+          <ScalarProperty Name="bezeichnung" ColumnName="bezeichnung" />
+          <ScalarProperty Name="aktiv" ColumnName="aktiv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
