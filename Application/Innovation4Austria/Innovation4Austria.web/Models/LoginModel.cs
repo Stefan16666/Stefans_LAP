@@ -22,5 +22,7 @@ namespace Innovation4Austria.web.Models
         [Required(AllowEmptyStrings = false, ErrorMessageResourceType =typeof(Validierungen), ErrorMessageResourceName = Validation.REQUIRED)]            
         [DataType(DataType.Password)]
         public string Passwort { get; set; }
+
+        public int Fa_id { get; set; }
     }
 }

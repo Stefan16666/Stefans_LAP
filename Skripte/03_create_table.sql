@@ -3,7 +3,8 @@ GO
 
 CREATE TABLE Ausstattung(
 	id INT IDENTITY NOT NULL,
-	bezeichnung NVARCHAR(50) NOT NULL
+	bezeichnung NVARCHAR(50) NOT NULL,
+	aktiv bit default 1 NOT NULL
 );
 
 
@@ -14,7 +15,7 @@ CREATE TABLE Bauwerk(
 	plz INT NOT NULL,
 	ort NVARCHAR(50) NOT NULL,
 	bezeichnung NVARCHAR(50) NOT NULL,
-	aktiv bit default 1
+	aktiv bit default 1 NOT NULL
 );
 
 CREATE TABLE Benutzer (
@@ -25,7 +26,7 @@ CREATE TABLE Benutzer (
 	nachname NVARCHAR(50) NOT NULL,	
 	Firma_id INT,
 	Rolle_id INT NOT NULL,
-	aktiv bit default 1
+	aktiv bit default 1 NOT NULL
 );
 
 CREATE TABLE Bild (
@@ -45,7 +46,7 @@ CREATE TABLE Buchungsdetails(
 	id INT IDENTITY NOT NULL,
 	buchung_id INT NOT NULL,
 	preis DECIMAL NOT NULL,
-	datum DATETIME NOT NULL
+	datum DATE NOT NULL
 );
 
 CREATE TABLE Firma(
@@ -54,7 +55,8 @@ CREATE TABLE Firma(
 	nummer INT NOT NULL,
 	plz INT NOT NULL,
 	ort NVARCHAR(50) NOT NULL,
-	bezeichnung NVARCHAR(50) NOT NULL	
+	bezeichnung NVARCHAR(50) NOT NULL	,
+	aktiv bit default 1 NOT NULL
 );
 
 CREATE TABLE [dbo].[Log] (
@@ -77,7 +79,7 @@ CREATE TABLE Raum (
 	groesse INT NOT NULL,
 	art_id INT NOT NULL,	
 	preis INT NOT NULL,
-	aktiv bit default 1
+	aktiv bit default 1 NOT NULL
 );
 
 CREATE TABLE Art (
@@ -90,7 +92,7 @@ CREATE TABLE Raum_Ausstattung (
 	ausstattung_id INT NOT NULL,
 	raum_id INT,
 	Anzahl_Ausstattung INT NOT NULL,
-	aktiv bit default 1
+	aktiv bit default 1 NOT NULL
 
 );
 
@@ -107,7 +109,8 @@ CREATE TABLE Rechnungsdetails(
 
 CREATE TABLE Rolle (
 	id INT IDENTITY NOT NULL,
-	bezeichnung NVARCHAR(255) NOT NULL
+	bezeichnung NVARCHAR(255) NOT NULL,
+	aktiv bit default 1 NOT NULL
 );
 
 GO

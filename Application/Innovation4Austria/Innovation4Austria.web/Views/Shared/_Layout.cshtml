@@ -92,46 +92,45 @@
 
         </footer>
     </div>
-
-    toastr.options = {
-    "closeButton": false,
-    "debug": false,
-    "newestOnTop": false,
-    "progressBar": false,
-    "positionClass": "toast-top-center",
-    "preventDuplicates": false,
-    "onclick": null,
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "5000",
-    "extendedTimeOut": "1000",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-    }
-    @{
+    <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        @{
 
 
         if (TempData[Innovation4Austria.web.AppCode.ConstStrings.WARNING_MESSAGE] != null)
         {
-            <script>
-                toastr['warning']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.WARNING_MESSAGE]');
-            </script>
-        }
-        if (TempData[Innovation4Austria.web.AppCode.ConstStrings.ERROR_MESSAGE] != null)
-        {
-            <script>
-                toastr['error']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.ERROR_MESSAGE]');
-            </script>
-        }
-        if (TempData[Innovation4Austria.web.AppCode.ConstStrings.SUCCESS_MESSAGE] != null)
-        {
-            <script>
-                toastr['success']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.SUCCESS_MESSAGE]');
-            </script>
-        }
+             < script >
+                    toastr['warning']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.WARNING_MESSAGE]');
+    </script>
     }
+    if (TempData[Innovation4Austria.web.AppCode.ConstStrings.ERROR_MESSAGE] != null)
+    {
+        <script>
+            toastr['error']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.ERROR_MESSAGE]');
+        </script>
+    }
+    if (TempData[Innovation4Austria.web.AppCode.ConstStrings.SUCCESS_MESSAGE] != null)
+    {
+        <script>
+            toastr['success']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.SUCCESS_MESSAGE]');
+        </script>
+    }
+}
 </body>
 </html>
-
