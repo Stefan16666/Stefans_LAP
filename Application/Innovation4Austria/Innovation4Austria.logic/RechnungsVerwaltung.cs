@@ -21,7 +21,7 @@ namespace Innovation4Austria.logic
                 {
                     using (var context = new Innovation4AustriaEntities())
                     {
-                        
+
                         {
                             detail = context.AlleRechnungsdetails.Where(x => x.Buchungsdetail_Id == buchungsDetail_id).FirstOrDefault();
                             if (detail == null)
@@ -29,42 +29,18 @@ namespace Innovation4Austria.logic
                                 log.Warn("RechnungsVerwaltung - AlleRechnungsDetailsEinerBuchung - es wurden keine Rechnungsdetails zu der Buchung gefunden");
                             }
                         }
-
                     }
                 }
                 catch (Exception ex)
                 {
-                    log.Error("RechnungsVerwaltung - AlleRechnungsDetailsEinerBuchung - es konnte keine Datenbankverbindung hergestellt werden",ex);
-                    if (ex.InnerException!= null)
+                    log.Error("RechnungsVerwaltung - AlleRechnungsDetailsEinerBuchung - es konnte keine Datenbankverbindung hergestellt werden", ex);
+                    if (ex.InnerException != null)
                     {
                         log.Info(ex.InnerException);
                     }
                 }
             }
             return detail;
-        }
-
-        //public static List<Buchungsdetails> alleRechnungsDetails()
-        //{
-        //    List<Rechnungsdetails> alleRechnungsDetails = null;
-        //    log.Info("RechnungsVerwaltung - AlleRechnnungsDetails");
-        //    try
-        //    {
-        //        using (var context = new Innovation4AustriaEntities())
-        //        {
-        //            alleRechnungsDetails = context.AlleRechnungsdetails.ToList();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        log.Error("RechnungsVerwaltung - alleRechnungsDetails - es konnte keine Datenbankverbindung hergestellt werden", ex);
-        //        if (ex.InnerException != null)
-        //        {
-        //            log.Info(ex.InnerException);
-        //        }
-                
-        //    }
-        //    return alleRechnungsDetails;
-        //}
+        }       
     }
 }

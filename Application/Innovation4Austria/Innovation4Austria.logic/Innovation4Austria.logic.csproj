@@ -53,9 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="alleRechnungenAllerFirmen.cs">
-      <DependentUpon>Innovation4AustiraModell.tt</DependentUpon>
-    </Compile>
     <Compile Include="Art.cs">
       <DependentUpon>Innovation4AustiraModell.tt</DependentUpon>
     </Compile>
@@ -79,6 +76,7 @@
     <Compile Include="Buchungsdetails.cs">
       <DependentUpon>Innovation4AustiraModell.tt</DependentUpon>
     </Compile>
+    <Compile Include="BuchungsVerwaltung.cs" />
     <Compile Include="Firma.cs">
       <DependentUpon>Innovation4AustiraModell.tt</DependentUpon>
     </Compile>

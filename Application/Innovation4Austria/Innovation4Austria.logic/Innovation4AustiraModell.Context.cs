@@ -60,8 +60,6 @@ public partial class Innovation4AustriaEntities : DbContext
 
     public DbSet<Rolle> AlleRollen { get; set; }
 
-    public DbSet<alleRechnungenAllerFirmen> AlleRechnungenAllerFirmen { get; set; }
-
 }
 
 }

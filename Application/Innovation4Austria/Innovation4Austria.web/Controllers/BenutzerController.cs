@@ -87,24 +87,27 @@ namespace Innovation4Austria.web.Controllers
             log.Info("BenutzerController - Dashboard");
             // mapping for user
             DashboardModel dashboard = new DashboardModel();
+
+
             List<MitarbeiterModel> alleMitarbeitereinerFirma = new List<MitarbeiterModel>();
             List<Benutzer> alleBenutzer = BenutzerVerwaltung.LoadStuffOfACompany(model.Fa_id);
             foreach (var einBenutzer in alleBenutzer)
             {
                 MitarbeiterModel einMitarbeiter = new MitarbeiterModel
                 {
-                    emailadresse = einBenutzer.Emailadresse,
-                    nachname = einBenutzer.Nachname
+                    Emailadresse = einBenutzer.Emailadresse,
+                    Nachname = einBenutzer.Nachname
                 };
                 alleMitarbeitereinerFirma.Add(einMitarbeiter);
             }
-            dashboard.alleMitarbeiter = alleMitarbeitereinerFirma;
+            dashboard.AlleMitarbeiter = alleMitarbeitereinerFirma;
 
 
             // mapping for bookings
             if (alleBenutzer != null)
             {
-                Rechnungsdetails detail = null;
+                BuchungenModel buchungsmodel = new BuchungenModel();
+                List<BuchungenModel> alleBuchungen = new List<BuchungenModel>();
                 List<Rechnungsdetails> rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();
                 List<Buchungsdetails> BuchungsDetailsVonFirma = null;
                 List<Buchung> bookingsOfCompany = RaumVerwaltung.GebuchteRaeume(model.Fa_id);
@@ -114,15 +117,10 @@ namespace Innovation4Austria.web.Controllers
                     {
                         Buchungsdetails buchungsdetail = RaumVerwaltung.BuchungsDetailsVonBuchung(booking.Id);
                         BuchungsDetailsVonFirma.Add(buchungsdetail);
-                        foreach (var einbuchungsDetail in BuchungsDetailsVonFirma)
-                        {
-                            //DateTime min;
-                            //DateTime max;
-
-                            //min = (from d1 in booking.AlleBuchungsdetails orderby d1.Datum select d1.Datum).FirstOrDefault();
-                            //max = (from d1 in booking.AlleBuchungsdetails orderby d1.Datum descending select d1.Datum).FirstOrDefault();
-
-                        }
+                        //foreach (var einbuchungsDetail in BuchungsDetailsVonFirma)
+                        //{
+                        //    buchungsmodel.VonDatum = null; 
+                        //}
                         string roomName = booking.Raum.Bezeichnung;
 
                         

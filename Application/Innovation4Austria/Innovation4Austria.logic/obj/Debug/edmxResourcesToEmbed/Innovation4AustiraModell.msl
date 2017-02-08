@@ -12,6 +12,7 @@
     <EntitySetMapping Name="AlleAusstattungen">
       <EntityTypeMapping TypeName="Innovation4AustriaModel.Ausstattung">
         <MappingFragment StoreEntitySet="Ausstattung">
+          <ScalarProperty Name="aktiv" ColumnName="aktiv" />
           <ScalarProperty Name="Id" ColumnName="id" />
           <ScalarProperty Name="Bezeichnung" ColumnName="bezeichnung" />
         </MappingFragment>
@@ -76,6 +77,7 @@
     <EntitySetMapping Name="AlleFirmen">
       <EntityTypeMapping TypeName="Innovation4AustriaModel.Firma">
         <MappingFragment StoreEntitySet="Firma">
+          <ScalarProperty Name="aktiv" ColumnName="aktiv" />
           <ScalarProperty Name="Id" ColumnName="id" />
           <ScalarProperty Name="Strasse" ColumnName="strasse" />
           <ScalarProperty Name="Nummer" ColumnName="nummer" />
@@ -88,6 +90,7 @@
     <EntitySetMapping Name="AlleLog">
       <EntityTypeMapping TypeName="Innovation4AustriaModel.Log">
         <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="InnerException" ColumnName="InnerException" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Thread" ColumnName="Thread" />
@@ -144,21 +147,9 @@
     <EntitySetMapping Name="AlleRollen">
       <EntityTypeMapping TypeName="Innovation4AustriaModel.Rolle">
         <MappingFragment StoreEntitySet="Rolle">
+          <ScalarProperty Name="aktiv" ColumnName="aktiv" />
           <ScalarProperty Name="Id" ColumnName="id" />
           <ScalarProperty Name="Bezeichnung" ColumnName="bezeichnung" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="AlleRechnungenAllerFirmen">
-      <EntityTypeMapping TypeName="Innovation4AustriaModel.alleRechnungenAllerFirmen">
-        <MappingFragment StoreEntitySet="alleRechnungenAllerFirmen">
-          <ScalarProperty Name="Rechnung_id" ColumnName="rechnung_id" />
-          <ScalarProperty Name="datum" ColumnName="datum" />
-          <ScalarProperty Name="Rechnungsdetail_id" ColumnName="id" />
-          <ScalarProperty Name="Preis" ColumnName="preis" />
-          <ScalarProperty Name="Buchungsdetaildatum" ColumnName="buchungsdetaildatum" />
-          <ScalarProperty Name="Aktiv" ColumnName="aktiv" />
-          <ScalarProperty Name="Firmen_id" ColumnName="firma_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

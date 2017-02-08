@@ -13,6 +13,7 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="aktiv" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Bauwerk">
     <Key>
@@ -24,7 +25,7 @@
     <Property Name="plz" Type="int" Nullable="false" />
     <Property Name="ort" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="aktiv" Type="bit" />
+    <Property Name="aktiv" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Benutzer">
     <Key>
@@ -37,7 +38,7 @@
     <Property Name="nachname" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Firma_id" Type="int" />
     <Property Name="Rolle_id" Type="int" Nullable="false" />
-    <Property Name="aktiv" Type="bit" />
+    <Property Name="aktiv" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Bild">
     <Key>
@@ -75,6 +76,7 @@
     <Property Name="plz" Type="int" Nullable="false" />
     <Property Name="ort" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="aktiv" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Log">
     <Key>
@@ -87,6 +89,7 @@
     <Property Name="Logger" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="Message" Type="varchar" MaxLength="4000" Nullable="false" />
     <Property Name="Exception" Type="varchar" MaxLength="2000" />
+    <Property Name="InnerException" Type="varchar" MaxLength="2000" />
     <Property Name="benutzer_id" Type="int" />
   </EntityType>
   <EntityType Name="Raum">
@@ -100,7 +103,7 @@
     <Property Name="groesse" Type="int" Nullable="false" />
     <Property Name="art_id" Type="int" Nullable="false" />
     <Property Name="preis" Type="int" Nullable="false" />
-    <Property Name="aktiv" Type="bit" />
+    <Property Name="aktiv" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Raum_Ausstattung">
     <Key>
@@ -110,7 +113,7 @@
     <Property Name="ausstattung_id" Type="int" Nullable="false" />
     <Property Name="raum_id" Type="int" />
     <Property Name="Anzahl_Ausstattung" Type="int" Nullable="false" />
-    <Property Name="aktiv" Type="bit" />
+    <Property Name="aktiv" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Rechnung">
     <Key>
@@ -133,24 +136,7 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="bezeichnung" Type="nvarchar" MaxLength="255" Nullable="false" />
-  </EntityType>
-  <!--Während der Generierung sind Fehler aufgetreten:
-Warnung 6002: Für Tabelle/Sicht 'Innovation4Austria.dbo.alleRechnungenAllerFirmen' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
-  <EntityType Name="alleRechnungenAllerFirmen">
-    <Key>
-      <PropertyRef Name="firma_id" />
-      <PropertyRef Name="buchungsdetaildatum" />
-      <PropertyRef Name="preis" />
-      <PropertyRef Name="id" />
-      <PropertyRef Name="rechnung_id" />
-    </Key>
-    <Property Name="firma_id" Type="int" Nullable="false" />
-    <Property Name="aktiv" Type="bit" />
-    <Property Name="buchungsdetaildatum" Type="datetime" Nullable="false" />
-    <Property Name="preis" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-    <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="datum" Type="date" />
-    <Property Name="rechnung_id" Type="int" Nullable="false" />
+    <Property Name="aktiv" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_Benutzer_Firma">
     <End Role="Firma" Type="Self.Firma" Multiplicity="0..1" />
@@ -323,17 +309,6 @@ Warnung 6002: Für Tabelle/Sicht 'Innovation4Austria.dbo.alleRechnungenAllerFirm
     <EntitySet Name="Rechnung" EntityType="Self.Rechnung" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rechnungsdetails" EntityType="Self.Rechnungsdetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rolle" EntityType="Self.Rolle" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="alleRechnungenAllerFirmen" EntityType="Self.alleRechnungenAllerFirmen" store:Type="Views" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-[alleRechnungenAllerFirmen].[firma_id] AS [firma_id], 
-[alleRechnungenAllerFirmen].[aktiv] AS [aktiv], 
-[alleRechnungenAllerFirmen].[buchungsdetaildatum] AS [buchungsdetaildatum], 
-[alleRechnungenAllerFirmen].[preis] AS [preis], 
-[alleRechnungenAllerFirmen].[id] AS [id], 
-[alleRechnungenAllerFirmen].[datum] AS [datum], 
-[alleRechnungenAllerFirmen].[rechnung_id] AS [rechnung_id]
-FROM [dbo].[alleRechnungenAllerFirmen] AS [alleRechnungenAllerFirmen]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK_Benutzer_Firma" Association="Self.FK_Benutzer_Firma">
       <End Role="Firma" EntitySet="Firma" />
       <End Role="Benutzer" EntitySet="Benutzer" />

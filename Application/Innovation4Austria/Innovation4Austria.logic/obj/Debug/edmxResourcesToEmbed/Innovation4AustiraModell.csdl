@@ -67,7 +67,6 @@
       <End Role="Rechnung" EntitySet="AlleRechnungen" />
       <End Role="Rechnungsdetails" EntitySet="AlleRechnungsdetails" />
     </AssociationSet>
-    <EntitySet Name="AlleRechnungenAllerFirmen" EntityType="Innovation4AustriaModel.alleRechnungenAllerFirmen" />
   </EntityContainer>
   <EntityType Name="Art">
     <Key>
@@ -84,6 +83,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="AlleRaum_Ausstattungen" Relationship="Innovation4AustriaModel.FK_Raum_Ausstattung_Ausstattung" FromRole="Ausstattung" ToRole="Raum_Ausstattung" />
+    <Property Name="aktiv" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Bauwerk">
     <Key>
@@ -95,7 +95,7 @@
     <Property Name="Plz" Type="Int32" Nullable="false" />
     <Property Name="Ort" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Aktiv" Type="Boolean" />
+    <Property Name="Aktiv" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="AlleRaeume" Relationship="Innovation4AustriaModel.FK_Raum_Bauwerk" FromRole="Bauwerk" ToRole="Raum" />
   </EntityType>
   <EntityType Name="Benutzer">
@@ -109,7 +109,7 @@
     <Property Name="Nachname" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="Firma_id" Type="Int32" />
     <Property Name="Rolle_id" Type="Int32" Nullable="false" />
-    <Property Name="Aktiv" Type="Boolean" />
+    <Property Name="Aktiv" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Firma" Relationship="Innovation4AustriaModel.FK_Benutzer_Firma" FromRole="Benutzer" ToRole="Firma" />
     <NavigationProperty Name="Rolle" Relationship="Innovation4AustriaModel.FK_Benutzer_Rolle" FromRole="Benutzer" ToRole="Rolle" />
     <NavigationProperty Name="AlleLog" Relationship="Innovation4AustriaModel.FK_Log_benutzer" FromRole="Benutzer" ToRole="Log" />
@@ -158,6 +158,7 @@
     <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="AlleBenutzer" Relationship="Innovation4AustriaModel.FK_Benutzer_Firma" FromRole="Firma" ToRole="Benutzer" />
     <NavigationProperty Name="AlleBuchnungen" Relationship="Innovation4AustriaModel.FK_Buchung_Firma" FromRole="Firma" ToRole="Buchung" />
+    <Property Name="aktiv" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Log">
     <Key>
@@ -172,6 +173,7 @@
     <Property Name="Exception" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
     <Property Name="Benutzer_id" Type="Int32" />
     <NavigationProperty Name="Benutzer" Relationship="Innovation4AustriaModel.FK_Log_benutzer" FromRole="Log" ToRole="Benutzer" />
+    <Property Name="InnerException" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Raum">
     <Key>
@@ -184,7 +186,7 @@
     <Property Name="Groesse" Type="Int32" Nullable="false" />
     <Property Name="Art_id" Type="Int32" Nullable="false" />
     <Property Name="Preis" Type="Int32" Nullable="false" />
-    <Property Name="Aktiv" Type="Boolean" />
+    <Property Name="Aktiv" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Art" Relationship="Innovation4AustriaModel.FK_Raum_Art" FromRole="Raum" ToRole="Art" />
     <NavigationProperty Name="Bauwerk" Relationship="Innovation4AustriaModel.FK_Raum_Bauwerk" FromRole="Raum" ToRole="Bauwerk" />
     <NavigationProperty Name="AlleBilder" Relationship="Innovation4AustriaModel.FK_Bild_Raum" FromRole="Raum" ToRole="Bild" />
@@ -199,7 +201,7 @@
     <Property Name="Ausstattungs_Id" Type="Int32" Nullable="false" />
     <Property Name="Raum_id" Type="Int32" />
     <Property Name="Anzahl_Ausstattungen" Type="Int32" Nullable="false" />
-    <Property Name="Aktiv" Type="Boolean" />
+    <Property Name="Aktiv" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Ausstattung" Relationship="Innovation4AustriaModel.FK_Raum_Ausstattung_Ausstattung" FromRole="Raum_Ausstattung" ToRole="Ausstattung" />
     <NavigationProperty Name="Raum" Relationship="Innovation4AustriaModel.FK_Raum_Ausstattung_Raum" FromRole="Raum_Ausstattung" ToRole="Raum" />
   </EntityType>
@@ -228,6 +230,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="AlleBenutzer" Relationship="Innovation4AustriaModel.FK_Benutzer_Rolle" FromRole="Rolle" ToRole="Benutzer" />
+    <Property Name="aktiv" Type="Boolean" Nullable="false" />
   </EntityType>
   <Association Name="FK_Raum_Art">
     <End Role="Art" Type="Innovation4AustriaModel.Art" Multiplicity="1" />
@@ -385,20 +388,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="alleRechnungenAllerFirmen">
-    <Key>
-      <PropertyRef Name="Firmen_id" />
-      <PropertyRef Name="Buchungsdetaildatum" />
-      <PropertyRef Name="Preis" />
-      <PropertyRef Name="Rechnungsdetail_id" />
-      <PropertyRef Name="Rechnung_id" />
-    </Key>
-    <Property Name="Firmen_id" Type="Int32" Nullable="false" />
-    <Property Name="Aktiv" Type="Boolean" />
-    <Property Name="Buchungsdetaildatum" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Preis" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-    <Property Name="Rechnungsdetail_id" Type="Int32" Nullable="false" />
-    <Property Name="datum" Type="DateTime" Precision="0" />
-    <Property Name="Rechnung_id" Type="Int32" Nullable="false" />
-  </EntityType>
 </Schema>
