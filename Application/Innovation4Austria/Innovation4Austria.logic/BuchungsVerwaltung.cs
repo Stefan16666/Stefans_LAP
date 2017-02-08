@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Innovation4Austria.logic
 {
-    class BuchungsVerwaltung
+    public class BuchungsVerwaltung
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         /// <summary>

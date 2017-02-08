@@ -1,4 +1,5 @@
-﻿using innovation4austria.authentication;
+﻿
+using innovation4austria.authentication;
 using Innovation4austria.authentication;
 using Innovation4Austria.logic;
 using Innovation4Austria.web.Models;
@@ -113,14 +114,19 @@ namespace Innovation4Austria.web.Controllers
                 List<Buchung> bookingsOfCompany = RaumVerwaltung.GebuchteRaeume(model.Fa_id);
                 if (bookingsOfCompany != null)
                 {
+                    /// es fehlt noch RaumArt und RaumName
                     foreach (var booking in bookingsOfCompany)
                     {
                         Buchungsdetails buchungsdetail = RaumVerwaltung.BuchungsDetailsVonBuchung(booking.Id);
                         BuchungsDetailsVonFirma.Add(buchungsdetail);
-                        //foreach (var einbuchungsDetail in BuchungsDetailsVonFirma)
-                        //{
-                        //    buchungsmodel.VonDatum = null; 
-                        //}
+                        Raum aktRaum = 
+                        buchungsmodel.Raumnummer = booking.Raum_id.ToString();
+                        buchungsmodel.RaumArt = booking
+                        foreach (var einbuchungsDetail in BuchungsDetailsVonFirma)
+                        {
+                            buchungsmodel.VonDatum = BuchungsVerwaltung.datum(einbuchungsDetail.Id,true);
+                            buchungsmodel.BisDatum = BuchungsVerwaltung.datum(einbuchungsDetail.Id, false);
+                        }
                         string roomName = booking.Raum.Bezeichnung;
 
                         
