@@ -44,7 +44,7 @@ public partial class Raum
 
     public int Preis { get; set; }
 
-    public Nullable<bool> Aktiv { get; set; }
+    public bool Aktiv { get; set; }
 
 
 

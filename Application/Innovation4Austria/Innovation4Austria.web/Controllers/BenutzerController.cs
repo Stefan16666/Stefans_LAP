@@ -22,15 +22,15 @@ namespace Innovation4Austria.web.Controllers
 
         private static readonly i4aRoleProvider roleProvider = new i4aRoleProvider();
 
-        // GET: Benutzer
         [HttpGet]
         public ActionResult Login()
         {
             log.Info("BenutzerController - Login - HttpGet");
             return View();
         }
+
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model)
         {
             log.Info("BenutzerController - Login - HttpPost");
@@ -42,14 +42,14 @@ namespace Innovation4Austria.web.Controllers
                     {
                         var logonResult = BenutzerVerwaltung.Anmelden(model.Emailadresse, model.Passwort);
                         if (membershipProvider.ValidateUser(model.Emailadresse, model.Passwort))
-                        {                            
+                        {
                             if (roleProvider.IsUserInRole(model.Emailadresse, "MitarbeiterIVA"))
                             {
                                 return RedirectToAction("FirmenWahl");
                             }
                             FormsAuthentication.SetAuthCookie(model.Emailadresse, true);
-                            Firma company = BenutzerVerwaltung.LadeFirmaVonBenutzer(model.Emailadresse);   
-                                                                                
+                            Firma company = BenutzerVerwaltung.LadeFirmaVonBenutzer(model.Emailadresse);
+
                             {
                                 if (company == null)
                                 {
@@ -57,11 +57,12 @@ namespace Innovation4Austria.web.Controllers
                                 }
                                 else
                                 {
-                                    return RedirectToAction("Dashboard", new { id = company.Id });
+                                    model.Fa_id = company.Id;
+                                    return RedirectToAction("Dashboard", model);
                                 }
                             }
                         }
-                       
+
                     }
                     else
                     {
@@ -81,13 +82,13 @@ namespace Innovation4Austria.web.Controllers
         [HttpGet]
         //[Authorize]
         //[ValidateAntiForgeryToken]
-        public ActionResult Dashboard(int id)
+        public ActionResult Dashboard(LoginModel model)
         {
             log.Info("BenutzerController - Dashboard");
             // mapping for user
             DashboardModel dashboard = new DashboardModel();
             List<MitarbeiterModel> alleMitarbeitereinerFirma = new List<MitarbeiterModel>();
-            List<Benutzer> alleBenutzer = BenutzerVerwaltung.LoadStuffOfACompany(id);
+            List<Benutzer> alleBenutzer = BenutzerVerwaltung.LoadStuffOfACompany(model.Fa_id);
             foreach (var einBenutzer in alleBenutzer)
             {
                 MitarbeiterModel einMitarbeiter = new MitarbeiterModel
@@ -104,22 +105,27 @@ namespace Innovation4Austria.web.Controllers
             if (alleBenutzer != null)
             {
                 Rechnungsdetails detail = null;
-                List<Rechnungsdetails>rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();
+                List<Rechnungsdetails> rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();
                 List<Buchungsdetails> BuchungsDetailsVonFirma = null;
-                List<Buchung> bookingsOfCompany = RaumVerwaltung.GebuchteRaeume(id);
+                List<Buchung> bookingsOfCompany = RaumVerwaltung.GebuchteRaeume(model.Fa_id);
                 if (bookingsOfCompany != null)
                 {
                     foreach (var booking in bookingsOfCompany)
                     {
-                        DateTime min;
-                        DateTime max;
+                        Buchungsdetails buchungsdetail = RaumVerwaltung.BuchungsDetailsVonBuchung(booking.Id);
+                        BuchungsDetailsVonFirma.Add(buchungsdetail);
+                        foreach (var einbuchungsDetail in BuchungsDetailsVonFirma)
+                        {
+                            //DateTime min;
+                            //DateTime max;
 
-                        min = (from d1 in booking.AlleBuchungsdetails orderby d1.Datum select d1.Datum).FirstOrDefault();
-                        max = (from d1 in booking.AlleBuchungsdetails orderby d1.Datum descending select d1.Datum).FirstOrDefault();
+                            //min = (from d1 in booking.AlleBuchungsdetails orderby d1.Datum select d1.Datum).FirstOrDefault();
+                            //max = (from d1 in booking.AlleBuchungsdetails orderby d1.Datum descending select d1.Datum).FirstOrDefault();
 
+                        }
                         string roomName = booking.Raum.Bezeichnung;
 
-                        BuchungsDetailsVonFirma = RaumVerwaltung.BuchungsDetailsVonBuchung(booking.Id);
+                        
                     }
                     foreach (var buchungsdetail in BuchungsDetailsVonFirma)
                     {
@@ -127,7 +133,7 @@ namespace Innovation4Austria.web.Controllers
                         {
                             BuchungsDetailsVonFirma.Remove(buchungsdetail);
                         }
-                        
+
                     }
 
                     /// hier muss man dann die Models machen. Das RechnungsModel ist eine Liste von Rechnungen, welche Monatsweise erstellt werden
@@ -138,7 +144,7 @@ namespace Innovation4Austria.web.Controllers
             }
 
             ///mapping for receipt
-            
+
 
 
             return View(dashboard);

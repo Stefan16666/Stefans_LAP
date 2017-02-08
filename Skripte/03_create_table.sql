@@ -46,7 +46,7 @@ CREATE TABLE Buchungsdetails(
 	id INT IDENTITY NOT NULL,
 	buchung_id INT NOT NULL,
 	preis DECIMAL NOT NULL,
-	datum DATE NOT NULL
+	datum DATETIME NOT NULL
 );
 
 CREATE TABLE Firma(

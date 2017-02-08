@@ -30,6 +30,8 @@ public partial class Ausstattung
 
     public string Bezeichnung { get; set; }
 
+    public bool aktiv { get; set; }
+
 
 
     public virtual ICollection<Raum_Ausstattung> AlleRaum_Ausstattungen { get; set; }

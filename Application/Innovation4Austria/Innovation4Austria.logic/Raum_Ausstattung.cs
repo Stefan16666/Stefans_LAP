@@ -26,7 +26,7 @@ public partial class Raum_Ausstattung
 
     public int Anzahl_Ausstattungen { get; set; }
 
-    public Nullable<bool> Aktiv { get; set; }
+    public bool Aktiv { get; set; }
 
 
 

@@ -34,6 +34,8 @@ public partial class Log
 
     public Nullable<int> Benutzer_id { get; set; }
 
+    public string InnerException { get; set; }
+
 
 
     public virtual Benutzer Benutzer { get; set; }

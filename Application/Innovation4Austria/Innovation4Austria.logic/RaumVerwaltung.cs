@@ -45,18 +45,18 @@ namespace Innovation4Austria.logic
             return bookedRooms;
         }
 
-        public static List<Buchungsdetails> BuchungsDetailsVonBuchung(int buchung_id)
+        public static Buchungsdetails BuchungsDetailsVonBuchung(int buchung_id)
         {
             log.Info("RaumVerwaltung - BuchungsDetailsVonBuchung");
-            List<Buchungsdetails> detailsVonBuchung = new List<Buchungsdetails>();
+            Buchungsdetails detailVonBuchung = null;
             if (buchung_id != 0)
             {
                 try
                 {
                     using (var context = new Innovation4AustriaEntities())
                     {
-                        detailsVonBuchung = context.AlleBuchungsdetails.Where(x => x.Buchung_id == buchung_id).ToList();
-                        if (detailsVonBuchung== null)
+                        detailVonBuchung = context.AlleBuchungsdetails.Where(x => x.Buchung_id == buchung_id).FirstOrDefault();
+                        if (detailVonBuchung == null)
                         {
                             log.Warn("RaumVerwaltung - BuchungsDetailsVonBuchung - keine Details zur Buchung gefunden");
                         }
@@ -71,7 +71,7 @@ namespace Innovation4Austria.logic
                     }
                 }
             }
-            return detailsVonBuchung;
+            return detailVonBuchung;
 
         }
 

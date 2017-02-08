@@ -38,7 +38,7 @@ public partial class Bauwerk
 
     public string Bezeichnung { get; set; }
 
-    public Nullable<bool> Aktiv { get; set; }
+    public bool Aktiv { get; set; }
 
 
 

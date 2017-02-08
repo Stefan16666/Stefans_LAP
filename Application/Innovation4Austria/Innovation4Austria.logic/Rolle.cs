@@ -30,6 +30,8 @@ public partial class Rolle
 
     public string Bezeichnung { get; set; }
 
+    public bool aktiv { get; set; }
+
 
 
     public virtual ICollection<Benutzer> AlleBenutzer { get; set; }

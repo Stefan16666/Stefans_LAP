@@ -163,10 +163,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BuchungenModel.cs" />
     <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MitarbeiterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RechnungsModel.cs" />
     <Compile Include="Validierungen.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

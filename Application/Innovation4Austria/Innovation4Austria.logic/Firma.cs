@@ -40,6 +40,8 @@ public partial class Firma
 
     public string Bezeichnung { get; set; }
 
+    public bool aktiv { get; set; }
+
 
 
     public virtual ICollection<Benutzer> AlleBenutzer { get; set; }

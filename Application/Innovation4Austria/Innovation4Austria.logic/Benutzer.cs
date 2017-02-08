@@ -40,7 +40,7 @@ public partial class Benutzer
 
     public int Rolle_id { get; set; }
 
-    public Nullable<bool> Aktiv { get; set; }
+    public bool Aktiv { get; set; }
 
 
 
