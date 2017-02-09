@@ -134,20 +134,20 @@ namespace Innovation4Austria.web.Controllers
                     alleBuchungen.Add(buchungsmodel);
 
                 }
-                foreach (var buchungsdetail in BuchungsDetailsVonFirma)
-                {
-                    if (RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id) == null)
-                    {
-                        BuchungsDetailsVonFirma.Remove(buchungsdetail);
-                    }
-                    else
-                    {
-                        RechnungsModel einRgModel = new RechnungsModel();
-                        Rechnungsdetails detail = RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id);
-                        einRgModel.Rechnungsnummer = detail.Rechnung_Id;
-                        einRgModel.Monat = "sss";
-                    }                 
-                }
+                //foreach (var buchungsdetail in BuchungsDetailsVonFirma)
+                //{
+                //    if (RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id) == null)
+                //    {
+                //        BuchungsDetailsVonFirma.Remove(buchungsdetail);
+                //    }
+                //    else
+                //    {
+                //        RechnungsModel einRgModel = new RechnungsModel();
+                //        Rechnungsdetails detail = RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id);
+                //        einRgModel.Rechnungsnummer = detail.Rechnung_Id;
+                //        einRgModel.Monat = "sss";
+                //    }                 
+                //}
 
                 /// hier muss man dann die Models machen. Das RechnungsModel ist eine Liste von Rechnungen, welche Monatsweise erstellt werden
                 

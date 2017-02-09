@@ -24,6 +24,9 @@ h6 {
 .topnav {
     font-size: 14px;
 }
+.dashboard{
+    font-size:2em !important;
+}
 
 .lead {
     font-size: 18px;
