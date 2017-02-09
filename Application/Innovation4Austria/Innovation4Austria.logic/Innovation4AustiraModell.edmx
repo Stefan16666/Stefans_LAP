@@ -151,19 +151,23 @@ Warnung 6002: Für Tabelle/Sicht 'Innovation4Austria.dbo.AlleRechnungenEinerFirm
             <PropertyRef Name="Rechnungsdetails_id" />
             <PropertyRef Name="Buchungsdetails_id" />
             <PropertyRef Name="BuchungsDetailDatum" />
-            <PropertyRef Name="preis" />
+            <PropertyRef Name="BuchungsDetailPreis" />
             <PropertyRef Name="Buchungs_id" />
             <PropertyRef Name="raum_id" />
+            <PropertyRef Name="Raumbezeichnung" />
+            <PropertyRef Name="Raumartbezeichnung" />
           </Key>
           <Property Name="RechnungsAussstellungsDatum" Type="date" />
           <Property Name="Rechnungs_id" Type="int" Nullable="false" />
           <Property Name="Rechnungsdetails_id" Type="int" Nullable="false" />
           <Property Name="Buchungsdetails_id" Type="int" Nullable="false" />
           <Property Name="BuchungsDetailDatum" Type="datetime" Nullable="false" />
-          <Property Name="preis" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="BuchungsDetailPreis" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Buchungs_id" Type="int" Nullable="false" />
-          <Property Name="aktiv" Type="bit" />
+          <Property Name="BuchungAktiv" Type="bit" />
           <Property Name="raum_id" Type="int" Nullable="false" />
+          <Property Name="Raumbezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Raumartbezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Benutzer_Firma">
           <End Role="Firma" Type="Self.Firma" Multiplicity="0..1" />
@@ -343,10 +347,12 @@ Warnung 6002: Für Tabelle/Sicht 'Innovation4Austria.dbo.AlleRechnungenEinerFirm
 [AlleRechnungenEinerFirma].[Rechnungsdetails_id] AS [Rechnungsdetails_id], 
 [AlleRechnungenEinerFirma].[Buchungsdetails_id] AS [Buchungsdetails_id], 
 [AlleRechnungenEinerFirma].[BuchungsDetailDatum] AS [BuchungsDetailDatum], 
-[AlleRechnungenEinerFirma].[preis] AS [preis], 
+[AlleRechnungenEinerFirma].[BuchungsDetailPreis] AS [BuchungsDetailPreis], 
 [AlleRechnungenEinerFirma].[Buchungs_id] AS [Buchungs_id], 
-[AlleRechnungenEinerFirma].[aktiv] AS [aktiv], 
-[AlleRechnungenEinerFirma].[raum_id] AS [raum_id]
+[AlleRechnungenEinerFirma].[BuchungAktiv] AS [BuchungAktiv], 
+[AlleRechnungenEinerFirma].[raum_id] AS [raum_id], 
+[AlleRechnungenEinerFirma].[Raumbezeichnung] AS [Raumbezeichnung], 
+[AlleRechnungenEinerFirma].[Raumartbezeichnung] AS [Raumartbezeichnung]
 FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Benutzer_Firma" Association="Self.FK_Benutzer_Firma">
@@ -804,6 +810,9 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
             <PropertyRef Name="preis" />
             <PropertyRef Name="Buchungs_id" />
             <PropertyRef Name="raum_id" />
+            <PropertyRef Name="BuchungsDetailPreis" />
+            <PropertyRef Name="Raumbezeichnung" />
+            <PropertyRef Name="Raumartbezeichnung" />
           </Key>
           <Property Name="RechnungsAussstellungsDatum" Type="DateTime" Precision="0" />
           <Property Name="Rechnungs_id" Type="Int32" Nullable="false" />
@@ -814,6 +823,10 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
           <Property Name="Buchungs_id" Type="Int32" Nullable="false" />
           <Property Name="aktiv" Type="Boolean" />
           <Property Name="raum_id" Type="Int32" Nullable="false" />
+          <Property Name="BuchungsDetailPreis" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="BuchungAktiv" Type="Boolean" />
+          <Property Name="Raumbezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Raumartbezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -976,10 +989,12 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
           <EntitySetMapping Name="AlleRechnungenEinerFirma">
             <EntityTypeMapping TypeName="Innovation4AustriaModel.AlleRechnungenEinerFirma">
               <MappingFragment StoreEntitySet="AlleRechnungenEinerFirma">
+                <ScalarProperty Name="Raumartbezeichnung" ColumnName="Raumartbezeichnung" />
+                <ScalarProperty Name="Raumbezeichnung" ColumnName="Raumbezeichnung" />
+                <ScalarProperty Name="BuchungAktiv" ColumnName="BuchungAktiv" />
+                <ScalarProperty Name="BuchungsDetailPreis" ColumnName="BuchungsDetailPreis" />
                 <ScalarProperty Name="raum_id" ColumnName="raum_id" />
-                <ScalarProperty Name="aktiv" ColumnName="aktiv" />
                 <ScalarProperty Name="Buchungs_id" ColumnName="Buchungs_id" />
-                <ScalarProperty Name="preis" ColumnName="preis" />
                 <ScalarProperty Name="BuchungsDetailDatum" ColumnName="BuchungsDetailDatum" />
                 <ScalarProperty Name="Buchungsdetails_id" ColumnName="Buchungsdetails_id" />
                 <ScalarProperty Name="Rechnungsdetails_id" ColumnName="Rechnungsdetails_id" />

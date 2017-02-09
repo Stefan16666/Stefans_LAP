@@ -5,10 +5,12 @@ AS
 			rd.id AS Rechnungsdetails_id,
 			bd.id AS Buchungsdetails_id,
 			bd.datum AS BuchungsDetailDatum,
-			bd.preis,
+			bd.preis AS BuchungsDetailPreis,
 			b.id AS Buchungs_id,
-			b.aktiv,
-			b.raum_id			
+			b.aktiv AS BuchungAktiv,
+			b.raum_id,
+			ra.bezeichnung AS Raumbezeichnung,
+			a.bezeichnung AS Raumartbezeichnung			
 	FROM Rechnung AS r
 	JOIN Rechnungsdetails AS rd
 	ON r.id = rd.rechnung_id
@@ -16,4 +18,8 @@ AS
 	ON rd.buchungsdetails_id = bd.id
 	JOIN Buchung AS b
 	ON b.id = bd.buchung_id
+	JOIN Raum AS ra
+	ON b.raum_id = ra.bezeichnung
+	JOIN Art AS a
+	ON ra.art_id = a.id
 GO
