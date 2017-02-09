@@ -11,7 +11,13 @@ namespace Innovation4Austria.logic
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public static Rechnungsdetails EinRechnungsDetailsEinerBuchung(int buchungsDetail_id)
+
+        /// <summary>
+        /// ein Rechnungsdetail einer Firma wird herausgesucht 
+        /// </summary>
+        /// <param name="buchungsDetail_id"></param>
+        /// <returns></returns>
+        public static Rechnungsdetails EinRechnungsDetailsEinesBuchungsDetails(int buchungsDetail_id)
         {
             Rechnungsdetails detail = null;
             log.Info("RechnungsVerwaltung - AlleRechnungsDetailsEinerBuchung");
@@ -41,6 +47,6 @@ namespace Innovation4Austria.logic
                 }
             }
             return detail;
-        }       
+        }
     }
 }

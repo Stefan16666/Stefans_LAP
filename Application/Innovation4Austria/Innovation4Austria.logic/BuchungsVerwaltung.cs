@@ -49,6 +49,35 @@ namespace Innovation4Austria.logic
             }
             return date;
         }
+
+        public static List<Buchungsdetails> BuchungsDetailsVonBuchung(int buchung_id)
+        {
+            log.Info("RaumVerwaltung - BuchungsDetailsVonBuchung");
+            List<Buchungsdetails> detailVonBuchung = null;
+            if (buchung_id != 0)
+            {
+                try
+                {
+                    using (var context = new Innovation4AustriaEntities())
+                    {
+                        detailVonBuchung = context.AlleBuchungsdetails.Include("Rechnungsdetails").Where(x => x.Buchung_id == buchung_id).ToList();
+                        if (detailVonBuchung == null)
+                        {
+                            log.Warn("RaumVerwaltung - BuchungsDetailsVonBuchung - keine Details zur Buchung gefunden");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Error("RaumVerwaltung - BuchungsDetailsVonBuchung - Datenbankverbindung fehlgeschlagen", ex);
+                    if (ex.InnerException != null)
+                    {
+                        log.Info(ex.InnerException);
+                    }
+                }
+            }
+            return detailVonBuchung;
+        }
     }
 }
 

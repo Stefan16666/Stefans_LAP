@@ -86,18 +86,19 @@ namespace Innovation4Austria.web.Controllers
         public ActionResult Dashboard(LoginModel model)
         {
             log.Info("BenutzerController - Dashboard");
-            // mapping for user
+
             DashboardModel dashboard = new DashboardModel();
 
-
+            // holt alle Mitarbeiter einer Firma
             List<MitarbeiterModel> alleMitarbeitereinerFirma = new List<MitarbeiterModel>();
             List<Benutzer> alleBenutzer = BenutzerVerwaltung.LoadStuffOfACompany(model.Fa_id);
             foreach (var einBenutzer in alleBenutzer)
             {
-                MitarbeiterModel einMitarbeiter = new MitarbeiterModel
+                MitarbeiterModel einMitarbeiter = new MitarbeiterModel()
                 {
                     Emailadresse = einBenutzer.Emailadresse,
-                    Nachname = einBenutzer.Nachname
+                    Nachname = einBenutzer.Nachname,
+                    Vorname = einBenutzer.Vorname
                 };
                 alleMitarbeitereinerFirma.Add(einMitarbeiter);
             }
@@ -105,46 +106,56 @@ namespace Innovation4Austria.web.Controllers
 
 
             // mapping for bookings
-            if (alleBenutzer != null)
+
+            BuchungenModel buchungsmodel = new BuchungenModel();
+            List<BuchungenModel> alleBuchungen = new List<BuchungenModel>();
+            List<Rechnungsdetails> rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();           
+            List <Buchungsdetails> BuchungsDetailsVonFirma = new List<Buchungsdetails>();
+            List<RechnungsModel> alleRechnungen = new List<RechnungsModel>();
+            List<Buchung> bookingsOfCompany = RaumVerwaltung.GebuchteRaeume(model.Fa_id);
+
+            if (bookingsOfCompany != null)
             {
-                BuchungenModel buchungsmodel = new BuchungenModel();
-                List<BuchungenModel> alleBuchungen = new List<BuchungenModel>();
-                List<Rechnungsdetails> rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();
-                List<Buchungsdetails> BuchungsDetailsVonFirma = null;
-                List<Buchung> bookingsOfCompany = RaumVerwaltung.GebuchteRaeume(model.Fa_id);
-                if (bookingsOfCompany != null)
+                /// es fehlt noch RaumArt und RaumName
+                foreach (var booking in bookingsOfCompany)
                 {
-                    /// es fehlt noch RaumArt und RaumName
-                    foreach (var booking in bookingsOfCompany)
+                                                            
+                    BuchungsDetailsVonFirma = BuchungsVerwaltung.BuchungsDetailsVonBuchung(booking.Id);
+                    
+                    Raum aktRaum = RaumVerwaltung.GesuchterRaum(booking.Raum_id);
+                    buchungsmodel.Raumnummer = aktRaum.Bezeichnung;
+                    buchungsmodel.RaumArt = aktRaum.Art.Bezeichnung;
+
+                    foreach (var einbuchungsDetail in BuchungsDetailsVonFirma)
                     {
-                        Buchungsdetails buchungsdetail = RaumVerwaltung.BuchungsDetailsVonBuchung(booking.Id);
-                        BuchungsDetailsVonFirma.Add(buchungsdetail);
-                        Raum aktRaum = 
-                        buchungsmodel.Raumnummer = booking.Raum_id.ToString();
-                        buchungsmodel.RaumArt = booking
-                        foreach (var einbuchungsDetail in BuchungsDetailsVonFirma)
-                        {
-                            buchungsmodel.VonDatum = BuchungsVerwaltung.datum(einbuchungsDetail.Id,true);
-                            buchungsmodel.BisDatum = BuchungsVerwaltung.datum(einbuchungsDetail.Id, false);
-                        }
-                        string roomName = booking.Raum.Bezeichnung;
-
-                        
+                        buchungsmodel.VonDatum = BuchungsVerwaltung.datum(einbuchungsDetail.Id, true);
+                        buchungsmodel.BisDatum = BuchungsVerwaltung.datum(einbuchungsDetail.Id, false);
                     }
-                    foreach (var buchungsdetail in BuchungsDetailsVonFirma)
-                    {
-                        if (RechnungsVerwaltung.EinRechnungsDetailsEinerBuchung(buchungsdetail.Id) == null)
-                        {
-                            BuchungsDetailsVonFirma.Remove(buchungsdetail);
-                        }
+                    alleBuchungen.Add(buchungsmodel);
 
-                    }
-
-                    /// hier muss man dann die Models machen. Das RechnungsModel ist eine Liste von Rechnungen, welche Monatsweise erstellt werden
                 }
+                foreach (var buchungsdetail in BuchungsDetailsVonFirma)
+                {
+                    if (RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id) == null)
+                    {
+                        BuchungsDetailsVonFirma.Remove(buchungsdetail);
+                    }
+                    else
+                    {
+                        RechnungsModel einRgModel = new RechnungsModel();
+                        Rechnungsdetails detail = RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id);
+                        einRgModel.Rechnungsnummer = detail.Rechnung_Id;
+                        einRgModel.Monat = "sss";
+                    }                 
+                }
+
+                /// hier muss man dann die Models machen. Das RechnungsModel ist eine Liste von Rechnungen, welche Monatsweise erstellt werden
+                
                 log.Warn("No stuff was found");
-
-
+            }
+            else
+            {
+                log.Info("BenutzerController - Dashboard - keine Buchungen für die Firma vorhanden sind");
             }
 
             ///mapping for receipt
@@ -165,5 +176,7 @@ namespace Innovation4Austria.web.Controllers
             }
             return View(alleFirmen);
         }
+
+
     }
 }
