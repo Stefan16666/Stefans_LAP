@@ -57,6 +57,7 @@ if %nockmode% == 0 call :docmddb "try creating checks" 07_create_check.sql
 
 call :docmddb "try creating function" 08_create_function.sql
 
+call :docmddb "try creating view" 09_create_view.sql
 if %nockmode% == 0 call :docmddb "try inserting values" 10_insert.sql
 
 call :showmsg .

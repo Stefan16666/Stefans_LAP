@@ -1,9 +1,13 @@
 ECHO ist ausgeschaltet (OFF).
 . 
-"starting database creation  8:46:34,36" 
+"starting database creation  8:36:50,66" 
 . 
 "try dropping database" 
-1> 2> 1> 2> 3> 4> 1>  
+1> 2> 1> 2> 3> 4> Fr nicht gekennzeichnete Transaktionen wird ein Rollback ausgefhrt. Bereits
+abgeschlossen (gesch„tzt): 0%.
+Fr nicht gekennzeichnete Transaktionen wird ein Rollback ausgefhrt. Bereits
+abgeschlossen (gesch„tzt): 100%.
+1>  
  
 "try creating database" 
 1> 2> 1> 2> 3> 1>  
@@ -25,6 +29,9 @@ ECHO ist ausgeschaltet (OFF).
  
 "try creating function" 
 1>  
+ 
+"try creating view" 
+1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> 18> 19> 1>  
  
 "try inserting values" 
 1> 2> 1> 2> 3> 4> (1 Zeile betroffen)
@@ -86,5 +93,5 @@ ECHO ist ausgeschaltet (OFF).
 1> 2>  
  
 . 
-"stopping database creation  8:46:35,89" 
+"stopping database creation  8:36:55,28" 
 . 
