@@ -13,7 +13,7 @@
 
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="container">
+        <div class="container"style="padding:5em">
             <div class="row">
                 <div class="col-md-4">
                     <h1 class="headline">Mitarbeiter</h1>
@@ -28,26 +28,25 @@
                     }
 
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <h1 class="headline">Buchungen</h1>
-                @foreach (var buchungen in Model.AlleBuchungen)
+                <div class="col-md-4">
+                    <h1 class="headline">Buchungen</h1>
+                    @foreach (var buchungen in Model.AlleBuchungen)
                 {
 
-                    <div class="dashboard">
-                        <div>@buchungen.Raumnummer</div>
-                        <div>@buchungen.RaumArt</div>
-                        <div>@buchungen.VonDatum</div>
-                        <div>@buchungen.BisDatum</div>
-                    </div>
-                }
+                        <div class="dashboard">
+                            <div>@buchungen.Raumnummer</div>
+                            <div>@buchungen.RaumArt</div>
+                            <div>@buchungen.VonDatum</div>
+                            <div>@buchungen.BisDatum</div>
+                        </div>
+                    }
 
+                </div>
             </div>
         </div>
     </div>
-    </div>
+
+
 
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")

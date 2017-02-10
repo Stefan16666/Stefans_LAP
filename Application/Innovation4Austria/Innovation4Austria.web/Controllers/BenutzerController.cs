@@ -50,7 +50,7 @@ namespace Innovation4Austria.web.Controllers
                                 return RedirectToAction("FirmenWahl");
                             }
                             FormsAuthentication.SetAuthCookie(model.Emailadresse, true);
-                            
+
                             TempData[ConstStrings.SUCCESS_MESSAGE] = Validierungen.SpeichernErfolgreich;
                             Firma company = BenutzerVerwaltung.LadeFirmaVonBenutzer(model.Emailadresse);
 
@@ -95,6 +95,10 @@ namespace Innovation4Austria.web.Controllers
             // holt alle Mitarbeiter einer Firma
             List<MitarbeiterModel> alleMitarbeitereinerFirma = new List<MitarbeiterModel>();
             List<Benutzer> alleBenutzer = BenutzerVerwaltung.LoadStuffOfACompany(model.Fa_id);
+            if (alleBenutzer == null)
+            {
+                log.Warn("No stuff was found");
+            }
             foreach (var einBenutzer in alleBenutzer)
             {
                 MitarbeiterModel einMitarbeiter = new MitarbeiterModel()
@@ -112,9 +116,9 @@ namespace Innovation4Austria.web.Controllers
 
             BuchungenModel buchungsmodel = new BuchungenModel();
             List<BuchungenModel> alleBuchungen = new List<BuchungenModel>();
-            List<Rechnungsdetails> rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();           
-            List <Buchungsdetails> BuchungsDetailsVonFirma = new List<Buchungsdetails>();
-            List<RechnungsModel> alleRechnungen = new List<RechnungsModel>();
+            List<Rechnungsdetails> rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();
+            List<Buchungsdetails> BuchungsDetailsVonFirma = new List<Buchungsdetails>();
+            
             List<Buchung> bookingsOfCompany = RaumVerwaltung.GebuchteRaeume(model.Fa_id);
 
             if (bookingsOfCompany != null)
@@ -122,9 +126,9 @@ namespace Innovation4Austria.web.Controllers
                 /// es fehlt noch RaumArt und RaumName
                 foreach (var booking in bookingsOfCompany)
                 {
-                                                            
+
                     BuchungsDetailsVonFirma = BuchungsVerwaltung.BuchungsDetailsVonBuchung(booking.Id);
-                    
+
                     Raum aktRaum = RaumVerwaltung.GesuchterRaum(booking.Raum_id);
                     buchungsmodel.Raumnummer = aktRaum.Bezeichnung;
                     buchungsmodel.RaumArt = aktRaum.Art.Bezeichnung;
@@ -137,32 +141,32 @@ namespace Innovation4Austria.web.Controllers
                     alleBuchungen.Add(buchungsmodel);
 
                 }
-                //foreach (var buchungsdetail in BuchungsDetailsVonFirma)
-                //{
-                //    if (RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id) == null)
-                //    {
-                //        BuchungsDetailsVonFirma.Remove(buchungsdetail);
-                //    }
-                //    else
-                //    {
-                //        RechnungsModel einRgModel = new RechnungsModel();
-                //        Rechnungsdetails detail = RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id);
-                //        einRgModel.Rechnungsnummer = detail.Rechnung_Id;
-                //        einRgModel.Monat = "sss";
-                //    }                 
-                //}
-
-                /// hier muss man dann die Models machen. Das RechnungsModel ist eine Liste von Rechnungen, welche Monatsweise erstellt werden
-                
-                log.Warn("No stuff was found");
             }
             else
             {
                 log.Info("BenutzerController - Dashboard - keine Buchungen für die Firma vorhanden sind");
             }
+            dashboard.AlleBuchungen = alleBuchungen;
+            //foreach (var buchungsdetail in BuchungsDetailsVonFirma)
+            //{
+            //    if (RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id) == null)
+            //    {
+            //        BuchungsDetailsVonFirma.Remove(buchungsdetail);
+            //    }
+            //    else
+            //    {
+            //        RechnungsModel einRgModel = new RechnungsModel();
+            //        Rechnungsdetails detail = RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id);
+            //        einRgModel.Rechnungsnummer = detail.Rechnung_Id;
+            //        einRgModel.Monat = "sss";
+            //    }                 
+            //}
+
+            /// hier muss man dann die Models machen. Das RechnungsModel ist eine Liste von Rechnungen, welche Monatsweise erstellt werden
 
             ///mapping for receipt
 
+            List<RechnungsModel> alleRechnungen = new List<RechnungsModel>();
 
 
             return View(dashboard);
@@ -180,6 +184,14 @@ namespace Innovation4Austria.web.Controllers
             return View(alleFirmen);
         }
 
+        [Authorize]
+        [HttpGet]
+        public ActionResult Abmelden()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Login", "Benutzer");
+        }
 
     }
 }
