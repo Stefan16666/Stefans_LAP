@@ -28,17 +28,13 @@ public partial class AlleRechnungenEinerFirma
 
     public System.DateTime BuchungsDetailDatum { get; set; }
 
-    public decimal preis { get; set; }
+    public decimal BuchungsDetailPreis { get; set; }
 
     public int Buchungs_id { get; set; }
 
-    public Nullable<bool> aktiv { get; set; }
+    public Nullable<bool> BuchungAktiv { get; set; }
 
     public int raum_id { get; set; }
-
-    public decimal BuchungsDetailPreis { get; set; }
-
-    public Nullable<bool> BuchungAktiv { get; set; }
 
     public string Raumbezeichnung { get; set; }
 

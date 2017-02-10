@@ -4,22 +4,22 @@
     ViewBag.Title = "Dashboard";
 }
 
-<h2>Dashboard</h2>
-
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>DashboardModel</h4>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
+                    <h1 class="headline">Mitarbeiter</h1>
                     @foreach (var benutzer in Model.AlleMitarbeiter)
                     {
+
                         <div class="dashboard">
                             <div>@benutzer.Emailadresse</div>
                             <div>@benutzer.Nachname</div>
@@ -30,10 +30,23 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h1 class="headline">Buchungen</h1>
+                @foreach (var buchungen in Model.AlleBuchungen)
+                {
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+                    <div class="dashboard">
+                        <div>@buchungen.Raumnummer</div>
+                        <div>@buchungen.RaumArt</div>
+                        <div>@buchungen.VonDatum</div>
+                        <div>@buchungen.BisDatum</div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
     </div>
 
     @section Scripts {

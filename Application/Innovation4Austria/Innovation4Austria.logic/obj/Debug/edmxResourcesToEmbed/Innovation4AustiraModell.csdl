@@ -67,6 +67,7 @@
       <End Role="Rechnung" EntitySet="AlleRechnungen" />
       <End Role="Rechnungsdetails" EntitySet="AlleRechnungsdetails" />
     </AssociationSet>
+    <EntitySet Name="AlleRechnungenEinerFirma" EntityType="Innovation4AustriaModel.AlleRechnungenEinerFirma" />
   </EntityContainer>
   <EntityType Name="Art">
     <Key>
@@ -388,4 +389,28 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="AlleRechnungenEinerFirma">
+    <Key>
+      <PropertyRef Name="Rechnungs_id" />
+      <PropertyRef Name="Rechnungsdetails_id" />
+      <PropertyRef Name="Buchungsdetails_id" />
+      <PropertyRef Name="BuchungsDetailDatum" />
+      <PropertyRef Name="BuchungsDetailPreis" />
+      <PropertyRef Name="Buchungs_id" />
+      <PropertyRef Name="raum_id" />
+      <PropertyRef Name="Raumbezeichnung" />
+      <PropertyRef Name="Raumartbezeichnung" />
+    </Key>
+    <Property Name="RechnungsAussstellungsDatum" Type="DateTime" Precision="0" />
+    <Property Name="Rechnungs_id" Type="Int32" Nullable="false" />
+    <Property Name="Rechnungsdetails_id" Type="Int32" Nullable="false" />
+    <Property Name="Buchungsdetails_id" Type="Int32" Nullable="false" />
+    <Property Name="BuchungsDetailDatum" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BuchungsDetailPreis" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Buchungs_id" Type="Int32" Nullable="false" />
+    <Property Name="BuchungAktiv" Type="Boolean" />
+    <Property Name="raum_id" Type="Int32" Nullable="false" />
+    <Property Name="Raumbezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Raumartbezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

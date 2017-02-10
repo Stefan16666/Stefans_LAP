@@ -153,5 +153,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AlleRechnungenEinerFirma">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.AlleRechnungenEinerFirma">
+        <MappingFragment StoreEntitySet="AlleRechnungenEinerFirma">
+          <ScalarProperty Name="Raumartbezeichnung" ColumnName="Raumartbezeichnung" />
+          <ScalarProperty Name="Raumbezeichnung" ColumnName="Raumbezeichnung" />
+          <ScalarProperty Name="raum_id" ColumnName="raum_id" />
+          <ScalarProperty Name="BuchungAktiv" ColumnName="BuchungAktiv" />
+          <ScalarProperty Name="Buchungs_id" ColumnName="Buchungs_id" />
+          <ScalarProperty Name="BuchungsDetailPreis" ColumnName="BuchungsDetailPreis" />
+          <ScalarProperty Name="BuchungsDetailDatum" ColumnName="BuchungsDetailDatum" />
+          <ScalarProperty Name="Buchungsdetails_id" ColumnName="Buchungsdetails_id" />
+          <ScalarProperty Name="Rechnungsdetails_id" ColumnName="Rechnungsdetails_id" />
+          <ScalarProperty Name="Rechnungs_id" ColumnName="Rechnungs_id" />
+          <ScalarProperty Name="RechnungsAussstellungsDatum" ColumnName="RechnungsAussstellungsDatum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

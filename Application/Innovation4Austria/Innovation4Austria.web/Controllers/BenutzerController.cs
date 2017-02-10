@@ -2,6 +2,7 @@
 using innovation4austria.authentication;
 using Innovation4austria.authentication;
 using Innovation4Austria.logic;
+using Innovation4Austria.web.AppCode;
 using Innovation4Austria.web.Models;
 using log4net;
 using System;
@@ -49,6 +50,8 @@ namespace Innovation4Austria.web.Controllers
                                 return RedirectToAction("FirmenWahl");
                             }
                             FormsAuthentication.SetAuthCookie(model.Emailadresse, true);
+                            
+                            TempData[ConstStrings.SUCCESS_MESSAGE] = Validierungen.SpeichernErfolgreich;
                             Firma company = BenutzerVerwaltung.LadeFirmaVonBenutzer(model.Emailadresse);
 
                             {

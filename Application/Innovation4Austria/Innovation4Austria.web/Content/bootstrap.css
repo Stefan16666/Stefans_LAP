@@ -4384,8 +4384,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default {  
-  border-color: #e7e7e7;
-  opacity:0.75;
+  /*border-color: #e7e7e7;
+  opacity:0.75;*/
 }
 
 .navbar-default .navbar-brand {

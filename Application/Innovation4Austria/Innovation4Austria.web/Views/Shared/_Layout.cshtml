@@ -1,20 +1,18 @@
 ﻿<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <title>Innovation 4 Austria</title>
- <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+
     <link href="~/Content/landing-page.css" rel="stylesheet" />
     @Styles.Render("~/Content/toastr")
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
 
 
 </head>
@@ -22,6 +20,7 @@
 <body>
 
     <!-- Navigation -->
+
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -32,26 +31,31 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav"><h1>Innovation 4 Austria</h1></a>
+                <a class="navbar-brand topnav"><h1 class="Innovation4Austria">Innovation 4 Austria</h1></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#about">About</a>
-                    </li>
-                    <li>
-                        <a href="#services">Services</a>
-                    </li>
-                    <li>
-                        <a href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
+            @if (Request.IsAuthenticated)
+            {
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li>
+                            <a href="#about">About</a>
+                        </li>
+                        <li>
+                            <a href="#services">Services</a>
+                        </li>
+                        <li>
+                            <a href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            }
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
+
 
 
     <!-- Header -->
@@ -91,7 +95,18 @@
 
         </footer>
     </div>
-    @*<script>*@
+
+
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/toastr")
+
+
+
+
+    <script>
         toastr.options = {
             "closeButton": false,
             "debug": false,
@@ -102,7 +117,7 @@
             "onclick": null,
             "showDuration": "300",
             "hideDuration": "1000",
-            "timeOut": "5000",
+            "timeOut": "1500",
             "extendedTimeOut": "1000",
             "showEasing": "swing",
             "hideEasing": "linear",
@@ -111,25 +126,27 @@
         }
         @{
 
-
         if (TempData[Innovation4Austria.web.AppCode.ConstStrings.WARNING_MESSAGE] != null)
         {
-              <script>
-                    toastr['warning']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.WARNING_MESSAGE]');
-    </script>
+               <text>
+        toastr['warning']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.WARNING_MESSAGE]')
+        </text>
     }
     if (TempData[Innovation4Austria.web.AppCode.ConstStrings.ERROR_MESSAGE] != null)
     {
-        <script>
-            toastr['error']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.ERROR_MESSAGE]');
-        </script>
+                 <text>
+        toastr['error']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.ERROR_MESSAGE]')
+        </text>
     }
     if (TempData[Innovation4Austria.web.AppCode.ConstStrings.SUCCESS_MESSAGE] != null)
     {
-        <script>
-            toastr['success']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.SUCCESS_MESSAGE]');
-        </script>
+        <text>
+        toastr['success']('@TempData[Innovation4Austria.web.AppCode.ConstStrings.SUCCESS_MESSAGE]')
+        </text>
     }
+
 }
+    </script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

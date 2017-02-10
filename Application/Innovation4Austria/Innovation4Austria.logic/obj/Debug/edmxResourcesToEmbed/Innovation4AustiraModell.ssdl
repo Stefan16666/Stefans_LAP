@@ -138,6 +138,32 @@
     <Property Name="bezeichnung" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="aktiv" Type="bit" Nullable="false" />
   </EntityType>
+  <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'Innovation4Austria.dbo.AlleRechnungenEinerFirma' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+  <EntityType Name="AlleRechnungenEinerFirma">
+    <Key>
+      <PropertyRef Name="Rechnungs_id" />
+      <PropertyRef Name="Rechnungsdetails_id" />
+      <PropertyRef Name="Buchungsdetails_id" />
+      <PropertyRef Name="BuchungsDetailDatum" />
+      <PropertyRef Name="BuchungsDetailPreis" />
+      <PropertyRef Name="Buchungs_id" />
+      <PropertyRef Name="raum_id" />
+      <PropertyRef Name="Raumbezeichnung" />
+      <PropertyRef Name="Raumartbezeichnung" />
+    </Key>
+    <Property Name="RechnungsAussstellungsDatum" Type="date" />
+    <Property Name="Rechnungs_id" Type="int" Nullable="false" />
+    <Property Name="Rechnungsdetails_id" Type="int" Nullable="false" />
+    <Property Name="Buchungsdetails_id" Type="int" Nullable="false" />
+    <Property Name="BuchungsDetailDatum" Type="datetime" Nullable="false" />
+    <Property Name="BuchungsDetailPreis" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Buchungs_id" Type="int" Nullable="false" />
+    <Property Name="BuchungAktiv" Type="bit" />
+    <Property Name="raum_id" Type="int" Nullable="false" />
+    <Property Name="Raumbezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Raumartbezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <Association Name="FK_Benutzer_Firma">
     <End Role="Firma" Type="Self.Firma" Multiplicity="0..1" />
     <End Role="Benutzer" Type="Self.Benutzer" Multiplicity="*" />
@@ -309,6 +335,21 @@
     <EntitySet Name="Rechnung" EntityType="Self.Rechnung" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rechnungsdetails" EntityType="Self.Rechnungsdetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rolle" EntityType="Self.Rolle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AlleRechnungenEinerFirma" EntityType="Self.AlleRechnungenEinerFirma" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[AlleRechnungenEinerFirma].[RechnungsAussstellungsDatum] AS [RechnungsAussstellungsDatum], 
+[AlleRechnungenEinerFirma].[Rechnungs_id] AS [Rechnungs_id], 
+[AlleRechnungenEinerFirma].[Rechnungsdetails_id] AS [Rechnungsdetails_id], 
+[AlleRechnungenEinerFirma].[Buchungsdetails_id] AS [Buchungsdetails_id], 
+[AlleRechnungenEinerFirma].[BuchungsDetailDatum] AS [BuchungsDetailDatum], 
+[AlleRechnungenEinerFirma].[BuchungsDetailPreis] AS [BuchungsDetailPreis], 
+[AlleRechnungenEinerFirma].[Buchungs_id] AS [Buchungs_id], 
+[AlleRechnungenEinerFirma].[BuchungAktiv] AS [BuchungAktiv], 
+[AlleRechnungenEinerFirma].[raum_id] AS [raum_id], 
+[AlleRechnungenEinerFirma].[Raumbezeichnung] AS [Raumbezeichnung], 
+[AlleRechnungenEinerFirma].[Raumartbezeichnung] AS [Raumartbezeichnung]
+FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Benutzer_Firma" Association="Self.FK_Benutzer_Firma">
       <End Role="Firma" EntitySet="Firma" />
       <End Role="Benutzer" EntitySet="Benutzer" />

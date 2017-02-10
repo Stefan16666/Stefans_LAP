@@ -807,10 +807,9 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
             <PropertyRef Name="Rechnungsdetails_id" />
             <PropertyRef Name="Buchungsdetails_id" />
             <PropertyRef Name="BuchungsDetailDatum" />
-            <PropertyRef Name="preis" />
+            <PropertyRef Name="BuchungsDetailPreis" />
             <PropertyRef Name="Buchungs_id" />
             <PropertyRef Name="raum_id" />
-            <PropertyRef Name="BuchungsDetailPreis" />
             <PropertyRef Name="Raumbezeichnung" />
             <PropertyRef Name="Raumartbezeichnung" />
           </Key>
@@ -819,12 +818,10 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
           <Property Name="Rechnungsdetails_id" Type="Int32" Nullable="false" />
           <Property Name="Buchungsdetails_id" Type="Int32" Nullable="false" />
           <Property Name="BuchungsDetailDatum" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="preis" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Buchungs_id" Type="Int32" Nullable="false" />
-          <Property Name="aktiv" Type="Boolean" />
-          <Property Name="raum_id" Type="Int32" Nullable="false" />
           <Property Name="BuchungsDetailPreis" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Buchungs_id" Type="Int32" Nullable="false" />
           <Property Name="BuchungAktiv" Type="Boolean" />
+          <Property Name="raum_id" Type="Int32" Nullable="false" />
           <Property Name="Raumbezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Raumartbezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -991,10 +988,10 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
               <MappingFragment StoreEntitySet="AlleRechnungenEinerFirma">
                 <ScalarProperty Name="Raumartbezeichnung" ColumnName="Raumartbezeichnung" />
                 <ScalarProperty Name="Raumbezeichnung" ColumnName="Raumbezeichnung" />
-                <ScalarProperty Name="BuchungAktiv" ColumnName="BuchungAktiv" />
-                <ScalarProperty Name="BuchungsDetailPreis" ColumnName="BuchungsDetailPreis" />
                 <ScalarProperty Name="raum_id" ColumnName="raum_id" />
+                <ScalarProperty Name="BuchungAktiv" ColumnName="BuchungAktiv" />
                 <ScalarProperty Name="Buchungs_id" ColumnName="Buchungs_id" />
+                <ScalarProperty Name="BuchungsDetailPreis" ColumnName="BuchungsDetailPreis" />
                 <ScalarProperty Name="BuchungsDetailDatum" ColumnName="BuchungsDetailDatum" />
                 <ScalarProperty Name="Buchungsdetails_id" ColumnName="Buchungsdetails_id" />
                 <ScalarProperty Name="Rechnungsdetails_id" ColumnName="Rechnungsdetails_id" />

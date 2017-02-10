@@ -86,5 +86,14 @@ namespace Innovation4Austria.web {
                 return ResourceManager.GetString("Required", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Willkommen bei Innovation 4 Autria ähnelt.
+        /// </summary>
+        internal static string SpeichernErfolgreich {
+            get {
+                return ResourceManager.GetString("SpeichernErfolgreich", resourceCulture);
+            }
+        }
     }
 }

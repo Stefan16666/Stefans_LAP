@@ -225,7 +225,7 @@ namespace innovation4austria.logic
                         log.Error("Exception in Logon", ex);
                         if (ex.InnerException != null)
                             log.Error("Exception in Logon (inner)", ex.InnerException);
-                        throw;
+                        
                     }
                 }
             }
