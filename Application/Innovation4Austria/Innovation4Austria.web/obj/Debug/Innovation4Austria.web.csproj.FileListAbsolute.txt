@@ -351,3 +351,4 @@ C:\Users\groistef\Source\Repos\Stefans_LAP2\Application\Innovation4Austria\Innov
 C:\Users\groistef\Source\Repos\Stefans_LAP2\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.csproj.GenerateResource.Cache
 C:\Users\groistef\Source\Repos\Stefans_LAP2\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.dll
 C:\Users\groistef\Source\Repos\Stefans_LAP2\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.pdb
+\\VBOXSVR\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\roslyn\Microsoft.CodeAnalysis.dll

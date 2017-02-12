@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static innovation4austria.logic.BenutzerAdministrator;
+using innovation4austria.logic.BenutzerAdministrator;
 
 namespace Verwaltung
 {

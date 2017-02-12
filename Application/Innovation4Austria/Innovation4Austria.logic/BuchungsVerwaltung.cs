@@ -16,18 +16,18 @@ namespace Innovation4Austria.logic
         /// <param name="buchung_id"></param>
         /// <param name="vonDatum"></param>
         /// <returns></returns>
-        public static DateTime datum(int buchung_id, bool vonDatum)
+        public static DateTime datum(int buchungsDetail_id, bool vonDatum)
         {
             List<Buchungsdetails> buchungsdetailsEinerBuchung = null;
             DateTime date = new DateTime();
             Console.Write("RechnungsVerwaltung - datum");
-            if (buchung_id != 0)
+            if (buchungsDetail_id != 0)
             {
                 try
                 {
                     using (var context = new Innovation4AustriaEntities())
                     {
-                        buchungsdetailsEinerBuchung = context.AlleBuchungsdetails.Where(x => x.Buchung_id == buchung_id).ToList();
+                        buchungsdetailsEinerBuchung = context.AlleBuchungsdetails.Where(x => x.Buchung_id == buchungsDetail_id).ToList();
                         if (vonDatum)
                         {
                             date = (from x in buchungsdetailsEinerBuchung orderby x.Datum select x.Datum).FirstOrDefault();
