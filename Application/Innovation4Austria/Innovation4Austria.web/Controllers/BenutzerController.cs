@@ -216,14 +216,7 @@ namespace Innovation4Austria.web.Controllers
             Firma firma = BenutzerVerwaltung.LadeFirmaVonBenutzer(aktBenutzer.Emailadresse);
            
 
-            if (firma!=null)
-            {
-               
-            }
-            else
-            {
-                log.Warn
-            }
+
 
             return View();
 

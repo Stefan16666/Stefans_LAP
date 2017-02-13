@@ -11,7 +11,7 @@ namespace Innovation4Austria.web.Models
     {
 
         [DataType(DataType.Password)]
-        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}", ErrorMessageResourceType = typeof(Validierungen), ErrorMessageResourceName = Validation.PASSWORT_NORM]
+        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*/d)(?=.*[$@$!%*?&])[A-Za-z*/d$@$!%*?&]{8,}", ErrorMessageResourceType = typeof(Validierungen), ErrorMessageResourceName = Validation.PASSWORT_NORM)]
         public string NeuesPasswort { get; set; }
 
         [DataType(DataType.Password)]
