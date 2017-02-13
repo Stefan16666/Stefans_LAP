@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using innovation4austria.logic;
+using System.Data.Entity;
 
 namespace Verwaltung
 {
@@ -27,7 +28,7 @@ namespace Verwaltung
                     {
                         try
                         {
-                            loginbenutzer = context.AlleBenutzer.Where(x => x.Emailadresse == emailadresse).FirstOrDefault();
+                            loginbenutzer = context.AlleBenutzer.Include(x=>x.Firma).Where(x => x.Emailadresse == emailadresse).FirstOrDefault();
                             if (loginbenutzer != null)
                             {
                                 if (loginbenutzer.Passwort.SequenceEqual(Tools.GenerierePasswort(passwort)))
