@@ -7,9 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
 using Verwaltung;
-using Verwaltung.BenutzerVerwaltung;
 using innovation4austria.logic;
-using innovation4austria.logic.BenutzerAdministrator;
+
 
 namespace innovation4austria.authentication
 {
@@ -135,7 +134,7 @@ namespace innovation4austria.authentication
 
         public override bool ValidateUser(string username, string password)
         {
-            return BenutzerAdministrator.Anmelden(username, password) == LogonResult.LogonDataValid;
+            return BenutzerAdministrator.Anmelden(username, password) == BenutzerAdministrator.LogonResult.LogonDataValid;
         }
 
         #region NotImplementedMember

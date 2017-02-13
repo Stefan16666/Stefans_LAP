@@ -28,6 +28,13 @@ namespace innovation4austria.logic
             PasswortInvalid
         }
 
+        public enum ProfileChangeResult
+        {
+            Success,
+            UserInactive,
+            UsernameInvalid
+        }
+
 
 
         public static Passwortwechselergebnis WechselPasswort(string username, string oldPassword, string newPassword)
@@ -230,6 +237,34 @@ namespace innovation4austria.logic
                 }
             }
             return result;
+        }
+        public static Benutzer GetUser(string username)
+        {
+            log.Info("GetUser(username)");
+
+            Benutzer user = null;
+
+            using (var context = new Innovation4AustriaEntities())
+            {
+                try
+                {
+                    user = context.AlleBenutzer.Where(x => x.Emailadresse == username).FirstOrDefault();
+
+                    if (user == null)
+                    {
+                        log.Info("Unknown username!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Error("Exception in GetUser", ex);
+                    if (ex.InnerException != null)
+                        log.Error("Exception in GetUser (inner)", ex.InnerException);
+                    throw;
+                }
+            }
+
+            return user;
         }
     }
 

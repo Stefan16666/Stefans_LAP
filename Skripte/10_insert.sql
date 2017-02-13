@@ -84,4 +84,14 @@ INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '23-12-2017', 
 INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '16-02-2017', 12.0);
 INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '28-10-2017', 12.0);
 GO
+
+INSERT INTO Rechnung (datum) VALUES ('2017-02-26')
+INSERT INTO Rechnung (datum) VALUES ('2017-01-12')
+INSERT INTO Rechnung (datum) VALUES ('2017-02-28')
+INSERT INTO Rechnung (datum) VALUES ('2017-01-16')
+GO
+
+INSERT INTO Rechnungsdetails (rechnung_id, buchungsdetails_id) VAlUES (1,1);
+GO
+
 --------

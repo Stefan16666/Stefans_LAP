@@ -1,5 +1,6 @@
 ﻿
 using innovation4austria.authentication;
+using innovation4austria.logic;
 using Innovation4austria.authentication;
 using Innovation4Austria.logic;
 using Innovation4Austria.web.AppCode;
@@ -119,7 +120,7 @@ namespace Innovation4Austria.web.Controllers
             List<Rechnungsdetails> rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();
             List<Buchungsdetails> BuchungsDetailsVonFirma = new List<Buchungsdetails>();
             
-            List<Buchung> bookingsOfCompany = RaumVerwaltung.GebuchteRaeume(model.Fa_id);
+            List<Buchung> bookingsOfCompany = BuchungsVerwaltung.GebuchteRaeume(model.Fa_id);
 
             if (bookingsOfCompany != null)
             {
@@ -147,22 +148,23 @@ namespace Innovation4Austria.web.Controllers
                 log.Info("BenutzerController - Dashboard - keine Buchungen für die Firma vorhanden sind");
             }
             dashboard.AlleBuchungen = alleBuchungen;
-
             
             List<int> dates = new List<int>();
+
             foreach (var buchungsdetail in BuchungsDetailsVonFirma)
             {
                 if (RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id) == null)
                 {
                     BuchungsDetailsVonFirma.Remove(buchungsdetail);
                 }
-                else
-                {
-                    RechnungsModel einRgModel = new RechnungsModel();
-                    Rechnungsdetails detail = RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id);
-                    einRgModel.Rechnungsnummer = detail.Rechnung_Id;
-                    einRgModel.Monat = "sss";
-                }
+                //else
+                //{
+                //    RechnungsModel einRgModel = new RechnungsModel();
+                //    Rechnungsdetails detail = RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id);
+                //    einRgModel.Rechnungsnummer = detail.Rechnung_Id;
+                //    einRgModel.Monat = "sss";
+                //}
+
                 if (!dates.Contains(BuchungsVerwaltung.datum(buchungsdetail.Id,true).Month))
                 {
                     int date = BuchungsVerwaltung.datum(buchungsdetail.Id, true).Month;
@@ -201,43 +203,66 @@ namespace Innovation4Austria.web.Controllers
             return RedirectToAction("Login", "Benutzer");
         }
 
+        [Authorize]
+        [HttpGet]
+        public ActionResult ProfilAnzeigen()
+        {
+            log.Info("GET - User - ProfileData()");
+
+            Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
+
+            ProilAnzeigeModel profilModel = new ProilAnzeigeModel();
+
+            Firma firma = BenutzerVerwaltung.LadeFirmaVonBenutzer(aktBenutzer.Emailadresse);
+            if (firma!=null)
+            {
+                profilModel.FirmenName = firma.Bezeichnung;
+            }
+            else
+            {
+                log.Warn
+            }
+
+            return View();
+
+        }
         public static string Monat(int i)
         {
             string monat = "";
             if (i == 1)
             {
                 monat= "Januar";
-            }else if (i == 1)
+            }else if (i == 2)
             {
                 monat= "Februar";
-            }else if (i == 1)
+            }else if (i == 3)
             {
                 monat= "März";
-            }else if (i == 1)
+            }else if (i == 4)
             {
                 monat= "April";
-            }else if (i == 1)
+            }else if (i == 5)
             {
                 monat= "Mai";
-            }else if (i == 1)
+            }else if (i == 6)
             {
                 monat= "Juni";
-            }else if (i == 1)
+            }else if (i == 7)
             {
                 monat= "Juli";
-            }else if (i == 1)
+            }else if (i == 8)
             {
-                return "August";
-            }else if (i == 1)
+                monat = "August";
+            }else if (i == 9)
             {
-                return "September";
-            }else if (i == 1)
+                monat = "September";
+            }else if (i == 10)
             {
                 monat= "Oktober";
-            }else if (i == 1)
+            }else if (i == 11)
             {
                 monat= "November";
-            }else if (i == 1)
+            }else if (i == 12)
             {
                 monat= "Dezember";
             }
