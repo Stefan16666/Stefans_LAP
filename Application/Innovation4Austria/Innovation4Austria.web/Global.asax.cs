@@ -17,7 +17,9 @@ namespace Innovation4Austria.web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
             XmlConfigurator.Configure();
+            AutoMapperConfig.RegisterMappings();
         }
     }
 }

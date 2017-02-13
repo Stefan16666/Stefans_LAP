@@ -211,12 +211,14 @@ namespace Innovation4Austria.web.Controllers
 
             Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
 
-            ProilAnzeigeModel profilModel = new ProilAnzeigeModel();
+            ProfilAnzeigeModel profilModel = new ProfilAnzeigeModel();
 
             Firma firma = BenutzerVerwaltung.LadeFirmaVonBenutzer(aktBenutzer.Emailadresse);
+           
+
             if (firma!=null)
             {
-                profilModel.FirmenName = firma.Bezeichnung;
+               
             }
             else
             {

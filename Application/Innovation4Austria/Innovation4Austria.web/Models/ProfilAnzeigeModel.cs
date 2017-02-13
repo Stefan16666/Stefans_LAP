@@ -6,9 +6,9 @@ using System.Web;
 
 namespace Innovation4Austria.web.Models
 {
-    public class ProilAnzeigeModel
+    public class ProfilAnzeigeModel
     {
-        public string FirmenName { get; set; }
+        public string Bezeichnung { get; set; }
 
         public string Vorname { get; set; }
 
@@ -23,4 +23,4 @@ namespace Innovation4Austria.web.Models
         public string VergebeneRolle { get; set; }
 
     }
-}
+}s
