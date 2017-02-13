@@ -120,8 +120,14 @@
   <data name="DataTypeMail" xml:space="preserve">
     <value>Emailadress </value>
   </data>
+  <data name="NeuesPasswort" xml:space="preserve">
+    <value>Passwort stimmt nicht überein</value>
+  </data>
   <data name="Passwort" xml:space="preserve">
     <value>Password, min 5 Zeichen</value>
+  </data>
+  <data name="Passwort_norm" xml:space="preserve">
+    <value>Minimum 8 Zeichen, ein Grossbuchstabe, ein Kleinbuchstabe, eine Zahl und ein Sonderzeichen</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>Pflichtfeld</value>

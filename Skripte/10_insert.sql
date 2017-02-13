@@ -91,7 +91,15 @@ INSERT INTO Rechnung (datum) VALUES ('2017-02-28')
 INSERT INTO Rechnung (datum) VALUES ('2017-01-16')
 GO
 
+INSERT INTO Rechnungsdetails (rechnung_id, buchungsdetails_id) VAlUES (1,9);
 INSERT INTO Rechnungsdetails (rechnung_id, buchungsdetails_id) VAlUES (1,1);
+INSERT INTO Rechnungsdetails (rechnung_id, buchungsdetails_id) VAlUES (1,2);
+INSERT INTO Rechnungsdetails (rechnung_id, buchungsdetails_id) VAlUES (1,4);
+INSERT INTO Rechnungsdetails (rechnung_id, buchungsdetails_id) VAlUES (2,3);
+INSERT INTO Rechnungsdetails (rechnung_id, buchungsdetails_id) VAlUES (2,6);
+INSERT INTO Rechnungsdetails (rechnung_id, buchungsdetails_id) VAlUES (4,5);
+INSERT INTO Rechnungsdetails (rechnung_id, buchungsdetails_id) VAlUES (1,7);
+INSERT INTO Rechnungsdetails (rechnung_id, buchungsdetails_id) VAlUES (4,8);
 GO
 
 --------

@@ -14,15 +14,16 @@ namespace innovation4austria.web
     {
         public static void RegisterMappings()
         {
-            Mapper.Initialize(x => {
-                x.CreateMap<Benutzer, ProfilAnzeigeModel>()
+            Mapper.Initialize(x =>
+            {
+                x.CreateMap<Benutzer, PasswortAendernModel>()
                 .ForMember(dest => dest.NeuesPasswort, opts => opts.Ignore())
-                .ForMember(dest => dest.NeuesPasswortBestätigung, opts => opts.Ignore())
-                .ForMember(dest => dest.Bezeichnung, opts => opts.MapFrom(source => source.Firma.Bezeichnung))
-                .ForMember(dest => dest.Bezeichnung, opts => opts.NullSubstitute("Innovation  4 Austria"));
+                .ForMember(dest => dest.NeuesPasswortBestätigung, opts => opts.Ignore());
 
-                //x.CreateMap()
-                });
+                x.CreateMap<Benutzer, ProfilMitarbeiterModel>()
+                .ForMember(dest => dest.FirmenName, opts => opts.MapFrom(source => source.Firma.Bezeichnung))
+                .ForMember(dest => dest.FirmenName, opts => opts.NullSubstitute("Innovation  4 Austria"));
+            });
 
 
         }

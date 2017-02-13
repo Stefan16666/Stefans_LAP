@@ -70,11 +70,29 @@ namespace Innovation4Austria.web {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Passwort stimmt nicht überein ähnelt.
+        /// </summary>
+        internal static string NeuesPasswort {
+            get {
+                return ResourceManager.GetString("NeuesPasswort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Password, min 5 Zeichen ähnelt.
         /// </summary>
         internal static string Passwort {
             get {
                 return ResourceManager.GetString("Passwort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Minimum 8 Zeichen, ein Grossbuchstabe, ein Kleinbuchstabe, eine Zahl und ein Sonderzeichen ähnelt.
+        /// </summary>
+        internal static string Passwort_norm {
+            get {
+                return ResourceManager.GetString("Passwort_norm", resourceCulture);
             }
         }
         
