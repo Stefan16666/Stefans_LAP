@@ -53,3 +53,4 @@ C:\Users\groistef\Source\Repos\Stefans_LAP2\Application\Innovation4Austria\Innov
 C:\Users\groistef\Source\Repos\Stefans_LAP2\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.csprojResolveAssemblyReference.cache
 C:\Users\groistef\Source\Repos\Stefans_LAP2\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.dll
 C:\Users\groistef\Source\Repos\Stefans_LAP2\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.pdb
+\\VBOXSVR\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.csprojResolveAssemblyReference.cache
