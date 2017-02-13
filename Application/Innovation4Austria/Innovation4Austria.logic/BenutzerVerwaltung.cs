@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static innovation4austria.logic.BenutzerAdministrator;
+using innovation4austria.logic;
 
 namespace Verwaltung
 {
@@ -55,10 +55,10 @@ namespace Verwaltung
             return true;
         }
 
-        public static Passwortwechselergebnis Wechselpasswort(string emailadresse, string neuePassword, string altesPasswort)
+        public static BenutzerAdministrator.Passwortwechselergebnis Wechselpasswort(string emailadresse, string neuePassword, string altesPasswort)
         {
 
-            Passwortwechselergebnis result = Passwortwechselergebnis.UsernameInvalid;
+            BenutzerAdministrator.Passwortwechselergebnis result = BenutzerAdministrator.Passwortwechselergebnis.UsernameInvalid;
 
             log.Info("ChangePassword(username, oldPassword, newPassword)");
 
@@ -78,15 +78,15 @@ namespace Verwaltung
 
                         if (aktBenutzer == null)
                         {
-                            result = Passwortwechselergebnis.UsernameInvalid;
+                            result = BenutzerAdministrator.Passwortwechselergebnis.UsernameInvalid;
                         }
                         else if (!aktBenutzer.Aktiv == true)
                         {
-                            result = Passwortwechselergebnis.UserInactive;
+                            result = BenutzerAdministrator.Passwortwechselergebnis.UserInactive;
                         }
                         else if (!aktBenutzer.Passwort.SequenceEqual(Tools.GenerierePasswort(altesPasswort)))
                         {
-                            result = Passwortwechselergebnis.PasswortInvalid;
+                            result = BenutzerAdministrator.Passwortwechselergebnis.PasswortInvalid;
                         }
                         else
                         {
@@ -95,7 +95,7 @@ namespace Verwaltung
                             aktBenutzer.Passwort = Tools.GenerierePasswort(neuePassword);
                             context.SaveChanges();
 
-                            result = Passwortwechselergebnis.Success;
+                            result = BenutzerAdministrator.Passwortwechselergebnis.Success;
                             log.Info("Passwort aufgrund altem Passwort erfolgreich geändert!");
                         }
                     }

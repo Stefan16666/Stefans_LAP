@@ -147,42 +147,50 @@ namespace Innovation4Austria.web.Controllers
                 log.Info("BenutzerController - Dashboard - keine Buchungen für die Firma vorhanden sind");
             }
             dashboard.AlleBuchungen = alleBuchungen;
-            //foreach (var buchungsdetail in BuchungsDetailsVonFirma)
-            //{
-            //    if (RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id) == null)
-            //    {
-            //        BuchungsDetailsVonFirma.Remove(buchungsdetail);
-            //    }
-            //    else
-            //    {
-            //        RechnungsModel einRgModel = new RechnungsModel();
-            //        Rechnungsdetails detail = RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id);
-            //        einRgModel.Rechnungsnummer = detail.Rechnung_Id;
-            //        einRgModel.Monat = "sss";
-            //    }                 
-            //}
 
+            
+            List<int> dates = new List<int>();
+            foreach (var buchungsdetail in BuchungsDetailsVonFirma)
+            {
+                if (RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id) == null)
+                {
+                    BuchungsDetailsVonFirma.Remove(buchungsdetail);
+                }
+                else
+                {
+                    RechnungsModel einRgModel = new RechnungsModel();
+                    Rechnungsdetails detail = RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id);
+                    einRgModel.Rechnungsnummer = detail.Rechnung_Id;
+                    einRgModel.Monat = "sss";
+                }
+                if (!dates.Contains(BuchungsVerwaltung.datum(buchungsdetail.Id,true).Month))
+                {
+                    int date = BuchungsVerwaltung.datum(buchungsdetail.Id, true).Month;
+                    dates.Add(date);
+                }
+            }
+            List<RechnungsModel> alleRechnungen = new List<RechnungsModel>();
+            
+            foreach (var item in dates)
+            {
+                RechnungsModel RgModel = new RechnungsModel()
+                {
+                    Monat = Monat(item)
+                };
+                alleRechnungen.Add(RgModel);
+                    
+            };
+
+            dashboard.AlleRechnungen = alleRechnungen;
             /// hier muss man dann die Models machen. Das RechnungsModel ist eine Liste von Rechnungen, welche Monatsweise erstellt werden
 
             ///mapping for receipt
 
-            List<RechnungsModel> alleRechnungen = new List<RechnungsModel>();
 
 
             return View(dashboard);
         }
 
-
-        [HttpGet]
-        public ActionResult FirmenWahl()
-        {
-            List<Firma> alleFirmen = BenutzerVerwaltung.LadeAlleFirmen();
-            if (alleFirmen.Count <= 0)
-            {
-                log.Error("BenutzerController - FirmenWahl - keine Firmengefunden");
-            }
-            return View(alleFirmen);
-        }
 
         [Authorize]
         [HttpGet]
@@ -191,6 +199,49 @@ namespace Innovation4Austria.web.Controllers
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Login", "Benutzer");
+        }
+
+        public static string Monat(int i)
+        {
+            string monat = "";
+            if (i == 1)
+            {
+                monat= "Januar";
+            }else if (i == 1)
+            {
+                monat= "Februar";
+            }else if (i == 1)
+            {
+                monat= "März";
+            }else if (i == 1)
+            {
+                monat= "April";
+            }else if (i == 1)
+            {
+                monat= "Mai";
+            }else if (i == 1)
+            {
+                monat= "Juni";
+            }else if (i == 1)
+            {
+                monat= "Juli";
+            }else if (i == 1)
+            {
+                return "August";
+            }else if (i == 1)
+            {
+                return "September";
+            }else if (i == 1)
+            {
+                monat= "Oktober";
+            }else if (i == 1)
+            {
+                monat= "November";
+            }else if (i == 1)
+            {
+                monat= "Dezember";
+            }
+            return monat;
         }
 
     }

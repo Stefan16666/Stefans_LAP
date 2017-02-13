@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
 using Verwaltung;
-using static Verwaltung.BenutzerVerwaltung;
+using Verwaltung.BenutzerVerwaltung;
 using innovation4austria.logic;
-using static innovation4austria.logic.BenutzerAdministrator;
+using innovation4austria.logic.BenutzerAdministrator;
 
 namespace innovation4austria.authentication
 {
@@ -120,7 +120,7 @@ namespace innovation4austria.authentication
 
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
         {
-            return BenutzerAdministrator.WechselPasswort(username, oldPassword, newPassword) == Passwortwechselergebnis.Success;
+            return BenutzerAdministrator.WechselPasswort(username, oldPassword, newPassword) == innovation4austria.logic.BenutzerAdministrator.Passwortwechselergebnis.Success;
         }
 
         public override bool DeleteUser(string emailadresse, bool deleteAllRelatedData)
