@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using log4net;
 using Innovation4Austria.logic;
 
-namespace Innovation4austria.logic
+namespace Innovation4Austria.logic
 {
     public class RollenAdministrator
     {

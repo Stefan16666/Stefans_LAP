@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Innovation4Austria.web.Models
 {
-    public class ProfilMitarbeiterModel:BenutzerModel
+    public class BenutzerVerwaltungsModel:BenutzerModel
     {
         public string Rolle { get; set; }
 

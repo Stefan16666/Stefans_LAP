@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
-using Innovation4austria.logic;
 
 namespace Innovation4austria.authentication
 {

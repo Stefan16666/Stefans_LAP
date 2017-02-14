@@ -24,19 +24,28 @@ h6 {
 .topnav {
     font-size: 14px;
 }
-.Innovation4Austria{
-    font-size:3em;
-    color:white !important;
-    margin-bottom:4em!important;
+
+.Innovation4Austria {
+    font-size: 3em;
+    color: white !important;    
 }
 
-.headline{
-    font-size:3em;
+.headline {
+    font-size: 3em;
 }
+
 .dashboard {
     font-size: 2em !important;
-    padding-top:1em;
-    padding-bottom:1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border: 2px solid white !important;
+    border-radius: 8px !important;
+}
+
+#RechnungenAnzeigen {
+    font-size: 2em !important;
+    padding-top: 2em !important;
+    padding-bottom: 2em;
     border: 2px solid white !important;
     border-radius: 8px !important;
 }

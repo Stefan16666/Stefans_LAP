@@ -1,7 +1,6 @@
 ﻿
-using innovation4austria.authentication;
-using innovation4austria.logic;
 using Innovation4austria.authentication;
+using Innovation4Austria.authentication;
 using Innovation4Austria.logic;
 using Innovation4Austria.web.AppCode;
 using Innovation4Austria.web.Models;
@@ -126,11 +125,10 @@ namespace Innovation4Austria.web.Controllers
                     buchungsmodel.Raumnummer = aktRaum.Bezeichnung;
                     buchungsmodel.RaumArt = aktRaum.Art.Bezeichnung;
 
-                    foreach (var einbuchungsDetail in BuchungsDetailsVonFirma)
-                    {
-                        buchungsmodel.VonDatum = BuchungsVerwaltung.datum(einbuchungsDetail.Id, true);
-                        buchungsmodel.BisDatum = BuchungsVerwaltung.datum(einbuchungsDetail.Id, false);
-                    }
+
+                    buchungsmodel.VonDatum = (from x in BuchungsDetailsVonFirma orderby x.Datum select x.Datum).FirstOrDefault();
+                    buchungsmodel.BisDatum = (from x in BuchungsDetailsVonFirma orderby x.Datum descending select x.Datum).FirstOrDefault();
+
                     alleBuchungen.Add(buchungsmodel);
 
                 }
@@ -149,14 +147,6 @@ namespace Innovation4Austria.web.Controllers
                 {
                     BuchungsDetailsVonFirma.Remove(buchungsdetail);
                 }
-                //else
-                //{
-                //    RechnungsModel einRgModel = new RechnungsModel();
-                //    Rechnungsdetails detail = RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id);
-                //    einRgModel.Rechnungsnummer = detail.Rechnung_Id;
-                //    einRgModel.Monat = "sss";
-                //}
-
                 if (!dates.Contains(BuchungsVerwaltung.datum(buchungsdetail.Id, true).Month))
                 {
                     int date = BuchungsVerwaltung.datum(buchungsdetail.Id, true).Month;
@@ -172,7 +162,6 @@ namespace Innovation4Austria.web.Controllers
                     Monat = Monat(item)
                 };
                 alleRechnungen.Add(RgModel);
-
             };
 
             dashboard.AlleRechnungen = alleRechnungen;
@@ -185,13 +174,11 @@ namespace Innovation4Austria.web.Controllers
             return View(dashboard);
         }
 
-
         [Authorize]
         [HttpGet]
         public ActionResult Abmelden()
         {
             FormsAuthentication.SignOut();
-
             return RedirectToAction("Login", "Benutzer");
         }
 
@@ -204,15 +191,29 @@ namespace Innovation4Austria.web.Controllers
             Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
 
             ProfilAnzeigeModel profilModel = new ProfilAnzeigeModel();
-
-            
-
-
-
-
-            return View();
+            profilModel.derMitarbeiter = AutoMapper.Mapper.Map<BenutzerVerwaltungsModel>(aktBenutzer);
+            profilModel.anderesPasswort = AutoMapper.Mapper.Map<PasswortVerwaltungsModel>(aktBenutzer);
+            return View(profilModel);
 
         }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult BenutzerProfil()
+        {
+
+            return View();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult PasswortÄnderung()
+        {
+            return View();
+        }
+
+
+
         public static string Monat(int i)
         {
             string monat = "";

@@ -16,14 +16,16 @@ namespace innovation4austria.web
         {
             Mapper.Initialize(x =>
             {
-                x.CreateMap<Benutzer, PasswortAendernModel>()
+                x.CreateMap<Benutzer, PasswortVerwaltungsModel>()
                 .ForMember(dest => dest.NeuesPasswort, opts => opts.Ignore())
                 .ForMember(dest => dest.NeuesPasswortBestätigung, opts => opts.Ignore());
 
-                x.CreateMap<Benutzer, ProfilMitarbeiterModel>()
+                x.CreateMap<Benutzer, BenutzerVerwaltungsModel>()
                 .ForMember(dest => dest.FirmenName, opts => opts.MapFrom(source => source.Firma.Bezeichnung))
                 .ForMember(dest => dest.FirmenName, opts => opts.NullSubstitute("Innovation  4 Austria"));
             });
+
+            Mapper.AssertConfigurationIsValid();
 
 
         }

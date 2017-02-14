@@ -36,8 +36,7 @@
                         <div class="dashboard">
                             <div>@buchungen.Raumnummer</div>
                             <div>@buchungen.RaumArt</div>
-                            <div>@buchungen.VonDatum</div>
-                            <div>@buchungen.BisDatum</div>
+                            <div>@buchungen.VonDatum.ToShortDateString() &nbsp;  - &nbsp; @buchungen.BisDatum.ToShortDateString()</div>
                         </div>
                     }
 

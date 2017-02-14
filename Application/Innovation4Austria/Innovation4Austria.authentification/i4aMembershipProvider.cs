@@ -7,10 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
 using Verwaltung;
-using innovation4austria.logic;
 
 
-namespace innovation4austria.authentication
+
+namespace Innovation4Austria.authentication
 {
     public class i4aMembershipProvider : MembershipProvider
     {
@@ -119,7 +119,7 @@ namespace innovation4austria.authentication
 
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
         {
-            return BenutzerAdministrator.WechselPasswort(username, oldPassword, newPassword) == innovation4austria.logic.BenutzerAdministrator.Passwortwechselergebnis.Success;
+            return BenutzerAdministrator.WechselPasswort(username, oldPassword, newPassword) == Innovation4Austria.logic.BenutzerAdministrator.Passwortwechselergebnis.Success;
         }
 
         public override bool DeleteUser(string emailadresse, bool deleteAllRelatedData)

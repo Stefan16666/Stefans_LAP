@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using log4net;
-using Innovation4Austria.logic;
+using System.Data.Entity;
 
-namespace innovation4austria.logic
+namespace Innovation4Austria.logic
 {
     public class BenutzerAdministrator
     {
@@ -248,7 +248,8 @@ namespace innovation4austria.logic
             {
                 try
                 {
-                    user = context.AlleBenutzer.Where(x => x.Emailadresse == username).FirstOrDefault();
+                    
+                    user = context.AlleBenutzer.Include(x =>x.Firma).Include(x=>x.Rolle).Where(x => x.Emailadresse == username).FirstOrDefault();
 
                     if (user == null)
                     {

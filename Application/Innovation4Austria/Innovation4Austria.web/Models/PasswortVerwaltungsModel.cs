@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Innovation4Austria.web.Models
 {
-    public class PasswortAendernModel
+    public class PasswortVerwaltungsModel
     {
 
         [DataType(DataType.Password)]
