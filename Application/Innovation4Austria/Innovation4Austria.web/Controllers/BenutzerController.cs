@@ -46,40 +46,32 @@ namespace Innovation4Austria.web.Controllers
                         var logonResult = BenutzerVerwaltung.Anmelden(model.Emailadresse, model.Passwort);
                         if (membershipProvider.ValidateUser(model.Emailadresse, model.Passwort))
                         {
+                            FormsAuthentication.SetAuthCookie(model.Emailadresse, true);
                             if (roleProvider.IsUserInRole(model.Emailadresse, "MitarbeiterIVA"))
                             {
                                 return RedirectToAction("FirmenWahl");
                             }
-                            FormsAuthentication.SetAuthCookie(model.Emailadresse, true);
-
                             TempData[ConstStrings.SUCCESS_MESSAGE] = Validierungen.SpeichernErfolgreich;
-                            Firma company = BenutzerVerwaltung.LadeFirmaVonBenutzer(model.Emailadresse);
-
+                            Benutzer user = BenutzerVerwaltung.SucheFirmaVonBenutzer(model.Emailadresse);
+                            if (user != null)
                             {
-                                if (company == null)
+                                if (user.Firma_id != 0)
                                 {
-                                    log.Debug("keine Firma gefunden");
+                                    model.Fa_id = (int)user.Firma_id;
                                 }
-                                else
-                                {
-                                    model.Fa_id = company.Id;
-                                    return RedirectToAction("Dashboard", model);
-                                }
+
+                                return RedirectToAction("Dashboard", model);
                             }
                         }
-
+                        else
+                        {
+                            return RedirectToAction("Login");
+                        }
                     }
-                    else
-                    {
-                        FormsAuthentication.SetAuthCookie(model.Emailadresse, false);
-                    }
-
                 }
             }
             return View(model);
         }
-
-
         /// <summary>
         /// Shows hole stuff of a company, their booked rooms and receipts of the company
         /// </summary>
@@ -94,7 +86,7 @@ namespace Innovation4Austria.web.Controllers
             DashboardModel dashboard = new DashboardModel();
 
             // holt alle Mitarbeiter einer Firma
-            List<MitarbeiterModel> alleMitarbeitereinerFirma = new List<MitarbeiterModel>();
+            List<BenutzerModel> alleMitarbeitereinerFirma = new List<BenutzerModel>();
             List<Benutzer> alleBenutzer = BenutzerVerwaltung.LoadStuffOfACompany(model.Fa_id);
             if (alleBenutzer == null)
             {
@@ -102,7 +94,7 @@ namespace Innovation4Austria.web.Controllers
             }
             foreach (var einBenutzer in alleBenutzer)
             {
-                MitarbeiterModel einMitarbeiter = new MitarbeiterModel()
+                BenutzerModel einMitarbeiter = new BenutzerModel()
                 {
                     Emailadresse = einBenutzer.Emailadresse,
                     Nachname = einBenutzer.Nachname,
@@ -119,7 +111,7 @@ namespace Innovation4Austria.web.Controllers
             List<BuchungenModel> alleBuchungen = new List<BuchungenModel>();
             List<Rechnungsdetails> rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();
             List<Buchungsdetails> BuchungsDetailsVonFirma = new List<Buchungsdetails>();
-            
+
             List<Buchung> bookingsOfCompany = BuchungsVerwaltung.GebuchteRaeume(model.Fa_id);
 
             if (bookingsOfCompany != null)
@@ -148,7 +140,7 @@ namespace Innovation4Austria.web.Controllers
                 log.Info("BenutzerController - Dashboard - keine Buchungen für die Firma vorhanden sind");
             }
             dashboard.AlleBuchungen = alleBuchungen;
-            
+
             List<int> dates = new List<int>();
 
             foreach (var buchungsdetail in BuchungsDetailsVonFirma)
@@ -165,14 +157,14 @@ namespace Innovation4Austria.web.Controllers
                 //    einRgModel.Monat = "sss";
                 //}
 
-                if (!dates.Contains(BuchungsVerwaltung.datum(buchungsdetail.Id,true).Month))
+                if (!dates.Contains(BuchungsVerwaltung.datum(buchungsdetail.Id, true).Month))
                 {
                     int date = BuchungsVerwaltung.datum(buchungsdetail.Id, true).Month;
                     dates.Add(date);
                 }
             }
             List<RechnungsModel> alleRechnungen = new List<RechnungsModel>();
-            
+
             foreach (var item in dates)
             {
                 RechnungsModel RgModel = new RechnungsModel()
@@ -180,7 +172,7 @@ namespace Innovation4Austria.web.Controllers
                     Monat = Monat(item)
                 };
                 alleRechnungen.Add(RgModel);
-                    
+
             };
 
             dashboard.AlleRechnungen = alleRechnungen;
@@ -213,8 +205,8 @@ namespace Innovation4Austria.web.Controllers
 
             ProfilAnzeigeModel profilModel = new ProfilAnzeigeModel();
 
-            Firma firma = BenutzerVerwaltung.LadeFirmaVonBenutzer(aktBenutzer.Emailadresse);
-           
+            
+
 
 
 
@@ -226,40 +218,51 @@ namespace Innovation4Austria.web.Controllers
             string monat = "";
             if (i == 1)
             {
-                monat= "Januar";
-            }else if (i == 2)
+                monat = "Januar";
+            }
+            else if (i == 2)
             {
-                monat= "Februar";
-            }else if (i == 3)
+                monat = "Februar";
+            }
+            else if (i == 3)
             {
-                monat= "März";
-            }else if (i == 4)
+                monat = "März";
+            }
+            else if (i == 4)
             {
-                monat= "April";
-            }else if (i == 5)
+                monat = "April";
+            }
+            else if (i == 5)
             {
-                monat= "Mai";
-            }else if (i == 6)
+                monat = "Mai";
+            }
+            else if (i == 6)
             {
-                monat= "Juni";
-            }else if (i == 7)
+                monat = "Juni";
+            }
+            else if (i == 7)
             {
-                monat= "Juli";
-            }else if (i == 8)
+                monat = "Juli";
+            }
+            else if (i == 8)
             {
                 monat = "August";
-            }else if (i == 9)
+            }
+            else if (i == 9)
             {
                 monat = "September";
-            }else if (i == 10)
+            }
+            else if (i == 10)
             {
-                monat= "Oktober";
-            }else if (i == 11)
+                monat = "Oktober";
+            }
+            else if (i == 11)
             {
-                monat= "November";
-            }else if (i == 12)
+                monat = "November";
+            }
+            else if (i == 12)
             {
-                monat= "Dezember";
+                monat = "Dezember";
             }
             return monat;
         }

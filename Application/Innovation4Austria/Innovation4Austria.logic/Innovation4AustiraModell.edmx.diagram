@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="Innovation4AustriaModel.Benutzer" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Innovation4AustriaModel.Bild" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Innovation4AustriaModel.Buchung" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Innovation4AustriaModel.Buchungsdetails" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Innovation4AustriaModel.Buchungsdetails" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Innovation4AustriaModel.Firma" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="Innovation4AustriaModel.Log" Width="1.5" PointX="7.5" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Innovation4AustriaModel.Raum" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />

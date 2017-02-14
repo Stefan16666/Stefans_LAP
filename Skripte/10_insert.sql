@@ -76,11 +76,11 @@ INSERT INTO Buchung (Raum_id, firma_id) VALUES (4, 1);
 GO
 
 INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '16-06-2017', 12.0);
-INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '14-06-2017', 12.0);
-INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '08-07-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 4, '14-06-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 4, '08-07-2017', 12.0);
 INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '10-10-2017', 12.0);
 INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '08-04-2017', 12.0);
-INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '23-12-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 4, '23-12-2017', 12.0);
 INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '16-02-2017', 12.0);
 INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '28-10-2017', 12.0);
 GO

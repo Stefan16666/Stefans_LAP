@@ -7,7 +7,7 @@ namespace Innovation4Austria.web.Models
 {
     public class DashboardModel
     {
-        public List<MitarbeiterModel> AlleMitarbeiter { get; set; }
+        public List<BenutzerModel> AlleMitarbeiter { get; set; }
 
         public List<BuchungenModel> AlleBuchungen { get; set; }
 

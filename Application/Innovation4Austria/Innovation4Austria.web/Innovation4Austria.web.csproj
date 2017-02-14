@@ -167,7 +167,7 @@
     <Compile Include="Models\BuchungenModel.cs" />
     <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\MitarbeiterModel.cs" />
+    <Compile Include="Models\BenutzerModel.cs" />
     <Compile Include="Models\PasswortAendernModel.cs" />
     <Compile Include="Models\ProfilAnzeigeModel.cs" />
     <Compile Include="Models\ProfilMitarbeiterModel.cs" />
@@ -315,7 +315,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49405</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49406/</IISUrl>
+          <IISUrl>http://localhost:49405/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

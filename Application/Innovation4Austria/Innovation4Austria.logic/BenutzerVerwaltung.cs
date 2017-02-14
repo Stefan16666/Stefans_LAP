@@ -28,7 +28,7 @@ namespace Verwaltung
                     {
                         try
                         {
-                            loginbenutzer = context.AlleBenutzer.Include(x=>x.Firma).Where(x => x.Emailadresse == emailadresse).FirstOrDefault();
+                            loginbenutzer = context.AlleBenutzer.Include(x => x.Firma).Where(x => x.Emailadresse == emailadresse).FirstOrDefault();
                             if (loginbenutzer != null)
                             {
                                 if (loginbenutzer.Passwort.SequenceEqual(Tools.GenerierePasswort(passwort)))
@@ -56,17 +56,17 @@ namespace Verwaltung
             return true;
         }
 
-        public static BenutzerAdministrator.Passwortwechselergebnis Wechselpasswort(string emailadresse, string neuePassword, string altesPasswort)
+        public static BenutzerAdministrator.Passwortwechselergebnis Wechselpasswort(string emailadresse, string neuesPassword, string altesPasswort)
         {
 
             BenutzerAdministrator.Passwortwechselergebnis result = BenutzerAdministrator.Passwortwechselergebnis.UsernameInvalid;
 
-            log.Info("ChangePassword(username, oldPassword, newPassword)");
+            log.Info("WechselPasswort(emailadresse, neuesPassword, altesPasswort)");
 
             if (string.IsNullOrEmpty(emailadresse))
                 throw new ArgumentNullException(nameof(emailadresse));
-            else if (string.IsNullOrEmpty(neuePassword))
-                throw new ArgumentNullException(nameof(neuePassword));
+            else if (string.IsNullOrEmpty(neuesPassword))
+                throw new ArgumentNullException(nameof(neuesPassword));
             else if (string.IsNullOrEmpty(altesPasswort))
                 throw new ArgumentNullException(nameof(altesPasswort));
             else
@@ -93,7 +93,7 @@ namespace Verwaltung
                         {
                             log4net.LogicalThreadContext.Properties["idUser"] = aktBenutzer.Id;
 
-                            aktBenutzer.Passwort = Tools.GenerierePasswort(neuePassword);
+                            aktBenutzer.Passwort = Tools.GenerierePasswort(neuesPassword);
                             context.SaveChanges();
 
                             result = BenutzerAdministrator.Passwortwechselergebnis.Success;
@@ -116,30 +116,24 @@ namespace Verwaltung
         /// Sending back the company where a person works
         /// </summary>
         /// <param name="emailadress"></param>
-        public static Firma LadeFirmaVonBenutzer(string emailadress)
+        public static Benutzer SucheFirmaVonBenutzer(string emailadress)
         {
             log.Info("BenutzerVerwaltung - LoadCompanyOfAUser");
-            Firma gesuchteFirma = new Firma();
+            Benutzer user = new Benutzer();
             if (!string.IsNullOrEmpty(emailadress))
             {
                 try
                 {
                     using (var context = new Innovation4AustriaEntities())
-                    {
-                        Benutzer user = new Benutzer();
+                    {                       
                         user = context.AlleBenutzer.Where(x => x.Emailadresse == emailadress).FirstOrDefault();
                         if (user != null)
                         {
-                            gesuchteFirma = context.AlleFirmen.Where(x => x.Id == user.Firma_id).FirstOrDefault();
-                            if (gesuchteFirma != null)
-                            {
-                                
-                                log.Error("BenutzerVerwaltung - LoadCompanyOfAUser - the company with the fa_id was not found");
-                            }
+                            log.Error("BenutzerVerwaltung - LadeFirmaVonBenutzer - the company with the fa_id was not found");
                         }
                         else
                         {
-                            log.Error("BenutzerVerwaltung - LoadCompanyOfAUser - the user with the emailadress was not found");
+                            log.Error("BenutzerVerwaltung - LadeFirmaVonBenutzer - the user with the emailadress was not found");
                         }
                     }
                 }
@@ -149,7 +143,7 @@ namespace Verwaltung
                     log.Info(ex.Message, ex.InnerException);
                 }
             }
-            return gesuchteFirma;
+            return user;
         }
 
         /// <summary>
@@ -209,7 +203,7 @@ namespace Verwaltung
             catch (Exception ex)
             {
                 log.Error("BenutzerVerwaltung - LadeAllefirmen - konnte nicht geladen werden");
-                if (ex.InnerException!=null)
+                if (ex.InnerException != null)
                 {
                     log.Info(ex.InnerException);
                 }

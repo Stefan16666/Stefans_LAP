@@ -8,7 +8,7 @@ namespace Innovation4Austria.web.Models
 {
     public class ProfilAnzeigeModel
     {
-        public MitarbeiterModel derMitarbeiter { get; set; }
+        public BenutzerModel derMitarbeiter { get; set; }
 
         public PasswortAendernModel anderesPasswort { get; set; }    
     }

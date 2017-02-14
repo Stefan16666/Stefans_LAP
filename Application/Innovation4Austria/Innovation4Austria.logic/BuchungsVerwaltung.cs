@@ -94,7 +94,7 @@ namespace Innovation4Austria.logic
                 {
                     using (var context = new Innovation4AustriaEntities())
                     {
-                        detailVonBuchung = context.AlleBuchungsdetails.Include("Rechnungsdetails").Where(x => x.Buchung_id == buchung_id).ToList();
+                        detailVonBuchung = context.AlleBuchungsdetails.Include(x=>x.Rechnungsdetails).Where(x => x.Buchung_id == buchung_id).ToList();
                         if (detailVonBuchung == null)
                         {
                             log.Warn("RaumVerwaltung - BuchungsDetailsVonBuchung - keine Details zur Buchung gefunden");

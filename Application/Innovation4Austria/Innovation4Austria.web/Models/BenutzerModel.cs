@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Innovation4Austria.web.Models
 {
-    public class MitarbeiterModel
+    public class BenutzerModel
     {
         public string Emailadresse { get; set; }
 

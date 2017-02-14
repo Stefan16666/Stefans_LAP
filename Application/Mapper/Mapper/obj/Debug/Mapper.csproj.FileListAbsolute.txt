@@ -9,3 +9,6 @@ C:\Users\groistef\Desktop\Mapper\Mapper\bin\Debug\de\EntityFramework.resources.d
 C:\Users\groistef\Desktop\Mapper\Mapper\obj\Debug\Mapper.csprojResolveAssemblyReference.cache
 C:\Users\groistef\Desktop\Mapper\Mapper\obj\Debug\Mapper.exe
 C:\Users\groistef\Desktop\Mapper\Mapper\obj\Debug\Mapper.pdb
+C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Mapper\Mapper\bin\Debug\Mapper.exe.config
+C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Mapper\Mapper\obj\Debug\Mapper.exe
+C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Mapper\Mapper\obj\Debug\Mapper.pdb
