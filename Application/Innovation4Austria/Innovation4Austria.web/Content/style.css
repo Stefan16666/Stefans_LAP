@@ -383,7 +383,9 @@ ul#menu {
         box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
         color: #000;
     }
-
+.ProfilAnsichtFontSize{
+    font-size:2em;
+}
 
 #banner_image {
     width: 920px;
@@ -396,6 +398,9 @@ ul#menu {
     height: 400px;
     background: transparent;
     width: 920px;
+}
+#profilAnsicht{
+    padding-top:8em;
 }
 
 #slider {

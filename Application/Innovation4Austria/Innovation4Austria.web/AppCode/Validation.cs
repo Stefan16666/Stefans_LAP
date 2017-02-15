@@ -13,8 +13,8 @@ namespace Innovation4Austria.web.AppCode
         public const string REGULAR_EXPRESSION_PASSWORD = "RegexPassword";
         public const string MAXLENGTH = "MaxLength";
 
-        public const string PASSWORT_WIEDERHOLEN = "Passwortwiederholung stimmt nichtüberein";
-        public const string PASSWORT_NORM = "Minimum 8 Zeichen, ein Grossbuchstabe, ein Kleinbuchstabe, eine Zahl und ein Sonderzeichen";
+        public const string PASSWORT_WIEDERHOLEN = "Passwortwiederholung stimmt nicht überein";
+        public const string PASSWORT_NORM = "Minimum 8 Zeichen und max 16Zeichen";
         
     }
 }
