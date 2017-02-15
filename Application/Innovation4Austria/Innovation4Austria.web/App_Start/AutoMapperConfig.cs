@@ -22,7 +22,8 @@ namespace innovation4austria.web
 
                 x.CreateMap<Benutzer, BenutzerVerwaltungsModel>()
                 .ForMember(dest => dest.FirmenName, opts => opts.MapFrom(source => source.Firma.Bezeichnung))
-                .ForMember(dest => dest.FirmenName, opts => opts.NullSubstitute("Innovation  4 Austria"));
+                .ForMember(dest => dest.FirmenName, opts => opts.NullSubstitute("Innovation  4 Austria"))
+                .ForMember(dest => dest.Rolle, opts => opts.MapFrom(source => source.Rolle.Bezeichnung));
             });
 
             Mapper.AssertConfigurationIsValid();
