@@ -11,6 +11,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.UI.WebControls;
 using Verwaltung;
 
 namespace Innovation4Austria.web.Controllers
@@ -32,7 +33,7 @@ namespace Innovation4Austria.web.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model)
         {
             log.Info("BenutzerController - Login - HttpPost");
@@ -174,6 +175,7 @@ namespace Innovation4Austria.web.Controllers
             return View(dashboard);
         }
 
+        //[ValidateAntiForgeryToken]
         [Authorize]
         [HttpGet]
         public ActionResult Abmelden()
@@ -182,17 +184,18 @@ namespace Innovation4Austria.web.Controllers
             return RedirectToAction("Login", "Benutzer");
         }
 
+        //[ValidateAntiForgeryToken]
         [Authorize]
         [HttpGet]
         public ActionResult ProfilAnzeigen()
         {
-            log.Info("GET - User - ProfileData()");
+            log.Info("GET - User - ProfilAnzeigen()");
 
             Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
-
+            PasswortVerwaltungsModel aenderePasswort = new PasswortVerwaltungsModel();
             ProfilAnzeigeModel profilModel = new ProfilAnzeigeModel();
             profilModel.derMitarbeiter = AutoMapper.Mapper.Map<BenutzerVerwaltungsModel>(aktBenutzer);
-            profilModel.anderesPasswort = AutoMapper.Mapper.Map<PasswortVerwaltungsModel>(aktBenutzer);
+            profilModel.anderesPasswort = aenderePasswort; /*= AutoMapper.Mapper.Map<PasswortVerwaltungsModel>(aktBenutzer);*/
             return View(profilModel);
 
         }
@@ -205,11 +208,32 @@ namespace Innovation4Austria.web.Controllers
             return View();
         }
 
+        //[ValidateAntiForgeryToken]
         [Authorize]
-        [HttpGet]
-        public ActionResult PasswortÄnderung()
+        [HttpPost]
+        public ActionResult PasswortÄnderung(PasswortVerwaltungsModel model)
         {
-            return View();
+            log.Info("GET - User - PasswortÄnderung");
+            if (ModelState.IsValid)
+            {
+                Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
+                if (aktBenutzer!=null)
+                {
+                    if (model.NeuesPasswort!= null)
+                    {
+                        if(BenutzerAdministrator.WechselPasswort(aktBenutzer.Emailadresse, model.Passwort, model.NeuesPasswort)== BenutzerAdministrator.Passwortwechselergebnis.Success)
+                        {
+                            TempData[ConstStrings.SUCCESS_MESSAGE] = Validierungen.Passwortgewechselt;
+                        }
+                        else
+                        {
+                            TempData[ConstStrings.ERROR_MESSAGE] = Validierungen.PasswortwechselError;
+                        }    
+                    }
+                }
+            }
+
+            return RedirectToAction("Login");
         }
 
 

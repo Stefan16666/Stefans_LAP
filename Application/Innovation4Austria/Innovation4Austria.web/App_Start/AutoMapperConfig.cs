@@ -18,7 +18,8 @@ namespace innovation4austria.web
             {
                 x.CreateMap<Benutzer, PasswortVerwaltungsModel>()
                 .ForMember(dest => dest.NeuesPasswort, opts => opts.Ignore())
-                .ForMember(dest => dest.NeuesPasswortBestätigung, opts => opts.Ignore());
+                .ForMember(dest => dest.NeuesPasswortBestätigung, opts => opts.Ignore())
+                .ForMember(dest => dest.Passwort, opts => opts.MapFrom(source => source.Passwort));
 
                 x.CreateMap<Benutzer, BenutzerVerwaltungsModel>()
                 .ForMember(dest => dest.FirmenName, opts => opts.MapFrom(source => source.Firma.Bezeichnung))

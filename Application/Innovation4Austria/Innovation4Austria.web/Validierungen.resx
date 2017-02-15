@@ -126,6 +126,12 @@
   <data name="Passwort" xml:space="preserve">
     <value>Password, min 5 Zeichen</value>
   </data>
+  <data name="Passwortgewechselt" xml:space="preserve">
+    <value>Passwort erfolgreich gewechselt</value>
+  </data>
+  <data name="PasswortwechselError" xml:space="preserve">
+    <value>Passwortwechsel fehlgeschlagen</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>Pflichtfeld</value>
   </data>

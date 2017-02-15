@@ -88,6 +88,24 @@ namespace Innovation4Austria.web {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Passwort erfolgreich gewechselt ähnelt.
+        /// </summary>
+        internal static string Passwortgewechselt {
+            get {
+                return ResourceManager.GetString("Passwortgewechselt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Passwortwechsel fehlgeschlagen ähnelt.
+        /// </summary>
+        internal static string PasswortwechselError {
+            get {
+                return ResourceManager.GetString("PasswortwechselError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Pflichtfeld ähnelt.
         /// </summary>
         internal static string Required {

@@ -23,5 +23,8 @@ namespace Innovation4Austria.web.Models
         [DisplayName("Passwort wiederholen")]
         [Compare("NeuesPasswort")]
         public string NeuesPasswortBestätigung { get; set; }
+
+
+        public string Passwort { get; set; }
     }
 } 
