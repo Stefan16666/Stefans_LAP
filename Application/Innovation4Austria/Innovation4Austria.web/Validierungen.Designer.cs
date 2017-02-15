@@ -88,15 +88,6 @@ namespace Innovation4Austria.web {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Minimum 8 Zeichen, ein Grossbuchstabe, ein Kleinbuchstabe, eine Zahl und ein Sonderzeichen ähnelt.
-        /// </summary>
-        internal static string Passwort_norm {
-            get {
-                return ResourceManager.GetString("Passwort_norm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Pflichtfeld ähnelt.
         /// </summary>
         internal static string Required {
@@ -111,6 +102,15 @@ namespace Innovation4Austria.web {
         internal static string SpeichernErfolgreich {
             get {
                 return ResourceManager.GetString("SpeichernErfolgreich", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Minimum 8 Zeichen und max. 16 Zeichen ähnelt.
+        /// </summary>
+        internal static string StringLength {
+            get {
+                return ResourceManager.GetString("StringLength", resourceCulture);
             }
         }
     }

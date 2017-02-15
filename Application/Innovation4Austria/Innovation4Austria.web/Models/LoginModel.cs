@@ -12,11 +12,8 @@ namespace Innovation4Austria.web.Models
     /// </summary>
     public class LoginModel
     {
-        [Required(AllowEmptyStrings = false,
-    ErrorMessageResourceType = typeof(Validierungen),
-    ErrorMessageResourceName = Validation.REQUIRED)]
-        [EmailAddress(ErrorMessageResourceName = Validation.DATATYPE_MAIL,
-    ErrorMessageResourceType = typeof(Validierungen))]
+        [Required(AllowEmptyStrings = false,ErrorMessageResourceType = typeof(Validierungen), ErrorMessageResourceName = Validation.REQUIRED)]
+        [EmailAddress(ErrorMessageResourceName = Validation.DATATYPE_MAIL, ErrorMessageResourceType = typeof(Validierungen))]
         public string Emailadresse { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessageResourceType =typeof(Validierungen), ErrorMessageResourceName = Validation.REQUIRED)]            
