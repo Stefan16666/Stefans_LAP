@@ -260,8 +260,7 @@ namespace Innovation4Austria.logic
                 {
                     log.Error("Exception in GetUser", ex);
                     if (ex.InnerException != null)
-                        log.Error("Exception in GetUser (inner)", ex.InnerException);
-                    throw;
+                        log.Error("Exception in GetUser (inner)", ex.InnerException);                 
                 }
             }
 
