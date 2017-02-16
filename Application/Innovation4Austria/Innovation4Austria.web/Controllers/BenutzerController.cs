@@ -196,7 +196,7 @@ namespace Innovation4Austria.web.Controllers
             PasswortVerwaltungsModel aenderePasswort = new PasswortVerwaltungsModel();
             ProfilAnzeigeModel profilModel = new ProfilAnzeigeModel();
             profilModel.derMitarbeiter = AutoMapper.Mapper.Map<BenutzerVerwaltungsModel>(aktBenutzer);
-            profilModel.anderesPasswort = aenderePasswort; /*= AutoMapper.Mapper.Map<PasswortVerwaltungsModel>(aktBenutzer);*/
+            profilModel.anderesPasswort = aenderePasswort; 
             return View(profilModel);
 
         }
@@ -205,7 +205,6 @@ namespace Innovation4Austria.web.Controllers
         [HttpPost]
         public ActionResult BenutzerProfil()
         {
-
             return View();
         }
 

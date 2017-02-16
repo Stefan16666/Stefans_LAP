@@ -161,11 +161,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BenutzerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Innovation4AustriaMitarbeiterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BuchungenModel.cs" />
     <Compile Include="Models\DashboardModel.cs" />
+    <Compile Include="Models\FirmenModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\BenutzerModel.cs" />
     <Compile Include="Models\PasswortVerwaltungsModel.cs" />
@@ -275,6 +277,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="img\" />
+    <Folder Include="Views\Innovation4AustriaMitarbeiter\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
