@@ -29,6 +29,7 @@ namespace Innovation4Austria.web.Controllers
         public ActionResult Login()
         {
             log.Info("BenutzerController - Login - HttpGet");
+            
             return View();
         }
 
