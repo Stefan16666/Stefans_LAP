@@ -217,18 +217,21 @@ namespace Innovation4Austria.web.Controllers
             if (ModelState.IsValid)
             {
                 Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
-                if (aktBenutzer!=null)
+                if (aktBenutzer != null)
                 {
-                    if (model.NeuesPasswort!= null)
+                    if (Tools.GenerierePasswort(model.Passwort).SequenceEqual(aktBenutzer.Passwort))
                     {
-                        if(BenutzerAdministrator.WechselPasswort(aktBenutzer.Emailadresse, model.Passwort, model.NeuesPasswort)== BenutzerAdministrator.Passwortwechselergebnis.Success)
+                        if (model.NeuesPasswort != null)
                         {
-                            TempData[ConstStrings.SUCCESS_MESSAGE] = Validierungen.Passwortgewechselt;
+                            if (BenutzerAdministrator.WechselPasswort(aktBenutzer.Emailadresse, model.Passwort, model.NeuesPasswort) == BenutzerAdministrator.Passwortwechselergebnis.Success)
+                            {
+                                TempData[ConstStrings.SUCCESS_MESSAGE] = Validierungen.Passwortgewechselt;
+                            }
+                            else
+                            {
+                                TempData[ConstStrings.ERROR_MESSAGE] = Validierungen.PasswortwechselError;
+                            }
                         }
-                        else
-                        {
-                            TempData[ConstStrings.ERROR_MESSAGE] = Validierungen.PasswortwechselError;
-                        }    
                     }
                 }
             }
