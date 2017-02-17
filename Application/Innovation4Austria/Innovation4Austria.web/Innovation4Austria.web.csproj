@@ -273,11 +273,11 @@
     <Content Include="Views\Benutzer\ProfilAnzeigen.cshtml" />
     <Content Include="Views\Benutzer\_DatenAnzeigen.cshtml" />
     <Content Include="Views\Benutzer\_PasswortVerwaltung.cshtml" />
+    <Content Include="Views\Innovation4AustriaMitarbeiter\FirmenAuflistung.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="img\" />
-    <Folder Include="Views\Innovation4AustriaMitarbeiter\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

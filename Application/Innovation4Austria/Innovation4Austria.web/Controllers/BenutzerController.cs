@@ -203,7 +203,7 @@ namespace Innovation4Austria.web.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult BenutzerProfil(BenutzerVerwaltung model)
+        public ActionResult BenutzerProfil(BenutzerVerwaltungsModel model)
         {
             log.Info("BenutzerController - BenutzerProfil - BenutzerAnlegen");
             if (model != null)
@@ -211,14 +211,14 @@ namespace Innovation4Austria.web.Controllers
                 if (ModelState.IsValid)
                 {
                     Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
-                    aktBenutzer = AutoMapper.Mapper.Map<Benutzer>(model);
-                    if (BenutzerVerwaltung.AktualisiereBenutzer(aktBenutzer))
+                   
+                    if (BenutzerVerwaltung.AktualisiereBenutzer(aktBenutzer.Id, model.Vorname, model.Nachname))
                     {
                         TempData[ConstStrings.SUCCESS_MESSAGE] = Validierungen.BenutzerProfilAktualisierenErfolgreich;
                     }
                 }
             }
-            return View();
+            return RedirectToAction("ProfilAnzeigen");
         }
 
         //[ValidateAntiForgeryToken]

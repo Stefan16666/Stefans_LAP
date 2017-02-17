@@ -1,6 +1,6 @@
 ﻿@model Innovation4Austria.web.Models.BenutzerVerwaltungsModel
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("BenutzerProfil", "Benutzer", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -58,9 +58,6 @@
                 @Html.ValidationMessageFor(model => model.Vorname, "", new { @class = "text-danger" })
             </div>
         </div>
-
-
-
 
 
         <div class="form-group">

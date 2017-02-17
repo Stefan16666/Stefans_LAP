@@ -273,7 +273,7 @@ namespace Verwaltung
             return erfolgreich;
         }
 
-        public static bool AktualisiereBenutzer(Benutzer benutzer)
+        public static bool AktualisiereBenutzer(int id, string vorname, string nachname)
         {
             log.Info("BenutzerVerwaltung - AkrtualisiereBenutzer");
             Benutzer aktBenutzer = new Benutzer();
@@ -283,10 +283,13 @@ namespace Verwaltung
             {
                 using (var context = new Innovation4AustriaEntities())
                 {
-                    aktBenutzer = context.AlleBenutzer.Where(x => x.Id == benutzer.Id).FirstOrDefault();
-                    aktBenutzer.Nachname = benutzer.Nachname;
-                    aktBenutzer.Vorname = benutzer.Vorname;
-                    if (context.SaveChanges()>0)
+                    ///
+                    aktBenutzer = context.AlleBenutzer.Where(x => x.Id == id).FirstOrDefault();
+                    aktBenutzer.Nachname = nachname;
+                    aktBenutzer.Vorname = vorname;
+
+                    int save = context.SaveChanges();
+                    if (save>0)
                     {
                         erfolgreich = true;
                     }
