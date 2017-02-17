@@ -32,9 +32,9 @@ public partial class Firma
 
     public string Strasse { get; set; }
 
-    public int Nummer { get; set; }
+    public string Nummer { get; set; }
 
-    public int Plz { get; set; }
+    public string Plz { get; set; }
 
     public string Ort { get; set; }
 

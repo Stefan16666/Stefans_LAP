@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BenutzerProfilAktualisierenErfolgreich" xml:space="preserve">
+    <value>Profil wurde erfolgreich aktualisiert</value>
+  </data>
   <data name="DataTypeMail" xml:space="preserve">
     <value>Emailadress </value>
   </data>

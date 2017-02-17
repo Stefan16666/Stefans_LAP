@@ -272,6 +272,41 @@ namespace Verwaltung
             }
             return erfolgreich;
         }
+
+        public static bool AktualisiereBenutzer(Benutzer benutzer)
+        {
+            log.Info("BenutzerVerwaltung - AkrtualisiereBenutzer");
+            Benutzer aktBenutzer = new Benutzer();
+            bool erfolgreich = false;
+
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    aktBenutzer = context.AlleBenutzer.Where(x => x.Id == benutzer.Id).FirstOrDefault();
+                    aktBenutzer.Nachname = benutzer.Nachname;
+                    aktBenutzer.Vorname = benutzer.Vorname;
+                    if (context.SaveChanges()>0)
+                    {
+                        erfolgreich = true;
+                    }
+                    else
+                    {
+                        log.Warn("BenutzerVerwaltung - AktualisiereBenutzer - speichern hat nicht geklappt");
+                    }
+
+                }
+            }
+            catch (Exception ex )
+            {
+                log.Error("Benutzerverwaltung - AktualisiereBenutzer - Datenbankzugriff hat nicht geklappt");
+                if (ex.InnerException!=null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+            return erfolgreich;
+        }
     }
 }
 

@@ -248,8 +248,8 @@ namespace Innovation4Austria.logic
             {
                 try
                 {
-                    
-                    user = context.AlleBenutzer.Include(x =>x.Firma).Include(x=>x.Rolle).Where(x => x.Emailadresse == username).FirstOrDefault();
+                  
+                    user = context.AlleBenutzer.Include(x => x.Firma).Include(x => x.Rolle).Where(x => x.Emailadresse == username).FirstOrDefault();
 
                     if (user == null)
                     {

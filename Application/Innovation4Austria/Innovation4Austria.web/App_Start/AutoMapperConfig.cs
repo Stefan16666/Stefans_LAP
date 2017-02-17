@@ -27,6 +27,17 @@ namespace innovation4austria.web
                 .ForMember(dest => dest.Rolle, opts => opts.MapFrom(source => source.Rolle.Bezeichnung));
 
                 x.CreateMap<Firma, FirmenModel>();
+
+                //x.CreateMap<BenutzerVerwaltungsModel, Benutzer>()
+                // .ForMember(dest => dest.Firma, opts => opts.Ignore())
+                // .ForMember(dest => dest.Passwort, opts=> opts.Ignore())
+                // .ForMember(dest => dest.Firma_id, opts =>opts.Ignore())
+                // .ForMember(dest => dest.Rolle_id, opts => opts.Ignore())
+                // .ForMember(dest => dest.Aktiv, opts => opts.Ignore())
+                // .ForMember(dest => dest.AlleLog, opts => opts.Ignore())
+                // .ForMember(dest => dest.Id, opts => opts.Ignore())
+                // .ForMember(dest => dest.Rolle, opts => opts.Ignore())
+                // ;
             });
 
             Mapper.AssertConfigurationIsValid();

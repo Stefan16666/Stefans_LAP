@@ -61,6 +61,15 @@ namespace Innovation4Austria.web {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Profil wurde erfolgreich aktualisiert ähnelt.
+        /// </summary>
+        internal static string BenutzerProfilAktualisierenErfolgreich {
+            get {
+                return ResourceManager.GetString("BenutzerProfilAktualisierenErfolgreich", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Emailadress  ähnelt.
         /// </summary>
         internal static string DataTypeMail {

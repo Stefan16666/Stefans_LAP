@@ -72,8 +72,8 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="strasse" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="nummer" Type="int" Nullable="false" />
-    <Property Name="plz" Type="int" Nullable="false" />
+    <Property Name="nummer" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="plz" Type="nvarchar" MaxLength="5" Nullable="false" />
     <Property Name="ort" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="aktiv" Type="bit" Nullable="false" />

@@ -29,7 +29,7 @@ namespace Innovation4Austria.web.Controllers
         public ActionResult Login()
         {
             log.Info("BenutzerController - Login - HttpGet");
-            
+
             return View();
         }
 
@@ -196,15 +196,28 @@ namespace Innovation4Austria.web.Controllers
             PasswortVerwaltungsModel aenderePasswort = new PasswortVerwaltungsModel();
             ProfilAnzeigeModel profilModel = new ProfilAnzeigeModel();
             profilModel.derMitarbeiter = AutoMapper.Mapper.Map<BenutzerVerwaltungsModel>(aktBenutzer);
-            profilModel.anderesPasswort = aenderePasswort; 
+            profilModel.anderesPasswort = aenderePasswort;
             return View(profilModel);
 
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult BenutzerProfil()
+        public ActionResult BenutzerProfil(BenutzerVerwaltung model)
         {
+            log.Info("BenutzerController - BenutzerProfil - BenutzerAnlegen");
+            if (model != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
+                    aktBenutzer = AutoMapper.Mapper.Map<Benutzer>(model);
+                    if (BenutzerVerwaltung.AktualisiereBenutzer(aktBenutzer))
+                    {
+                        TempData[ConstStrings.SUCCESS_MESSAGE] = Validierungen.BenutzerProfilAktualisierenErfolgreich;
+                    }
+                }
+            }
             return View();
         }
 
