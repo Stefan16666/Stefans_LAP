@@ -423,3 +423,5 @@ C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innova
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.csproj.GenerateResource.Cache
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.dll
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.pdb
+C:\Users\Stefan\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\AutoMapper.dll
+C:\Users\Stefan\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\AutoMapper.xml

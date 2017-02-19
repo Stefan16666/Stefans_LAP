@@ -24,14 +24,19 @@
                 using (Html.BeginForm())
                 {
                     <div class="row">
-                        <p class="col-md-2 FontSize">@Html.EditorFor(x => item.Bezeichnung)</p>
-                        <p class="col-md-2 FontSize">@Html.EditorFor(x => item.Strasse)</p>
-                        <p class="col-md-2 FontSize">@Html.EditorFor(x => item.Nummer)</p>
-                        <p class="col-md-1 FontSize">@Html.EditorFor(x => item.Plz)</p>
-                        <p class="col-md-2 FontSize">@Html.EditorFor(x => item.Ort)</p>
-                        <input type="submit" value="Speichern" class="btn btn-default" />
-                        @*<p class="col-md-1" style="color:blue">@Html.ActionLink("", "MitarbeiterAuflistung", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction" })</p>*@
-                        <p class="col-md-2" style="color:blue">@Html.ActionLink("Mitarbeiter", "MitarbeiterAuflistung", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction" })</p>
+                        <div>
+                            <p class="col-md-2 FontSize">@Html.EditorFor(x => item.Bezeichnung)</p>
+                            <p class="col-md-2 FontSize">@Html.EditorFor(x => item.Strasse)</p>                            
+                            <p class="col-md-1 FontSize">@Html.EditorFor(x => item.Plz)</p>
+                            <p class="col-md-2 FontSize">@Html.EditorFor(x => item.Ort)</p>
+                            <input type="submit" value="Speichern" class="btn btn-default" />
+                            @*<p class="col-md-1" style="color:blue">@Html.ActionLink("", "MitarbeiterAuflistung", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction" })</p>*@
+                            <p class="col-md-2" style="color:blue">@Html.ActionLink("Mitarbeiter", "MitarbeiterAuflistung", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction" })</p>
+                        </div>
+                        <div>
+                            <p class="col-md-2"></p>
+                            <p class="col-md-2 FontSize">@Html.EditorFor(x => item.Nummer)</p>
+                        </div>
                     </div>
                     @*@Html.EditorFor(x => item.Bezeichnung, new { htmlAttributes = new { @class = "form-control" } })*@
                 }

@@ -1,2 +1,2 @@
-CREATE UNIQUE INDEX UI_Benutzer_email ON Benutzer (email);
+<!--CREATE UNIQUE INDEX UI_Benutzer_email ON Benutzer (email); -->
 
