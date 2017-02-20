@@ -21,7 +21,7 @@ namespace Innovation4Austria.logic
             {
                 using (var context = new Innovation4AustriaEntities())
                 {
-                    alleFirmen = context.AlleFirmen.ToList();
+                    alleFirmen = context.AlleFirmen.Where(x=>x.aktiv).ToList();
                     if (alleFirmen == null)
                     {
                         log.Warn("FirmenVerwaltung - LadeAlleFirmen - keine Firmen gefunden");

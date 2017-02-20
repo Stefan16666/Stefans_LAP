@@ -350,6 +350,8 @@ C:\Users\groistef\Source\Repos\Stefans_LAP2\Application\Innovation4Austria\Innov
 \\VBOXSVR\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.csproj.GenerateResource.Cache
 \\VBOXSVR\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.dll
 \\VBOXSVR\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.pdb
+C:\Users\Stefan\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\AutoMapper.dll
+C:\Users\Stefan\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\AutoMapper.xml
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\ApplicationInsights.config
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\roslyn\csc.exe
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -423,5 +425,3 @@ C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innova
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.csproj.GenerateResource.Cache
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.dll
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.pdb
-C:\Users\Stefan\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\AutoMapper.dll
-C:\Users\Stefan\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.web\bin\AutoMapper.xml

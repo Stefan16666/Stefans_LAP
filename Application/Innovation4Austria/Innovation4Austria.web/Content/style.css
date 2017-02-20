@@ -534,3 +534,11 @@ a.nivo-nextNav {
         .nivo-controlNav a.active {
             background-position: 0 -22px;
         }
+.mitarbeiterbtn{
+    color:aquamarine!important;
+    font-size:2em!important;
+}
+
+#firmenauflistung{
+    margin-top:8em;
+}
