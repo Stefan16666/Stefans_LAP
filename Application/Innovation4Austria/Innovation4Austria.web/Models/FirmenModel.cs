@@ -7,6 +7,8 @@ namespace Innovation4Austria.web.Models
 {
     public class FirmenModel
     {
+        public int Id { get; set; }
+
         public string Bezeichnung { get; set; }
 
         public string Strasse { get; set; }

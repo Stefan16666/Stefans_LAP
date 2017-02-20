@@ -54,3 +54,14 @@ C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innova
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.csprojResolveAssemblyReference.cache
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.dll
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.pdb
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.logic\bin\Debug\Innovation4Austria.logic.dll.config
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.logic\bin\Debug\Innovation4Austria.logic.dll
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.logic\bin\Debug\Innovation4Austria.logic.pdb
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.logic\bin\Debug\EntityFramework.dll
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.logic\bin\Debug\log4net.dll
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.logic\bin\Debug\EntityFramework.xml
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.logic\bin\Debug\log4net.xml
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.logic\bin\Debug\de\EntityFramework.resources.dll
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.csprojResolveAssemblyReference.cache
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.dll
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.pdb

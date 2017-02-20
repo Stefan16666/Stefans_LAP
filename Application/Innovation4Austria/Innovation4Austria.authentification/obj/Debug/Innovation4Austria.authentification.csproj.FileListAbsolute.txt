@@ -55,3 +55,16 @@ C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innova
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.authentification\obj\Debug\Innovation4Austria.authentification.csprojResolveAssemblyReference.cache
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.authentification\obj\Debug\Innovation4Austria.authentification.dll
 C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Innovation4Austria.authentification\obj\Debug\Innovation4Austria.authentification.pdb
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.authentification\bin\Debug\Innovation4Austria.authentification.dll.config
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.authentification\bin\Debug\Innovation4Austria.authentification.dll
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.authentification\bin\Debug\Innovation4Austria.authentification.pdb
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.authentification\bin\Debug\Innovation4Austria.logic.dll
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.authentification\bin\Debug\log4net.dll
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.authentification\bin\Debug\EntityFramework.dll
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.authentification\bin\Debug\Innovation4Austria.logic.pdb
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.authentification\bin\Debug\log4net.xml
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.authentification\bin\Debug\EntityFramework.xml
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.authentification\bin\Debug\de\EntityFramework.resources.dll
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.authentification\obj\Debug\Innovation4Austria.authentification.csprojResolveAssemblyReference.cache
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.authentification\obj\Debug\Innovation4Austria.authentification.dll
+L:\LAP\Application\Innovation4Austria\Innovation4Austria.authentification\obj\Debug\Innovation4Austria.authentification.pdb

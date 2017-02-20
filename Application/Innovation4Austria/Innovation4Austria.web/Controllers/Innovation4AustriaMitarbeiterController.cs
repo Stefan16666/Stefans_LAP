@@ -25,12 +25,25 @@ namespace Innovation4Austria.web.Controllers
         {
             log.Info("Innovation4AutriaController - FirmenAuflistung - Get");
             
+            // Id-Feld wurde hinzugefügt, unterUmständen, stimmt das Mapping nicht
             List<FirmenModel> FirmenUI = AutoMapper.Mapper.Map<List<FirmenModel>>(FirmenVerwaltung.LadeAlleFirmen());
             if (FirmenUI!=null)
             {
                 log.Error("Innovatation4AustriaController - firmenAuflistung - keine Firmen gefunden");
             }
             return View(FirmenUI);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult FirmenAuflistung(FirmenModel model)
+        {
+            log.Info("Innovatation4AustriaController - FirmenAuflistung - Post");
+
+            if (ModelState.IsValid)
+            {
+                FirmenVerwaltung.FirmaAktualisierung(model.Id, model.Bezeichnung, model.deaktivieren, model.Nummer, model.Ort, model.Plz, model.Strasse);
+            }
         }
     }
 }
