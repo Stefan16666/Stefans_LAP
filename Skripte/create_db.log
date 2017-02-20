@@ -1,9 +1,13 @@
 ECHO ist ausgeschaltet (OFF).
 . 
-"starting database creation  9:58:52,90" 
+"starting database creation  8:15:22,85" 
 . 
 "try dropping database" 
-1> 2> 1> 2> 3> 4> 1>  
+1> 2> 1> 2> 3> 4> Fr nicht gekennzeichnete Transaktionen wird ein Rollback ausgefhrt. Bereits
+abgeschlossen (gesch„tzt): 0%.
+Fr nicht gekennzeichnete Transaktionen wird ein Rollback ausgefhrt. Bereits
+abgeschlossen (gesch„tzt): 100%.
+1>  
  
 "try creating database" 
 1> 2> 1> 2> 3> 1>  
@@ -78,7 +82,9 @@ ECHO ist ausgeschaltet (OFF).
 (1 Zeile betroffen)
 (1 Zeile betroffen)
 (1 Zeile betroffen)
-1> 2> 3> 4> 5> 6> 7> 8> 9> 10> (1 Zeile betroffen)
+1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> (1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
 (1 Zeile betroffen)
 (1 Zeile betroffen)
 (1 Zeile betroffen)
@@ -90,11 +96,7 @@ ECHO ist ausgeschaltet (OFF).
 (1 Zeile betroffen)
 (1 Zeile betroffen)
 (1 Zeile betroffen)
-1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 2
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Rechnungsdetails_Buchungsdetails'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Buchungsdetails', column 'id' auf.
-Die Anweisung wurde beendet.
+1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> (1 Zeile betroffen)
 (1 Zeile betroffen)
 (1 Zeile betroffen)
 (1 Zeile betroffen)
@@ -106,5 +108,5 @@ Die Anweisung wurde beendet.
 1> 2> 3>  
  
 . 
-"stopping database creation  9:58:54,61" 
+"stopping database creation  8:15:27,42" 
 . 
