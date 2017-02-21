@@ -39,7 +39,7 @@ namespace Innovation4Austria.logic
             return alleFirmen;
         }
 
-        public static bool FirmaAktualisierung(int id, string bezeichnung, bool deaktivieren, string nummer, string ort, string plz, string strasse)
+        public static bool FirmaAktualisierung(int id, string bezeichnung, bool aktiv, string nummer, string ort, string plz, string strasse)
         {
             bool erfolgreich = false;
             log.Info("FirmenVerwaltung - FirmaAktualisierung");
@@ -50,7 +50,7 @@ namespace Innovation4Austria.logic
                 using (var context = new Innovation4AustriaEntities())
                 {
                     aktFirma = context.AlleFirmen.Where(x => x.Id == id).FirstOrDefault();
-                    if ( !deaktivieren)
+                    if ( !aktiv)
                     {
                         aktFirma.Bezeichnung = bezeichnung;
                         aktFirma.Nummer = nummer;
@@ -61,7 +61,7 @@ namespace Innovation4Austria.logic
                     }
                     else
                     {
-                        aktFirma.aktiv = deaktivieren;
+                        aktFirma.aktiv = aktiv;
                         erfolgreich = true;
                     }
                 }
