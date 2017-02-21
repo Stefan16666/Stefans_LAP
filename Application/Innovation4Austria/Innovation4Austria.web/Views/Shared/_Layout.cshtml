@@ -45,11 +45,12 @@
                         <li>
                             <a>@Html.ActionLink("Profil", "ProfilAnzeigen", "Benutzer", null, new { @class = "btn buttonAction" })</a>
                         </li>
-                        @*@if (User.IsInRole())*@
-
+                        @if (User.IsInRole(Innovation4Austria.web.AppCode.Validation.INNOVATION4AUSTRIAMITARBEITER))
+                        { 
                         <li>
                             <a>@Html.ActionLink("Alle Firmen", "FirmenAuflistung", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction" })</a>
                         </li>
+                        }
                     </ul>
                 </div>
             }

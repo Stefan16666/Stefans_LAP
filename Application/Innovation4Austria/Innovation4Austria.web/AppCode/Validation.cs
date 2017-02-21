@@ -15,6 +15,9 @@ namespace Innovation4Austria.web.AppCode
 
         public const string PASSWORT_WIEDERHOLEN = "Passwortwiederholung nicht gleich Passwort";
         public const string PASSWORT_NORM = "StringLength";
-        
+
+        public const string INNOVATION4AUSTRIAMITARBEITER = "MitarbeiterIVA";
+
+
     }
 }
