@@ -50,7 +50,7 @@ namespace Innovation4Austria.logic
                 using (var context = new Innovation4AustriaEntities())
                 {
                     aktFirma = context.AlleFirmen.Where(x => x.Id == id).FirstOrDefault();
-                    if (!deaktivieren)
+                    if ( !deaktivieren)
                     {
                         aktFirma.Bezeichnung = bezeichnung;
                         aktFirma.Nummer = nummer;

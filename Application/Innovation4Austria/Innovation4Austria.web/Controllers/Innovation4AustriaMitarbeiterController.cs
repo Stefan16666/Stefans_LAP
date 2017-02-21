@@ -20,20 +20,21 @@ namespace Innovation4Austria.web.Controllers
         private static readonly i4aRoleProvider roleProvider = new i4aRoleProvider();
 
         [Authorize]
-        [HttpGet]        
+        [HttpGet]
         public ActionResult FirmenAuflistung()
         {
             log.Info("Innovation4AutriaController - FirmenAuflistung - Get");
-            
+
             // Id-Feld wurde hinzugefügt, unterUmständen, stimmt das Mapping nicht
             List<FirmenModel> FirmenUI = AutoMapper.Mapper.Map<List<FirmenModel>>(FirmenVerwaltung.LadeAlleFirmen());
-            if (FirmenUI!=null)
+            if (FirmenUI != null)
             {
                 log.Error("Innovatation4AustriaController - firmenAuflistung - keine Firmen gefunden");
             }
             return View(FirmenUI);
         }
 
+        [ValidateAntiForgeryToken]
         [Authorize]
         [HttpPost]
         public ActionResult FirmenAuflistung(FirmenModel model)
@@ -42,8 +43,12 @@ namespace Innovation4Austria.web.Controllers
 
             if (ModelState.IsValid)
             {
-                FirmenVerwaltung.FirmaAktualisierung(model.Id, model.Bezeichnung, model.deaktivieren, model.Nummer, model.Ort, model.Plz, model.Strasse);
+                if(FirmenVerwaltung.FirmaAktualisierung(model.Id, model.Bezeichnung, model.aktiv, model.Nummer, model.Ort, model.Plz, model.Strasse))
+                {
+                    return RedirectToAction("FirmenAuflistung");
+                }
             }
+            return RedirectToAction("FirmenAuflistung");
         }
     }
 }

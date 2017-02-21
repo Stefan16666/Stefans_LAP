@@ -19,6 +19,7 @@ namespace Innovation4Austria.web.Models
 
         public string Ort { get; set; }
 
-        public bool deaktivieren { get; set; }
+        public bool aktiv { get; set; }
+    
     }
 }

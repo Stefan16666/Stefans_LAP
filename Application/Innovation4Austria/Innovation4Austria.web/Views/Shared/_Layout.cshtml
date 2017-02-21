@@ -45,6 +45,8 @@
                         <li>
                             <a>@Html.ActionLink("Profil", "ProfilAnzeigen", "Benutzer", null, new { @class = "btn buttonAction" })</a>
                         </li>
+                        @*@if (User.IsInRole())*@
+
                         <li>
                             <a>@Html.ActionLink("Alle Firmen", "FirmenAuflistung", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction" })</a>
                         </li>
