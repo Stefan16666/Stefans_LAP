@@ -12,14 +12,15 @@
             <p class="col-md-2 col-md-offset-1 FontSize">@Html.EditorFor(x => x.Strasse)</p>
             <p class="col-md-2 col-md-offset-1 FontSize">@Html.EditorFor(x => x.Plz)</p>
             <input type="submit" value="Speichern" class="btn btn-default col-md-1 col-md-offset-1" />
-            <p class="col-md-2">@Html.ActionLink("Mitarbeiter", "MitarbeiterBearbeiten", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction mitarbeiterbtn" })</p>
+            <p class="col-md-2">@Html.ActionLink(" alle Mitarbeiter", "MitarbeiterBearbeiten", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction mitarbeiterbtn" })</p>
         </div>
 
         <div class="row">
             <p class="col-md-2"></p>
-            <p class="col-md-offset-1 col-md-2 FontSize">@Html.EditorFor(x => x.Nummer)</p>s
+            <p class="col-md-offset-1 col-md-2 FontSize">@Html.EditorFor(x => x.Nummer)</p>
             <p class="col-md-offset-1 col-md-2 FontSize">@Html.EditorFor(x => x.Ort)</p>
-            <p class="col-md-offset-1"><div>deaktivieren</div>@Html.CheckBoxFor(x => x.aktiv)</p>
+            <p class="col-md-offset-1 col-md-1 FontSize">@Html.LabelFor(x=>x.aktiv)@Html.CheckBoxFor(x => x.aktiv)</p>
+            <p class="col-md-2">@Html.ActionLink(" neuer Mitarbeiter", "MitarbeiterAnlegen", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction mitarbeiterbtn" })</p>
         </div>
     </div>
 }

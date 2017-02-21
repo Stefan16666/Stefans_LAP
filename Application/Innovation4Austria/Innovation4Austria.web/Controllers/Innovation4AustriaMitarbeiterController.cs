@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Verwaltung;
 
 namespace Innovation4Austria.web.Controllers
 {
@@ -24,8 +25,7 @@ namespace Innovation4Austria.web.Controllers
         public ActionResult FirmenAuflistung()
         {
             log.Info("Innovation4AutriaController - FirmenAuflistung - Get");
-
-            // Id-Feld wurde hinzugefügt, unterUmständen, stimmt das Mapping nicht
+               
             List<FirmenModel> FirmenUI = AutoMapper.Mapper.Map<List<FirmenModel>>(FirmenVerwaltung.LadeAlleFirmen());
             if (FirmenUI != null)
             {
@@ -43,12 +43,44 @@ namespace Innovation4Austria.web.Controllers
 
             if (ModelState.IsValid)
             {
-                if(FirmenVerwaltung.FirmaAktualisierung(model.Id, model.Bezeichnung, model.aktiv, model.Nummer, model.Ort, model.Plz, model.Strasse))
+                if (FirmenVerwaltung.FirmaAktualisierung(model.Id, model.Bezeichnung, model.aktiv, model.Nummer, model.Ort, model.Plz, model.Strasse))
                 {
                     return RedirectToAction("FirmenAuflistung");
                 }
             }
             return RedirectToAction("FirmenAuflistung");
+        }
+
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        [HttpGet]
+
+        /// bin mir nicht sicher, ob da die 
+        public ActionResult MitarbeiterBearbeiten(FirmenModel model)
+        {
+
+            /// hier geht es weiter / noch keine View
+            log.Info("Innovatation4AustriaController - MitarbeiterBearbeiten - GET");
+
+            //List<BenutzerAnlegenModel> alleBenutzer = AutoMapper.Mapper.Map<List<Benutzer>>(BenutzerVerwaltung.LoadStuffOfACompany(model.Id));
+            if (alleBenutzer == null)
+            {
+                log.Error("Innovatation4AustriaController - firmenAuflistung - keine Firmen gefunden");
+            }
+            return View(alleBenutzer);
+        }
+
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        [HttpGet]
+        public ActionResult MitarbeiterAnlegen()
+        {
+
+            /// hier geht es weiter / noch keine View
+            log.Info("Innovatation4AustriaController - MitarbeiterAnlegen - GET");
+
+
+            return View();
         }
     }
 }
