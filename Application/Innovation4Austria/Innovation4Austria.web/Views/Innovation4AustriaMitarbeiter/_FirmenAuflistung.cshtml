@@ -21,8 +21,7 @@
             <p class="col-md-offset-1 col-md-2 FontSize">@Html.EditorFor(x => x.Nummer)</p>
             <p class="col-md-offset-1 col-md-2 FontSize">@Html.EditorFor(x => x.Ort)</p>
             <p class="col-md-offset-1 col-md-1 FontSize">@Html.LabelFor(x => x.aktiv)<text>&nbsp</text>@Html.CheckBoxFor(x => x.aktiv)</p>
-            <p class="col-md-2">@Html.ActionLink(" neuer Mitarbeiter", "MitarbeiterAnlegen", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction mitarbeiterbtn" })</p>
-            // https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_modal_lg&stacked=h
+            <p class="col-md-2">@Html.ActionLink("neuer Mitarbeiter", "MitarbeiterAnlegen", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction mitarbeiterbtn" })</p>            
         </div>
     </div>
 }
