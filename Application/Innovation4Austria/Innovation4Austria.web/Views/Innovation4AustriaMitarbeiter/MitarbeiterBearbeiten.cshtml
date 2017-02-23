@@ -1,0 +1,19 @@
+﻿@model List<Innovation4Austria.web.Models.BenutzerModel>
+@{
+    ViewBag.Title = "MitarbeiterBearbeiten";
+}
+
+
+<div class="form-horizontal">
+    <div class="container" id="firmenauflistung">
+
+
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_MitarbeiterBearbeiten", item)
+        }
+
+    </div>
+
+</div>
+

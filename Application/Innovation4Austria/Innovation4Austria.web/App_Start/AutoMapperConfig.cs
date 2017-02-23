@@ -40,6 +40,9 @@ namespace innovation4austria.web
                  .ForMember(dest => dest.Id, opts => opts.Ignore())
                  .ForMember(dest => dest.Rolle, opts => opts.Ignore())
                  ;
+
+                x.CreateMap<Benutzer, BenutzerModel>()
+                ;
             });
 
             Mapper.AssertConfigurationIsValid();

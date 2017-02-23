@@ -276,6 +276,9 @@
     <Content Include="Views\Benutzer\_PasswortVerwaltung.cshtml" />
     <Content Include="Views\Innovation4AustriaMitarbeiter\FirmenAuflistung.cshtml" />
     <Content Include="Views\Innovation4AustriaMitarbeiter\_FirmenAuflistung.cshtml" />
+    <Content Include="Views\Innovation4AustriaMitarbeiter\MitarbeiterBearbeiten.cshtml" />
+    <Content Include="Views\Innovation4AustriaMitarbeiter\_MitarbeiterBearbeiten.cshtml" />
+    <Content Include="Views\Innovation4AustriaMitarbeiter\MitarbeiterAnlegen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,6 +10,8 @@ namespace Innovation4Austria.web.Models
 {
     public class BenutzerModel
     {
+        public int Id { get; set; }
+
 
         public string Emailadresse { get; set; }
 
@@ -19,5 +21,7 @@ namespace Innovation4Austria.web.Models
 
         public string Vorname { get; set; }
 
+
+        public bool Aktiv { get; set; }
     }
 }

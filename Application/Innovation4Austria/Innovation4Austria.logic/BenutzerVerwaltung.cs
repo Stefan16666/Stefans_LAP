@@ -150,7 +150,7 @@ namespace Verwaltung
         /// </summary>
         /// <param name="emailadresse"></param>
         /// <returns></returns>
-        public static List<Benutzer> LoadStuffOfACompany(int fa_id)
+        public static List<Benutzer> LadeMitarbeiterEinerFirma(int fa_id)
         {
             List<Benutzer> AllStuffofCompany = new List<Benutzer>();
             log.Info("BenutzerVerwaltung - LoadStuffOfACompany");
@@ -168,8 +168,7 @@ namespace Verwaltung
                         }
                         else
                         {
-                            log.Info("BenutzerVerwaltung - LoadStuffOfACompany - Loading stuff was successful");
-                            return AllStuffofCompany;
+                            log.Info("BenutzerVerwaltung - LoadStuffOfACompany - Loading stuff was successful");                            
                         }
 
                     }
@@ -180,7 +179,7 @@ namespace Verwaltung
                     log.Info(ex.Message, ex.InnerException);
                 }
             }
-            return null;
+            return AllStuffofCompany;
         }
 
         public static List<Firma> LadeAlleFirmen()
@@ -304,6 +303,46 @@ namespace Verwaltung
             {
                 log.Error("Benutzerverwaltung - AktualisiereBenutzer - Datenbankzugriff hat nicht geklappt");
                 if (ex.InnerException!=null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+            return erfolgreich;
+        }
+
+        public static bool AktualisiereMitarbeiterEinerFirma(int id, string emailadresse, string vorname, string nachname, bool aktiv)
+        {
+            log.Info("BenutzerVerwaltung - AktualisiereMitarbeiterEinerFirma");
+            Benutzer aktBenutzer = new Benutzer();
+            bool erfolgreich = false;
+
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    ///
+                    aktBenutzer = context.AlleBenutzer.Where(x => x.Id == id).FirstOrDefault();
+                    aktBenutzer.Nachname = nachname;
+                    aktBenutzer.Vorname = vorname;
+                    aktBenutzer.Aktiv = aktiv;
+                    aktBenutzer.Emailadresse = emailadresse;
+
+                    int save = context.SaveChanges();
+                    if (save > 0)
+                    {
+                        erfolgreich = true;
+                    }
+                    else
+                    {
+                        log.Warn("BenutzerVerwaltung - AktualisiereBenutzer - speichern hat nicht geklappt");
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Benutzerverwaltung - AktualisiereBenutzer - Datenbankzugriff hat nicht geklappt");
+                if (ex.InnerException != null)
                 {
                     log.Info(ex.InnerException);
                 }

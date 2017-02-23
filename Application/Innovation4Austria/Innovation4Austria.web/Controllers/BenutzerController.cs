@@ -88,7 +88,7 @@ namespace Innovation4Austria.web.Controllers
 
             // holt alle Mitarbeiter einer Firma
             List<BenutzerModel> alleMitarbeitereinerFirma = new List<BenutzerModel>();
-            List<Benutzer> alleBenutzer = BenutzerVerwaltung.LoadStuffOfACompany(model.Fa_id);
+            List<Benutzer> alleBenutzer = BenutzerVerwaltung.LadeMitarbeiterEinerFirma(model.Fa_id);
             if (alleBenutzer == null)
             {
                 log.Warn("No stuff was found");

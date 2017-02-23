@@ -51,23 +51,37 @@ namespace Innovation4Austria.web.Controllers
             return RedirectToAction("FirmenAuflistung");
         }
 
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [Authorize]
         [HttpGet]
-
-        /// bin mir nicht sicher, ob da die 
-        public ActionResult MitarbeiterBearbeiten(FirmenModel model)
+        public ActionResult MitarbeiterBearbeiten(int fa_id)
         {
 
             /// hier geht es weiter / noch keine View
             log.Info("Innovatation4AustriaController - MitarbeiterBearbeiten - GET");
 
-            //List<BenutzerAnlegenModel> alleBenutzer = AutoMapper.Mapper.Map<List<Benutzer>>(BenutzerVerwaltung.LoadStuffOfACompany(model.Id));
+            List<BenutzerModel> alleBenutzer = AutoMapper.Mapper.Map<List<BenutzerModel>>(BenutzerVerwaltung.LadeMitarbeiterEinerFirma(fa_id));
             if (alleBenutzer == null)
             {
                 log.Error("Innovatation4AustriaController - firmenAuflistung - keine Firmen gefunden");
             }
             return View(alleBenutzer);
+        }
+
+        //[ValidateAntiForgeryToken]
+        [Authorize]
+        [HttpPost]
+        public ActionResult MitarbeiterBearbeiten(BenutzerModel model)
+        {           
+            log.Info("Innovatation4AustriaController - MitarbeiterBearbeiten - Post");
+
+            
+            if (BenutzerVerwaltung.AktualisiereMitarbeiterEinerFirma(model.Id, model.Emailadresse,model.Vorname, model.Vorname,model.Aktiv))
+            {
+                log.Error("Innovatation4AustriaController - AktualisiereMitarbeiterEinerFirma - Speichern hat nciht geklappt");
+            }
+            return RedirectToAction("FirmenAuflistung");
+                
         }
 
         [ValidateAntiForgeryToken]

@@ -50,18 +50,22 @@ namespace Innovation4Austria.logic
                 using (var context = new Innovation4AustriaEntities())
                 {
                     aktFirma = context.AlleFirmen.Where(x => x.Id == id).FirstOrDefault();
-                    if ( !aktiv)
+                    if (aktiv)
                     {
                         aktFirma.Bezeichnung = bezeichnung;
                         aktFirma.Nummer = nummer;
                         aktFirma.Ort = ort;
                         aktFirma.Plz = plz;
                         aktFirma.Strasse = strasse;
-                        erfolgreich = true;
+
                     }
                     else
                     {
                         aktFirma.aktiv = aktiv;
+                    }
+                    int result = context.SaveChanges();
+                    if (result > 0)
+                    {
                         erfolgreich = true;
                     }
                 }
@@ -69,7 +73,7 @@ namespace Innovation4Austria.logic
             catch (Exception ex)
             {
                 log.Error("FirmenVerwaltung - FirmaAktualisierung - DbVerbindung fehlgeschlagen");
-                if (ex.InnerException!=null)
+                if (ex.InnerException != null)
                 {
                     log.Info(ex.InnerException);
                 }
@@ -77,6 +81,6 @@ namespace Innovation4Austria.logic
             }
             return erfolgreich;
         }
-        
+
     }
 }
