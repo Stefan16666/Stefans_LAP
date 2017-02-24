@@ -1,6 +1,7 @@
 ﻿using Innovation4austria.authentication;
 using Innovation4Austria.authentication;
 using Innovation4Austria.logic;
+using Innovation4Austria.web.AppCode;
 using Innovation4Austria.web.Models;
 using log4net;
 using System;
@@ -25,7 +26,7 @@ namespace Innovation4Austria.web.Controllers
         public ActionResult FirmenAuflistung()
         {
             log.Info("Innovation4AutriaController - FirmenAuflistung - Get");
-               
+
             List<FirmenModel> FirmenUI = AutoMapper.Mapper.Map<List<FirmenModel>>(FirmenVerwaltung.LadeAlleFirmen());
             if (FirmenUI != null)
             {
@@ -72,29 +73,40 @@ namespace Innovation4Austria.web.Controllers
         [Authorize]
         [HttpPost]
         public ActionResult MitarbeiterBearbeiten(BenutzerModel model)
-        {           
+        {
             log.Info("Innovatation4AustriaController - MitarbeiterBearbeiten - Post");
 
-            
-            if (BenutzerVerwaltung.AktualisiereMitarbeiterEinerFirma(model.Id, model.Emailadresse,model.Vorname, model.Vorname,model.Aktiv))
+
+            if (BenutzerVerwaltung.AktualisiereMitarbeiterEinerFirma(model.Id, model.Emailadresse, model.Vorname, model.Vorname, model.Aktiv))
             {
-                log.Error("Innovatation4AustriaController - AktualisiereMitarbeiterEinerFirma - Speichern hat nciht geklappt");
+                log.Error("Innovatation4AustriaController - AktualisiereMitarbeiterEinerFirma - Speichern hat nicht geklappt");
             }
             return RedirectToAction("FirmenAuflistung");
-                
+
         }
 
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [Authorize]
-        [HttpGet]
-        public ActionResult MitarbeiterAnlegen()
+        [HttpPost]
+        public ActionResult MitarbeiterAnlegen(BenutzerAnlegenModel model)
         {
+            if (ModelState.IsValid)
+            {
+                log.Info("Innovatation4AustriaController - MitarbeiterAnlegen - GET");
 
-            /// hier geht es weiter / noch keine View
-            log.Info("Innovatation4AustriaController - MitarbeiterAnlegen - GET");
-
-
-            return View();
+                if (model!= null)
+                {
+                    if (BenutzerVerwaltung.LegeMitarbeiterAn(model.Fa_id,model.Emailadresse, model.Vorname, model.Nachname, model.NeuesPasswort, Innovation4Austria.web.AppCode.Validation.FIRMENANSPRECHPARTNER))
+                    {
+                        TempData[ConstStrings.SUCCESS_MESSAGE] = Validierungen.SpeichernErfolgreich;
+                    }
+                    else
+                    {
+                        TempData[ConstStrings.ERROR_MESSAGE] = Validierungen.SpeichernFehlgeschlagen;
+                    }
+                }
+            }
+            return RedirectToAction("FirmenAuflistung");
         }
     }
 }

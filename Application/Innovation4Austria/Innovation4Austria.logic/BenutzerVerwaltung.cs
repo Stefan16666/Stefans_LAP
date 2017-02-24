@@ -349,6 +349,52 @@ namespace Verwaltung
             }
             return erfolgreich;
         }
+
+        public static bool LegeMitarbeiterAn(int fa_id, string emailadresse, string vorname, string nachname, string password, string rolle)
+        {
+            log.Info("BenutzerVerwaltung - LegeMitarbeiterAn");
+            Benutzer aktBenutzer = new Benutzer();
+            bool erfolgreich = false;
+           
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    
+
+                    aktBenutzer.Firma_id = fa_id;
+                    aktBenutzer.Firma = context.AlleFirmen.Where(x => x.Id == fa_id).FirstOrDefault();
+                    aktBenutzer.Nachname = nachname;
+                    aktBenutzer.Vorname = vorname;
+                    aktBenutzer.Passwort = Tools.GenerierePasswort(password);
+                    aktBenutzer.Emailadresse = emailadresse;
+                    aktBenutzer.Rolle = context.AlleRollen.Where(x => x.Bezeichnung == rolle).FirstOrDefault();
+                    aktBenutzer.Aktiv = true;
+                    context.AlleBenutzer.Add(aktBenutzer);
+                   
+
+                    int save = context.SaveChanges();
+                    if (save > 0)
+                    {
+                        erfolgreich = true;
+                    }
+                    else
+                    {
+                        log.Warn("BenutzerVerwaltung - LegeMitarbeiterAn - speichern hat nicht geklappt");
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Benutzerverwaltung - LegeMitarbeiterAn - Datenbankzugriff hat nicht geklappt");
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+            return erfolgreich;
+        }
     }
 }
 

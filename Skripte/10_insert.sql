@@ -14,6 +14,9 @@ GO
 INSERT INTO Art(bezeichnung) VALUES('Besprechung');
 INSERT INTO Art(bezeichnung) VALUES('Office');
 INSERT INTO Art(bezeichnung) VALUES('Seminar');
+INSERT INTO Art(bezeichnung) VALUES('Internet');
+INSERT INTO Art(bezeichnung) VALUES('Kaffee');
+INSERT INTO Art(bezeichnung) VALUES('Drucker');
 GO
 
 INSERT INTO Ausstattung(bezeichnung) VALUES('Computer');

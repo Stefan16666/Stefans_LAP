@@ -21,7 +21,7 @@ namespace Innovation4Austria.web.Models
 
         public bool aktiv { get; set; }
 
-        public BenutzerModel NeuerBenutzer { get; set; }
+        public BenutzerAnlegenModel NeuerBenutzer { get; set; }
 
     }
 }

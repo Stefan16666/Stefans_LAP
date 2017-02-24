@@ -10,17 +10,15 @@ namespace Innovation4Austria.web.Models
 {
     public class BenutzerModel
     {
-        public int Id { get; set; }
+        public int Fa_id { get; set; }
 
+        public int Id { get; set; }
 
         public string Emailadresse { get; set; }
 
-
         public string  Nachname { get; set; }
 
-
         public string Vorname { get; set; }
-
 
         public bool Aktiv { get; set; }
     }

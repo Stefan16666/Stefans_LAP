@@ -133,6 +133,15 @@ namespace Innovation4Austria.web {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Speichern fehlgeschlagen! ähnelt.
+        /// </summary>
+        internal static string SpeichernFehlgeschlagen {
+            get {
+                return ResourceManager.GetString("SpeichernFehlgeschlagen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Minimum 8 Zeichen und max. 16 Zeichen ähnelt.
         /// </summary>
         internal static string StringLength {

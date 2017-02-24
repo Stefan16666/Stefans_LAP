@@ -17,7 +17,7 @@ namespace Innovation4Austria.web.AppCode
         public const string PASSWORT_NORM = "StringLength";
 
         public const string INNOVATION4AUSTRIAMITARBEITER = "MitarbeiterIVA";
-
+        public const string FIRMENANSPRECHPARTNER = "Firmenansprechpartner";
 
     }
 }

@@ -141,6 +141,9 @@
   <data name="SpeichernErfolgreich" xml:space="preserve">
     <value>Willkommen bei Innovation 4 Autria</value>
   </data>
+  <data name="SpeichernFehlgeschlagen" xml:space="preserve">
+    <value>Speichern fehlgeschlagen!</value>
+  </data>
   <data name="StringLength" xml:space="preserve">
     <value>Minimum 8 Zeichen und max. 16 Zeichen</value>
   </data>
