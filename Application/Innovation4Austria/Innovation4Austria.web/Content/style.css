@@ -546,3 +546,15 @@ a.nivo-nextNav {
 .Auflistungrand{   
     padding-top:2em!important;
 }
+
+.ModalFontColor {
+    color: black !important;
+}
+
+#tranparentBackGround{
+    background-color:transparent!important;               
+            background-repeat:no-repeat;
+            border: none;
+            cursor:pointer;
+            overflow: hidden;
+}

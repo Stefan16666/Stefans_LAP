@@ -11,9 +11,9 @@
             <p class="col-md-2 FontSize">@Html.EditorFor(x => x.Bezeichnung)</p>
             <p class="col-md-2 col-md-offset-1 FontSize">@Html.EditorFor(x => x.Strasse)</p>
             <p class="col-md-2 col-md-offset-1 FontSize">@Html.EditorFor(x => x.Plz)</p>
-            <input type="submit" value="Speichern" class="btn btn-default col-md-1 col-md-offset-1" />              
-            <p class="col-md-2">@Html.ActionLink("alle Mitarbeiter", "MitarbeiterBearbeiten", "Innovation4AustriaMitarbeiter", new { fa_id = Model.Id }  , new { @class = "btn buttonAction mitarbeiterbtn" })</p>
-            
+            <input type="submit" value="Speichern" class="btn btn-default col-md-1 col-md-offset-1" />
+            <p class="col-md-2">@Html.ActionLink("alle Mitarbeiter", "MitarbeiterBearbeiten", "Innovation4AustriaMitarbeiter", new { fa_id = Model.Id }, new { @class = "btn buttonAction mitarbeiterbtn" })</p>
+
         </div>
 
         <div class="row">
@@ -21,7 +21,40 @@
             <p class="col-md-offset-1 col-md-2 FontSize">@Html.EditorFor(x => x.Nummer)</p>
             <p class="col-md-offset-1 col-md-2 FontSize">@Html.EditorFor(x => x.Ort)</p>
             <p class="col-md-offset-1 col-md-1 FontSize">@Html.LabelFor(x => x.aktiv)<text>&nbsp</text>@Html.CheckBoxFor(x => x.aktiv)</p>
-            <p class="col-md-2">@Html.ActionLink("neuer Mitarbeiter", "MitarbeiterAnlegen", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction mitarbeiterbtn" })</p>            
+            <button type="button" class="btn btn-info btn-lg mitarbeiterbtn" id="tranparentBackGround" data-toggle="modal" data-target="#myModal">Neuer Mitarbeiter</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        @using (Html.BeginForm("FirmenAuflistung", "Innovation4AustriaMitarbeiter", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title FontSize ModalFontColor">Neuer Mitarbeiter</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p class="FontSize ModalFontColor">@Html.LabelFor(x => x.NeuerBenutzer.Emailadresse)</p>
+                                <p class="FontSize">@Html.TextBoxFor(x => x.NeuerBenutzer.Emailadresse)</p>
+                                <p class="FontSize ModalFontColor">@Html.LabelFor(x => x.NeuerBenutzer.Vorname)</p>
+                                <p class="FontSize">@Html.TextBoxFor(x => x.NeuerBenutzer.Vorname)</p>
+                                <p class="FontSize ModalFontColor">@Html.LabelFor(x => x.NeuerBenutzer.Nachname)</p>
+                                <p class="FontSize">@Html.TextBoxFor(x => x.NeuerBenutzer.Nachname)</p>
+                                <input style="text-align:center" type="submit" value="Speichern" class="btn btn-default  mitarbeiterbtn" />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+
         </div>
+
     </div>
 }

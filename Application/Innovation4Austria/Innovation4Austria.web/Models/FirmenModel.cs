@@ -20,6 +20,8 @@ namespace Innovation4Austria.web.Models
         public string Ort { get; set; }
 
         public bool aktiv { get; set; }
-    
+
+        public BenutzerModel NeuerBenutzer { get; set; }
+
     }
 }
