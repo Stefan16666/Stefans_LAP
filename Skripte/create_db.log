@@ -1,6 +1,6 @@
 ECHO ist ausgeschaltet (OFF).
 . 
-"starting database creation  8:53:25,93" 
+"starting database creation  9:57:42,07" 
 . 
 "try dropping database" 
 1> 2> 1> 2> 3> 4> Fr nicht gekennzeichnete Transaktionen wird ein Rollback ausgefhrt. Bereits
@@ -43,11 +43,12 @@ abgeschlossen (gesch„tzt): 100%.
 1> 2> 3> 4> 5> 6> (1 Zeile betroffen)
 (1 Zeile betroffen)
 (1 Zeile betroffen)
-1> 2> 3> 4> 5> 6> 7> Meldung '4861', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 2
-Das Massenladen ist nicht m”glich, da die Datei
-'C:\Users\groistef\Source\Repos\Stefans_LAP\Application\Innovation4Austria\Inn
-ovation4Austria.web\img\computer-ok-icon.png' nicht ge”ffnet werden konnte.
-Betriebssystemfehlercode 5(Zugriff verweigert).
+1> 2> 3> 4> 5> 6> 7> (1 Zeile betroffen)
+1> 2> 3> 4> 5> 6> 7> (1 Zeile betroffen)
+1> 2> 3> 4> 5> 6> 7> (1 Zeile betroffen)
+1> 2> 3> 4> 5> 6> 7> (1 Zeile betroffen)
+1> 2> 3> 4> 5> 6> 7> (1 Zeile betroffen)
+1> 2> 3> 4> 5> 6> 7> (1 Zeile betroffen)
 1> 2> 3> 4> (1 Zeile betroffen)
 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> (1 Zeile betroffen)
 (1 Zeile betroffen)
@@ -58,81 +59,21 @@ Betriebssystemfehlercode 5(Zugriff verweigert).
 (1 Zeile betroffen)
 (1 Zeile betroffen)
 (1 Zeile betroffen)
-1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 2
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Raum_Ausstattung_Ausstattung'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Ausstattung', column 'id' auf.
-Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 3
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Raum_Ausstattung_Ausstattung'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Ausstattung', column 'id' auf.
-Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 4
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Raum_Ausstattung_Ausstattung'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Ausstattung', column 'id' auf.
-Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 5
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Raum_Ausstattung_Ausstattung'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Ausstattung', column 'id' auf.
-Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 6
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Raum_Ausstattung_Ausstattung'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Ausstattung', column 'id' auf.
-Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 7
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Raum_Ausstattung_Ausstattung'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Ausstattung', column 'id' auf.
-Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 8
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Raum_Ausstattung_Ausstattung'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Ausstattung', column 'id' auf.
-Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 9
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Raum_Ausstattung_Ausstattung'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Ausstattung', column 'id' auf.
-Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 10
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Raum_Ausstattung_Ausstattung'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Ausstattung', column 'id' auf.
-Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 11
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Raum_Ausstattung_Ausstattung'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Ausstattung', column 'id' auf.
-Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 12
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Raum_Ausstattung_Ausstattung'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Ausstattung', column 'id' auf.
-Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 13
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Raum_Ausstattung_Ausstattung'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Ausstattung', column 'id' auf.
-Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 14
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Raum_Ausstattung_Ausstattung'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Ausstattung', column 'id' auf.
-Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 15
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Raum_Ausstattung_Ausstattung'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Ausstattung', column 'id' auf.
-Die Anweisung wurde beendet.
-Meldung '547', Ebene '16', Status '1', Server 'PC901B0E043B02', Zeile 16
-Die INSERT-Anweisung steht in Konflikt mit der FOREIGN KEY-Einschr„nkung
-'FK_Raum_Ausstattung_Ausstattung'. Der Konflikt trat in der
-Innovation4Austria-Datenbank, Tabelle 'dbo.Ausstattung', column 'id' auf.
-Die Anweisung wurde beendet.
+1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> 14> 15> 16> 17> (1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
+(1 Zeile betroffen)
 1> 2> 3> 4> 5> 6> 7> 8> 9> 10> 11> 12> 13> (1 Zeile betroffen)
 (1 Zeile betroffen)
 (1 Zeile betroffen)
@@ -170,5 +111,5 @@ Die Anweisung wurde beendet.
 1> 2> 3>  
  
 . 
-"stopping database creation  8:53:30,57" 
+"stopping database creation  9:57:46,70" 
 . 

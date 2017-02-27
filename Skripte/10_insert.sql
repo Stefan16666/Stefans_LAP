@@ -20,7 +20,42 @@ GO
 INSERT INTO Ausstattung(bezeichnung, bilddaten) VALUES('Computer', 
 														(SELECT BulkColumn
 														 FROM Openrowset( 
-														 Bulk 'C:\Pic\computer-ok-icon.png', Single_Blob) AS import)
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\computer-ok-icon.png', Single_Blob) AS import)
+														 )
+GO
+
+INSERT INTO Ausstattung(bezeichnung, bilddaten) VALUES('Buffet', 
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\Meal-50.png', Single_Blob) AS import)
+														 )
+GO
+
+INSERT INTO Ausstattung(bezeichnung, bilddaten) VALUES('Flipchart', 
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\Flipboard Filled-50.png', Single_Blob) AS import)
+														 )
+GO
+
+INSERT INTO Ausstattung(bezeichnung, bilddaten) VALUES('Internet', 
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\wifi-icon.png', Single_Blob) AS import)
+														 )
+GO
+
+INSERT INTO Ausstattung(bezeichnung, bilddaten) VALUES('Kaffee', 
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\Cafe-50.png', Single_Blob) AS import)
+														 )
+GO
+
+INSERT INTO Ausstattung(bezeichnung, bilddaten) VALUES('Drucker', 
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\print-icon.png', Single_Blob) AS import)
 														 )
 GO
 

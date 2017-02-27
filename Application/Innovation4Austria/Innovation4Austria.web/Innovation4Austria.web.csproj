@@ -278,7 +278,6 @@
     <Content Include="Views\Innovation4AustriaMitarbeiter\_FirmenAuflistung.cshtml" />
     <Content Include="Views\Innovation4AustriaMitarbeiter\MitarbeiterBearbeiten.cshtml" />
     <Content Include="Views\Innovation4AustriaMitarbeiter\_MitarbeiterBearbeiten.cshtml" />
-    <Content Include="Views\Innovation4AustriaMitarbeiter\MitarbeiterAnlegen.cshtml" />
     <Content Include="Views\Innovation4AustriaMitarbeiter\_MitarbeiterAnlegen.cshtml" />
   </ItemGroup>
   <ItemGroup>

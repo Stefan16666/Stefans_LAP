@@ -359,8 +359,7 @@ namespace Verwaltung
             try
             {
                 using (var context = new Innovation4AustriaEntities())
-                {
-                    
+                {                   
 
                     aktBenutzer.Firma_id = fa_id;
                     aktBenutzer.Firma = context.AlleFirmen.Where(x => x.Id == fa_id).FirstOrDefault();
