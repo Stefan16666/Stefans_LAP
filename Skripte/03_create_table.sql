@@ -4,6 +4,7 @@ GO
 CREATE TABLE Ausstattung(
 	id INT IDENTITY NOT NULL,
 	bezeichnung NVARCHAR(50) NOT NULL,
+	bilddaten VARBINARY(MAX) NOT NULL,
 	aktiv bit default 1 NOT NULL
 );
 
@@ -34,6 +35,7 @@ CREATE TABLE Bild (
 	bilddaten VARBINARY(MAX) NOT NULL,
 	raum_id INT
 );
+
 
 CREATE TABLE Buchung (
 	id INT IDENTITY NOT NULL,	

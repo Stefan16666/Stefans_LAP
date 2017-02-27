@@ -14,14 +14,14 @@ GO
 INSERT INTO Art(bezeichnung) VALUES('Besprechung');
 INSERT INTO Art(bezeichnung) VALUES('Office');
 INSERT INTO Art(bezeichnung) VALUES('Seminar');
-INSERT INTO Art(bezeichnung) VALUES('Internet');
-INSERT INTO Art(bezeichnung) VALUES('Kaffee');
-INSERT INTO Art(bezeichnung) VALUES('Drucker');
+
 GO
 
-INSERT INTO Ausstattung(bezeichnung) VALUES('Computer');
-INSERT INTO Ausstattung(bezeichnung) VALUES('Buffet');
-INSERT INTO Ausstattung(bezeichnung) VALUES('Flipchart');
+INSERT INTO Ausstattung(bezeichnung, bilddaten) VALUES('Computer', 
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Pic\computer-ok-icon.png', Single_Blob) AS import)
+														 )
 GO
 
 INSERT INTO Bauwerk(bezeichnung, strasse, nummer, plz, ort)
