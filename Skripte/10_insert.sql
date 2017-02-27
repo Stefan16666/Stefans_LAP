@@ -27,7 +27,7 @@ GO
 INSERT INTO Ausstattung(bezeichnung, bilddaten) VALUES('Buffet', 
 														(SELECT BulkColumn
 														 FROM Openrowset( 
-														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\Meal-50.png', Single_Blob) AS import)
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\buffet.png', Single_Blob) AS import)
 														 )
 GO
 
