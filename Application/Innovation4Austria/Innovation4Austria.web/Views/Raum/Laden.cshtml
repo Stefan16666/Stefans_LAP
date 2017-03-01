@@ -20,7 +20,7 @@
             </div>
             <div class="col-md-12 form-group">
                 @Html.LabelFor(model => model.EndDatum)
-                <div class='input-group date' id='datetimepicker1'>
+                <div class='input-group date' id='datetimepicker2'>
                     <input type='text' class="form-control" name="Enddatum" value="@Model.EndDatum.ToShortDateString()" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -28,21 +28,32 @@
                 </div>
             </div>
         </div>
-            <div class="col-md-3">
-                <div>@Html.DropDownListFor(x => x.Art, new SelectList(Model.Art, "Id", "Bezeichnung"))</div>
-            </div>
-            <div class="col-md-3">
-                @foreach (var item in Model.Ausstattung)
+        <div class="col-md-3">
+            <div>@Html.DropDownListFor(x => x.Art, new SelectList(Model.Art, "Id", "Bezeichnung"))</div>
+        </div>
+        <div class="col-md-3">
+            @foreach (var item in Model.Ausstattung)
                 {
 
                 }
-            </div>
+
         </div>
-    
-   
+    </div>
+
+
     @*<div class="row" id="aktualisiereReise">
             <div class="col-md-12">
                 @Html.Partial("_RaumAnzeigen", Model.AlleRaeume)
             </div>
         </div>*@
+}
+
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').dateRangePicker();
+            $('#datetimepicker2').dateRangePicker();
+        });
+    </script>
 }

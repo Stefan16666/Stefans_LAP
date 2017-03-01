@@ -21,6 +21,7 @@ namespace Innovation4Austria.web
             bundles.Add(new ScriptBundle("~/bundles/jquery.daterangepicker").Include(
                 "~/Scripts/jquery.daterangepicker/date-en-US.js",
                 "~/Scripts/jquery.daterangepicker/date.js",
+                "~/Scripts/daterangepicker.js",
                 "~/Scripts/jquery.daterangepicker/daterangepicker.jQuery.js",
                 "~/Scripts/jquery.daterangepicker/time.js"));
 

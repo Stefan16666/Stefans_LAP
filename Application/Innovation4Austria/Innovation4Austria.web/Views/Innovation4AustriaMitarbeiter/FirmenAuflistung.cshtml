@@ -7,12 +7,16 @@
 <div class="form-horizontal">
     <div class="container" id="firmenauflistung">
 
-       
         @foreach (var item in Model)
         {
            @Html.Partial("_FirmenAuflistung", item)
-        }    
+        }  
 
     </div>
 
 </div>
+
+<div class="FontSize color">
+    @Html.ActionLink("Neue Firma", "FirmaAnlegen", "Benutzer")
+</div>
+

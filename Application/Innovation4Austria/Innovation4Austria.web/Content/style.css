@@ -402,7 +402,9 @@ ul#menu {
 #profilAnsicht{
     padding-top:8em;
 }
-
+#firmaAnlegenAnsicht{
+    padding-top:8em;
+}
 #slider {
     background: url("../images/loading.gif") no-repeat scroll 50% 50% transparent;
     height: 400px;
@@ -557,4 +559,7 @@ a.nivo-nextNav {
             border: none;
             cursor:pointer;
             overflow: hidden;
+}
+.color{
+    color:aquamarine!important;
 }

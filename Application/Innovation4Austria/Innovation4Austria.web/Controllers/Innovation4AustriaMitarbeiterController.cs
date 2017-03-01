@@ -57,8 +57,7 @@ namespace Innovation4Austria.web.Controllers
         [HttpGet]
         public ActionResult MitarbeiterBearbeiten(int fa_id)
         {
-
-            /// hier geht es weiter / noch keine View
+                        
             log.Info("Innovatation4AustriaController - MitarbeiterBearbeiten - GET");
 
             List<BenutzerModel> alleBenutzer = AutoMapper.Mapper.Map<List<BenutzerModel>>(BenutzerVerwaltung.LadeMitarbeiterEinerFirma(fa_id));
@@ -107,6 +106,12 @@ namespace Innovation4Austria.web.Controllers
                 }
             }
             return RedirectToAction("FirmenAuflistung");
+        }
+
+        [HttpGet]
+        public ActionResult FirmaAnlegen()
+        {
+            return View();
         }
     }
 }
