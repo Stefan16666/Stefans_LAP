@@ -9,7 +9,7 @@ namespace Innovation4Austria.web.Models
     {
         public List<BenutzerModel> AlleMitarbeiter { get; set; }
 
-        public List<BuchungenModel> AlleBuchungen { get; set; }
+        public List<BuchungsAnzeigeModel> AlleBuchungen { get; set; }
 
         public List<RechnungsModel> AlleRechnungen { get; set; }
     }

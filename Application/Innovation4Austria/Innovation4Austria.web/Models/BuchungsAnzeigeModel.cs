@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Innovation4Austria.web.Models
 {
-    public class BuchungenModel
+    public class BuchungsAnzeigeModel
     {
         public string Raumnummer { get; set; }
 

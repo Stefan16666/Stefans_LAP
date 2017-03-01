@@ -108,8 +108,8 @@ namespace Innovation4Austria.web.Controllers
 
             // mapping for bookings
 
-            BuchungenModel buchungsmodel = new BuchungenModel();
-            List<BuchungenModel> alleBuchungen = new List<BuchungenModel>();
+            BuchungsAnzeigeModel buchungsmodel = new BuchungsAnzeigeModel();
+            List<BuchungsAnzeigeModel> alleBuchungen = new List<BuchungsAnzeigeModel>();
             List<Rechnungsdetails> rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();
             List<Buchungsdetails> BuchungsDetailsVonFirma = new List<Buchungsdetails>();
 
