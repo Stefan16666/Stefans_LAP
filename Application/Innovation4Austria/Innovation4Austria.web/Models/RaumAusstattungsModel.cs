@@ -10,8 +10,8 @@ namespace Innovation4Austria.web.Models
 
         public int Id { get; set; }
 
-        public string Bezeichnung { get; set; }  
+        public string Bezeichnung { get; set; }
 
-  
+        public bool Auswahl { get; set; }
     }
 }

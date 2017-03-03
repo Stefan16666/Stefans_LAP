@@ -12,6 +12,7 @@
     <EntitySetMapping Name="AlleAusstattungen">
       <EntityTypeMapping TypeName="Innovation4AustriaModel.Ausstattung">
         <MappingFragment StoreEntitySet="Ausstattung">
+          <ScalarProperty Name="bilddaten" ColumnName="bilddaten" />
           <ScalarProperty Name="aktiv" ColumnName="aktiv" />
           <ScalarProperty Name="Id" ColumnName="id" />
           <ScalarProperty Name="Bezeichnung" ColumnName="bezeichnung" />

@@ -13,6 +13,7 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="bilddaten" Type="varbinary(max)" Nullable="false" />
     <Property Name="aktiv" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Bauwerk">

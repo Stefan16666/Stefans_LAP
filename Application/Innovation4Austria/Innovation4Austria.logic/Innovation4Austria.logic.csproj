@@ -73,6 +73,7 @@
     <Compile Include="Bild.cs">
       <DependentUpon>Innovation4AustiraModell.tt</DependentUpon>
     </Compile>
+    <Compile Include="BildVerwaltung.cs" />
     <Compile Include="Buchung.cs">
       <DependentUpon>Innovation4AustiraModell.tt</DependentUpon>
     </Compile>

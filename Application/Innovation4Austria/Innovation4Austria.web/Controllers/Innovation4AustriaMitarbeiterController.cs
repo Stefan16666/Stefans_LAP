@@ -46,7 +46,11 @@ namespace Innovation4Austria.web.Controllers
             {
                 if (FirmenVerwaltung.FirmaAktualisierung(model.Id, model.Bezeichnung, model.aktiv, model.Nummer, model.Ort, model.Plz, model.Strasse))
                 {
-                    return RedirectToAction("FirmenAuflistung");
+                    log.Info("Innovation4AustriaMitarbeiter - FirmenAuflistung - Post - Firma aktualisiert");
+                }
+                else
+                {
+                    log.Warn("Innovation4AustriaMitarbeiter - FirmenAuflistung - Post - Firma aktualisiert");
                 }
             }
             return RedirectToAction("FirmenAuflistung");

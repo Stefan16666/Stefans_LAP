@@ -85,6 +85,7 @@
     <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="AlleRaum_Ausstattungen" Relationship="Innovation4AustriaModel.FK_Raum_Ausstattung_Ausstattung" FromRole="Ausstattung" ToRole="Raum_Ausstattung" />
     <Property Name="aktiv" Type="Boolean" Nullable="false" />
+    <Property Name="bilddaten" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="Bauwerk">
     <Key>
@@ -153,8 +154,8 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Strasse" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Nummer" Type="String" Nullable="false" />
-    <Property Name="Plz" Type="String" Nullable="false" />
+    <Property Name="Nummer" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="Plz" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
     <Property Name="Ort" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="AlleBenutzer" Relationship="Innovation4AustriaModel.FK_Benutzer_Firma" FromRole="Firma" ToRole="Benutzer" />

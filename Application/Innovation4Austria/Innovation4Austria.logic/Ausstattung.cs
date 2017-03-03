@@ -32,6 +32,8 @@ public partial class Ausstattung
 
     public bool aktiv { get; set; }
 
+    public byte[] bilddaten { get; set; }
+
 
 
     public virtual ICollection<Raum_Ausstattung> AlleRaum_Ausstattungen { get; set; }

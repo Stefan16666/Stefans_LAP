@@ -18,6 +18,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="bilddaten" Type="varbinary(max)" Nullable="false" />
           <Property Name="aktiv" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Bauwerk">
@@ -497,6 +498,7 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
           <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="AlleRaum_Ausstattungen" Relationship="Innovation4AustriaModel.FK_Raum_Ausstattung_Ausstattung" FromRole="Ausstattung" ToRole="Raum_Ausstattung" />
           <Property Name="aktiv" Type="Boolean" Nullable="false" />
+          <Property Name="bilddaten" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Bauwerk">
           <Key>
@@ -565,8 +567,8 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Strasse" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Nummer" Type="String" Nullable="false" />
-          <Property Name="Plz" Type="String" Nullable="false" />
+          <Property Name="Nummer" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="Plz" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
           <Property Name="Ort" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="AlleBenutzer" Relationship="Innovation4AustriaModel.FK_Benutzer_Firma" FromRole="Firma" ToRole="Benutzer" />
@@ -842,6 +844,7 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
           <EntitySetMapping Name="AlleAusstattungen">
             <EntityTypeMapping TypeName="Innovation4AustriaModel.Ausstattung">
               <MappingFragment StoreEntitySet="Ausstattung">
+                <ScalarProperty Name="bilddaten" ColumnName="bilddaten" />
                 <ScalarProperty Name="aktiv" ColumnName="aktiv" />
                 <ScalarProperty Name="Id" ColumnName="id" />
                 <ScalarProperty Name="Bezeichnung" ColumnName="bezeichnung" />
