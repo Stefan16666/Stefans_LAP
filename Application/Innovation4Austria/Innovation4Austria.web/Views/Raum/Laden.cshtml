@@ -24,7 +24,7 @@
                         @foreach (var item in Model.Ausstattung)
                         {
                             <td>
-                                <label class="btn btn-primary">
+                                <label class="btn">
                                     <img src="~/Bild/IconZuAusstattung/@item.Id" alt="..." class="img-thumbnail img-check" data-toggle="tooltip" title="@item.Bezeichnung"  onclick="auswahl(@item.Id)" style="width:2em">
                                     @*@Html.CheckBoxFor(x=>item.Auswahl)*@
 
