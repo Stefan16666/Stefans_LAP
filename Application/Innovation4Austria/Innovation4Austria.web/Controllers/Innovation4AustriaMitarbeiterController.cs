@@ -118,7 +118,7 @@ namespace Innovation4Austria.web.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult RaumAuflistung(FilterModel model)
         {
             return View();
