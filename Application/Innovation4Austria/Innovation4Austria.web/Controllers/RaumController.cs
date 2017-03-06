@@ -34,10 +34,10 @@ namespace Innovation4Austria.web.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult Suchen(raum)
-        //{
-        //    return View();
-        //}
+        [HttpPost]
+        public ActionResult RaumAuflistung(FilterModel model)
+        {
+            return View();
+        }
     }
 }

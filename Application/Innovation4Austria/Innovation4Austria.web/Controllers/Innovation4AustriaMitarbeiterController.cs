@@ -118,10 +118,6 @@ namespace Innovation4Austria.web.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult RaumAuflistung(FilterModel model)
-        {
-            return View();
-        }
+
     }
 }
