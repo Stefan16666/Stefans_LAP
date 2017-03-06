@@ -2,37 +2,41 @@
 @{
     ViewBag.Title = "Laden";
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm("RaumAuflistung", "Innovation4AustriaMitarbeiter"))
 {
     <div class="container" style="margin-top:10em;">
-        <div class="row col-md-12 FontSize" onclick="aktualisiereReise">
+        <div class="row col-md-12 FontSize" onclick="aktualisiereReise" id="buchung_rand">
 
-            <div class="col-md-3">
-                <h4 class="color">Buchungszeitraum</h4>
-                <input type="text" id="config-demo" class="form-control">
+            <div class="col-md-4">
+                <h4 class="color margin_buchung">Buchungszeitraum</h4>
+                <input type="text" id="config-demo" class="form-control buchungsZeitraum">
                 @*<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>*@
             </div>
             <div class="col-md-2">
-                <h4 class="color">Raumart</h4>
-                <div style="font-size:1em">@Html.DropDownListFor(x => x.Art, new SelectList(Model.Art, "Id", "Bezeichnung"))</div>
+                <h4 class="color margin_buchung">Raumart</h4>
+                <div>@Html.DropDownListFor(x => x.Art, new SelectList(Model.Art, "Id", "Bezeichnung"), new { @class = "raumArt" })</div>
             </div>
-   
-                <h4 class="color">Ausstattung</h4>
-                <table class="col-md-7">
+            <div class="col-md-6" id="ausstattung">
+                <h4 class="color margin_buchung">Ausstattung</h4>
+                <table>
+
                     <tr>
                         @foreach (var item in Model.Ausstattung)
-                        {                          
-                            <td><label class="btn btn-primary"><img src="~/Bild/IconZuAusstattung/@item.Id" alt="..." class="img-thumbnail img-check" onclick="auswahl(@item.Id)">
-                                @*@Html.CheckBoxFor(x=>item.Auswahl)*@
-                                
-                                <input type="checkbox" name="Ausstattung_@item.Id" id="item4" value="val1" autocomplete="off" /></label></td>
-                        }
-                    </tr>                     
-              
-                </table>
+                        {
+                            <td>
+                                <label class="btn btn-primary">
+                                    <img src="~/Bild/IconZuAusstattung/@item.Id" alt="..." class="img-thumbnail img-check" data-toggle="tooltip" title="@item.Bezeichnung"  onclick="auswahl(@item.Id)" style="width:2em">
+                                    @*@Html.CheckBoxFor(x=>item.Auswahl)*@
 
-       
-        </div> 
+                                    <input type="checkbox" name="Ausstattung_@item.Id" id="item4" value="val1" autocomplete="off" />
+                                </label>
+                            </td>
+                        }
+                    </tr>
+
+                </table>
+            </div>
+        </div>
 
 
         @*<div class="row" id="aktualisiereReise">
@@ -42,25 +46,23 @@
             </div>*@
     </div>
 }
-     
 
-        @section scripts
+
+@section scripts
 {
-            <script type="text/javascript">
-
-                function auswahl(id)
-                {
-                    alert(id);
-                }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
 
 
-                $(document).ready(function () {
-                    $('#config-demo').daterangepicker({
-                        "startDate": "02/25/2017",
-                        "endDate": "03/03/2017"
-                    }, function (start, end, label) {
-                        console.log("New date range selected: ' +  start.format('DD.MM.YYYY') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
-                    });
-                });
-            </script>
-        }
+        $(document).ready(function () {
+            $('#config-demo').daterangepicker({
+                "startDate": "02/25/2017",
+                "endDate": "03/03/2017"
+            }, function (start, end, label) {
+                console.log("New date range selected: ' +  start.format('DD.MM.YYYY') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+            });
+        });
+    </script>
+}
