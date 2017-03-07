@@ -63,15 +63,51 @@ INSERT INTO Bauwerk(bezeichnung, strasse, nummer, plz, ort)
 VALUES('Milleniumtower', 'Handelskai', 120, 1210, 'Wien');
 GO
 
-INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis) VALUES ('0125', 'Heller Raum mit Blick auf Donau', 1,1,34,12);
-INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis) VALUES ('0203', 'Ruhiger Raum mit allen Anschlüssen', 1,1,34,12);
-INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis) VALUES ('0713', 'Penthhouseraum mit allen Annehmlichkeiten', 1,1,34,25);
-INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis) VALUES ('0115', 'Heller Raum mit Blick auf Donau', 1,1,34,12);
-INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis) VALUES ('0233', 'Ruhiger Raum hoch gelegen', 1,1,34,12);
-INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis) VALUES ('0644', 'Raum mit grossen Tischen', 1,1,34,12);
-INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis) VALUES ('0715', 'ideale Ausstattung', 1,1,34,12);
-INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis) VALUES ('0514', 'Raum mit Drucker', 1,1,34,12);
-INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis) VALUES ('0515', 'Raum mit Fax', 1,1,34,12);
+INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, bilddaten) VALUES ('0125', 'Heller Raum mit Blick auf Donau', 1,1,34,12,
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\moebel_buero.jpg', Single_Blob) AS import)
+														 );
+INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, bilddaten) VALUES ('0203', 'Ruhiger Raum mit allen Anschlüssen', 1,1,34,12,
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\moebel_buero.jpg', Single_Blob) AS import)
+														 );
+INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, bilddaten) VALUES ('0713', 'Penthhouseraum mit allen Annehmlichkeiten', 1,1,34,25,
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\moebel_buero.jpg', Single_Blob) AS import)
+														 );
+INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, bilddaten) VALUES ('0115', 'Heller Raum mit Blick auf Donau', 1,1,34,12,
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\moebel_buero.jpg', Single_Blob) AS import)
+														 );
+INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, bilddaten) VALUES ('0233', 'Ruhiger Raum hoch gelegen', 1,1,34,12,
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\moebel_buero.jpg', Single_Blob) AS import)
+														 );
+INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, bilddaten) VALUES ('0644', 'Raum mit grossen Tischen', 1,1,34,12,
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\moebel_buero.jpg', Single_Blob) AS import)
+														 );
+INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, bilddaten) VALUES ('0715', 'ideale Ausstattung', 1,1,34,12,
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\moebel_buero.jpg', Single_Blob) AS import)
+														 );
+INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, bilddaten) VALUES ('0514', 'Raum mit Drucker', 1,1,34,12,
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\moebel_buero.jpg', Single_Blob) AS import)
+														 );
+INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, bilddaten) VALUES ('0515', 'Raum mit Fax', 1,1,34,12,
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\moebel_buero.jpg', Single_Blob) AS import)
+														 );
 GO
 
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(1,1, 10);

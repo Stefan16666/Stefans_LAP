@@ -28,15 +28,18 @@ namespace Innovation4Austria.web.Controllers
             return View(filterModel);
         }
 
-        [HttpGet]
-        public ActionResult Suchen(DateTime startdatum, DateTime enddatum, int raum_id)
+        [HttpPost]
+        public ActionResult Suchen(string startdatum, int Art_id,  int[] ausstattung)
         {
+            string AnfangsDatum = startdatum.Substring(0, 10);
+            string Enddatum = startdatum.Substring(12, startdatum.Length);
             return View();
         }
 
         [HttpPost]
-        public ActionResult RaumAuflistung(FilterModel model)
+        public ActionResult RaumAnzeigen(FilterModel model)
         {
+
             return View();
         }
     }

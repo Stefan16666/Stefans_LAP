@@ -77,6 +77,7 @@ CREATE TABLE Raum (
 	id INT IDENTITY NOT NULL,	
 	bezeichnung NVARCHAR(50) NOT NULL,
 	beschreibung NVARCHAR(50) NOT NULL,
+	bilddaten VARBINARY(MAX) NOT NULL,
 	bauwerk_id INT NOT NULL,
 	groesse INT NOT NULL,
 	art_id INT NOT NULL,	

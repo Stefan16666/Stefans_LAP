@@ -2,19 +2,19 @@
 @{
     ViewBag.Title = "Laden";
 }
-@using (Html.BeginForm("RaumAuflistung", "Raum"))
+@using (Ajax.BeginForm("Suchen", "Raum", new AjaxOptions()))
 {
     <div class="container" style="margin-top:10em;">
-        <div class="row col-md-12 FontSize" onclick="aktualisiereReise" id="buchung_rand">
+        <div class="row col-md-12 FontSize" id="buchung_rand">
 
             <div class="col-md-4">
                 <h4 class="color margin_buchung">Buchungszeitraum</h4>
-                <input type="text" id="config-demo" class="form-control buchungsZeitraum">
+                <input type="text" id="config-demo" name="startdatum" class="form-control buchungsZeitraum">
                 @*<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>*@
             </div>
             <div class="col-md-2">
                 <h4 class="color margin_buchung">Raumart</h4>
-                <div>@Html.DropDownListFor(x => x.Art, new SelectList(Model.Art, "Id", "Bezeichnung"), new { @class = "raumArt" })</div>
+                <div>@Html.DropDownListFor(x => x.Art_id, new SelectList(Model.Art, "Id", "Bezeichnung"), new { @class = "raumArt" })</div>
             </div>
             <div class="col-md-6" id="ausstattung">
                 <h4 class="color margin_buchung">Ausstattung</h4>
@@ -25,10 +25,10 @@
                         {
                             <td>
                                 <label class="btn">
-                                    <img src="~/Bild/IconZuAusstattung/@item.Id" alt="..." class="img-thumbnail img-check" data-toggle="tooltip" title="@item.Bezeichnung"  onclick="auswahl(@item.Id)" style="width:2.4em">
+                                    <img src="~/Bild/IconZuAusstattung/@item.Id" alt="..." class="img-thumbnail img-check" data-toggle="tooltip" title="@item.Bezeichnung" onclick="auswahl(@item.Id)" style="width:2.4em">
                                     @*@Html.CheckBoxFor(x=>item.Auswahl)*@
 
-                                    <input type="checkbox" name="Ausstattung_@item.Id" id="item4" value="val1" autocomplete="off" />
+                                    <input type="checkbox" id="item4" name="ausstattung" value="@item.Id" autocomplete="off" />
                                 </label>
                             </td>
                         }
@@ -43,11 +43,16 @@
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
-
-
-        @*<div class="row" id="aktualisiereReise">
+        @*<div class="row" id="gebuchteRaeme">
                 <div class="col-md-12">
-                    @Html.Partial("_RaumAnzeigen", Model.AlleRaeume)
+                    @Html.Partial("_ListenAnsicht")
+                </div>
+            </div>*@
+
+
+        @*<div class="row" id="zeigeRaeume">
+                <div class="col-md-12">
+                    @Html.Partial("_KartenAnsicht", Model.AlleRaeume)
                 </div>
             </div>*@
     </div>
@@ -65,8 +70,8 @@
 
         $(document).ready(function () {
             $('#config-demo').daterangepicker({
-                "startDate": "02/25/2017",
-                "endDate": "03/03/2017"
+                "BeginnDatum": "02/25/2017",
+                "EndDatum": "03/03/2017"
             }, function (start, end, label) {
                 console.log("New date range selected: ' +  start.format('DD.MM.YYYY') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
             });

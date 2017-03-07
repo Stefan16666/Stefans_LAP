@@ -61,7 +61,7 @@ namespace Innovation4Austria.web.Controllers
                                     model.Fa_id = (int)user.Firma_id;
                                 }
 
-                                return RedirectToAction("Dashboard", model);
+                                return RedirectToAction("Dashboard");
                             }
                         }
                         else
@@ -78,13 +78,14 @@ namespace Innovation4Austria.web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         //[ValidateAntiForgeryToken]
         public ActionResult Dashboard(LoginModel model)
         {
             log.Info("BenutzerController - Dashboard");
 
             DashboardModel dashboard = new DashboardModel();
+            //User.Identity.Name
 
             // holt alle Mitarbeiter einer Firma
             List<BenutzerModel> alleMitarbeitereinerFirma = new List<BenutzerModel>();
