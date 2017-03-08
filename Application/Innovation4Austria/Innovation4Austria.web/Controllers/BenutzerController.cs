@@ -80,29 +80,34 @@ namespace Innovation4Austria.web.Controllers
         [HttpGet]
         [Authorize]
         //[ValidateAntiForgeryToken]
-        public ActionResult Dashboard(LoginModel model)
+        public ActionResult Dashboard()
         {
             log.Info("BenutzerController - Dashboard");
+
+            Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
 
             DashboardModel dashboard = new DashboardModel();
             //User.Identity.Name
 
             // holt alle Mitarbeiter einer Firma
             List<BenutzerModel> alleMitarbeitereinerFirma = new List<BenutzerModel>();
-            List<Benutzer> alleBenutzer = BenutzerVerwaltung.LadeMitarbeiterEinerFirma(model.Fa_id);
-            if (alleBenutzer == null)
+            if (aktBenutzer.Firma_id != null)
             {
-                log.Warn("No stuff was found");
-            }
-            foreach (var einBenutzer in alleBenutzer)
-            {
-                BenutzerModel einMitarbeiter = new BenutzerModel()
+                List<Benutzer> alleBenutzer = BenutzerVerwaltung.LadeMitarbeiterEinerFirma((int)aktBenutzer.Firma_id);
+                if (alleBenutzer == null)
                 {
-                    Emailadresse = einBenutzer.Emailadresse,
-                    Nachname = einBenutzer.Nachname,
-                    Vorname = einBenutzer.Vorname
-                };
-                alleMitarbeitereinerFirma.Add(einMitarbeiter);
+                    log.Warn("No stuff was found");
+                }
+                foreach (var einBenutzer in alleBenutzer)
+                {
+                    BenutzerModel einMitarbeiter = new BenutzerModel()
+                    {
+                        Emailadresse = einBenutzer.Emailadresse,
+                        Nachname = einBenutzer.Nachname,
+                        Vorname = einBenutzer.Vorname
+                    };
+                    alleMitarbeitereinerFirma.Add(einMitarbeiter);
+                }
             }
             dashboard.AlleMitarbeiter = alleMitarbeitereinerFirma;
 
@@ -114,7 +119,7 @@ namespace Innovation4Austria.web.Controllers
             List<Rechnungsdetails> rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();
             List<Buchungsdetails> BuchungsDetailsVonFirma = new List<Buchungsdetails>();
 
-            List<Buchung> bookingsOfCompany = BuchungsVerwaltung.GebuchteRaeume(model.Fa_id);
+            List<Buchung> bookingsOfCompany = BuchungsVerwaltung.GebuchteRaeume((int)aktBenutzer.Firma_id);
 
             if (bookingsOfCompany != null)
             {
@@ -212,7 +217,7 @@ namespace Innovation4Austria.web.Controllers
                 if (ModelState.IsValid)
                 {
                     Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
-                   
+
                     if (BenutzerVerwaltung.AktualisiereBenutzer(aktBenutzer.Id, model.Vorname, model.Nachname))
                     {
                         TempData[ConstStrings.SUCCESS_MESSAGE] = Validierungen.BenutzerProfilAktualisierenErfolgreich;

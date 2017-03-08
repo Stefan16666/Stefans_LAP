@@ -11,12 +11,12 @@ namespace Innovation4Austria.web.Models
 
         public string Bezeichnung { get; set; }
 
-        //public string Beschreibung { get; set; }
+        public string Beschreibung { get; set; }
 
-        //public decimal Preis { get; set; }
+        public decimal Preis { get; set; }
 
-        //public int Groesse { get; set; }
+        public int Groesse { get; set; }
 
-        //public List<RaumArtModel> RaumArt { get; set; }
+        public string RaumArt { get; set; }
     }
 }

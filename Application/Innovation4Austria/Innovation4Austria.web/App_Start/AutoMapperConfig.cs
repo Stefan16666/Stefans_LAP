@@ -44,7 +44,8 @@ namespace innovation4austria.web
                 x.CreateMap<Benutzer, BenutzerModel>()
                 .ForMember(dest => dest.Fa_id, opts => opts.Ignore());
 
-                x.CreateMap<Raum, RaumModel>();
+                x.CreateMap<Raum, RaumModel>()
+                .ForMember(dest => dest.RaumArt, opts => opts.MapFrom(source => source.Art.Bezeichnung));
 
                 x.CreateMap<Ausstattung, RaumAusstattungsModel>()
                 .ForMember(dest => dest.Auswahl, opts => opts.Ignore());

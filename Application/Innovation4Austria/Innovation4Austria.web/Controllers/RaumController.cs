@@ -29,10 +29,14 @@ namespace Innovation4Austria.web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Suchen(string startdatum, int Art_id,  int[] ausstattung)
+        public ActionResult Suchen(string datum, int Art_id,  int[] ausstattung)
         {
-            string AnfangsDatum = startdatum.Substring(0, 10);
-            string Enddatum = startdatum.Substring(12, startdatum.Length);
+            int length = datum.Length;
+            DateTime AnfangsDatum = DateTime.Parse(datum.Substring(0, 10));
+            
+            DateTime Enddatum = DateTime.Parse(datum.Substring(13, 10));
+            List<RaumModel>gesuchteRaeume = AutoMapper.Mapper.Map<List<RaumModel>>(RaumVerwaltung.GesuchteRaeume(AnfangsDatum,Enddatum,Art_id,ausstattung));
+            int day =  (AnfangsDatum-Enddatum).Days;
             return View();
         }
 

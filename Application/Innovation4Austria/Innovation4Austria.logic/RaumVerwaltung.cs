@@ -57,7 +57,7 @@ namespace Innovation4Austria.logic
             {
                 using (var context = new Innovation4AustriaEntities())
                 {
-                    mAlleRaeume = context.AlleRaeume.ToList();
+                    mAlleRaeume = context.AlleRaeume.Include(x=>x.Art).ToList();
                     if (mAlleRaeume == null)
                     {
                         log.Warn("Raeume wurden nicht gefunden");
@@ -124,14 +124,36 @@ namespace Innovation4Austria.logic
             }
             catch (Exception ex )
             {
-                log.Error("RaumVerwaltung - AlleRaumAusstattungen - DB-Verbindung fehlgeschlagen");
+                log.Error("RaumVerwaltung - AlleRaumAusstattungen - DB - Verbindung fehlgeschlagen");
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }                
+            }
+            return alleAusstattungen;
+        }
+
+        public static List<Raum> GesuchteRaeume(DateTime startdatum, DateTime enddatum, int art_id, int[] ausstattung)
+        {
+            log.Info("RaumVerwaltung - GesuchteRaueme");
+
+            List<Raum> gesuchteRaueme = new List<Raum>();
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    gesuchteRaueme = context.AlleRaeume.Where(a => a.Art_id == art_id).Include(x => x.AlleBuchungen.Select(y => y.AlleBuchungsdetails.Where(z => z.Datum >= startdatum && z.Datum <= enddatum))).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("RaumVerwaltung - GesuchteRaeume - DB-Verbindung fehlgeschlagen");
                 if (ex.InnerException != null)
                 {
                     log.Info(ex.InnerException);
                 }
-                
             }
-            return alleAusstattungen;
+            return gesuchteRaueme;
         }
     }
 }
