@@ -142,7 +142,52 @@ namespace Innovation4Austria.logic
             {
                 using (var context = new Innovation4AustriaEntities())
                 {
-                    gesuchteRaueme = context.AlleRaeume.Where(a => a.Art_id == art_id).Include(x => x.AlleBuchungen.Select(y => y.AlleBuchungsdetails.Where(z => z.Datum >= startdatum && z.Datum <= enddatum))).ToList();
+                    List<Raum> alleRaeume = new List<Raum>();
+                    List<Buchung> buchungen = new List<Buchung>();
+                    List<Buchungsdetails> buchungsdetails = context.AlleBuchungsdetails.Where(x => x.Datum >=startdatum).ToList();
+                    buchungsdetails = buchungsdetails.Where(x => x.Datum <= enddatum).ToList();
+
+                    foreach (var buchungdetail in buchungsdetails)
+                    {
+                        Raum derRaum = context.AlleRaeume.Include(x => x.AlleBuchungen).Where((y => y.Id == buchungdetail.Buchung_id)).FirstOrDefault();
+                        if (!alleRaeume.Contains(derRaum))
+                        {
+                            alleRaeume.Add(derRaum);
+                        }
+                    }
+
+                    foreach (var item in collection)
+                    {
+
+                    }
+
+
+                    foreach (var buchungdetail in buchungsdetails)
+                    {
+                        Buchung buchung = context.AlleBuchungen.Where(x => x.Id == buchungdetail.Buchung_id).FirstOrDefault();
+                        if (!buchungen.Contains(buchung))
+                        {
+                            buchungen.Add(buchung);
+                        }
+                    }
+                    foreach (var buchung in buchungen)
+                    {
+                        Raum raum = context.AlleRaeume.Where(x => x.Id == buchung.Raum_id).FirstOrDefault();
+                        alleRaeume.Add(raum);
+                    }   
+                                    
+                    List<Raum> gesuchteRaume = context.AlleRaeume.ToList();
+                    List<Raum> andereRaeume = context.AlleRaeume.ToList();
+                    foreach (var raum in alleRaeume)
+                    {
+                        if (gesuchteRaueme.Contains(raum))
+                        {
+                            gesuchteRaueme.Remove(raum);
+                        }
+
+                    }
+                    andereRaeume = andereRaeume.Where(x => alleRaeume.Contains(x)).ToList();
+
                 }
             }
             catch (Exception ex)
