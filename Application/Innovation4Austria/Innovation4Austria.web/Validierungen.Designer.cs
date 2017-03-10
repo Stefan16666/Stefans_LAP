@@ -149,5 +149,14 @@ namespace Innovation4Austria.web {
                 return ResourceManager.GetString("StringLength", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Suchen fehlgeschlagen! ähnelt.
+        /// </summary>
+        internal static string SuchenFehlgeschlagen {
+            get {
+                return ResourceManager.GetString("SuchenFehlgeschlagen", resourceCulture);
+            }
+        }
     }
 }

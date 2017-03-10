@@ -9,7 +9,7 @@
 
             <div class="col-md-4">
                 <h4 class="color margin_buchung">Buchungszeitraum</h4>
-                <input type="text" id="config-demo" name="datum" class="form-control buchungsZeitraum" style="color:black">
+                <input type="text" id="config-demo" name="datumVonBis" class="form-control buchungsZeitraum" style="color:black">
                 @*<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>*@
             </div>
             <div class="col-md-2">
@@ -69,10 +69,9 @@
 
 
         $(document).ready(function () {
-            $('#config-demo').daterangepicker({
-                "BeginnDatum": "02/25/2017",
-                "EndDatum": "03/03/2017"
-            }, function (start, end, label) {
+            $('#config-demo').daterangepicker(               
+             { dateFormat: 'dd-mm-yy' }
+            , function (start, end, label) {
                 console.log("New date range selected: ' +  start.format('DD.MM.YYYY') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
             });
         });

@@ -147,4 +147,7 @@
   <data name="StringLength" xml:space="preserve">
     <value>Minimum 8 Zeichen und max. 16 Zeichen</value>
   </data>
+  <data name="SuchenFehlgeschlagen" xml:space="preserve">
+    <value>Suchen fehlgeschlagen!</value>
+  </data>
 </root>

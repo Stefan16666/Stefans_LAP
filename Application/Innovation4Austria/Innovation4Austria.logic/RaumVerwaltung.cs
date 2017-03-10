@@ -137,56 +137,52 @@ namespace Innovation4Austria.logic
         {
             log.Info("RaumVerwaltung - GesuchteRaueme");
 
-            List<Raum> gesuchteRaueme = new List<Raum>();
+            List<Raum> gesuchteRaeume = new List<Raum>();
             try
             {
                 using (var context = new Innovation4AustriaEntities())
                 {
                     List<Raum> alleRaeume = new List<Raum>();
                     List<Buchung> buchungen = new List<Buchung>();
-                    List<Buchungsdetails> buchungsdetails = context.AlleBuchungsdetails.Where(x => x.Datum >=startdatum).ToList();
-                    buchungsdetails = buchungsdetails.Where(x => x.Datum <= enddatum).ToList();
+                    
+                    List<Buchungsdetails> buchungsdetails = context.AlleBuchungsdetails.Where(x => x.Datum >=startdatum&& x.Datum<=enddatum).ToList();
+                   
 
                     foreach (var buchungdetail in buchungsdetails)
                     {
-                        Raum derRaum = context.AlleRaeume.Include(x => x.AlleBuchungen).Where((y => y.Id == buchungdetail.Buchung_id)).FirstOrDefault();
+                        Raum derRaum = context.AlleRaeume.Include(x => x.AlleBuchungen).Where((y => y.Id == buchungdetail.Buchung_id)).Where(x=>x.Art_id==art_id).FirstOrDefault();
                         if (!alleRaeume.Contains(derRaum))
                         {
                             alleRaeume.Add(derRaum);
                         }
                     }
 
-                    foreach (var item in collection)
-                    {
 
-                    }
+                    gesuchteRaeume = context.AlleRaeume.Include(x => x.Art).Include(x => x.AlleRaum_Ausstattungen).ToList();
 
+                    List<Raum_Ausstattung> raumAusstattung = context.AlleRaum_Ausstattungen.ToList();
+                    List<Raum_Ausstattung> gesuchteAusstattung = new List<Raum_Ausstattung>();
 
-                    foreach (var buchungdetail in buchungsdetails)
-                    {
-                        Buchung buchung = context.AlleBuchungen.Where(x => x.Id == buchungdetail.Buchung_id).FirstOrDefault();
-                        if (!buchungen.Contains(buchung))
-                        {
-                            buchungen.Add(buchung);
-                        }
-                    }
-                    foreach (var buchung in buchungen)
-                    {
-                        Raum raum = context.AlleRaeume.Where(x => x.Id == buchung.Raum_id).FirstOrDefault();
-                        alleRaeume.Add(raum);
-                    }   
-                                    
-                    List<Raum> gesuchteRaume = context.AlleRaeume.ToList();
-                    List<Raum> andereRaeume = context.AlleRaeume.ToList();
                     foreach (var raum in alleRaeume)
                     {
-                        if (gesuchteRaueme.Contains(raum))
+                        for (int i = 0; i < ausstattung.Length; i++)
                         {
-                            gesuchteRaueme.Remove(raum);
+                            if (!raum.AlleRaum_Ausstattungen.Select(x => x.Ausstattungs_Id).ToList().Contains(ausstattung[i]))
+                            {
+                                alleRaeume.Remove(raum);
+                            }
                         }
-
                     }
-                    andereRaeume = andereRaeume.Where(x => alleRaeume.Contains(x)).ToList();
+                   
+                    // Except - Operator
+                    foreach (var raum in alleRaeume)
+                    {
+                        if (gesuchteRaeume.Contains(raum))
+                        {
+                            gesuchteRaeume.Remove(raum);
+                        }
+                    }
+
 
                 }
             }
@@ -198,7 +194,7 @@ namespace Innovation4Austria.logic
                     log.Info(ex.InnerException);
                 }
             }
-            return gesuchteRaueme;
+            return gesuchteRaeume;
         }
     }
 }

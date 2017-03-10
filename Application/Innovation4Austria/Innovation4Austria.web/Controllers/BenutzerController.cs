@@ -78,8 +78,7 @@ namespace Innovation4Austria.web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize]
-        //[ValidateAntiForgeryToken]
+        [Authorize]     
         public ActionResult Dashboard()
         {
             log.Info("BenutzerController - Dashboard");
@@ -173,16 +172,13 @@ namespace Innovation4Austria.web.Controllers
             };
 
             dashboard.AlleRechnungen = alleRechnungen;
-            /// hier muss man dann die Models machen. Das RechnungsModel ist eine Liste von Rechnungen, welche Monatsweise erstellt werden
-
-            ///mapping for receipt
 
 
 
             return View(dashboard);
         }
 
-        //[ValidateAntiForgeryToken]
+        
         [Authorize]
         [HttpGet]
         public ActionResult Abmelden()
@@ -191,7 +187,7 @@ namespace Innovation4Austria.web.Controllers
             return RedirectToAction("Login", "Benutzer");
         }
 
-        //[ValidateAntiForgeryToken]
+        
         [Authorize]
         [HttpGet]
         public ActionResult ProfilAnzeigen()
@@ -207,6 +203,7 @@ namespace Innovation4Austria.web.Controllers
 
         }
 
+        [ValidateAntiForgeryToken]
         [Authorize]
         [HttpPost]
         public ActionResult BenutzerProfil(BenutzerVerwaltungsModel model)
