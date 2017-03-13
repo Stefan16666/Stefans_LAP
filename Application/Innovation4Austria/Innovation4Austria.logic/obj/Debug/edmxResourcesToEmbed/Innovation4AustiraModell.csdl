@@ -194,6 +194,7 @@
     <NavigationProperty Name="AlleBilder" Relationship="Innovation4AustriaModel.FK_Bild_Raum" FromRole="Raum" ToRole="Bild" />
     <NavigationProperty Name="AlleBuchungen" Relationship="Innovation4AustriaModel.FK_Buchung_Raum" FromRole="Raum" ToRole="Buchung" />
     <NavigationProperty Name="AlleRaum_Ausstattungen" Relationship="Innovation4AustriaModel.FK_Raum_Ausstattung_Raum" FromRole="Raum" ToRole="Raum_Ausstattung" />
+    <Property Name="bilddaten" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="Raum_Ausstattung">
     <Key>

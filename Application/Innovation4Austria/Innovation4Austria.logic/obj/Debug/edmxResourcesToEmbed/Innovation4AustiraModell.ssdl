@@ -100,6 +100,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="beschreibung" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="bilddaten" Type="varbinary(max)" Nullable="false" />
     <Property Name="bauwerk_id" Type="int" Nullable="false" />
     <Property Name="groesse" Type="int" Nullable="false" />
     <Property Name="art_id" Type="int" Nullable="false" />

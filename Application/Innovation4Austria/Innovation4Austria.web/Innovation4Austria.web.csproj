@@ -171,6 +171,7 @@
     <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\FirmaAnlegenModel.cs" />
     <Compile Include="Models\FirmenModel.cs" />
+    <Compile Include="Models\GesuchteRauemeModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\BenutzerModel.cs" />
     <Compile Include="Models\PasswortVerwaltungsModel.cs" />
@@ -297,6 +298,7 @@
     <Content Include="Views\Innovation4AustriaMitarbeiter\_MitarbeiterAnlegen.cshtml" />
     <Content Include="Views\Raum\Laden.cshtml" />
     <Content Include="Views\Innovation4AustriaMitarbeiter\FirmaAnlegen.cshtml" />
+    <Content Include="Views\Raum\_KartenAnsicht.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

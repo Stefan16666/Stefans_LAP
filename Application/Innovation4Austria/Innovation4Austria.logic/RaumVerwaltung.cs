@@ -133,7 +133,7 @@ namespace Innovation4Austria.logic
             return alleAusstattungen;
         }
 
-        public static List<Raum> GesuchteRaeume(DateTime startdatum, DateTime enddatum, int art_id, int[] ausstattung)
+        public static List<Raum> GesuchteRaeume(DateTime startdatum, DateTime enddatum, int art_id, int[] ausstattung )
         {
             log.Info("RaumVerwaltung - GesuchteRaueme");
 
@@ -183,13 +183,40 @@ namespace Innovation4Austria.logic
                         }
                     }
 
-
+            
                 }
             }
             catch (Exception ex)
             {
                 log.Error("RaumVerwaltung - GesuchteRaeume - DB-Verbindung fehlgeschlagen");
                 if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+            return gesuchteRaeume;
+        }
+
+        public static List<Raum> GesuchteRaeume()
+        {
+            log.Info("RaumVerwaltung - GesuchteRaeume");
+
+            List<Raum> gesuchteRaeume = new List<Raum>();
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    gesuchteRaeume = context.AlleRaeume.Include(x => x.Art).Include(y=>y.Bauwerk).ToList();
+                    if (gesuchteRaeume==null)
+                    {
+                        log.Warn("RaumVerwaltung - gesuchteRaeume - keine Raeume gefunden");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("RaumVerwaltung - GesuchteRaeume - db-Verbindung fehlgeschlagen");
+                if (ex.InnerException!=null)
                 {
                     log.Info(ex.InnerException);
                 }

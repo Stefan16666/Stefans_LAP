@@ -46,6 +46,8 @@ public partial class Raum
 
     public bool Aktiv { get; set; }
 
+    public byte[] bilddaten { get; set; }
+
 
 
     public virtual Art Art { get; set; }

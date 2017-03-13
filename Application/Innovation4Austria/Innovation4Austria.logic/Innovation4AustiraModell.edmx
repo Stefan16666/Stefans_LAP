@@ -105,6 +105,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="beschreibung" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="bilddaten" Type="varbinary(max)" Nullable="false" />
           <Property Name="bauwerk_id" Type="int" Nullable="false" />
           <Property Name="groesse" Type="int" Nullable="false" />
           <Property Name="art_id" Type="int" Nullable="false" />
@@ -607,6 +608,7 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
           <NavigationProperty Name="AlleBilder" Relationship="Innovation4AustriaModel.FK_Bild_Raum" FromRole="Raum" ToRole="Bild" />
           <NavigationProperty Name="AlleBuchungen" Relationship="Innovation4AustriaModel.FK_Buchung_Raum" FromRole="Raum" ToRole="Buchung" />
           <NavigationProperty Name="AlleRaum_Ausstattungen" Relationship="Innovation4AustriaModel.FK_Raum_Ausstattung_Raum" FromRole="Raum" ToRole="Raum_Ausstattung" />
+          <Property Name="bilddaten" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Raum_Ausstattung">
           <Key>
@@ -938,6 +940,7 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
           <EntitySetMapping Name="AlleRaeume">
             <EntityTypeMapping TypeName="Innovation4AustriaModel.Raum">
               <MappingFragment StoreEntitySet="Raum">
+                <ScalarProperty Name="bilddaten" ColumnName="bilddaten" />
                 <ScalarProperty Name="Id" ColumnName="id" />
                 <ScalarProperty Name="Bezeichnung" ColumnName="bezeichnung" />
                 <ScalarProperty Name="Beschreibung" ColumnName="beschreibung" />

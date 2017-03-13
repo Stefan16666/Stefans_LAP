@@ -18,5 +18,6 @@ namespace Innovation4Austria.web.Models
         public int Groesse { get; set; }
 
         public string RaumArt { get; set; }
+
     }
 }

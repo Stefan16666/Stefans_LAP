@@ -23,11 +23,11 @@ namespace Innovation4Austria.web.Controllers
             log.Info("RaumController - Laden - GET");
 
             FilterModel filterModel = new FilterModel();
-
+            List<RaumModel> raumList = new List<RaumModel>();
             filterModel.Ausstattung = AutoMapper.Mapper.Map<List<RaumAusstattungsModel>>(RaumVerwaltung.AlleRaumAusstattungen());
             filterModel.Art = AutoMapper.Mapper.Map<List<RaumArtModel>>(RaumVerwaltung.AlleRaumArten());
-            filterModel.AlleRaeume = AutoMapper.Mapper.Map<List<RaumModel>>(RaumVerwaltung.alleRaeume());
-
+            raumList = AutoMapper.Mapper.Map<List<RaumModel>>(RaumVerwaltung.alleRaeume());
+            filterModel.GesuchteRaeume.gesuchteRaumListe = raumList;           
             return View(filterModel);
         }
 
@@ -39,6 +39,7 @@ namespace Innovation4Austria.web.Controllers
 
             log.Info("RaumController - Suchen - Post");
             List<RaumModel> gesuchteRaeume = new List<RaumModel>();
+            GesuchteRauemeModel gefilterteRaeume = new GesuchteRauemeModel();
             if (ModelState.IsValid)
             {
 
@@ -73,6 +74,11 @@ namespace Innovation4Austria.web.Controllers
                     gesuchteRaeume = AutoMapper.Mapper.Map<List<RaumModel>>(RaumVerwaltung.GesuchteRaeume(anfangsDatum, endDatum, Art_id, ausstattung));
 
                     //endDatum.Subtract(anfangsDatum).TotalDays
+
+                  
+                    gefilterteRaeume.StartDatum = anfangsDatum;
+                    gefilterteRaeume.EndDatum = endDatum;
+                    gefilterteRaeume.gesuchteRaumListe = gesuchteRaeume;
                 }
                 catch (Exception ex)
                 {
@@ -82,9 +88,18 @@ namespace Innovation4Austria.web.Controllers
                 }
             }
 
+            return View("_KartenAnsicht", gefilterteRaeume);
+        }
+        [Authorize]
+        [HttpGet]
+        public ActionResult Suchen()
+        {
+            log.Info("RaumController - Suchen - Get");
+
+            List<RaumModel>gesuchteRaeume = AutoMapper.Mapper.Map<List<RaumModel>>(RaumVerwaltung.GesuchteRaeume());
+
             return View("_KartenAnsicht", gesuchteRaeume);
         }
-
         [HttpPost]
         public ActionResult RaumAnzeigen(FilterModel model)
         {

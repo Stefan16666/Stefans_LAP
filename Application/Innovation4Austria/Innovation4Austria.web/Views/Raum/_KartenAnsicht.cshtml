@@ -1,0 +1,29 @@
+﻿@model Innovation4Austria.web.Models.GesuchteRauemeModel
+
+@using (Html.BeginForm("Suchen", "Raum", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        
+            @foreach (var raum in Model.gesuchteRaumListe)
+            {
+                <div class="col-md-4">
+                    
+                    <img src="~/Bild/BildZuRaum/@raum.Id" data-toggle="tooltip" title="@raum.Bezeichnung" style="width:30em">
+                    <div style="text-align:center">@raum.Bezeichnung</div>
+                    <div style="text-align:center">@raum.RaumArt</div>
+                    <div style="text-align:center">@raum.Beschreibung</div>
+                </div>
+            }
+       
+    </div>
+}
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}

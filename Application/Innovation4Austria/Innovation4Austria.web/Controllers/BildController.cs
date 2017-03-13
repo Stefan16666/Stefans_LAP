@@ -29,5 +29,19 @@ namespace Innovation4Austria.web.Controllers
 
         }
 
-    }
+        public ActionResult BildZuRaum(int id)
+        {
+            log.Info("Bild - iconZuAusstattung - GET");
+
+            string contentType = "image/jpeg";
+            byte[] bilddaten = BildVerwaltung.LadeBild(id).bilddaten;
+            if (bilddaten == null)
+            {
+                log.Warn("BildController - BildZuRaum - bilddaten nicht gefunden");
+            }
+
+            return new FileContentResult(bilddaten, contentType);
+
+        }
+        }
 }

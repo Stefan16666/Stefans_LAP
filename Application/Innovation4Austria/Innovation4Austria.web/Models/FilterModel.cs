@@ -23,7 +23,7 @@ namespace Innovation4Austria.web.Models
 
         public int Art_id { get; set; }
 
-        public List<RaumModel> AlleRaeume { get; set; }
+        public GesuchteRauemeModel GesuchteRaeume { get; set; }
 
     }
 }

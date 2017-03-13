@@ -106,6 +106,7 @@
     <EntitySetMapping Name="AlleRaeume">
       <EntityTypeMapping TypeName="Innovation4AustriaModel.Raum">
         <MappingFragment StoreEntitySet="Raum">
+          <ScalarProperty Name="bilddaten" ColumnName="bilddaten" />
           <ScalarProperty Name="Id" ColumnName="id" />
           <ScalarProperty Name="Bezeichnung" ColumnName="bezeichnung" />
           <ScalarProperty Name="Beschreibung" ColumnName="beschreibung" />

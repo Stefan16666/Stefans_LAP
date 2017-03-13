@@ -39,6 +39,31 @@ namespace Innovation4Austria.logic
             }
             return ausstattung;
         }
-       
+        public static Raum LadeBild(int id)
+        {
+            log.Info("BildVerwaltung - LadeBild");
+            Raum raum = new Raum();
+
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    raum = context.AlleRaeume.Where(x => x.Id == id).FirstOrDefault();
+                }
+                if (raum == null)
+                {
+                    log.Warn("BildVerwaltung - LadeAusstattung - Ausstattung konnte nicht geladen werden");
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("BildVerwaltung - LadeAusstattung - DbVerbindung fehlgeschlagen");
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+            return raum;
+        }
     }
 }
