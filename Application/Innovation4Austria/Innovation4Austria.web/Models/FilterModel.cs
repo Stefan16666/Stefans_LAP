@@ -23,7 +23,6 @@ namespace Innovation4Austria.web.Models
 
         public int Art_id { get; set; }
 
-        public GesuchteRauemeModel GesuchteRaeume { get; set; }
-
+        public RaumBuchungsModel  gebuchteRaeume { get; set; }
     }
 }

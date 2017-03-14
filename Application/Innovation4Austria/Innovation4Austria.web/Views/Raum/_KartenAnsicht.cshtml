@@ -1,6 +1,6 @@
-﻿@model Innovation4Austria.web.Models.GesuchteRauemeModel
+﻿@model Innovation4Austria.web.Models.RaumBuchungsModel
 
-@using (Html.BeginForm("Suchen", "Raum", FormMethod.Post))
+@using (Html.BeginForm("Buchen", "Raum", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -8,12 +8,20 @@
         
             @foreach (var raum in Model.gesuchteRaumListe)
             {
-                <div class="col-md-4">
-                    
-                    <img src="~/Bild/BildZuRaum/@raum.Id" data-toggle="tooltip" title="@raum.Bezeichnung" style="width:30em">
-                    <div style="text-align:center">@raum.Bezeichnung</div>
-                    <div style="text-align:center">@raum.RaumArt</div>
-                    <div style="text-align:center">@raum.Beschreibung</div>
+                <div class="col-md-3 Kartenansicht">                    
+                    <img src="~/Bild/BildZuRaum/@raum.Id" data-toggle="tooltip" title="@raum.Beschreibung" class="imgTag">
+                    <div class="SchriftgroesseKarten">@raum.Bezeichnung</div>
+                    <div class="SchriftgroesseKarten">@raum.RaumArt</div>
+                    <div class="SchriftgroesseKarten">@raum.Beschreibung</div>
+                    <div class="SchriftgroesseKarten">€ @raum.Preis,- / Tag</div>
+                    @Html.HiddenFor(x => x.StartDatum)
+                    @Html.HiddenFor(x => x.EndDatum)
+                    @Html.HiddenFor(x=>raum.Id)
+                    <div class="form-group">
+                        <div>
+                            <input type="submit" value="Buchen" class="btn btn-default" />
+                        </div>
+                    </div>
                 </div>
             }
        

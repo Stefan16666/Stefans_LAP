@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Innovation4Austria.web.Models
 {
-    public class GesuchteRauemeModel
+    public class RaumBuchungsModel
     {
         public DateTime StartDatum { get; set; }
 

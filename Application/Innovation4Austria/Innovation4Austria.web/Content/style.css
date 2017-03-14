@@ -597,3 +597,23 @@ a.nivo-nextNav {
     width: 40% !important;
     margin-left: 28px !important;
 }
+
+.Kartenansicht {
+    padding: 2em;
+    margin: 5em;
+    border: 1px solid !important;
+    border-color: aqua !important;
+    border-radius: 6px !important;
+    min-height:42em!important;
+}
+
+.imgTag {
+    width:30em;
+    padding-right: 25px !important;
+    margin: 1em !important;
+    
+}
+.SchriftgroesseKarten{
+    font-size:2em!important;
+    text-align:center!important;
+}

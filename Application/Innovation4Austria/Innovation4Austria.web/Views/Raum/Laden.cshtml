@@ -2,8 +2,10 @@
 @{
     ViewBag.Title = "Laden";
 }
-@using (Ajax.BeginForm("Suchen", "Raum", new AjaxOptions()))
+@using (Ajax.BeginForm("KartenAnsicht", "Raum", new AjaxOptions() { UpdateTargetId = "zeigeRaeume" }))
 {
+    @Html.AntiForgeryToken()
+
     <div class="container" style="margin-top:10em;">
         <div class="row col-md-12 FontSize" id="buchung_rand">
 
@@ -26,7 +28,7 @@
                             <td>
                                 <label class="btn">
                                     <img src="~/Bild/IconZuAusstattung/@item.Id" alt="..." class="img-thumbnail img-check" data-toggle="tooltip" title="@item.Bezeichnung" onclick="auswahl(@item.Id)" style="width:2.4em">
-                                    @*@Html.CheckBoxFor(x=>item.Auswahl)*@
+
 
                                     <input type="checkbox" id="item4" name="ausstattung" value="@item.Id" autocomplete="off" />
                                 </label>
@@ -43,21 +45,17 @@
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
-        @*<div class="row" id="gebuchteRaeme">
-                <div class="col-md-12">
-                    @Html.Partial("_ListenAnsicht")
-                </div>
-            </div>*@
-
-
-        <div class="row" id="zeigeRaeume">
-                <div class="col-md-12">
-                    @Html.Partial("_KartenAnsicht", Model.GesuchteRaeume)
-                </div>
-            </div>
     </div>
-
 }
+
+<div class="row" id="zeigeRaeume">
+    <div class="col-md-12">
+        @Html.Partial("_KartenAnsicht",Model.gebuchteRaeume)
+    </div>
+</div>
+
+
+
 
 
 @section scripts
@@ -69,7 +67,7 @@
 
 
         $(document).ready(function () {
-            $('#config-demo').daterangepicker(               
+            $('#config-demo').daterangepicker(
              { dateFormat: 'dd-mm-yy' }
             , function (start, end, label) {
                 console.log("New date range selected: ' +  start.format('DD.MM.YYYY') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");

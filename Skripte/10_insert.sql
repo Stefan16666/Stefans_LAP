@@ -68,7 +68,7 @@ INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, b
 														 FROM Openrowset( 
 														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\moebel_buero.jpg', Single_Blob) AS import)
 														 );
-INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, bilddaten) VALUES ('0203', 'Ruhiger Raum mit allen Anschlüssen', 1,1,34,12,
+INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, bilddaten) VALUES ('0203', 'Ruhiger Raum mit allen Verbindungen', 1,1,34,12,
 														(SELECT BulkColumn
 														 FROM Openrowset( 
 														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\moebel_buero.jpg', Single_Blob) AS import)
