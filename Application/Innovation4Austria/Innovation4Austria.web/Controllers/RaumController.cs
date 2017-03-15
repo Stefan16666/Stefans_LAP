@@ -23,29 +23,17 @@ namespace Innovation4Austria.web.Controllers
             log.Info("RaumController - Laden - GET");
 
             FilterModel filterModel = new FilterModel();
+
             List<RaumModel> raumList = new List<RaumModel>();
+
             filterModel.Ausstattung = AutoMapper.Mapper.Map<List<RaumAusstattungsModel>>(RaumVerwaltung.AlleRaumAusstattungen());
+
             filterModel.Art = AutoMapper.Mapper.Map<List<RaumArtModel>>(RaumVerwaltung.AlleRaumArten());
+
             filterModel.gebuchteRaeume = new RaumBuchungsModel();
             filterModel.gebuchteRaeume.gesuchteRaumListe = AutoMapper.Mapper.Map<List<RaumModel>>(RaumVerwaltung.alleRaeume());
             return View(filterModel);
         }
-
-        //[Authorize]
-        //[HttpPost]
-        //public ActionResult Laden(RaumBuchungsModel model)
-        //{
-
-        //    log.Info("RaumController - Laden - GET");
-
-        //    FilterModel filterModel = new FilterModel();
-        //    List<RaumModel> raumList = new List<RaumModel>();
-        //    filterModel.Ausstattung = AutoMapper.Mapper.Map<List<RaumAusstattungsModel>>(RaumVerwaltung.AlleRaumAusstattungen());
-        //    filterModel.Art = AutoMapper.Mapper.Map<List<RaumArtModel>>(RaumVerwaltung.AlleRaumArten());
-        //    filterModel.gebuchteRaeume = new RaumBuchungsModel();
-        //    filterModel.gebuchteRaeume = model;
-        //    return View(filterModel);
-        //}
 
         [Authorize]
         [HttpGet]
@@ -55,7 +43,7 @@ namespace Innovation4Austria.web.Controllers
 
             List<RaumModel> gesuchteRaeume = AutoMapper.Mapper.Map<List<RaumModel>>(RaumVerwaltung.GesuchteRaeume());
             RaumBuchungsModel buchungenZeigen = new RaumBuchungsModel();
-            buchungenZeigen.gesuchteRaumListe = gesuchteRaeume;           
+            buchungenZeigen.gesuchteRaumListe = gesuchteRaeume;
             return View("_KartenAnsicht", gesuchteRaeume);
         }
 
@@ -66,7 +54,7 @@ namespace Innovation4Austria.web.Controllers
         {
 
             log.Info("RaumController - Suchen - Post");
-            List<RaumModel> gesuchteRaeume = new List<RaumModel>();
+            List<Raum> gesuchteRaeume = new List<Raum>();
             RaumBuchungsModel gefilterteRaeume = new RaumBuchungsModel();
             if (ModelState.IsValid)
             {
@@ -99,13 +87,10 @@ namespace Innovation4Austria.web.Controllers
                     // erstelle datetime
                     DateTime endDatum = new DateTime(bisJahr, bisMonat, bisTag);
 
-                    gefilterteRaeume.gesuchteRaumListe = AutoMapper.Mapper.Map<List<RaumModel>>(RaumVerwaltung.GesuchteRaeume(anfangsDatum, endDatum, Art_id, ausstattung));
-
-                    //endDatum.Subtract(anfangsDatum).TotalDays
-
-
                     gefilterteRaeume.StartDatum = anfangsDatum;
                     gefilterteRaeume.EndDatum = endDatum;
+                    gefilterteRaeume.gesuchteRaumListe = new List<RaumModel>();
+                    gefilterteRaeume.gesuchteRaumListe = AutoMapper.Mapper.Map<List<RaumModel>>(RaumVerwaltung.GesuchteRaeume(anfangsDatum, endDatum, Art_id, ausstattung));
 
                 }
                 catch (Exception ex)
@@ -117,13 +102,6 @@ namespace Innovation4Austria.web.Controllers
             }
 
             return PartialView("_KartenAnsicht", gefilterteRaeume);
-        }
-
-        [HttpPost]
-        public ActionResult Buchen(RaumBuchungsModel model)
-        {
-
-            return View();
         }
     }
 }

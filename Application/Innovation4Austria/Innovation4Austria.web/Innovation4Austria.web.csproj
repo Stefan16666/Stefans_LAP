@@ -161,6 +161,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BenutzerController.cs" />
     <Compile Include="Controllers\BildController.cs" />
+    <Compile Include="Controllers\BuchungController.cs" />
     <Compile Include="Controllers\RaumController.cs" />
     <Compile Include="Controllers\Innovation4AustriaMitarbeiterController.cs" />
     <Compile Include="Global.asax.cs">
@@ -168,6 +169,7 @@
     </Compile>
     <Compile Include="Models\BenutzerAnlegenModel.cs" />
     <Compile Include="Models\BuchungsAnzeigeModel.cs" />
+    <Compile Include="Models\BuchungsDetailModel.cs" />
     <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\FirmaAnlegenModel.cs" />
     <Compile Include="Models\FirmenModel.cs" />
@@ -301,11 +303,13 @@
     <Content Include="Views\Raum\Laden.cshtml" />
     <Content Include="Views\Innovation4AustriaMitarbeiter\FirmaAnlegen.cshtml" />
     <Content Include="Views\Raum\_KartenAnsicht.cshtml" />
+    <Content Include="Views\Buchung\BuchungsDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="img\" />
     <Folder Include="Views\Bild\" />
+    <Folder Include="Views\Buchen\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

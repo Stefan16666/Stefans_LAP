@@ -18,7 +18,7 @@ namespace Innovation4Austria.logic
         public static Raum GesuchterRaum(int raum_id)
         {
             log.Info("RaumVerwaltung - gesuchterRaum");
-            Raum raum  = null;
+            Raum raum = null;
             if (raum_id != 0)
             {
                 try
@@ -57,7 +57,7 @@ namespace Innovation4Austria.logic
             {
                 using (var context = new Innovation4AustriaEntities())
                 {
-                    mAlleRaeume = context.AlleRaeume.Include(x=>x.Art).ToList();
+                    mAlleRaeume = context.AlleRaeume.Include(x => x.Art).ToList();
                     if (mAlleRaeume == null)
                     {
                         log.Warn("Raeume wurden nicht gefunden");
@@ -76,7 +76,7 @@ namespace Innovation4Austria.logic
             return mAlleRaeume;
         }
 
-        public  static  List<Art> AlleRaumArten()
+        public static List<Art> AlleRaumArten()
         {
 
             log.Info("RaumVerwaltung - alleRaumArten");
@@ -97,7 +97,7 @@ namespace Innovation4Austria.logic
             catch (Exception ex)
             {
                 log.Error("RaumVerwaltung - AlleRaumArten - Db-Verbindung fehlgeschlagen");
-                if (ex.InnerException!= null)
+                if (ex.InnerException != null)
                 {
                     log.Info(ex.InnerException);
                 }
@@ -113,77 +113,98 @@ namespace Innovation4Austria.logic
 
             try
             {
-                using(var context = new Innovation4AustriaEntities())
+                using (var context = new Innovation4AustriaEntities())
                 {
                     alleAusstattungen = context.AlleAusstattungen.ToList();
-                    if (alleAusstattungen==null)
+                    if (alleAusstattungen == null)
                     {
                         log.Warn("RaumVerwaltung - AlleRaumAusstattungen - RaumAusstattungen auslesen fehlgeschlagen");
                     }
                 }
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 log.Error("RaumVerwaltung - AlleRaumAusstattungen - DB - Verbindung fehlgeschlagen");
                 if (ex.InnerException != null)
                 {
                     log.Info(ex.InnerException);
-                }                
+                }
             }
             return alleAusstattungen;
         }
 
-        public static List<Raum> GesuchteRaeume(DateTime startdatum, DateTime enddatum, int art_id, int[] ausstattung )
+        public static List<Raum> GesuchteRaeume(DateTime startdatum, DateTime enddatum, int art_id, int[] ausstattung)
         {
             log.Info("RaumVerwaltung - GesuchteRaueme");
 
+            List<Raum> raeume = new List<Raum>();
             List<Raum> gesuchteRaeume = new List<Raum>();
             try
             {
                 using (var context = new Innovation4AustriaEntities())
                 {
-                    List<Raum> alleRaeume = new List<Raum>();
-                    List<Buchung> buchungen = new List<Buchung>();
-                    
-                    List<Buchungsdetails> buchungsdetails = context.AlleBuchungsdetails.Where(x => x.Datum >=startdatum&& x.Datum<=enddatum).ToList();
-                   
 
-                    foreach (var buchungdetail in buchungsdetails)
+                    List<Buchung> buchungen = new List<Buchung>();
+
+                    List<Raum> belegteRaeume = new List<Raum>();
+
+                    List<Buchungsdetails> buchungsdetails = context.AlleBuchungsdetails.Where(x => x.Datum >= startdatum && x.Datum <= enddatum).ToList();
+
+                    raeume = context.AlleRaeume.Where(x => x.Art_id == art_id).Include(y=>y.Art).ToList();
+
+                    if (buchungsdetails != null)
                     {
-                        Raum derRaum = context.AlleRaeume.Include(x => x.AlleBuchungen).Where((y => y.Id == buchungdetail.Buchung_id)).Where(x=>x.Art_id==art_id).FirstOrDefault();
-                        if (!alleRaeume.Contains(derRaum))
+                        foreach (var buchungsdetail in buchungsdetails)
                         {
-                            alleRaeume.Add(derRaum);
+                            Buchung buchung = context.AlleBuchungen.Where(x => x.Id == buchungsdetail.Buchung_id).FirstOrDefault();
+                            buchungen.Add(buchung);
+                        }
+                    }
+
+                    if (buchungen != null)
+                    {
+                        foreach (var buchung in buchungen)
+                        {
+                            Raum belegterRaum = context.AlleRaeume.Where(x => x.Id == buchung.Raum_id).FirstOrDefault();
+                            belegteRaeume.Add(belegterRaum);
+                        }
+                    }
+
+                    // hier wird nach der Art gefiltert, ist der Raum schon in den Zeitraum vergeben, wird er von den anzuzeigenden Räumen entfernt
+                    if (belegteRaeume != null)
+                    {
+                        foreach (var belegterRaum in belegteRaeume)
+                        {
+                            raeume.RemoveAll(x => x.Id == belegterRaum.Id);
                         }
                     }
 
 
-                    gesuchteRaeume = context.AlleRaeume.Include(x => x.Art).Include(x => x.AlleRaum_Ausstattungen).ToList();
-
-                    List<Raum_Ausstattung> raumAusstattung = context.AlleRaum_Ausstattungen.ToList();
-                    List<Raum_Ausstattung> gesuchteAusstattung = new List<Raum_Ausstattung>();
-
-                    foreach (var raum in alleRaeume)
+                    // hier wird nach der Ausstattung sortiert, jeder Raum, der die Ausstattung nicht enthält, wird entfernt
+                    if (ausstattung.Length >= 0)
                     {
-                        for (int i = 0; i < ausstattung.Length; i++)
+                        foreach (var raum in raeume)
                         {
-                            if (!raum.AlleRaum_Ausstattungen.Select(x => x.Ausstattungs_Id).ToList().Contains(ausstattung[i]))
+                            for (int i = 0; i < ausstattung.Length; i++)
                             {
-                                alleRaeume.Remove(raum);
+                                if (raum.AlleRaum_Ausstattungen.Any(x => x.Ausstattungs_Id == ausstattung[i]))
+                                {
+                                    gesuchteRaeume.Add(raum);
+                                }
                             }
                         }
                     }
-                   
-                    // Except - Operator
-                    foreach (var raum in alleRaeume)
-                    {
-                        if (gesuchteRaeume.Contains(raum))
-                        {
-                            gesuchteRaeume.Remove(raum);
-                        }
-                    }
 
-            
+                    // Except - Operator
+                    //foreach (var raum in alleRaeume)
+                    //{
+                    //    if (gesuchteRaeume.Contains(raum))
+                    //    {
+                    //        gesuchteRaeume.Remove(raum);
+                    //    }
+                    //}
+
+
                 }
             }
             catch (Exception ex)
@@ -206,8 +227,8 @@ namespace Innovation4Austria.logic
             {
                 using (var context = new Innovation4AustriaEntities())
                 {
-                    gesuchteRaeume = context.AlleRaeume.Include(x => x.Art).Include(y=>y.Bauwerk).ToList();
-                    if (gesuchteRaeume==null)
+                    gesuchteRaeume = context.AlleRaeume.Include(x => x.Art).Include(y => y.Bauwerk).ToList();
+                    if (gesuchteRaeume == null)
                     {
                         log.Warn("RaumVerwaltung - gesuchteRaeume - keine Raeume gefunden");
                     }
@@ -216,7 +237,7 @@ namespace Innovation4Austria.logic
             catch (Exception ex)
             {
                 log.Error("RaumVerwaltung - GesuchteRaeume - db-Verbindung fehlgeschlagen");
-                if (ex.InnerException!=null)
+                if (ex.InnerException != null)
                 {
                     log.Info(ex.InnerException);
                 }
