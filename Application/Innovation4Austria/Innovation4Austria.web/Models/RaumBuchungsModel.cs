@@ -12,5 +12,7 @@ namespace Innovation4Austria.web.Models
         public DateTime EndDatum { get; set; }
 
         public List<RaumModel> gesuchteRaumListe { get; set; }
+
+        public string datumVonBis { get; set; }
     }
 }

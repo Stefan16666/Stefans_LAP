@@ -48,16 +48,22 @@ namespace innovation4austria.web
                 .ForMember(dest => dest.RaumArt, opts => opts.MapFrom(source => source.Art.Bezeichnung))
                 ;
 
-                x.CreateMap<Ausstattung, RaumAusstattungsModel>()
-                .ForMember(dest => dest.Auswahl, opts => opts.Ignore());
+                x.CreateMap<Raum_Ausstattung, RaumAusstattungsModel>()
+                .ForMember(dest => dest.Bezeichnung, opts => opts.MapFrom(source => source.Ausstattung.Bezeichnung))
+                ;
 
                 x.CreateMap<Art, RaumArtModel>();
 
                 x.CreateMap<Raum, BuchungsDetailModel>()
                 .ForMember(dest => dest.RaumArt, opts => opts.MapFrom(source => source.Art.Bezeichnung))
                 .ForMember(dest => dest.VonDatum, opts => opts.Ignore())
-                .ForMember(dest => dest.BisDatum, opts => opts.Ignore())
-                .ForMember(dest => dest.RaumAusstattung, opts=> opts.Ignore());
+                .ForMember(dest => dest.BisDatum, opts => opts.Ignore())               
+                .ForMember(dest => dest.RaumAusstattung, opts => opts.Ignore());
+
+                x.CreateMap<Raum_Ausstattung, RaumAusstattungsFilterModel>()
+                .ForMember(dest => dest.Bezeichnung, opts => opts.MapFrom(source => source.Ausstattung.Bezeichnung))
+                .ForMember(dest => dest.Ausstattungs_Id, opts => opts.Ignore())
+                .ForMember(dest => dest.Auswahl, opts => opts.Ignore());              
             });
 
             Mapper.AssertConfigurationIsValid();

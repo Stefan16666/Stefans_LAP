@@ -12,6 +12,7 @@ namespace Innovation4Austria.web.Models
 
         public string Bezeichnung { get; set; }
 
-        public bool Auswahl { get; set; }
+        public int Ausstattungs_Id { get; set; }
+
     }
 }

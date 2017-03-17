@@ -3,9 +3,62 @@
     ViewBag.Title = "BuchungsDetails";
 }
 
-<h2>BuchungsDetails</h2>
 
-<div>
-    @Model.BisDatum
-</div>
+
+@using (Html.BeginForm("Raumbuchung", "Buchung", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container BuchungsDetail">
+        <div class="row">
+            <div class="img-rounded" style="margin-top:2em">
+                <div class="col-md-6">
+                    <img src="~/Bild/BildZuRaum/@Model.Id" data-toggle="tooltip" title="@Model.Beschreibung" class="imgBuchungsdetail img-responsive">
+                </div>
+                <div class="col-md-6">
+                    <div class="SchriftgroesseKarten">
+                        <div>@Html.LabelFor(x => x.Bezeichnung): &nbsp</div>
+                        <div>
+                            @Model.Bezeichnung
+                        </div>
+                    </div>
+                    <div>
+                        <div class="SchriftgroesseKarten">@Model.RaumArt</div>
+                    </div>
+                    <div class="SchriftgroesseKarten">@Model.Groesse m²</div>
+                    <div class="SchriftgroesseKarten">@Model.Beschreibung</div>
+                    <div class="SchriftgroesseKarten">€ @Model.Preis,- / Tag</div>
+                    @foreach (var item in Model.RaumAusstattung)
+                    {
+                        <img src="~/Bild/IconZuAusstattung/@item.Id" alt="..." class="img-thumbnail img-check" data-toggle="tooltip" title="@item.Bezeichnung" onclick="auswahl(@item.Id)" style="width:2.4em">
+                        <img src="" />
+                    }
+                    @Html.Hidden("Id")
+                    @Html.Hidden("VonDatum")
+                    @Html.Hidden("BisDatum")
+                    @Html.Hidden("Preis")
+                    <div class="SchriftgroesseKarten">@Model.VonDatum.ToShortDateString()</div>
+                    <div class="SchriftgroesseKarten">@Model.BisDatum.ToShortDateString()</div>
+                    <div class="form-group">
+                        <div>
+                            <input type="submit" value="Verbindlich Buchen" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });        
+    </script>
+}
+
 

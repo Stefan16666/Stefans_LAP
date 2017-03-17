@@ -14,14 +14,38 @@ namespace Innovation4Austria.web.Controllers
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         [HttpPost]
-        public ActionResult BuchungsDetails(DateTime StartDatum, DateTime EndDatum,int Id)
+        public ActionResult BuchungsDetails(DateTime StartDatum, DateTime EndDatum, string datumVonBis, int Id)
         {
             log.Info("Buchung - BuchungsDetails - Get");
+
+
+
+            BuchungsDetailModel mapBuchungsDetails = AutoMapper.Mapper.Map<BuchungsDetailModel>(RaumVerwaltung.GesuchterRaum(Id));
+
+            List<Raum_Ausstattung> raumAusstattung = RaumVerwaltung.RaumAusstattungEinesRaumes(Id);
+
+            List<RaumAusstattungsFilterModel> mapRaumAusstattung = AutoMapper.Mapper.Map<List<RaumAusstattungsFilterModel>>(RaumVerwaltung.RaumAusstattungEinesRaumes(Id));
+
             BuchungsDetailModel buchungsDetails = new BuchungsDetailModel();
-            buchungsDetails = AutoMapper.Mapper.Map<BuchungsDetailModel>(RaumVerwaltung.GesuchterRaum(Id));
-            buchungsDetails.RaumAusstattung = new List<RaumAusstattungsModel>();
-            buchungsDetails.RaumAusstattung = AutoMapper.Mapper.Map<List<RaumAusstattungsModel>>(RaumVerwaltung.AlleRaumAusstattungen());
-            return View();
+            buchungsDetails = mapBuchungsDetails;
+            buchungsDetails.RaumAusstattung = new List<RaumAusstattungsFilterModel>();
+            buchungsDetails.RaumAusstattung = mapRaumAusstattung;
+            
+            buchungsDetails.VonDatum = StartDatum;
+            buchungsDetails.BisDatum = EndDatum;
+
+            return View(buchungsDetails);
         }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Raumbuchung(int Id, DateTime VonDatum, DateTime BisDatum, decimal Preis)
+        {
+
+            return RedirectToAction("Laden", "Raum");
+
+        }
+
+
     }
 }

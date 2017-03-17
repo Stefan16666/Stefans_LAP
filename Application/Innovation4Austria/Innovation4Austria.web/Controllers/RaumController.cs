@@ -26,6 +26,7 @@ namespace Innovation4Austria.web.Controllers
 
             List<RaumModel> raumList = new List<RaumModel>();
 
+            // hier händich eine Liste von RaumAusstattungen erstellen und dann mappen
             filterModel.Ausstattung = AutoMapper.Mapper.Map<List<RaumAusstattungsModel>>(RaumVerwaltung.AlleRaumAusstattungen());
 
             filterModel.Art = AutoMapper.Mapper.Map<List<RaumArtModel>>(RaumVerwaltung.AlleRaumArten());
@@ -91,6 +92,9 @@ namespace Innovation4Austria.web.Controllers
                     gefilterteRaeume.EndDatum = endDatum;
                     gefilterteRaeume.gesuchteRaumListe = new List<RaumModel>();
                     gefilterteRaeume.gesuchteRaumListe = AutoMapper.Mapper.Map<List<RaumModel>>(RaumVerwaltung.GesuchteRaeume(anfangsDatum, endDatum, Art_id, ausstattung));
+
+                    gefilterteRaeume.datumVonBis = datumVonBis;
+
 
                 }
                 catch (Exception ex)

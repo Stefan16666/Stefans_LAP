@@ -22,12 +22,17 @@
                 <div class="SchriftgroesseKarten">€ @raum.Preis,- / Tag</div>
                 @Html.HiddenFor(x => x.StartDatum)
                 @Html.HiddenFor(x => x.EndDatum)
-                <input id="@raum.Id" name="Id" value="@raum.Id" type="hidden" />
-                <div class="form-group">
-                    <div>
-                        <input type="submit" value="Zur Buchung" class="btn btn-default" />
+                @Html.HiddenFor(x=>x.datumVonBis)
+                @if (Request.RequestType == "POST")
+                {
+                    <div class="form-group">
+                        <div>
+                            <input type="submit" value="Zur Buchung" class="btn btn-default" />
+                        </div>
                     </div>
-                </div>
+                }
+                <input id="@raum.Id" name="Id" value="@raum.Id" type="hidden" />
+       
             </div>
         }
     }

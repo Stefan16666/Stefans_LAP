@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+
+    <canvas id="myChart" style="max-height: 400px; max-width: 400px;"></canvas>
+
+    <script src="Scripts/Chart.js"></script>
+    <script>
+        var ctx = document.getElementById("myChart");
+
+        var data = {
+            labels: [
+                "Red",
+                "Blue",
+                "Yellow"
+            ],
+            datasets: [
+                {
+                    data: [300, 50, 100],
+                    backgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56"
+                    ]
+                }]
+        };
+
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: data
+        });
+    </script>
+</body>
+</html>

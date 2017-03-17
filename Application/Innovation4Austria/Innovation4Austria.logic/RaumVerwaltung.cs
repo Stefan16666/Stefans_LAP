@@ -133,6 +133,34 @@ namespace Innovation4Austria.logic
             return alleAusstattungen;
         }
 
+        public static List<Raum_Ausstattung> RaumAusstattungEinesRaumes(int raum_id)
+        {
+            log.Info("RaumVerwaltung - RaumAusstattungEinesRaumes");
+            List<Raum_Ausstattung> raumAusstattungEinesRaumes = new List<Raum_Ausstattung>();
+
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    raumAusstattungEinesRaumes = context.AlleRaum_Ausstattungen.Include(y => y.Ausstattung).Where(x => x.Raum_id == raum_id).ToList();
+                }
+                if (raumAusstattungEinesRaumes == null)
+                {
+                    log.Warn("RaumVerwaltung - RaumAusstattungEinesRaumes - RaumAusstattungenEinesRaumes auslesen fehlgeschlagen");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                log.Error("RaumVerwaltung - RaumAusstattungEinesRaumes - DB - Verbindung fehlgeschlagen");
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+            return raumAusstattungEinesRaumes;
+        }
+
         public static List<Raum> GesuchteRaeume(DateTime startdatum, DateTime enddatum, int art_id, int[] ausstattung)
         {
             log.Info("RaumVerwaltung - GesuchteRaueme");
@@ -150,7 +178,7 @@ namespace Innovation4Austria.logic
 
                     List<Buchungsdetails> buchungsdetails = context.AlleBuchungsdetails.Where(x => x.Datum >= startdatum && x.Datum <= enddatum).ToList();
 
-                    raeume = context.AlleRaeume.Where(x => x.Art_id == art_id).Include(y=>y.Art).ToList();
+                    raeume = context.AlleRaeume.Where(x => x.Art_id == art_id).Include(y => y.Art).ToList();
 
                     if (buchungsdetails != null)
                     {
@@ -194,15 +222,6 @@ namespace Innovation4Austria.logic
                             }
                         }
                     }
-
-                    // Except - Operator
-                    //foreach (var raum in alleRaeume)
-                    //{
-                    //    if (gesuchteRaeume.Contains(raum))
-                    //    {
-                    //        gesuchteRaeume.Remove(raum);
-                    //    }
-                    //}
 
 
                 }

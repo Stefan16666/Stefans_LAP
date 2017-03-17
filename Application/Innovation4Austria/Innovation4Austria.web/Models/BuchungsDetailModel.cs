@@ -11,6 +11,6 @@ namespace Innovation4Austria.web.Models
 
         public DateTime BisDatum { get; set; }
 
-        public List<RaumAusstattungsModel> RaumAusstattung { get; set; }
+        public List<RaumAusstattungsFilterModel> RaumAusstattung { get; set; }
     }
 }
