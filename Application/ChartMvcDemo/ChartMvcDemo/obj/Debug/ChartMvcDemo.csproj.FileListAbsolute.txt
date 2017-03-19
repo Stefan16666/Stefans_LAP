@@ -45,3 +45,4 @@ d:\temp\ChartMvcDemo\ChartMvcDemo\bin\de\System.Web.WebPages.Razor.resources.dll
 d:\temp\ChartMvcDemo\ChartMvcDemo\obj\Debug\ChartMvcDemo.csprojResolveAssemblyReference.cache
 d:\temp\ChartMvcDemo\ChartMvcDemo\obj\Debug\ChartMvcDemo.dll
 d:\temp\ChartMvcDemo\ChartMvcDemo\obj\Debug\ChartMvcDemo.pdb
+C:\Lap\Application\ChartMvcDemo\ChartMvcDemo\obj\Debug\ChartMvcDemo.csprojResolveAssemblyReference.cache

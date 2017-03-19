@@ -101,7 +101,9 @@ CREATE TABLE Raum_Ausstattung (
 
 CREATE TABLE Rechnung(
 	id INT IDENTITY NOT NULL,
-	datum DATE 
+	datum DATE,
+	bezahlt BIT DEFAULT 0 NOT NULL,
+	fa_id INT NOT NULL	
 );
 
 CREATE TABLE Rechnungsdetails(

@@ -66,6 +66,13 @@ FOREIGN KEY (raum_id)
 REFERENCES Raum(id);
 GO
 
+ALTER TABLE Rechnung
+ADD
+CONSTRAINT FK_Rechnung_Firma
+FOREIGN KEY (fa_id)
+REFERENCES Firma(id);
+GO
+
 ALTER TABLE Rechnungsdetails
 ADD
 CONSTRAINT FK_Rechnungsdetails_Buchungsdetails
@@ -79,6 +86,7 @@ CONSTRAINT FK_Rechnungsdetails_Rechnung
 FOREIGN KEY (rechnung_id)
 REFERENCES Rechnung(id);
 GO
+
 
 ALTER TABLE Benutzer
 ADD
