@@ -1,6 +1,6 @@
 ECHO ist ausgeschaltet (OFF).
 . 
-"starting database creation 18:31:37,35" 
+"starting database creation 20:52:48,73" 
 . 
 "try dropping database" 
 1> 2> 1> 2> 3> 4> 1>  
@@ -152,5 +152,5 @@ The statement has been terminated.
 1> 2> 3>  
  
 . 
-"stopping database creation 18:31:41,29" 
+"stopping database creation 20:52:52,27" 
 . 

@@ -145,24 +145,25 @@ INSERT INTO Buchung (Raum_id, firma_id) VALUES (4, 1);
 INSERT INTO Buchung (Raum_id, firma_id) VALUES (2, 3);
 INSERT INTO Buchung (Raum_id, firma_id) VALUES (4, 1);
 INSERT INTO Buchung (Raum_id, firma_id) VALUES (6, 2);
-INSERT INTO Buchung (Raum_id, firma_id) VALUES (2, 3);
+INSERT INTO Buchung (Raum_id, firma_id) VALUES (1, 3);
 INSERT INTO Buchung (Raum_id, firma_id) VALUES (4, 1);
 GO
 
-INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '16-06-2017', 12.0);
+
 INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 4, '14-06-2017', 12.0);
-INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 4, '08-07-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 4, '15-06-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '09-10-2017', 12.0);
 INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '10-10-2017', 12.0);
-INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '08-04-2017', 12.0);
-INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 4, '23-12-2017', 12.0);
-INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '16-02-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 1, '11-10-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 5, '23-12-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 5, '24-12-2017', 12.0);
 INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 3, '28-10-2017', 12.0);
 INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 2, '29-11-2017', 12.0);
-INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 2, '29-11-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 6, '29-11-2017', 12.0);
 GO
 
-INSERT INTO Rechnung (datum, fa_id) VALUES ('2017-02-26',1 )
-INSERT INTO Rechnung (datum, fa_id) VALUES ('2017-01-12',2)
+INSERT INTO Rechnung (datum, fa_id) VALUES ('2017-02-26', 1)
+INSERT INTO Rechnung (datum, fa_id) VALUES ('2017-01-12', 2)
 INSERT INTO Rechnung (datum, fa_id) VALUES ('2017-02-28', 3)
 INSERT INTO Rechnung (datum, fa_id) VALUES ('2017-01-16', 4)
 GO
