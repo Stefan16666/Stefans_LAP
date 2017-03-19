@@ -12,5 +12,9 @@ namespace Innovation4Austria.web.Models
         public DateTime BisDatum { get; set; }
 
         public List<RaumAusstattungsFilterModel> RaumAusstattung { get; set; }
+
+        public List<FirmenAusWahlModel> Firma { get; set; }
+
+        public int Fa_Id { get; set; }
     }
 }

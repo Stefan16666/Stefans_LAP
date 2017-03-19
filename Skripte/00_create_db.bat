@@ -3,7 +3,7 @@ echo off
 set logfile=create_db.log
 set username=sa
 set passwd=123user!
-set servername=.
+set servername=STEFAN\sqlexpress
 set database=Innovation4Austria
 
 set automode=0

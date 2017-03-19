@@ -30,8 +30,13 @@
                     <div class="SchriftgroesseKarten">€ @Model.Preis,- / Tag</div>
                     @foreach (var item in Model.RaumAusstattung)
                     {
-                        <img src="~/Bild/IconZuAusstattung/@item.Id" alt="..." class="img-thumbnail img-check" data-toggle="tooltip" title="@item.Bezeichnung" onclick="auswahl(@item.Id)" style="width:2.4em">
-                        <img src="" />
+                        <img src="~/Bild/IconZuAusstattung/@item.Ausstattungs_Id" alt="..." class="img-thumbnail img-check" data-toggle="tooltip" title="@item.Bezeichnung" style="width:2.4em">                      
+                    }
+                    @if (User.IsInRole(Innovation4Austria.web.AppCode.Validation.INNOVATION4AUSTRIAMITARBEITER))
+                    {
+                        <div>
+                            @Html.DropDownListFor(x => x.Fa_Id, new SelectList(Model.Firma, "Id", "Bezeichnung"))
+                        </div>
                     }
                     @Html.Hidden("Id")
                     @Html.Hidden("VonDatum")
@@ -57,7 +62,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
-        });        
+        });
     </script>
 }
 

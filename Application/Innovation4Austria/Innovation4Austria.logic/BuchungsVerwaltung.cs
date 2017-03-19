@@ -84,6 +84,58 @@ namespace Innovation4Austria.logic
             return date;
         }
 
+        public static bool ErstelleBuchungDetails(int buchung_id, DateTime vonDatum, DateTime BisDatum, decimal preis)
+        {
+            bool erfolgreich = false;
+            log.Info("BuchungsVerwaltung - ErstelleBuchungDetails");
+            if (buchung_id >0)
+            {
+                if (vonDatum!= null)
+                {
+                    if (BisDatum !=null)                        
+                    {
+                        int wievieleTage = (BisDatum-vonDatum).Days;
+                        wievieleTage++;
+                        try
+                        {
+                            using (var context = new Innovation4AustriaEntities())
+                            {
+                                for (int i = 0; i < wievieleTage; i++)
+                                {
+                                    Buchungsdetails neueBuchung = new Buchungsdetails()
+                                    {
+                                        Buchung_id = buchung_id,
+                                        Datum = vonDatum,
+                                        Preis = preis
+                                    };
+                                    context.AlleBuchungsdetails.Add(neueBuchung);
+                                    if (vonDatum<BisDatum)
+                                    {
+                                        vonDatum = vonDatum.AddDays(1);
+                                    }
+                                }
+                                if (context.SaveChanges()==wievieleTage)
+                                {
+                                    erfolgreich = true;
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            log.Error("BuchungsVerwaltung - ErstelleBuchungDetals - fehlgeschlagen");
+                            if (ex.InnerException!=null)
+                            {
+                                log.Info(ex.InnerException);
+                            }
+                        }                  
+
+                    }
+                }
+            }
+            return erfolgreich;
+            
+        }
+
         public static List<Buchungsdetails> BuchungsDetailsVonBuchung(int buchung_id)
         {
             log.Info("RaumVerwaltung - BuchungsDetailsVonBuchung");
@@ -112,6 +164,29 @@ namespace Innovation4Austria.logic
                 }
             }
             return detailVonBuchung;
+        }
+
+        public static int ErstelleBuchung(int raum_id, int firma_id)
+        {
+            Buchung neueBuchung = new Buchung();
+            neueBuchung.Raum_id = raum_id;
+            neueBuchung.Firma_id = firma_id;
+            log.Info("BuchungsVerwaltung - ErstelleBuchung");
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    context.AlleBuchungen.Add(neueBuchung);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return neueBuchung.Id;
         }
 
         

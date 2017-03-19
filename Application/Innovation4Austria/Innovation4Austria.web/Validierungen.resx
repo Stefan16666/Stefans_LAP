@@ -120,6 +120,12 @@
   <data name="BenutzerProfilAktualisierenErfolgreich" xml:space="preserve">
     <value>Profil wurde erfolgreich aktualisiert</value>
   </data>
+  <data name="BuchenErfolgreich" xml:space="preserve">
+    <value>Buchung erfolgreich erstellt</value>
+  </data>
+  <data name="BuchenFehlgeschlagen" xml:space="preserve">
+    <value>Buchung fehlgeschlagen!</value>
+  </data>
   <data name="DataTypeMail" xml:space="preserve">
     <value>Emailadress </value>
   </data>

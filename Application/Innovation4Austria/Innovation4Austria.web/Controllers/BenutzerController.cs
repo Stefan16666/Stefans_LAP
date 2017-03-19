@@ -129,9 +129,9 @@ namespace Innovation4Austria.web.Controllers
                     BuchungsDetailsVonFirma = BuchungsVerwaltung.BuchungsDetailsVonBuchung(booking.Id);
 
                     Raum aktRaum = RaumVerwaltung.GesuchterRaum(booking.Raum_id);
+
                     buchungsmodel.Raumnummer = aktRaum.Bezeichnung;
                     buchungsmodel.RaumArt = aktRaum.Art.Bezeichnung;
-
 
                     buchungsmodel.VonDatum = (from x in BuchungsDetailsVonFirma orderby x.Datum select x.Datum).FirstOrDefault();
                     buchungsmodel.BisDatum = (from x in BuchungsDetailsVonFirma orderby x.Datum descending select x.Datum).FirstOrDefault();

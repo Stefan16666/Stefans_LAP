@@ -70,6 +70,24 @@ namespace Innovation4Austria.web {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Buchung erfolgreich erstellt ähnelt.
+        /// </summary>
+        internal static string BuchenErfolgreich {
+            get {
+                return ResourceManager.GetString("BuchenErfolgreich", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Buchung fehlgeschlagen! ähnelt.
+        /// </summary>
+        internal static string BuchenFehlgeschlagen {
+            get {
+                return ResourceManager.GetString("BuchenFehlgeschlagen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Emailadress  ähnelt.
         /// </summary>
         internal static string DataTypeMail {
