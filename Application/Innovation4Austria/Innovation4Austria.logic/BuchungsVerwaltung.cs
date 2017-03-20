@@ -171,6 +171,7 @@ namespace Innovation4Austria.logic
             Buchung neueBuchung = new Buchung();
             neueBuchung.Raum_id = raum_id;
             neueBuchung.Firma_id = firma_id;
+            neueBuchung.Aktiv = true;
             log.Info("BuchungsVerwaltung - ErstelleBuchung");
             try
             {

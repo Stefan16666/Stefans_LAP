@@ -209,7 +209,7 @@ namespace Innovation4Austria.logic
 
 
                     // hier wird nach der Ausstattung sortiert, jeder Raum, der die Ausstattung nicht enthält, wird entfernt
-                    if (ausstattung.Length >= 0)
+                    if (ausstattung.Length > 0)
                     {
                         foreach (var raum in raeume)
                         {

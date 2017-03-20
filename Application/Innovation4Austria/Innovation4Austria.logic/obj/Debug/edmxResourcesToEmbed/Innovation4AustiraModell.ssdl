@@ -56,7 +56,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="raum_id" Type="int" Nullable="false" />
     <Property Name="firma_id" Type="int" Nullable="false" />
-    <Property Name="aktiv" Type="bit" />
+    <Property Name="aktiv" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Buchungsdetails">
     <Key>
@@ -123,6 +123,8 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="datum" Type="date" />
+    <Property Name="bezahlt" Type="bit" Nullable="false" />
+    <Property Name="fa_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Rechnungsdetails">
     <Key>
@@ -161,7 +163,7 @@ Warnung 6002: Für Tabelle/Sicht 'Innovation4Austria.dbo.AlleRechnungenEinerFirm
     <Property Name="BuchungsDetailDatum" Type="datetime" Nullable="false" />
     <Property Name="BuchungsDetailPreis" Type="decimal" Precision="18" Scale="0" Nullable="false" />
     <Property Name="Buchungs_id" Type="int" Nullable="false" />
-    <Property Name="BuchungAktiv" Type="bit" />
+    <Property Name="BuchungAktiv" Type="bit" Nullable="false" />
     <Property Name="raum_id" Type="int" Nullable="false" />
     <Property Name="Raumbezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Raumartbezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -298,6 +300,18 @@ Warnung 6002: Für Tabelle/Sicht 'Innovation4Austria.dbo.AlleRechnungenEinerFirm
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Rechnung_Firma">
+    <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+    <End Role="Rechnung" Type="Self.Rechnung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Firma">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Rechnung">
+        <PropertyRef Name="fa_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Rechnungsdetails_Buchungsdetails">
     <End Role="Buchungsdetails" Type="Self.Buchungsdetails" Multiplicity="1" />
     <End Role="Rechnungsdetails" Type="Self.Rechnungsdetails" Multiplicity="*" />
@@ -395,6 +409,10 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
     <AssociationSet Name="FK_Raum_Bauwerk" Association="Self.FK_Raum_Bauwerk">
       <End Role="Bauwerk" EntitySet="Bauwerk" />
       <End Role="Raum" EntitySet="Raum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rechnung_Firma" Association="Self.FK_Rechnung_Firma">
+      <End Role="Firma" EntitySet="Firma" />
+      <End Role="Rechnung" EntitySet="Rechnung" />
     </AssociationSet>
     <AssociationSet Name="FK_Rechnungsdetails_Buchungsdetails" Association="Self.FK_Rechnungsdetails_Buchungsdetails">
       <End Role="Buchungsdetails" EntitySet="Buchungsdetails" />

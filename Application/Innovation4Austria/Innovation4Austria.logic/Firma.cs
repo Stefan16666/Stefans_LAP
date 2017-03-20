@@ -25,6 +25,8 @@ public partial class Firma
 
         this.AlleBuchnungen = new HashSet<Buchung>();
 
+        this.Rechnung = new HashSet<Rechnung>();
+
     }
 
 
@@ -47,6 +49,8 @@ public partial class Firma
     public virtual ICollection<Benutzer> AlleBenutzer { get; set; }
 
     public virtual ICollection<Buchung> AlleBuchnungen { get; set; }
+
+    public virtual ICollection<Rechnung> Rechnung { get; set; }
 
 }
 

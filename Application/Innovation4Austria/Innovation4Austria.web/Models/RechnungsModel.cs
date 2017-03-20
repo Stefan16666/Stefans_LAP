@@ -9,6 +9,8 @@ namespace Innovation4Austria.web.Models
     {
         public int Rechnungsnummer { get; set; }
 
+        public int Monatnummer { get; set; }
+
         public string Monat { get; set; }
     }
 }

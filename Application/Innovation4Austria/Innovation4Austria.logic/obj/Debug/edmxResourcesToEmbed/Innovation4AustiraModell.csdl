@@ -68,6 +68,10 @@
       <End Role="Rechnungsdetails" EntitySet="AlleRechnungsdetails" />
     </AssociationSet>
     <EntitySet Name="AlleRechnungenEinerFirma" EntityType="Innovation4AustriaModel.AlleRechnungenEinerFirma" />
+    <AssociationSet Name="FK_Rechnung_Firma" Association="Innovation4AustriaModel.FK_Rechnung_Firma">
+      <End Role="Firma" EntitySet="AlleFirmen" />
+      <End Role="Rechnung" EntitySet="AlleRechnungen" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Art">
     <Key>
@@ -132,7 +136,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Raum_id" Type="Int32" Nullable="false" />
     <Property Name="Firma_id" Type="Int32" Nullable="false" />
-    <Property Name="Aktiv" Type="Boolean" />
+    <Property Name="Aktiv" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Firma" Relationship="Innovation4AustriaModel.FK_Buchung_Firma" FromRole="Buchung" ToRole="Firma" />
     <NavigationProperty Name="Raum" Relationship="Innovation4AustriaModel.FK_Buchung_Raum" FromRole="Buchung" ToRole="Raum" />
     <NavigationProperty Name="AlleBuchungsdetails" Relationship="Innovation4AustriaModel.FK_Buchungdeatails_buchung_id" FromRole="Buchung" ToRole="Buchungsdetails" />
@@ -161,6 +165,7 @@
     <NavigationProperty Name="AlleBenutzer" Relationship="Innovation4AustriaModel.FK_Benutzer_Firma" FromRole="Firma" ToRole="Benutzer" />
     <NavigationProperty Name="AlleBuchnungen" Relationship="Innovation4AustriaModel.FK_Buchung_Firma" FromRole="Firma" ToRole="Buchung" />
     <Property Name="aktiv" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Rechnung" Relationship="Innovation4AustriaModel.FK_Rechnung_Firma" FromRole="Firma" ToRole="Rechnung" />
   </EntityType>
   <EntityType Name="Log">
     <Key>
@@ -215,6 +220,9 @@
     <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Datum" Type="DateTime" Precision="0" />
     <NavigationProperty Name="AlleRechnungsdetails" Relationship="Innovation4AustriaModel.FK_Rechnungsdetails_Rechnung" FromRole="Rechnung" ToRole="Rechnungsdetails" />
+    <Property Name="bezahlt" Type="Boolean" Nullable="false" />
+    <Property Name="fa_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Firma" Relationship="Innovation4AustriaModel.FK_Rechnung_Firma" FromRole="Rechnung" ToRole="Firma" />
   </EntityType>
   <EntityType Name="Rechnungsdetails">
     <Key>
@@ -410,9 +418,21 @@
     <Property Name="BuchungsDetailDatum" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="BuchungsDetailPreis" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="Buchungs_id" Type="Int32" Nullable="false" />
-    <Property Name="BuchungAktiv" Type="Boolean" />
+    <Property Name="BuchungAktiv" Type="Boolean" Nullable="false" />
     <Property Name="raum_id" Type="Int32" Nullable="false" />
     <Property Name="Raumbezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Raumartbezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
+  <Association Name="FK_Rechnung_Firma">
+    <End Type="Innovation4AustriaModel.Firma" Role="Firma" Multiplicity="1" />
+    <End Type="Innovation4AustriaModel.Rechnung" Role="Rechnung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Firma">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rechnung">
+        <PropertyRef Name="fa_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -41,7 +41,7 @@ CREATE TABLE Buchung (
 	id INT IDENTITY NOT NULL,	
 	raum_id INT NOT NULL,
 	firma_id INT NOT NULL,
-	aktiv bit default 1
+	aktiv bit default 1 NOT NULL
 );
 
 CREATE TABLE Buchungsdetails(

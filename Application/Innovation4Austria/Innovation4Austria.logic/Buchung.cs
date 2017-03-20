@@ -32,7 +32,7 @@ public partial class Buchung
 
     public int Firma_id { get; set; }
 
-    public Nullable<bool> Aktiv { get; set; }
+    public bool Aktiv { get; set; }
 
 
 

@@ -113,30 +113,31 @@ namespace Innovation4Austria.web.Controllers
 
             // mapping for bookings
 
-            BuchungsAnzeigeModel buchungsmodel = new BuchungsAnzeigeModel();
+            
             List<BuchungsAnzeigeModel> alleBuchungen = new List<BuchungsAnzeigeModel>();
             List<Rechnungsdetails> rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();
             List<Buchungsdetails> BuchungsDetailsVonFirma = new List<Buchungsdetails>();
 
             List<Buchung> bookingsOfCompany = BuchungsVerwaltung.GebuchteRaeume((int)aktBenutzer.Firma_id);
-
+            dashboard.AlleBuchungen = new List<BuchungsAnzeigeModel>();
             if (bookingsOfCompany != null)
             {
                 /// es fehlt noch RaumArt und RaumName
                 foreach (var booking in bookingsOfCompany)
                 {
-
-                    BuchungsDetailsVonFirma = BuchungsVerwaltung.BuchungsDetailsVonBuchung(booking.Id);
-
+                    
+                    BuchungsDetailsVonFirma = BuchungsVerwaltung.BuchungsDetailsVonBuchung(booking.Id);                    
+                                        
                     Raum aktRaum = RaumVerwaltung.GesuchterRaum(booking.Raum_id);
-
+                    BuchungsAnzeigeModel buchungsmodel = new BuchungsAnzeigeModel();
+                    
                     buchungsmodel.Raumnummer = aktRaum.Bezeichnung;
                     buchungsmodel.RaumArt = aktRaum.Art.Bezeichnung;
-
+                    
                     buchungsmodel.VonDatum = (from x in BuchungsDetailsVonFirma orderby x.Datum select x.Datum).FirstOrDefault();
                     buchungsmodel.BisDatum = (from x in BuchungsDetailsVonFirma orderby x.Datum descending select x.Datum).FirstOrDefault();
 
-                    alleBuchungen.Add(buchungsmodel);
+                    dashboard.AlleBuchungen.Add(buchungsmodel);
 
                 }
             }
@@ -144,36 +145,49 @@ namespace Innovation4Austria.web.Controllers
             {
                 log.Info("BenutzerController - Dashboard - keine Buchungen für die Firma vorhanden sind");
             }
-            dashboard.AlleBuchungen = alleBuchungen;
+                       
 
-            List<int> dates = new List<int>();
+            List<Rechnung> alleRechnungenEinerFirma = RechnungsVerwaltung.RechnungenEinerFirma((int)aktBenutzer.Firma_id);
+            List<RechnungsModel> alleRechnungenAnzeigen = new List<RechnungsModel>();
+            List<Buchungsdetails> buchungsDetailsDieInRechnungsDetailsvorkommen = new List<Buchungsdetails>();
 
-            foreach (var buchungsdetail in BuchungsDetailsVonFirma)
+            Buchungsdetails buchungsDetail = new Buchungsdetails();
+
+            foreach (var rechnung in alleRechnungenEinerFirma)
             {
-                if (RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsdetail.Id) == null)
+                List<Rechnungsdetails> RechnungsDetailsEinerRechnung = RechnungsVerwaltung.RechnungsDetailsEinerRechnung(rechnung.Id);
+                foreach (var rechnungsDetail  in RechnungsDetailsEinerRechnung)
                 {
-                    BuchungsDetailsVonFirma.Remove(buchungsdetail);
-                }
-                if (!dates.Contains(BuchungsVerwaltung.datum(buchungsdetail.Id, true).Month))
-                {
-                    int date = BuchungsVerwaltung.datum(buchungsdetail.Id, true).Month;
-                    dates.Add(date);
+                    buchungsDetail = RechnungsVerwaltung.BuchungsDetailEinerRechnung(rechnungsDetail.Buchungsdetail_Id);
+                    buchungsDetailsDieInRechnungsDetailsvorkommen.Add(buchungsDetail);
+                    
                 }
             }
+
+            List<int> dates = new List<int>();
+            foreach (var buchungsdetail in buchungsDetailsDieInRechnungsDetailsvorkommen)
+            {
+                if (!dates.Contains(buchungsDetail.Datum.Month))
+                {
+                    int date = buchungsDetail.Datum.Month;
+                    dates.Add(date);
+                }
+                 
+            }
+
             List<RechnungsModel> alleRechnungen = new List<RechnungsModel>();
 
             foreach (var item in dates)
             {
                 RechnungsModel RgModel = new RechnungsModel()
                 {
-                    Monat = Monat(item)
+                    Monat = Monat(item),
+                    Monatnummer = item
                 };
                 alleRechnungen.Add(RgModel);
             };
 
             dashboard.AlleRechnungen = alleRechnungen;
-
-
 
             return View(dashboard);
         }

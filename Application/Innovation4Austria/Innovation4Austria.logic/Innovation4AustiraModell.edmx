@@ -61,7 +61,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="raum_id" Type="int" Nullable="false" />
           <Property Name="firma_id" Type="int" Nullable="false" />
-          <Property Name="aktiv" Type="bit" />
+          <Property Name="aktiv" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Buchungsdetails">
           <Key>
@@ -128,6 +128,8 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="datum" Type="date" />
+          <Property Name="bezahlt" Type="bit" Nullable="false" />
+          <Property Name="fa_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Rechnungsdetails">
           <Key>
@@ -155,6 +157,7 @@ Warnung 6002: Für Tabelle/Sicht 'Innovation4Austria.dbo.AlleRechnungenEinerFirm
             <PropertyRef Name="BuchungsDetailDatum" />
             <PropertyRef Name="BuchungsDetailPreis" />
             <PropertyRef Name="Buchungs_id" />
+            
             <PropertyRef Name="raum_id" />
             <PropertyRef Name="Raumbezeichnung" />
             <PropertyRef Name="Raumartbezeichnung" />
@@ -166,7 +169,7 @@ Warnung 6002: Für Tabelle/Sicht 'Innovation4Austria.dbo.AlleRechnungenEinerFirm
           <Property Name="BuchungsDetailDatum" Type="datetime" Nullable="false" />
           <Property Name="BuchungsDetailPreis" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Buchungs_id" Type="int" Nullable="false" />
-          <Property Name="BuchungAktiv" Type="bit" />
+          <Property Name="BuchungAktiv" Type="bit" Nullable="false" />
           <Property Name="raum_id" Type="int" Nullable="false" />
           <Property Name="Raumbezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Raumartbezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -303,6 +306,18 @@ Warnung 6002: Für Tabelle/Sicht 'Innovation4Austria.dbo.AlleRechnungenEinerFirm
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Rechnung_Firma">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="Rechnung" Type="Self.Rechnung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rechnung">
+              <PropertyRef Name="fa_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Rechnungsdetails_Buchungsdetails">
           <End Role="Buchungsdetails" Type="Self.Buchungsdetails" Multiplicity="1" />
           <End Role="Rechnungsdetails" Type="Self.Rechnungsdetails" Multiplicity="*" />
@@ -401,6 +416,10 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
             <End Role="Bauwerk" EntitySet="Bauwerk" />
             <End Role="Raum" EntitySet="Raum" />
           </AssociationSet>
+          <AssociationSet Name="FK_Rechnung_Firma" Association="Self.FK_Rechnung_Firma">
+            <End Role="Firma" EntitySet="Firma" />
+            <End Role="Rechnung" EntitySet="Rechnung" />
+          </AssociationSet>
           <AssociationSet Name="FK_Rechnungsdetails_Buchungsdetails" Association="Self.FK_Rechnungsdetails_Buchungsdetails">
             <End Role="Buchungsdetails" EntitySet="Buchungsdetails" />
             <End Role="Rechnungsdetails" EntitySet="Rechnungsdetails" />
@@ -482,6 +501,10 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
             <End Role="Rechnungsdetails" EntitySet="AlleRechnungsdetails" />
           </AssociationSet>
           <EntitySet Name="AlleRechnungenEinerFirma" EntityType="Innovation4AustriaModel.AlleRechnungenEinerFirma" />
+          <AssociationSet Name="FK_Rechnung_Firma" Association="Innovation4AustriaModel.FK_Rechnung_Firma">
+            <End Role="Firma" EntitySet="AlleFirmen" />
+            <End Role="Rechnung" EntitySet="AlleRechnungen" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Art">
           <Key>
@@ -546,7 +569,7 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Raum_id" Type="Int32" Nullable="false" />
           <Property Name="Firma_id" Type="Int32" Nullable="false" />
-          <Property Name="Aktiv" Type="Boolean" />
+          <Property Name="Aktiv" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Firma" Relationship="Innovation4AustriaModel.FK_Buchung_Firma" FromRole="Buchung" ToRole="Firma" />
           <NavigationProperty Name="Raum" Relationship="Innovation4AustriaModel.FK_Buchung_Raum" FromRole="Buchung" ToRole="Raum" />
           <NavigationProperty Name="AlleBuchungsdetails" Relationship="Innovation4AustriaModel.FK_Buchungdeatails_buchung_id" FromRole="Buchung" ToRole="Buchungsdetails" />
@@ -575,6 +598,7 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
           <NavigationProperty Name="AlleBenutzer" Relationship="Innovation4AustriaModel.FK_Benutzer_Firma" FromRole="Firma" ToRole="Benutzer" />
           <NavigationProperty Name="AlleBuchnungen" Relationship="Innovation4AustriaModel.FK_Buchung_Firma" FromRole="Firma" ToRole="Buchung" />
           <Property Name="aktiv" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Rechnung" Relationship="Innovation4AustriaModel.FK_Rechnung_Firma" FromRole="Firma" ToRole="Rechnung" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -629,6 +653,9 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Datum" Type="DateTime" Precision="0" />
           <NavigationProperty Name="AlleRechnungsdetails" Relationship="Innovation4AustriaModel.FK_Rechnungsdetails_Rechnung" FromRole="Rechnung" ToRole="Rechnungsdetails" />
+          <Property Name="bezahlt" Type="Boolean" Nullable="false" />
+          <Property Name="fa_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Firma" Relationship="Innovation4AustriaModel.FK_Rechnung_Firma" FromRole="Rechnung" ToRole="Firma" />
         </EntityType>
         <EntityType Name="Rechnungsdetails">
           <Key>
@@ -824,11 +851,23 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
           <Property Name="BuchungsDetailDatum" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="BuchungsDetailPreis" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="Buchungs_id" Type="Int32" Nullable="false" />
-          <Property Name="BuchungAktiv" Type="Boolean" />
+          <Property Name="BuchungAktiv" Type="Boolean" Nullable="false" />
           <Property Name="raum_id" Type="Int32" Nullable="false" />
           <Property Name="Raumbezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Raumartbezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <Association Name="FK_Rechnung_Firma">
+          <End Type="Innovation4AustriaModel.Firma" Role="Firma" Multiplicity="1" />
+          <End Type="Innovation4AustriaModel.Rechnung" Role="Rechnung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rechnung">
+              <PropertyRef Name="fa_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -966,6 +1005,8 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
           <EntitySetMapping Name="AlleRechnungen">
             <EntityTypeMapping TypeName="Innovation4AustriaModel.Rechnung">
               <MappingFragment StoreEntitySet="Rechnung">
+                <ScalarProperty Name="fa_id" ColumnName="fa_id" />
+                <ScalarProperty Name="bezahlt" ColumnName="bezahlt" />
                 <ScalarProperty Name="Id" ColumnName="id" />
                 <ScalarProperty Name="Datum" ColumnName="datum" />
               </MappingFragment>

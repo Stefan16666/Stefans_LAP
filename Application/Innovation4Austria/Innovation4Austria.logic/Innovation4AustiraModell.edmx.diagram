@@ -33,6 +33,7 @@
         <AssociationConnector Association="Innovation4AustriaModel.FK_Raum_Ausstattung_Raum" ManuallyRouted="false" />
         <AssociationConnector Association="Innovation4AustriaModel.FK_Rechnungsdetails_Rechnung" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Innovation4AustriaModel.AlleRechnungenEinerFirma" Width="2.875" PointX="7.375" PointY="0.75" />
+        <AssociationConnector Association="Innovation4AustriaModel.FK_Rechnung_Firma" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

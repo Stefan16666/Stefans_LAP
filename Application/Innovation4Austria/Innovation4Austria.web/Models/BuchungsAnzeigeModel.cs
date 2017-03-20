@@ -8,6 +8,8 @@ namespace Innovation4Austria.web.Models
 {
     public class BuchungsAnzeigeModel
     {
+        
+
         public string Raumnummer { get; set; }
 
         public string RaumArt { get; set; }

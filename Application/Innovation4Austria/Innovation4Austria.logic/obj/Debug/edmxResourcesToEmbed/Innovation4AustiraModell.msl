@@ -132,6 +132,8 @@
     <EntitySetMapping Name="AlleRechnungen">
       <EntityTypeMapping TypeName="Innovation4AustriaModel.Rechnung">
         <MappingFragment StoreEntitySet="Rechnung">
+          <ScalarProperty Name="fa_id" ColumnName="fa_id" />
+          <ScalarProperty Name="bezahlt" ColumnName="bezahlt" />
           <ScalarProperty Name="Id" ColumnName="id" />
           <ScalarProperty Name="Datum" ColumnName="datum" />
         </MappingFragment>

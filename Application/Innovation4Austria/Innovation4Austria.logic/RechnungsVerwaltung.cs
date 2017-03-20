@@ -49,5 +49,68 @@ namespace Innovation4Austria.logic
             }
             return detail;
         }
+
+        public static List<Rechnung> RechnungenEinerFirma(int firma_id)
+        {
+            log.Info("RechnugnsVerwaltung - RechnungenEinerFirma");
+
+            List<Rechnung> rechnungen = new List<Rechnung>();
+
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    rechnungen = context.AlleRechnungen.Where(x => x.fa_id == firma_id).ToList();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                log.Error("RechnugnsVerwaltung - RechnungenEinerFirma - DB_Verbindung fehlgeschlagen");
+            }
+            return rechnungen;
+        }
+
+        public static List<Rechnungsdetails> RechnungsDetailsEinerRechnung(int id)
+        {
+            log.Info("RechnugnsVerwaltung - RechnungsDetailsEinerRechnung");
+
+            List<Rechnungsdetails> RgDetails = new List<Rechnungsdetails>();
+
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    RgDetails = context.AlleRechnungsdetails.Where(x => x.Rechnung_Id == id).ToList();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                log.Error("RechnugnsVerwaltung - RechnungsDetailsEinerRechnung - DB_Verbindung fehlgeschlagen");
+            }
+            return RgDetails;
+        }
+
+        public static Buchungsdetails BuchungsDetailEinerRechnung(int id)
+        {
+            log.Info("RechnugnsVerwaltung - RechnungsDetailsEinerRechnung");
+
+            Buchungsdetails buchungsDetail = new Buchungsdetails();
+
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    buchungsDetail = context.AlleBuchungsdetails.Where(x => x.Id == id).FirstOrDefault();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                log.Error("RechnugnsVerwaltung - RechnungsDetailsEinerRechnung - DB_Verbindung fehlgeschlagen");
+            }
+            return buchungsDetail;
+        }
     }
 }

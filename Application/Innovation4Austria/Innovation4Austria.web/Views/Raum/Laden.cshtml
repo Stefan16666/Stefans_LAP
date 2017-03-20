@@ -11,8 +11,7 @@
 
             <div class="col-md-4">
                 <h4 class="color margin_buchung">Buchungszeitraum</h4>
-                <input type="text" id="config-demo" name="datumVonBis" class="form-control buchungsZeitraum" style="color:black">
-                @*<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>*@
+                <input type="text" id="config-demo" name="datumVonBis" class="form-control buchungsZeitraum" style="color:black">               
             </div>
             <div class="col-md-2">
                 <h4 class="color margin_buchung">Raumart</h4>
@@ -28,8 +27,6 @@
                             <td>
                                 <label class="btn">
                                     <img src="~/Bild/IconZuAusstattung/@item.Id" alt="..." class="img-thumbnail img-check" data-toggle="tooltip" title="@item.Bezeichnung" onclick="auswahl(@item.Id)" style="width:2.4em">
-
-
                                     <input type="checkbox" id="item4" name="ausstattung" value="@item.Id" autocomplete="off" />
                                 </label>
                             </td>

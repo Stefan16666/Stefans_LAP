@@ -48,6 +48,8 @@
 
                         <div class="dashboard">
                             <div>@rechnungen.Monat</div>
+                            @Html.HiddenFor(x=>rechnungen.Monatnummer)
+                            <div>@Html.ActionLink("Erstellen", "Erstellen", "Rechnungen")</div>
                         </div>
                     }
 

@@ -32,7 +32,7 @@ public partial class AlleRechnungenEinerFirma
 
     public int Buchungs_id { get; set; }
 
-    public Nullable<bool> BuchungAktiv { get; set; }
+    public bool BuchungAktiv { get; set; }
 
     public int raum_id { get; set; }
 

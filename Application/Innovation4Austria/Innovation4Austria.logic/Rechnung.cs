@@ -30,9 +30,15 @@ public partial class Rechnung
 
     public Nullable<System.DateTime> Datum { get; set; }
 
+    public bool bezahlt { get; set; }
+
+    public int fa_id { get; set; }
+
 
 
     public virtual ICollection<Rechnungsdetails> AlleRechnungsdetails { get; set; }
+
+    public virtual Firma Firma { get; set; }
 
 }
 
