@@ -44,6 +44,36 @@ namespace Innovation4Austria.logic
             return bookedRooms;
         }
 
+        public static List<Buchungsdetails> HoleBuchungsDetails(int id)
+        {
+            log.Info("RaumVerwaltung - HoleBuchungsDetails");
+            List<Buchungsdetails>buchungsDetails = new List<Buchungsdetails>();
+            if (id != 0)
+            {
+                try
+                {
+                    using (var context = new Innovation4AustriaEntities())
+                    {
+                        buchungsDetails = context.AlleBuchungsdetails.Where(x => x.Buchung_id == id).ToList();
+
+                        if (buchungsDetails == null)
+                        {
+                            log.Info("RaumVerWaltung - HoleBuchungsDetails - keine Buchugnen vorhanden");
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Error("RaumVerwaltung - HoleBuchungsDetails - Db-Verbind fehlgeschlagen", ex);
+                    if (ex.InnerException != null)
+                    {
+                        log.Info(ex.InnerException);
+                    }
+                }
+            }
+            return buchungsDetails;
+        }
         /// <summary>
         /// reourniere das Anfangs- oder Enddatum einer Buchung auswählbar über bool "vonDatum"
         /// </summary>
@@ -190,7 +220,37 @@ namespace Innovation4Austria.logic
             return neueBuchung.Id;
         }
 
-        
+        public static List<Buchung> LadeBuchungenInclBuchungsdetails(int fa_id)
+        {
+            log.Info("RaumVerwaltung - BuchungsDetailsVonBuchung");
+            List<Buchung> buchungenVonFirma = new List<Buchung>();
+          
+            {
+                try
+                {
+                    using (var context = new Innovation4AustriaEntities())
+                    {
+
+                        buchungenVonFirma = context.AlleBuchungen.Where(z=>z.Firma_id==fa_id).Include(x => x.AlleBuchungsdetails.Where(y=>y.Datum.Month==DateTime.Now.Month)).ToList();
+                        if (buchungenVonFirma == null)
+                        {
+                            log.Warn("RaumVerwaltung - BuchungsDetailsVonBuchung - keine Details zur Buchung gefunden");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Error("RaumVerwaltung - BuchungsDetailsVonBuchung - Datenbankverbindung fehlgeschlagen", ex);
+                    if (ex.InnerException != null)
+                    {
+                        log.Info(ex.InnerException);
+                    }
+                }
+            }
+            return buchungenVonFirma;
+        }
+
+
     }
 }
 

@@ -162,6 +162,7 @@
     <Compile Include="Controllers\BenutzerController.cs" />
     <Compile Include="Controllers\BildController.cs" />
     <Compile Include="Controllers\BuchungController.cs" />
+    <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\RaumController.cs" />
     <Compile Include="Controllers\Innovation4AustriaMitarbeiterController.cs" />
     <Compile Include="Controllers\RechnungController.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Models\FirmaAnlegenModel.cs" />
     <Compile Include="Models\FirmenAusWahlModel.cs" />
     <Compile Include="Models\FirmenModel.cs" />
+    <Compile Include="Models\MonatsModel.cs" />
     <Compile Include="Models\RaumAusstattungsFilterModel.cs" />
     <Compile Include="Models\RaumBuchungsModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -253,6 +255,8 @@
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -310,6 +314,7 @@
     <Content Include="Views\Innovation4AustriaMitarbeiter\FirmaAnlegen.cshtml" />
     <Content Include="Views\Raum\_KartenAnsicht.cshtml" />
     <Content Include="Views\Buchung\BuchungsDetails.cshtml" />
+    <Content Include="Views\Chart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,7 +8,7 @@ GO
 INSERT INTO Firma(bezeichnung, strasse, nummer, plz, ort) VALUES('IBM', 'Obere-Donausstrasse', 1, 1020, 'Wien');
 INSERT INTO Firma(bezeichnung, strasse, nummer, plz, ort) VALUES('Donauversicherung', 'Ringstrasse', 1, 1010, 'Wien');
 INSERT INTO Firma(bezeichnung, strasse, nummer, plz, ort) VALUES('XYZ-Solution', 'Marc-Aurelstrasse', 50, 1010, 'Wien');
-INSERT INTO Firma(bezeichnung, strasse, nummer, plz, ort) VALUES('IBM', 'Ameisgasse', 122, 1140, 'Wien');
+INSERT INTO Firma(bezeichnung, strasse, nummer, plz, ort) VALUES('Neue Firma', 'Ameisgasse', 122, 1140, 'Wien');
 GO
 
 INSERT INTO Art(bezeichnung) VALUES('Besprechung');
@@ -147,6 +147,10 @@ INSERT INTO Buchung (Raum_id, firma_id) VALUES (4, 1);
 INSERT INTO Buchung (Raum_id, firma_id) VALUES (6, 2);
 INSERT INTO Buchung (Raum_id, firma_id) VALUES (1, 3);
 INSERT INTO Buchung (Raum_id, firma_id) VALUES (4, 1);
+INSERT INTO Buchung (Raum_id, firma_id, aktiv) VALUES (4, 1, 0);
+INSERT INTO Buchung (Raum_id, firma_id, aktiv) VALUES (6, 2, 0);
+INSERT INTO Buchung (Raum_id, firma_id, aktiv) VALUES (1, 3, 0);
+INSERT INTO Buchung (Raum_id, firma_id, aktiv) VALUES (4, 1, 0);
 GO
 
 
