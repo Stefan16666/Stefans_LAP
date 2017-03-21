@@ -135,9 +135,9 @@ VALUES('marco@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Marco', 'Wurz',1, 2
 INSERT INTO Benutzer(email, passwort, vorname, nachname, rolle_id, firma_id)
 VALUES('claudia@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Claudia', 'Stiegl', 1, 3);
 INSERT INTO Benutzer(email, passwort, vorname, nachname, rolle_id, firma_id)
-VALUES('daniel@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Daniel', 'Zalli', 2, 4);
+VALUES('daniel@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Daniel', 'Zalli', 1, 4);
 INSERT INTO Benutzer(email, passwort, vorname, nachname, rolle_id, firma_id)
-VALUES('stefan@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Stefan', 'Groinig', 1, null);
+VALUES('stefan@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Stefan', 'Groinig', 2, null);
 GO
 
 
@@ -147,6 +147,10 @@ INSERT INTO Buchung (Raum_id, firma_id) VALUES (4, 1);
 INSERT INTO Buchung (Raum_id, firma_id) VALUES (6, 2);
 INSERT INTO Buchung (Raum_id, firma_id) VALUES (1, 3);
 INSERT INTO Buchung (Raum_id, firma_id) VALUES (4, 1);
+INSERT INTO Buchung (Raum_id, firma_id, aktiv) VALUES (4, 1, 0);
+INSERT INTO Buchung (Raum_id, firma_id, aktiv) VALUES (6, 2, 0);
+INSERT INTO Buchung (Raum_id, firma_id, aktiv) VALUES (1, 3, 0);
+INSERT INTO Buchung (Raum_id, firma_id, aktiv) VALUES (4, 1, 0);
 INSERT INTO Buchung (Raum_id, firma_id, aktiv) VALUES (4, 1, 0);
 INSERT INTO Buchung (Raum_id, firma_id, aktiv) VALUES (6, 2, 0);
 INSERT INTO Buchung (Raum_id, firma_id, aktiv) VALUES (1, 3, 0);
@@ -164,6 +168,14 @@ INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 5, '24-12-2017', 
 INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 3, '28-10-2017', 12.0);
 INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 2, '29-11-2017', 12.0);
 INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 6, '29-11-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 7, '24-02-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 8, '28-02-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 9, '27-02-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 10, '29-01-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 7, '24-02-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 8, '28-02-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 9, '29-11-2017', 12.0);
+INSERT INTO Buchungsdetails (buchung_id, datum, preis) VALUES( 10,'29-11-2017', 12.0);
 GO
 
 INSERT INTO Rechnung (datum, fa_id) VALUES ('2017-02-26', 1)

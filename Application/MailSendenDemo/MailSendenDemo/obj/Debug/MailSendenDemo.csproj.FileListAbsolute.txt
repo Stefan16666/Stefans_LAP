@@ -4,3 +4,6 @@ d:\temp\MailSendenDemo\MailSendenDemo\bin\Debug\MailSendenDemo.pdb
 d:\temp\MailSendenDemo\MailSendenDemo\obj\Debug\MailSendenDemo.csprojResolveAssemblyReference.cache
 d:\temp\MailSendenDemo\MailSendenDemo\obj\Debug\MailSendenDemo.exe
 d:\temp\MailSendenDemo\MailSendenDemo\obj\Debug\MailSendenDemo.pdb
+C:\Lap\Application\MailSendenDemo\MailSendenDemo\bin\Debug\MailSendenDemo.exe.config
+C:\Lap\Application\MailSendenDemo\MailSendenDemo\obj\Debug\MailSendenDemo.exe
+C:\Lap\Application\MailSendenDemo\MailSendenDemo\obj\Debug\MailSendenDemo.pdb

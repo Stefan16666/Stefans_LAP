@@ -1,0 +1,29 @@
+﻿@model List<Innovation4Austria.web.Models.StornierungsAnzeigeModel>
+
+@{
+    ViewBag.Title = "Anzeigen";
+}
+
+@using (Html.BeginForm("Emailsenden", "'Stornierung", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <h1  class="StornoAnzeigen" style="font-size:4em;" >Stornierungen des vorigen Monats</h1>
+    <table class="StornoAnzeigen" style="text-align:center">
+        @foreach (var firma in Model)
+        {
+            <tr class="col-md-12">
+                <td class="col-md-3 SchriftgroesseKarten StornoAnzeigen">@firma.Firmenname</td>
+                <td class="col-md-3 col-md-offset-2 SchriftgroesseKarten StornoAnzeigen">@firma.AnzahlStornierungen</td>
+            </tr>
+        }
+    </table>
+
+
+    <div class="form-group" style="margin-top:6em">
+        <div>
+            <a>@Html.ActionLink("Emailsenden", "Emailsenden", "Stornierung", null, new { @class = "btn buttonAction Emailversenden" })</a>
+        </div>
+    </div>
+
+}
+

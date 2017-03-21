@@ -13,7 +13,7 @@ namespace Innovation4Austria.logic
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 
-        public static List<Buchung> GebuchteRaeume(int fa_id)
+        public static List<Buchung> BuchungenZuFirma(int fa_id)
         {
             log.Info("RaumVerwaltung - BookedRooms");
             List<Buchung> bookedRooms = new List<Buchung>();
@@ -44,6 +44,34 @@ namespace Innovation4Austria.logic
             return bookedRooms;
         }
 
+        public static List<Buchung> BuchungenZuFirmaDieStorniertWurden(int id)
+        {
+            log.Info("BuchungsVerwaltung - BuchungenZuFirmaDieStorniertWurden");
+
+            List<Buchung> alleBuchungenzuEinerFirmaDieStorniertWurden = new List<Buchung>();
+
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    alleBuchungenzuEinerFirmaDieStorniertWurden = context.AlleBuchungen.Where(x => x.Firma_id == id && x.Aktiv == false).ToList();
+                }
+                if (alleBuchungenzuEinerFirmaDieStorniertWurden== null)
+                {
+                    log.Info("BuchungsVerwaltung - BuchungenZuFirmaDieStorniertWurden - keine Buchungen gefunden");
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("BuchungsVerwaltung - BuchungenZuFirmaDieStorniertWurden - DB-Verbindung fehlgeschlagen");
+                if (ex.InnerException!=null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+            return alleBuchungenzuEinerFirmaDieStorniertWurden;
+        }
+
         public static List<Buchungsdetails> HoleBuchungsDetails(int id)
         {
             log.Info("RaumVerwaltung - HoleBuchungsDetails");
@@ -56,6 +84,37 @@ namespace Innovation4Austria.logic
                     {
                         buchungsDetails = context.AlleBuchungsdetails.Where(x => x.Buchung_id == id).ToList();
 
+                        if (buchungsDetails == null)
+                        {
+                            log.Info("RaumVerWaltung - HoleBuchungsDetails - keine Buchugnen vorhanden");
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Error("RaumVerwaltung - HoleBuchungsDetails - Db-Verbind fehlgeschlagen", ex);
+                    if (ex.InnerException != null)
+                    {
+                        log.Info(ex.InnerException);
+                    }
+                }
+            }
+            return buchungsDetails;
+        }
+
+        public static List<Buchungsdetails> HoleBuchungsDetailsVomVormonat(int id)
+        {
+            log.Info("RaumVerwaltung - HoleBuchungsDetails");
+            List<Buchungsdetails> buchungsDetails = new List<Buchungsdetails>();
+            if (id != 0)
+            {
+                try
+                {
+                    using (var context = new Innovation4AustriaEntities())
+                    {                       
+                        buchungsDetails = context.AlleBuchungsdetails.Where(x => x.Buchung_id == id).Where(x => x.Datum.Month == DateTime.Now.AddMonths(-1).Month).ToList().ToList();
+                        //buchungsDetails = buchungsDetails.Where(x => x.Datum.Month == DateTime.Now.AddMonths(-1).Month).ToList();
                         if (buchungsDetails == null)
                         {
                             log.Info("RaumVerWaltung - HoleBuchungsDetails - keine Buchugnen vorhanden");

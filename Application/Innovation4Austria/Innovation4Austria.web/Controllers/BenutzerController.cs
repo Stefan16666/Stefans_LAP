@@ -82,17 +82,17 @@ namespace Innovation4Austria.web.Controllers
                             FormsAuthentication.SetAuthCookie(model.Emailadresse, true);
                             if (roleProvider.IsUserInRole(model.Emailadresse, "MitarbeiterIVA"))
                             {
-                                return RedirectToAction("FirmenWahl");
+                                return RedirectToAction("FirmenAuflistung", "Innovation4AustriaMitarbeiter");
                             }
                             TempData[ConstStrings.SUCCESS_MESSAGE] = Validierungen.SpeichernErfolgreich;
                             Benutzer user = BenutzerVerwaltung.SucheFirmaVonBenutzer(model.Emailadresse);
                             if (user != null)
                             {
-                                if (user.Firma_id != 0)
+                                if (user.Firma_id !=null)
                                 {
                                     model.Fa_id = (int)user.Firma_id;
+                                  
                                 }
-
                                 return RedirectToAction("Dashboard");
                             }
                         }
@@ -150,7 +150,7 @@ namespace Innovation4Austria.web.Controllers
             List<Rechnungsdetails> rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();
             List<Buchungsdetails> BuchungsDetailsVonFirma = new List<Buchungsdetails>();
 
-            List<Buchung> bookingsOfCompany = BuchungsVerwaltung.GebuchteRaeume((int)aktBenutzer.Firma_id);
+            List<Buchung> bookingsOfCompany = BuchungsVerwaltung.BuchungenZuFirma((int)aktBenutzer.Firma_id);
             dashboard.AlleBuchungen = new List<BuchungsAnzeigeModel>();
             if (bookingsOfCompany != null)
             {

@@ -540,7 +540,7 @@ a.nivo-nextNav {
 }
 
 #firmenauflistung {
-    margin-top: 8em;
+    margin-top: 15em;
 }
 
 .Auflistungrand {
@@ -584,7 +584,7 @@ a.nivo-nextNav {
 }
 
 #firmaAnlegenAnsicht {
-    padding-top: 8em;
+    padding-top: 15em!important;
 }
 
 .buchungsZeitraum {
@@ -617,6 +617,10 @@ a.nivo-nextNav {
     font-size:2em!important;
     text-align:center!important;
 }
+.StornoAnzeigen{
+    color:white;
+    margin-top:8em!important;
+}
 
 .BuchungsDetail{  
     padding: 2em;
@@ -633,4 +637,13 @@ a.nivo-nextNav {
     padding-right: 25px !important;
     margin: 1em !important;    
 }
-
+.Emailversenden{
+    color:aquamarine;
+}
+.KartenansichtLogin {
+    padding: 2em;
+    margin: 5em;
+    border: 1px solid !important;
+    border-color: aqua !important;
+    border-radius: 6px !important;    
+}

@@ -37,6 +37,5 @@ C:\Lap\Application\Innovation4Austria\Innovation4Austria.test\bin\Debug\log4net.
 C:\Lap\Application\Innovation4Austria\Innovation4Austria.test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Lap\Application\Innovation4Austria\Innovation4Austria.test\bin\Debug\log4net.xml
 C:\Lap\Application\Innovation4Austria\Innovation4Austria.test\bin\Debug\de\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
-C:\Lap\Application\Innovation4Austria\Innovation4Austria.test\obj\Debug\Innovation4Austria.test.csprojResolveAssemblyReference.cache
 C:\Lap\Application\Innovation4Austria\Innovation4Austria.test\obj\Debug\Innovation4Austria.test.dll
 C:\Lap\Application\Innovation4Austria\Innovation4Austria.test\obj\Debug\Innovation4Austria.test.pdb

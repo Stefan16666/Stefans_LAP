@@ -166,6 +166,7 @@
     <Compile Include="Controllers\RaumController.cs" />
     <Compile Include="Controllers\Innovation4AustriaMitarbeiterController.cs" />
     <Compile Include="Controllers\RechnungController.cs" />
+    <Compile Include="Controllers\StornierungController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -189,6 +190,7 @@
     <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\RaumModel.cs" />
     <Compile Include="Models\RechnungErstellenModel.cs" />
+    <Compile Include="Models\StornierungsAnzeigeModel.cs" />
     <Compile Include="Models\VerbindlichBuchenModel.cs" />
     <Compile Include="Models\WerbeBannerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -296,9 +298,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Benutzer\Login.cshtml" />
     <Content Include="Views\Benutzer\FirmenWahl.cshtml" />
     <Content Include="Views\Benutzer\Dashboard.cshtml" />
@@ -315,6 +314,7 @@
     <Content Include="Views\Raum\_KartenAnsicht.cshtml" />
     <Content Include="Views\Buchung\BuchungsDetails.cshtml" />
     <Content Include="Views\Chart\Index.cshtml" />
+    <Content Include="Views\Stornierung\Anzeigen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

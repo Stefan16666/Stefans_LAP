@@ -35,7 +35,7 @@ namespace Innovation4Austria.web.Controllers
                 {
                     firmenModel.Firmenbezeichnung = firma.Bezeichnung;
                 }
-                alleBuchungen = BuchungsVerwaltung.GebuchteRaeume(firma.Id);
+                alleBuchungen = BuchungsVerwaltung.BuchungenZuFirmaDieStorniertWurden(firma.Id);
                 foreach (var buchung in alleBuchungen)
                 {
                     List<Buchungsdetails> alleDetailsEinerBuchung = new List<Buchungsdetails>();
