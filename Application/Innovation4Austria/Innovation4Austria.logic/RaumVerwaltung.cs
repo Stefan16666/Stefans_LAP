@@ -76,6 +76,25 @@ namespace Innovation4Austria.logic
             return mAlleRaeume;
         }
 
+        public static string Gebäudebezeichnung(int id)
+        {
+            log.Info("RaumVerwaltung - Gebäudebezeichnung");
+            Bauwerk gebaeude = new Bauwerk();
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    gebaeude = context.AlleBauwerke.Where(x => x.Id == id).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return gebaeude.Bezeichnung;
+        }
+
         public static List<Art> AlleRaumArten()
         {
 

@@ -21,5 +21,7 @@ namespace Innovation4Austria.web.Models
         public string Passwort { get; set; }
 
         public int Fa_id { get; set; }
+
+        public List<WerbeBannerModel> WerbeRaeume { get; set; }
     }
 }

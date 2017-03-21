@@ -30,7 +30,39 @@ namespace Innovation4Austria.web.Controllers
         {
             log.Info("BenutzerController - Login - HttpGet");
 
-            return View();
+            List<WerbeBannerModel> alleWerbeBannerModel = new List<WerbeBannerModel>();
+            LoginModel login = new LoginModel();
+            DateTime startDatum = DateTime.Now;
+            DateTime endDatum = DateTime.Now;
+            startDatum = startDatum.AddDays(1);
+            endDatum = endDatum.AddDays(1);
+            int[] ausstattung = new int[2] { 1, 3, };
+            List<Raum> werbeBannerRaeume = RaumVerwaltung.GesuchteRaeume(startDatum, endDatum, 1, ausstattung);
+            //buchungsmodel.VonDatum = (from x in BuchungsDetailsVonFirma orderby x.Datum select x.Datum).FirstOrDefault();
+            var orderWerbeBannerRaeume = werbeBannerRaeume.OrderByDescending(i => i.Preis);
+            int index = 0;
+
+
+            foreach (var raum in orderWerbeBannerRaeume)
+            {
+                if (index < 3)
+                {
+                    WerbeBannerModel werbebanner = new WerbeBannerModel()
+                    {
+                        Raum_id = raum.Id,
+                        Raumbezeichnung = raum.Bezeichnung,
+                        Preis = raum.Preis,
+                        GebäudeBezeichnung = RaumVerwaltung.Gebäudebezeichnung(raum.Bauwerk_id)
+                    };
+                    index++;
+                    alleWerbeBannerModel.Add(werbebanner);
+                }
+            }
+
+
+            login.WerbeRaeume = alleWerbeBannerModel;
+
+            return View(login);
         }
 
         [HttpPost]
@@ -78,7 +110,7 @@ namespace Innovation4Austria.web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize]     
+        [Authorize]
         public ActionResult Dashboard()
         {
             log.Info("BenutzerController - Dashboard");
@@ -113,7 +145,7 @@ namespace Innovation4Austria.web.Controllers
 
             // mapping for bookings
 
-            
+
             List<BuchungsAnzeigeModel> alleBuchungen = new List<BuchungsAnzeigeModel>();
             List<Rechnungsdetails> rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();
             List<Buchungsdetails> BuchungsDetailsVonFirma = new List<Buchungsdetails>();
@@ -125,15 +157,15 @@ namespace Innovation4Austria.web.Controllers
                 /// es fehlt noch RaumArt und RaumName
                 foreach (var booking in bookingsOfCompany)
                 {
-                    
-                    BuchungsDetailsVonFirma = BuchungsVerwaltung.BuchungsDetailsVonBuchung(booking.Id);                    
-                                        
+
+                    BuchungsDetailsVonFirma = BuchungsVerwaltung.BuchungsDetailsVonBuchung(booking.Id);
+
                     Raum aktRaum = RaumVerwaltung.GesuchterRaum(booking.Raum_id);
                     BuchungsAnzeigeModel buchungsmodel = new BuchungsAnzeigeModel();
-                    
+
                     buchungsmodel.Raumnummer = aktRaum.Bezeichnung;
                     buchungsmodel.RaumArt = aktRaum.Art.Bezeichnung;
-                    
+
                     buchungsmodel.VonDatum = (from x in BuchungsDetailsVonFirma orderby x.Datum select x.Datum).FirstOrDefault();
                     buchungsmodel.BisDatum = (from x in BuchungsDetailsVonFirma orderby x.Datum descending select x.Datum).FirstOrDefault();
 
@@ -145,7 +177,7 @@ namespace Innovation4Austria.web.Controllers
             {
                 log.Info("BenutzerController - Dashboard - keine Buchungen für die Firma vorhanden sind");
             }
-                       
+
 
             List<Rechnung> alleRechnungenEinerFirma = RechnungsVerwaltung.RechnungenEinerFirma((int)aktBenutzer.Firma_id);
             List<RechnungsModel> alleRechnungenAnzeigen = new List<RechnungsModel>();
@@ -156,11 +188,11 @@ namespace Innovation4Austria.web.Controllers
             foreach (var rechnung in alleRechnungenEinerFirma)
             {
                 List<Rechnungsdetails> RechnungsDetailsEinerRechnung = RechnungsVerwaltung.RechnungsDetailsEinerRechnung(rechnung.Id);
-                foreach (var rechnungsDetail  in RechnungsDetailsEinerRechnung)
+                foreach (var rechnungsDetail in RechnungsDetailsEinerRechnung)
                 {
                     buchungsDetail = RechnungsVerwaltung.BuchungsDetailEinerRechnung(rechnungsDetail.Buchungsdetail_Id);
                     buchungsDetailsDieInRechnungsDetailsvorkommen.Add(buchungsDetail);
-                    
+
                 }
             }
 
@@ -172,7 +204,7 @@ namespace Innovation4Austria.web.Controllers
                     int date = buchungsDetail.Datum.Month;
                     dates.Add(date);
                 }
-                 
+
             }
 
             List<RechnungsModel> alleRechnungen = new List<RechnungsModel>();
@@ -192,7 +224,7 @@ namespace Innovation4Austria.web.Controllers
             return View(dashboard);
         }
 
-        
+
         [Authorize]
         [HttpGet]
         public ActionResult Abmelden()
@@ -201,7 +233,7 @@ namespace Innovation4Austria.web.Controllers
             return RedirectToAction("Login", "Benutzer");
         }
 
-        
+
         [Authorize]
         [HttpGet]
         public ActionResult ProfilAnzeigen()

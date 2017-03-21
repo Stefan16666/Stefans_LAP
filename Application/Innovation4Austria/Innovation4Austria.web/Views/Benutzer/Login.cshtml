@@ -24,6 +24,20 @@
                                 </div>
                             </div>
                         </div>
+                        @foreach (var raum in Model.WerbeRaeume)
+                        {
+                            using (Html.BeginForm("BuchungsDetails", "Buchung", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="col-md-3 Kartenansicht">
+                                    <img src="~/Bild/BildZuRaum/@raum.Raum_id" data-toggle="tooltip" title="@raum.Raumbezeichnung" class="imgTag">
+                                    <div class="SchriftgroesseKarten">@raum.Raumbezeichnung</div>
+                                    <div class="SchriftgroesseKarten">@raum.GebäudeBezeichnung</div>
+                                    <div class="SchriftgroesseKarten">€ @raum.Preis,- / Tag</div>
+                                </div>
+                            }
+                        }
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
                             <div class="FontSize">
@@ -56,7 +70,12 @@
             </div>
  
 }
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jqueryval")
+@section Scripts {   
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 }
+
