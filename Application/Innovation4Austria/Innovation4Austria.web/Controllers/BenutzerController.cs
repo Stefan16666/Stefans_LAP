@@ -50,7 +50,7 @@ namespace Innovation4Austria.web.Controllers
                             FormsAuthentication.SetAuthCookie(model.Emailadresse, true);
                             if (roleProvider.IsUserInRole(model.Emailadresse, "MitarbeiterIVA"))
                             {
-                                return RedirectToAction("FirmenWahl");
+                                return RedirectToAction("FirmenAuflistung", "Innovation4AustriaMitarbeiter");
                             }
                             TempData[ConstStrings.SUCCESS_MESSAGE] = Validierungen.SpeichernErfolgreich;
                             Benutzer user = BenutzerVerwaltung.SucheFirmaVonBenutzer(model.Emailadresse);
