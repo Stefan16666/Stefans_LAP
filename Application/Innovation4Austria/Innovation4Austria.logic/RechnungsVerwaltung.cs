@@ -50,6 +50,38 @@ namespace Innovation4Austria.logic
             return detail;
         }
 
+        public static List<Buchungsdetails> MonatsBuchungsDetails(int fa_id, int monat)
+        {
+            log.Info("RechnungsVerwaltung - MonatsRechnung");
+            List<Rechnungsdetails> gesRGdetails = new List<Rechnungsdetails>();
+            List<Buchungsdetails> gesuchteBuchungsDetails = new List<Buchungsdetails>();
+            List<Rechnung> monatsRechnungen = new List<Rechnung>();
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    monatsRechnungen = context.AlleRechnungen.Where(x => x.fa_id == fa_id).ToList();
+                    foreach (var rechnung in monatsRechnungen)
+                    {
+                        Rechnungsdetails einRGDetail = context.AlleRechnungsdetails.Where(x => x.Rechnung_Id == rechnung.Id).FirstOrDefault();
+                        gesRGdetails.Add(einRGDetail);
+                    }
+                    foreach (var RGDetail in gesRGdetails)
+                    {
+                        Buchungsdetails einBuchungsDetail = context.AlleBuchungsdetails.Where(x => x.Id == RGDetail.Buchungsdetail_Id).FirstOrDefault();
+                        gesuchteBuchungsDetails.Add(einBuchungsDetail);
+                    }
+                    //gesuchteBuchungsDetails = gesuchteBuchungsDetails.Where(x => x.Datum.Month == monat).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                log.Error("RechnungsVerwaltung - MonatsBuchungsDetails - DB-Verbindung fehlgeschlagen");
+            }
+            return gesuchteBuchungsDetails;
+        }
+
         public static List<Rechnung> RechnungenEinerFirma(int firma_id)
         {
             log.Info("RechnugnsVerwaltung - RechnungenEinerFirma");

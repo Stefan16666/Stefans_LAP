@@ -44,6 +44,31 @@ namespace Innovation4Austria.logic
             return bookedRooms;
         }
 
+        public static List<Buchungsdetails> BuchungsDetailsVonMonat(int monatnummer)
+        {
+            log.Info("BuchungsVerwaltung - BuchungsDetailVonMonat");
+
+            List<Buchungsdetails> alleBuchungsDetailsvonEinemMonat = new List<Buchungsdetails>();
+
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    alleBuchungsDetailsvonEinemMonat = context.AlleBuchungsdetails.Where(x => x.Datum.Month == monatnummer).ToList();
+                   
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("RaumVerwaltung - BuchungsDetailsVonMonat - DB-Verbindung fehlgeschlagen", ex);
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }      
+            return alleBuchungsDetailsvonEinemMonat;
+        }
+
         /// <summary>
         /// reourniere das Anfangs- oder Enddatum einer Buchung auswählbar über bool "vonDatum"
         /// </summary>

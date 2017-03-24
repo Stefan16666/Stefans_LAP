@@ -187,7 +187,6 @@
     <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\RaumModel.cs" />
     <Compile Include="Models\RechnungErstellenModel.cs" />
-    <Compile Include="Models\RechnungsFirmenModel.cs" />
     <Compile Include="Models\VerbindlichBuchenModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\RechnungsModel.cs" />
