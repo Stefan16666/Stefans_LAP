@@ -39,6 +39,28 @@ namespace Innovation4Austria.logic
             return alleFirmen;
         }
 
+        public static Firma LiefereFirma(int firma_id)
+        {
+            log.Info("FirmenVerwaltung - LiefereFirma");
+            Firma firma = new Firma();
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    firma = context.AlleFirmen.Where(x => x.Id == firma_id).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("FirmenVerwlatung - LiefereFirma - DatenVerbindung fehlgeschlagen");
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+            return firma;
+        }
+
         public static bool FirmaAktualisierung(int id, string bezeichnung, bool aktiv, string nummer, string ort, string plz, string strasse)
         {
             bool erfolgreich = false;

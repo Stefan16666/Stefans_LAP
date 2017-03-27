@@ -571,3 +571,4 @@ C:\LAP\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovatio
 C:\LAP\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.csproj.GenerateResource.Cache
 C:\LAP\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.dll
 C:\LAP\Application\Innovation4Austria\Innovation4Austria.web\obj\Debug\Innovation4Austria.web.pdb
+C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\bin\Rotativa.dll

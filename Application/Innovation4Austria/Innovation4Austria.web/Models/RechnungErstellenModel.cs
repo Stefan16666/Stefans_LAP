@@ -11,6 +11,14 @@ namespace Innovation4Austria.web.Models
 
         public string Firmenname { get; set; }
 
+        public string Firmenstrasse { get; set; }
+
+        public string FirmenstrassenNummer { get; set; }
+
+        public string FirmenOrt { get; set; }
+
+        public string FirmenPlz { get; set; }
+
         public DateTime Datum { get; set; }
 
         public int Raumnummer { get; set; }

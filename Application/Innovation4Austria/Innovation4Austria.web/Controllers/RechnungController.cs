@@ -19,42 +19,30 @@ namespace Innovation4Austria.web.Controllers
         {
             log.Info("Rechnung - Erstellen - GET");
 
-           Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
-
-            //List<Buchungsdetails> BuchungsdetailsVonEinemMonat = BuchungsVerwaltung.BuchungsDetailsVonMonat(Monatnummer);
-
-            //List<Rechnung> AlleRechnungen = new List<Rechnung>();
-
-            ////List<Rechnungsdetails> RechnungsDetailsZuEinerFirma = new List<Rechnungsdetails>();
-
-            //List<Rechnungsdetails> RechnungsDetailsZuEinemBuchungsDetail = new List<Rechnungsdetails>();            
-
-            //foreach (var buchungsDetail in BuchungsdetailsVonEinemMonat)
-            //{
-            //    Rechnungsdetails einRechnungsDetail = RechnungsVerwaltung.EinRechnungsDetailsEinesBuchungsDetails(buchungsDetail.Id);
-            //    RechnungsDetailsZuEinemBuchungsDetail.Add(einRechnungsDetail);
-            //}
-            //foreach (var rechnungsDetail  in RechnungsDetailsZuEinemBuchungsDetail)
-            //{               
-            //        Rechnung MonatsRechnung = RechnungsVerwaltung.MonatsRechnung(rechnungsDetail.Rechnung_Id);
-            //    AlleRechnungen.Add(MonatsRechnung);                
-            //}
-
-            //Rechnung gesuchteRechnung = AlleRechnungen.Where(x => x.fa_id == (int)aktBenutzer.Firma_id).FirstOrDefault();
-
-            //List<Rechnungsdetails> RechnungsDetailsZuRechnung = RechnungsVerwaltung.RechnungsDetailsEinerRechnung(gesuchteRechnung.Id);
+            Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
 
             List<Buchungsdetails> gesuchteBuchungsDetails = RechnungsVerwaltung.MonatsBuchungsDetails((int)aktBenutzer.Firma_id, Monatnummer);
-            //foreach (var rechnungsDetail in RechnungsDetailsZuRechnung)
-            //{
-            //    Buchungsdetails BuchungsDetailZuRechnungsDetail = RechnungsVerwaltung.BuchungsDetailEinerRechnung(rechnungsDetail.Buchungsdetail_Id);
-            //    gesuchteBuchungsDetails.Add(BuchungsDetailZuRechnungsDetail);
-            //}
 
+            Rechnung rechnung = RechnungsVerwaltung.LiefereRechnungzuFirmaAusMonat(gesuchteBuchungsDetails);
 
             RechnungErstellenModel rechnungsModel = new RechnungErstellenModel();
 
-            return View(gesuchteBuchungsDetails);
+            Firma firma = FirmenVerwaltung.LiefereFirma((int)aktBenutzer.Firma_id);
+
+            rechnungsModel.Rg_Id = rechnung.Id;
+            rechnungsModel.Firmenname = firma.Bezeichnung;
+            rechnungsModel.FirmenstrassenNummer = firma.Nummer;
+            rechnungsModel.FirmenOrt = firma.Ort;
+            rechnungsModel.Firmenstrasse = firma.Strasse;
+            rechnungsModel.FirmenPlz = firma.Plz;
+            rechnungsModel.Datum = (DateTime)rechnung.Datum;
+            rechnungsModel.Firmenname = firma.Bezeichnung;
+            rechnungsModel.Preis = gesuchteBuchungsDetails.Sum(x => x.Preis);
+
+            DateTime VonDatum = (from x in gesuchteBuchungsDetails orderby x.Datum select x.Datum).FirstOrDefault();
+            DateTime BisDatum = (from x in gesuchteBuchungsDetails orderby x.Datum descending select x.Datum).FirstOrDefault();
+
+            return new Rotativa.ViewAsPdf("Erstellen", rechnungsModel);
         }
     }
 }

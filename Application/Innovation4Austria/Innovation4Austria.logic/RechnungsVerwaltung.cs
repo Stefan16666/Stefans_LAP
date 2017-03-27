@@ -59,19 +59,23 @@ namespace Innovation4Austria.logic
             try
             {
                 using (var context = new Innovation4AustriaEntities())
-                {
+                { 
+                    
                     monatsRechnungen = context.AlleRechnungen.Where(x => x.fa_id == fa_id).ToList();
-                    foreach (var rechnung in monatsRechnungen)
+                    foreach (var eineRechnung in monatsRechnungen)
                     {
-                        Rechnungsdetails einRGDetail = context.AlleRechnungsdetails.Where(x => x.Rechnung_Id == rechnung.Id).FirstOrDefault();
-                        gesRGdetails.Add(einRGDetail);
+                        List<Rechnungsdetails> alleRGDetails = context.AlleRechnungsdetails.Where(x => x.Rechnung_Id == eineRechnung.Id).ToList();
+                        foreach (var rechnungsdetail in alleRGDetails)
+                        {
+                            Buchungsdetails einBuchungsDetail = context.AlleBuchungsdetails.Where(x => x.Id == rechnungsdetail.Buchungsdetail_Id && x.Datum.Month == monat).FirstOrDefault();
+                            if (einBuchungsDetail!=null)
+                            {
+                                gesuchteBuchungsDetails.Add(einBuchungsDetail);
+                            }
+                         
+                        }
                     }
-                    foreach (var RGDetail in gesRGdetails)
-                    {
-                        Buchungsdetails einBuchungsDetail = context.AlleBuchungsdetails.Where(x => x.Id == RGDetail.Buchungsdetail_Id).FirstOrDefault();
-                        gesuchteBuchungsDetails.Add(einBuchungsDetail);
-                    }
-                    //gesuchteBuchungsDetails = gesuchteBuchungsDetails.Where(x => x.Datum.Month == monat).ToList();
+
                 }
             }
             catch (Exception ex)
@@ -82,6 +86,35 @@ namespace Innovation4Austria.logic
             return gesuchteBuchungsDetails;
         }
 
+        public static Rechnung LiefereRechnungzuFirmaAusMonat(List<Buchungsdetails> BgDetails)
+        {
+            log.Info("Rechnungsverwaltung - LiefereRechnungzuFirmaAusMonat");
+            Rechnung rechnung = new Rechnung();
+            List<Rechnungsdetails> RgDetails = new List<Rechnungsdetails>();
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    foreach (var buchungsdetail in BgDetails)
+                    {
+                        Rechnungsdetails RgDetail = context.AlleRechnungsdetails.Where(x => x.Buchungsdetail_Id == buchungsdetail.Id).FirstOrDefault();
+                        if (rechnung!=null)
+                        {
+                            rechnung = context.AlleRechnungen.Where(x => x.Id == RgDetail.Rechnung_Id).FirstOrDefault();
+                        }                        
+                        RgDetails.Add(RgDetail);
+                    }
+                   
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return rechnung;
+
+        }
         public static List<Rechnung> RechnungenEinerFirma(int firma_id)
         {
             log.Info("RechnugnsVerwaltung - RechnungenEinerFirma");
