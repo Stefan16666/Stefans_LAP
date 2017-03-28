@@ -70,6 +70,15 @@ namespace innovation4austria.web
                 .ForMember(dest => dest.Bezeichnung, opts => opts.MapFrom(source => source.Ausstattung.Bezeichnung))
                 .ForMember(dest => dest.Ausstattungs_Id, opts => opts.MapFrom(source => source.Ausstattungs_Id))
                 ;
+
+                x.CreateMap<FirmaAnlegenModel, Firma>()
+                .ForMember(dest => dest.Bezeichnung, opts => opts.MapFrom(source => source.Bezeichnung))
+                .ForMember(dest => dest.Nummer, opts => opts.MapFrom(source => source.Nummer))
+                .ForMember(dest => dest.Strasse, opts => opts.MapFrom(source => source.Strasse))
+                .ForMember(dest => dest.Plz, opts => opts.MapFrom(source => source.Plz))
+                .ForMember(dest => dest.Ort, opts => opts.MapFrom(source => source.Ort))
+                .ForAllMembers(dest => dest.Ignore());
+
             });
 
             Mapper.AssertConfigurationIsValid();

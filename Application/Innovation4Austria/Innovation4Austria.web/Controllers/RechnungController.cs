@@ -37,8 +37,21 @@ namespace Innovation4Austria.web.Controllers
             rechnungsModel.FirmenPlz = firma.Plz;
             rechnungsModel.Datum = (DateTime)rechnung.Datum;
             rechnungsModel.Firmenname = firma.Bezeichnung;
-            rechnungsModel.Preis = gesuchteBuchungsDetails.Sum(x => x.Preis);
+            rechnungsModel.Gesamtpreis = gesuchteBuchungsDetails.Sum(x => x.Preis);
+            rechnungsModel.Steuerbetrag = (rechnungsModel.Gesamtpreis / 100) * 20;
+            rechnungsModel.RechnungsDetails = new List<RechnungsDetailModel>();
+            foreach (var buchungsDetail in gesuchteBuchungsDetails)
+            {
+                RechnungsDetailModel model = new RechnungsDetailModel()
+                {
+                    Buchungs_ID = buchungsDetail.Id.ToString(),
+                    Buchungsdatum = buchungsDetail.Datum,
+                    Preis = buchungsDetail.Preis,
+                    RaumNummer = RaumVerwaltung.GesuchterRaumName(buchungsDetail.Buchung_id)
+                };
 
+                rechnungsModel.RechnungsDetails.Add(model);
+            }
             DateTime VonDatum = (from x in gesuchteBuchungsDetails orderby x.Datum select x.Datum).FirstOrDefault();
             DateTime BisDatum = (from x in gesuchteBuchungsDetails orderby x.Datum descending select x.Datum).FirstOrDefault();
 

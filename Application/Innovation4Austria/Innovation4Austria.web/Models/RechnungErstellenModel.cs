@@ -23,10 +23,12 @@ namespace Innovation4Austria.web.Models
 
         public int Raumnummer { get; set; }
 
-        public int Dauer { get; set; }
-
-        public decimal Preis { get; set; }
+        public int Dauer { get; set; }       
 
         public decimal Gesamtpreis { get; set; }
+
+        public decimal Steuerbetrag { get; set; }
+
+        public List<RechnungsDetailModel> RechnungsDetails { get; set; }
     }
 }

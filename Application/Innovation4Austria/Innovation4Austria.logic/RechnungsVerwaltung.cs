@@ -153,13 +153,17 @@ namespace Innovation4Austria.logic
             catch (Exception ex)
             {
                 log.Error("RechnugnsVerwaltung - RechnungsDetailsEinerRechnung - DB_Verbindung fehlgeschlagen");
+                if (ex.InnerException!=null)
+                {
+                    log.Info(ex.InnerException);
+                }
             }
             return RgDetails;
         }
 
         public static Buchungsdetails BuchungsDetailEinerRechnung(int id)
         {
-            log.Info("RechnugnsVerwaltung - RechnungsDetailsEinerRechnung");
+            log.Info("RechnungsVerwaltung - RechnungsDetailsEinerRechnung");
 
             Buchungsdetails buchungsDetail = new Buchungsdetails();
 
@@ -176,6 +180,36 @@ namespace Innovation4Austria.logic
                 log.Error("RechnugnsVerwaltung - RechnungsDetailsEinerRechnung - DB_Verbindung fehlgeschlagen");
             }
             return buchungsDetail;
+        }
+
+        public static bool RechnungenFuerMonatVorhanden(int monat, int jahr)
+        {
+            log.Info("RechnungsVerwaltung - RechnungsDetailsEinerRechnung");
+            List<Buchungsdetails> BuchungenZuMonat = new List<Buchungsdetails>();
+            List<Rechnungsdetails> RechnungsDetailListe = new List<logic.Rechnungsdetails>();
+            bool vorhanden = false;
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    BuchungenZuMonat = context.AlleBuchungsdetails.Where(x => x.Datum.Month == monat && x.Datum.Year == jahr).ToList();
+                    RechnungsDetailListe = context.AlleRechnungsdetails.ToList();
+                    BuchungenZuMonat = BuchungenZuMonat.Where(x => x.Rechnungsdetails == null).ToList();
+                    if (BuchungenZuMonat!=null)
+                    {
+                        vorhanden = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("RechnugnsVerwaltung - RechnungsDetailsEinerRechnung - DB_Verbindung fehlgeschlagen");
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+            return vorhanden;
         }
     }
 }

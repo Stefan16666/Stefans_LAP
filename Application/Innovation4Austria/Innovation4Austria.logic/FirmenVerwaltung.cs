@@ -104,5 +104,42 @@ namespace Innovation4Austria.logic
             return erfolgreich;
         }
 
+        public static bool FirmaAnlegen(string bezeichnung, string strasse, string nummer, string plz, string ort)
+        {
+            log.Info("FirmenVerwaltung - FirmaAnlegen");
+            Firma neueFirma = new Firma()
+            {
+                Bezeichnung = bezeichnung,
+                Strasse = strasse,
+                Nummer = nummer,
+                Plz = plz,
+                Ort = ort,
+                aktiv= true
+            };
+
+            bool erfolgreich = false;
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    context.AlleFirmen.Add(neueFirma);
+                    if (context.SaveChanges() > 0)
+                    {
+                        erfolgreich = true;
+                    }
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("FirmenVerwaltung - FirmaAktualisierung - DbVerbindung fehlgeschlagen");
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
+
+            }
+            return erfolgreich;
+        }
     }
 }

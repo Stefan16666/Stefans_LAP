@@ -76,6 +76,31 @@ namespace Innovation4Austria.logic
             return mAlleRaeume;
         }
 
+        public static string GesuchterRaumName(int buchung_id)
+        {
+            log.Info("RaumVerwaltung - GesuchterRaumName");
+
+            string Raumname = "";
+            Buchung gesBuchung = new Buchung();
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    gesBuchung = context.AlleBuchungen.Where(x => x.Id == buchung_id).Include(y => y.Raum).FirstOrDefault();
+                    Raumname = gesBuchung.Raum.Bezeichnung;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("RaumVerwltung - alleRaeume - Datenbankverbindung fehlgeschlagen");
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+            return Raumname;
+        }
         public static List<Art> AlleRaumArten()
         {
 

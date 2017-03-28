@@ -129,6 +129,12 @@
   <data name="DataTypeMail" xml:space="preserve">
     <value>Emailadress </value>
   </data>
+  <data name="FirmaAnlegegSuccess" xml:space="preserve">
+    <value>Firma anlegen erfolgreich</value>
+  </data>
+  <data name="FirmaAnlegenError" xml:space="preserve">
+    <value>Firma anlegen fehlgeschlagen</value>
+  </data>
   <data name="NeuesPasswort" xml:space="preserve">
     <value>Passwort stimmt nicht überein</value>
   </data>
@@ -149,6 +155,9 @@
   </data>
   <data name="SpeichernFehlgeschlagen" xml:space="preserve">
     <value>Speichern fehlgeschlagen!</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="StringLength" xml:space="preserve">
     <value>Minimum 8 Zeichen und max. 16 Zeichen</value>

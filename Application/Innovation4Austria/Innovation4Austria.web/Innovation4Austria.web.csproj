@@ -191,6 +191,8 @@
     <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\RaumModel.cs" />
     <Compile Include="Models\RechnungErstellenModel.cs" />
+    <Compile Include="Models\RechnungsDetailModel.cs" />
+    <Compile Include="Models\RechnungsuebersichtModel.cs" />
     <Compile Include="Models\VerbindlichBuchenModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\RechnungsModel.cs" />
@@ -317,6 +319,7 @@
     <Content Include="Views\Raum\_KartenAnsicht.cshtml" />
     <Content Include="Views\Buchung\BuchungsDetails.cshtml" />
     <Content Include="Views\Rechnung\Erstellen.cshtml" />
+    <Content Include="Views\Innovation4AustriaMitarbeiter\RechnungsUebersicht.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

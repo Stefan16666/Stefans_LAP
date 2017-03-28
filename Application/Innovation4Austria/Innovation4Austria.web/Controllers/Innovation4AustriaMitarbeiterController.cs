@@ -61,7 +61,7 @@ namespace Innovation4Austria.web.Controllers
         [HttpGet]
         public ActionResult MitarbeiterBearbeiten(int fa_id)
         {
-                        
+
             log.Info("Innovatation4AustriaController - MitarbeiterBearbeiten - GET");
 
             List<BenutzerModel> alleBenutzer = AutoMapper.Mapper.Map<List<BenutzerModel>>(BenutzerVerwaltung.LadeMitarbeiterEinerFirma(fa_id));
@@ -97,9 +97,9 @@ namespace Innovation4Austria.web.Controllers
             {
                 log.Info("Innovatation4AustriaController - MitarbeiterAnlegen - GET");
 
-                if (model!= null)
+                if (model != null)
                 {
-                    if (BenutzerVerwaltung.LegeMitarbeiterAn(model.Fa_id,model.Emailadresse, model.Vorname, model.Nachname, model.NeuesPasswort, Innovation4Austria.web.AppCode.Validation.FIRMENANSPRECHPARTNER))
+                    if (BenutzerVerwaltung.LegeMitarbeiterAn(model.Fa_id, model.Emailadresse, model.Vorname, model.Nachname, model.NeuesPasswort, Innovation4Austria.web.AppCode.Validation.FIRMENANSPRECHPARTNER))
                     {
                         TempData[ConstStrings.SUCCESS_MESSAGE] = Validierungen.SpeichernErfolgreich;
                     }
@@ -111,13 +111,77 @@ namespace Innovation4Austria.web.Controllers
             }
             return RedirectToAction("FirmenAuflistung");
         }
-
+        [Authorize]
         [HttpGet]
         public ActionResult FirmaAnlegen()
         {
             return View();
         }
+        [Authorize]
+        [HttpPost]
+        public ActionResult FirmaAnlegen(FirmaAnlegenModel model)
+        {
+            bool FirmaAnlegen = false;
+            log.Info("Innovation4AustriaController - FirmaAnlegen - Post");
+            if (ModelState.IsValid)
+            {
 
+                if (FirmaAnlegen = FirmenVerwaltung.FirmaAnlegen(model.Bezeichnung, model.Strasse, model.Nummer, model.Plz, model.Ort))
+                {   
+                    TempData[ConstStrings.SUCCESS_MESSAGE] = Validierungen.FirmaAnlegegSuccess;
+                }
+                else
+                {
+                    TempData[ConstStrings.ERROR_MESSAGE] = Validierungen.FirmaAnlegenError;
+                }
+            }
+            return RedirectToAction("FirmenAuflistung", "Innovation4AustriaMitarbeiter");
+        }
+        [Authorize]
+        [HttpGet]
+        public ActionResult RechnungsUebersicht()
+        {
+            log.Info("Innovation4Austria - RechnungsUebersicht - GET");
+
+            bool vorigesJahrFertig = false;
+            List<RechnungsuebersichtModel> alleRechnungen = new List<RechnungsuebersichtModel>();
+            for (int i = 1; i <= 12 && !vorigesJahrFertig; i++)
+            {
+                RechnungsuebersichtModel Monatsabrechnung = new RechnungsuebersichtModel();
+                Monatsabrechnung.Monat = i;
+                Monatsabrechnung.Jahr =  DateTime.Now.AddYears(-1).Year;
+                Monatsabrechnung.schonBezahlt = RechnungsVerwaltung.RechnungenFuerMonatVorhanden(Monatsabrechnung.Monat, Monatsabrechnung.Jahr);
+                if (Monatsabrechnung.schonBezahlt)
+                {
+                    Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.RECHNUNG_SCHON_VORHANDEN;
+                }
+                else
+                {
+                    Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.RECHNUNGEN_JETZT_ERZEUGEN;
+                }
+                alleRechnungen.Add(Monatsabrechnung);
+                alleRechnungen = alleRechnungen.OrderBy(x=>x.Monat).ToList();     
+            }
+            for (int i = 1; i < DateTime.Now.Month; i++)
+            {
+                RechnungsuebersichtModel Monatsabrechnung = new RechnungsuebersichtModel();
+                Monatsabrechnung.Monat = i;
+                Monatsabrechnung.Jahr = DateTime.Now.Year;
+                Monatsabrechnung.schonBezahlt = RechnungsVerwaltung.RechnungenFuerMonatVorhanden(Monatsabrechnung.Monat, Monatsabrechnung.Jahr);
+                if (Monatsabrechnung.schonBezahlt)
+                {
+                    Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.RECHNUNG_SCHON_VORHANDEN;
+                }
+                else
+                {
+                    Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.RECHNUNGEN_JETZT_ERZEUGEN;
+                }
+                alleRechnungen.Add(Monatsabrechnung);               
+            }
+            return View(alleRechnungen);
+
+
+        }
 
     }
 }

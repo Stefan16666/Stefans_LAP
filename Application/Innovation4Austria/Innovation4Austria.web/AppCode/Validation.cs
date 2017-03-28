@@ -19,5 +19,10 @@ namespace Innovation4Austria.web.AppCode
         public const string INNOVATION4AUSTRIAMITARBEITER = "MitarbeiterIVA";
         public const string FIRMENANSPRECHPARTNER = "Firmenansprechpartner";
 
+        public const string FIRMAANLEGENSUCCESS = "FirmaAnlegegSuccess";
+        public const string FIRMAANLEGENERROR = "FirmaAnlegenError";
+
+
+
     }
 }

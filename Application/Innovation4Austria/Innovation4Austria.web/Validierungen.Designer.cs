@@ -97,6 +97,24 @@ namespace Innovation4Austria.web {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Firma anlegen erfolgreich ähnelt.
+        /// </summary>
+        internal static string FirmaAnlegegSuccess {
+            get {
+                return ResourceManager.GetString("FirmaAnlegegSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Firma anlegen fehlgeschlagen ähnelt.
+        /// </summary>
+        internal static string FirmaAnlegenError {
+            get {
+                return ResourceManager.GetString("FirmaAnlegenError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Passwort stimmt nicht überein ähnelt.
         /// </summary>
         internal static string NeuesPasswort {
@@ -156,6 +174,15 @@ namespace Innovation4Austria.web {
         internal static string SpeichernFehlgeschlagen {
             get {
                 return ResourceManager.GetString("SpeichernFehlgeschlagen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        internal static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         
