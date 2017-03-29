@@ -194,8 +194,8 @@ namespace Innovation4Austria.logic
                 {
                     BuchungenZuMonat = context.AlleBuchungsdetails.Where(x => x.Datum.Month == monat && x.Datum.Year == jahr).ToList();
                     RechnungsDetailListe = context.AlleRechnungsdetails.ToList();
-                    BuchungenZuMonat = BuchungenZuMonat.Where(x => x.Rechnungsdetails == null).ToList();
-                    if (BuchungenZuMonat!=null)
+                    BuchungenZuMonat = BuchungenZuMonat.Where(x => x.Rechnungsdetails.Count > 0).ToList();
+                    if (BuchungenZuMonat.Count!=0)
                     {
                         vorhanden = true;
                     }
@@ -210,6 +210,28 @@ namespace Innovation4Austria.logic
                 }
             }
             return vorhanden;
+        }
+
+        public static List<Buchungsdetails> BuchungenFuerMonatVorhanden(int monat, int jahr)
+        {
+            log.Info("RechnungsVerwaltung - RechnungsDetailsEinerRechnung");
+            List<Buchungsdetails> BuchungenZuMonat = new List<Buchungsdetails>();
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    BuchungenZuMonat = context.AlleBuchungsdetails.Where(x => x.Datum.Month == monat && x.Datum.Year == jahr).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("RechnugnsVerwaltung - RechnungsDetailsEinerRechnung - DB_Verbindung fehlgeschlagen");
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+            return BuchungenZuMonat;
         }
     }
 }

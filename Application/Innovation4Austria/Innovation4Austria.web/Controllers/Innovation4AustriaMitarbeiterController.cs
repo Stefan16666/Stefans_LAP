@@ -127,7 +127,7 @@ namespace Innovation4Austria.web.Controllers
             {
 
                 if (FirmaAnlegen = FirmenVerwaltung.FirmaAnlegen(model.Bezeichnung, model.Strasse, model.Nummer, model.Plz, model.Ort))
-                {   
+                {
                     TempData[ConstStrings.SUCCESS_MESSAGE] = Validierungen.FirmaAnlegegSuccess;
                 }
                 else
@@ -143,40 +143,61 @@ namespace Innovation4Austria.web.Controllers
         {
             log.Info("Innovation4Austria - RechnungsUebersicht - GET");
 
-            bool vorigesJahrFertig = false;
+           
             List<RechnungsuebersichtModel> alleRechnungen = new List<RechnungsuebersichtModel>();
-            for (int i = 1; i <= 12 && !vorigesJahrFertig; i++)
+            for (int i = 1; i <= 12; i++)
             {
+              
                 RechnungsuebersichtModel Monatsabrechnung = new RechnungsuebersichtModel();
                 Monatsabrechnung.Monat = i;
-                Monatsabrechnung.Jahr =  DateTime.Now.AddYears(-1).Year;
-                Monatsabrechnung.schonBezahlt = RechnungsVerwaltung.RechnungenFuerMonatVorhanden(Monatsabrechnung.Monat, Monatsabrechnung.Jahr);
-                if (Monatsabrechnung.schonBezahlt)
+                Monatsabrechnung.Jahr = DateTime.Now.AddYears(-1).Year;
+                List<Buchungsdetails> CountBuchungen = RechnungsVerwaltung.BuchungenFuerMonatVorhanden(Monatsabrechnung.Monat, Monatsabrechnung.Jahr);
+                if (CountBuchungen.Count > 0)
                 {
-                    Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.RECHNUNG_SCHON_VORHANDEN;
+                    Monatsabrechnung.schonBezahlt = RechnungsVerwaltung.RechnungenFuerMonatVorhanden(Monatsabrechnung.Monat, Monatsabrechnung.Jahr);
+                    if (Monatsabrechnung.schonBezahlt)
+                    {
+                        Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.RECHNUNG_SCHON_VORHANDEN;
+                    }
+                    else
+                    {
+                        Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.RECHNUNGEN_JETZT_ERZEUGEN;
+                    }
+
                 }
                 else
                 {
-                    Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.RECHNUNGEN_JETZT_ERZEUGEN;
+                    Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.KEINE_RECHNUNGEN_VORHANDEN;
+                    Monatsabrechnung.schonBezahlt = true;
                 }
                 alleRechnungen.Add(Monatsabrechnung);
-                alleRechnungen = alleRechnungen.OrderBy(x=>x.Monat).ToList();     
+                alleRechnungen = alleRechnungen.OrderBy(x => x.Monat).ToList();
             }
-            for (int i = 1; i < DateTime.Now.Month; i++)
+            for (int i = 1; i < 12; i++)
             {
                 RechnungsuebersichtModel Monatsabrechnung = new RechnungsuebersichtModel();
                 Monatsabrechnung.Monat = i;
                 Monatsabrechnung.Jahr = DateTime.Now.Year;
-                Monatsabrechnung.schonBezahlt = RechnungsVerwaltung.RechnungenFuerMonatVorhanden(Monatsabrechnung.Monat, Monatsabrechnung.Jahr);
-                if (Monatsabrechnung.schonBezahlt)
+                List<Buchungsdetails> CountBuchungen = RechnungsVerwaltung.BuchungenFuerMonatVorhanden(Monatsabrechnung.Monat, Monatsabrechnung.Jahr);
+                if (CountBuchungen.Count > 0)
                 {
-                    Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.RECHNUNG_SCHON_VORHANDEN;
+                    Monatsabrechnung.schonBezahlt = RechnungsVerwaltung.RechnungenFuerMonatVorhanden(Monatsabrechnung.Monat, Monatsabrechnung.Jahr);
+                    if (Monatsabrechnung.schonBezahlt)
+                    {
+                        Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.RECHNUNG_SCHON_VORHANDEN;
+                    }
+                    else
+                    {
+                        Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.RECHNUNGEN_JETZT_ERZEUGEN;
+                    }
+                   
                 }
                 else
-                {
-                    Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.RECHNUNGEN_JETZT_ERZEUGEN;
+                {                    
+                    Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.KEINE_RECHNUNGEN_VORHANDEN;
+                    Monatsabrechnung.schonBezahlt = true;
                 }
-                alleRechnungen.Add(Monatsabrechnung);               
+                alleRechnungen.Add(Monatsabrechnung);
             }
             return View(alleRechnungen);
 

@@ -14,5 +14,6 @@ namespace Innovation4Austria.web.AppCode
         public const string RECHNUNG_SCHON_VORHANDEN = "Rechnungen schon vorhanden";
         public const string RECHNUNG_KANN_NICHT_ERZEUGT_WERDEN = "zu früh zum Abrechnen";
         public const string RECHNUNGEN_JETZT_ERZEUGEN = "Rechnungen jetzt erzeugen";
+        public const string KEINE_RECHNUNGEN_VORHANDEN = "keine Rechnungen vorhanden";
     }
 }
