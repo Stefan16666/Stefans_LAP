@@ -14,7 +14,7 @@
         
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="container" style="padding: 5em">
-            <div class="row">
+            <div class="row margintop">
                 <div class="col-md-4">
                     <h1 class="headline">Mitarbeiter</h1>
                     @foreach (var benutzer in Model.AlleMitarbeiter)
@@ -37,6 +37,11 @@
                             <div>@buchungen.Raumnummer</div>
                             <div>@buchungen.RaumArt</div>
                             <div>@buchungen.VonDatum.ToShortDateString() &nbsp;  - &nbsp; @buchungen.BisDatum.ToShortDateString()</div>
+                            @if (buchungen.VonDatum > DateTime.Now.AddDays(3))
+                            {
+                               
+                                <div>@Html.ActionLink("Stornieren", "Stornieren", "Buchung", new { Id = buchungen.Id }, new { @class = "sandybrown" })</div>
+                            }
                         </div>
                     }
 
@@ -49,7 +54,7 @@
                         <div class="dashboard">
                             <div>@rechnungen.Monat</div>
                             @Html.HiddenFor(x=>rechnungen.Monatnummer)
-                            <div>@Html.ActionLink("Erstellen", "Erstellen", "Rechnung", new { Monatnummer = rechnungen.Monatnummer },null )</div>
+                            <div>@Html.ActionLink("Erstellen", "Erstellen", "Rechnung", new { Monatnummer = rechnungen.Monatnummer }, new { @class = "sandybrown" })</div>
                         </div>
                     }
 

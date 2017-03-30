@@ -15,11 +15,13 @@
             </tr>
             @foreach (var item in Model)
             {
-                using (Html.BeginForm())
+                using (Html.BeginForm("RechnungenFuerMonatProduzieren", "Innovation4AustriaMitarbeiter", FormMethod.Post))
                 {
                     <tr>
                         <td style="width:90px; color:white">@item.Jahr</td>
                         <td style="width:90px; color:white">@item.Monat</td>
+                        <td><input name="Monat" value="@item.Monat" type="hidden" /></td>
+                        <td><input name="jahr" value="@item.Jahr" type="hidden" /></td>
                         @if (!item.schonBezahlt)
 	                    {
 		                    <td style="width:90px; color:white"><input type="submit" value="@item.Bezeichnung" class="btn btn-block"/></td>

@@ -115,6 +115,15 @@ namespace Innovation4Austria.web {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Buchstaben von A - Z ähnelt.
+        /// </summary>
+        internal static string NamensKontrolle {
+            get {
+                return ResourceManager.GetString("NamensKontrolle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Passwort stimmt nicht überein ähnelt.
         /// </summary>
         internal static string NeuesPasswort {
@@ -174,15 +183,6 @@ namespace Innovation4Austria.web {
         internal static string SpeichernFehlgeschlagen {
             get {
                 return ResourceManager.GetString("SpeichernFehlgeschlagen", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
-        /// </summary>
-        internal static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

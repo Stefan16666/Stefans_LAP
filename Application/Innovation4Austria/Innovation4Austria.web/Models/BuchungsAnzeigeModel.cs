@@ -8,7 +8,7 @@ namespace Innovation4Austria.web.Models
 {
     public class BuchungsAnzeigeModel
     {
-        
+        public int Id { get; set; }
 
         public string Raumnummer { get; set; }
 

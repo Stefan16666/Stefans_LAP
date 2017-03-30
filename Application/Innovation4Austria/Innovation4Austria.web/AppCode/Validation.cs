@@ -12,7 +12,7 @@ namespace Innovation4Austria.web.AppCode
         public const string DATATYPE_DATE = "DataTypeDate";
         public const string REGULAR_EXPRESSION_PASSWORD = "RegexPassword";
         public const string MAXLENGTH = "MaxLength";
-
+        public const string NAMENSKONTROLLE = "NamensKontrolle";
         public const string PASSWORT_WIEDERHOLEN = "Passwortwiederholung nicht gleich Passwort";
         public const string PASSWORT_NORM = "StringLength";
 

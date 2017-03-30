@@ -59,8 +59,8 @@ namespace Innovation4Austria.logic
             try
             {
                 using (var context = new Innovation4AustriaEntities())
-                { 
-                    
+                {
+
                     monatsRechnungen = context.AlleRechnungen.Where(x => x.fa_id == fa_id).ToList();
                     foreach (var eineRechnung in monatsRechnungen)
                     {
@@ -68,11 +68,11 @@ namespace Innovation4Austria.logic
                         foreach (var rechnungsdetail in alleRGDetails)
                         {
                             Buchungsdetails einBuchungsDetail = context.AlleBuchungsdetails.Where(x => x.Id == rechnungsdetail.Buchungsdetail_Id && x.Datum.Month == monat).FirstOrDefault();
-                            if (einBuchungsDetail!=null)
+                            if (einBuchungsDetail != null)
                             {
                                 gesuchteBuchungsDetails.Add(einBuchungsDetail);
                             }
-                         
+
                         }
                     }
 
@@ -98,13 +98,13 @@ namespace Innovation4Austria.logic
                     foreach (var buchungsdetail in BgDetails)
                     {
                         Rechnungsdetails RgDetail = context.AlleRechnungsdetails.Where(x => x.Buchungsdetail_Id == buchungsdetail.Id).FirstOrDefault();
-                        if (rechnung!=null)
+                        if (rechnung != null)
                         {
                             rechnung = context.AlleRechnungen.Where(x => x.Id == RgDetail.Rechnung_Id).FirstOrDefault();
-                        }                        
+                        }
                         RgDetails.Add(RgDetail);
                     }
-                   
+
                 }
             }
             catch (Exception ex)
@@ -153,7 +153,7 @@ namespace Innovation4Austria.logic
             catch (Exception ex)
             {
                 log.Error("RechnugnsVerwaltung - RechnungsDetailsEinerRechnung - DB_Verbindung fehlgeschlagen");
-                if (ex.InnerException!=null)
+                if (ex.InnerException != null)
                 {
                     log.Info(ex.InnerException);
                 }
@@ -195,7 +195,7 @@ namespace Innovation4Austria.logic
                     BuchungenZuMonat = context.AlleBuchungsdetails.Where(x => x.Datum.Month == monat && x.Datum.Year == jahr).ToList();
                     RechnungsDetailListe = context.AlleRechnungsdetails.ToList();
                     BuchungenZuMonat = BuchungenZuMonat.Where(x => x.Rechnungsdetails.Count > 0).ToList();
-                    if (BuchungenZuMonat.Count!=0)
+                    if (BuchungenZuMonat.Count != 0)
                     {
                         vorhanden = true;
                     }
@@ -232,6 +232,45 @@ namespace Innovation4Austria.logic
                 }
             }
             return BuchungenZuMonat;
+        }
+
+        public static void ErstelleRechnungenFuerMonat(int monat, int jahr)
+        {
+            log.Info("RechnungsVerwaltung - ErstelleRechnungenFuerMonat");
+            List<Buchungsdetails> buchungsDetailsFuerMonat = new List<Buchungsdetails>();
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    buchungsDetailsFuerMonat = context.AlleBuchungsdetails.Where(x => x.Datum.Year == jahr && x.Datum.Month == monat&&x.Buchung.Aktiv).ToList();
+                    foreach (var buchungsDetail in buchungsDetailsFuerMonat)
+                    {
+                        List<Buchungsdetails> buchungsDetailsZuFirma = new List<Buchungsdetails>();
+                        buchungsDetailsZuFirma = buchungsDetailsFuerMonat.Where(x => x.Buchung.Firma_id == buchungsDetail.Buchung.Firma_id).ToList();
+                        Rechnung neueRechnung = new Rechnung();
+                        neueRechnung.Datum = DateTime.Now;
+                        neueRechnung.fa_id = buchungsDetail.Buchung.Firma_id;
+                        context.AlleRechnungen.Add(neueRechnung);
+                        context.SaveChanges();
+                        foreach (var buchungsDetaileinesMonats in buchungsDetailsZuFirma)
+                        {
+                            Rechnungsdetails DetailZuFirma = new Rechnungsdetails();
+                            DetailZuFirma.Buchungsdetail_Id = buchungsDetaileinesMonats.Id;
+                            DetailZuFirma.Rechnung_Id = neueRechnung.Id;
+                            context.AlleRechnungsdetails.Add(DetailZuFirma);
+                        }
+                    }
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("RechnugnsVerwaltung - ErstelleRechnungenFuerMonat - DB_Verbindung fehlgeschlagen");
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
         }
     }
 }

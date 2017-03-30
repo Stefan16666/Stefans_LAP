@@ -5,7 +5,7 @@
 }
 
 <div class="form-horizontal">
-    <div class="container" id="firmenauflistung">
+    <div class="container margintopFirmenAuflistung" id="firmenauflistung">
 
         @foreach (var item in Model)
         {
@@ -16,7 +16,7 @@
 
 </div>
 
-<div class="FontSize color">
-    @Html.ActionLink("Neue Firma", "FirmaAnlegen", "Benutzer")
+<div class="FontSize">
+   @Html.ActionLink("Neue Firma", "FirmaAnlegen", "Innovation4AustriaMitarbeiter",new { @class = "color" })
 </div>
 

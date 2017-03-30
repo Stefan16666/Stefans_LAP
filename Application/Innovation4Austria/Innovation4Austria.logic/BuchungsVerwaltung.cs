@@ -23,7 +23,7 @@ namespace Innovation4Austria.logic
                 {
                     using (var context = new Innovation4AustriaEntities())
                     {
-                        bookedRooms = context.AlleBuchungen.Where(x => x.Firma_id == fa_id).ToList();
+                        bookedRooms = context.AlleBuchungen.Where(x => x.Firma_id == fa_id&& x.Aktiv==true).ToList();
 
                         if (bookedRooms == null)
                         {
@@ -60,7 +60,7 @@ namespace Innovation4Austria.logic
             }
             catch (Exception ex)
             {
-                log.Error("RaumVerwaltung - BuchungsDetailsVonMonat - DB-Verbindung fehlgeschlagen", ex);
+                log.Error("BuchungsVerwaltung - BuchungsDetailsVonMonat - DB-Verbindung fehlgeschlagen", ex);
                 if (ex.InnerException != null)
                 {
                     log.Info(ex.InnerException);
@@ -79,7 +79,7 @@ namespace Innovation4Austria.logic
         {
             List<Buchungsdetails> buchungsdetailsEinerBuchung = null;
             DateTime date = new DateTime();
-            Console.Write("RechnungsVerwaltung - datum");
+            Console.Write("BuchungsVerwaltung - datum");
             if (buchungsDetail_id != 0)
             {
                 try
@@ -99,7 +99,7 @@ namespace Innovation4Austria.logic
                 }
                 catch (Exception ex)
                 {
-                    log.Error("RechnungsVerwaltung - Buchung - es konnte keine Datenbankverbindung hergestellt werden", ex);
+                    log.Error("BuchungsVerwaltung - Buchung - es konnte keine Datenbankverbindung hergestellt werden", ex);
                     if (ex.InnerException != null)
                     {
                         log.Info(ex.InnerException);
@@ -107,6 +107,32 @@ namespace Innovation4Austria.logic
                 }
             }
             return date;
+        }
+
+        public static bool Stornieren(int id)
+        {
+            log.Info("BuchungsVerwaltung - Stornieren");
+            bool storniert = false;
+            //Buchung gesBuchung = new Buchung();
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    Buchung gesBuchung = context.AlleBuchungen.Where(x => x.Id == id).FirstOrDefault();
+                    gesBuchung.Aktiv = false;                   
+                    context.SaveChanges();
+                    storniert = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("BuchungsVerwaltung - Buchung - es konnte keine Datenbankverbindung hergestellt werden", ex);
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+            return storniert;
         }
 
         public static bool ErstelleBuchungDetails(int buchung_id, DateTime vonDatum, DateTime BisDatum, decimal preis)
@@ -175,13 +201,13 @@ namespace Innovation4Austria.logic
                         detailVonBuchung = context.AlleBuchungsdetails.Include(x=>x.Rechnungsdetails).Where(x => x.Buchung_id == buchung_id).ToList();
                         if (detailVonBuchung == null)
                         {
-                            log.Warn("RaumVerwaltung - BuchungsDetailsVonBuchung - keine Details zur Buchung gefunden");
+                            log.Warn("BuchungsVerwaltung - BuchungsDetailsVonBuchung - keine Details zur Buchung gefunden");
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    log.Error("RaumVerwaltung - BuchungsDetailsVonBuchung - Datenbankverbindung fehlgeschlagen", ex);
+                    log.Error("BuchungsVerwaltung - BuchungsDetailsVonBuchung - Datenbankverbindung fehlgeschlagen", ex);
                     if (ex.InnerException != null)
                     {
                         log.Info(ex.InnerException);

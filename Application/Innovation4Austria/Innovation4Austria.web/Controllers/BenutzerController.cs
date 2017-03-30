@@ -109,10 +109,6 @@ namespace Innovation4Austria.web.Controllers
                 }
             }
             dashboard.AlleMitarbeiter = alleMitarbeitereinerFirma;
-
-
-            // mapping for bookings
-
             
             List<BuchungsAnzeigeModel> alleBuchungen = new List<BuchungsAnzeigeModel>();
             List<Rechnungsdetails> rechnungsDetailsEinerBuchung = new List<Rechnungsdetails>();
@@ -122,7 +118,7 @@ namespace Innovation4Austria.web.Controllers
             dashboard.AlleBuchungen = new List<BuchungsAnzeigeModel>();
             if (bookingsOfCompany != null)
             {
-                /// es fehlt noch RaumArt und RaumName
+               
                 foreach (var booking in bookingsOfCompany)
                 {
                     
@@ -130,7 +126,7 @@ namespace Innovation4Austria.web.Controllers
                                         
                     Raum aktRaum = RaumVerwaltung.GesuchterRaum(booking.Raum_id);
                     BuchungsAnzeigeModel buchungsmodel = new BuchungsAnzeigeModel();
-                    
+                    buchungsmodel.Id = booking.Id;
                     buchungsmodel.Raumnummer = aktRaum.Bezeichnung;
                     buchungsmodel.RaumArt = aktRaum.Art.Bezeichnung;
                     
@@ -141,11 +137,13 @@ namespace Innovation4Austria.web.Controllers
 
                 }
             }
+            
             else
             {
                 log.Info("BenutzerController - Dashboard - keine Buchungen für die Firma vorhanden sind");
             }
-                       
+
+            dashboard.AlleBuchungen = dashboard.AlleBuchungen.OrderBy(x => x.BisDatum).ToList();
 
             List<Rechnung> alleRechnungenEinerFirma = RechnungsVerwaltung.RechnungenEinerFirma((int)aktBenutzer.Firma_id);
             List<RechnungsModel> alleRechnungenAnzeigen = new List<RechnungsModel>();
@@ -188,7 +186,7 @@ namespace Innovation4Austria.web.Controllers
             };
 
             dashboard.AlleRechnungen = alleRechnungen;
-
+           
             return View(dashboard);
         }
 

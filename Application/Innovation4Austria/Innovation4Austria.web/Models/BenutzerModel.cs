@@ -14,10 +14,13 @@ namespace Innovation4Austria.web.Models
 
         public int Id { get; set; }
 
+        [DataType(DataType.EmailAddress)]
         public string Emailadresse { get; set; }
 
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",ErrorMessageResourceType =typeof(Validierungen),ErrorMessageResourceName = Validation.NAMENSKONTROLLE)]
         public string  Nachname { get; set; }
 
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessageResourceType = typeof(Validierungen), ErrorMessageResourceName = Validation.NAMENSKONTROLLE)]
         public string Vorname { get; set; }
 
         public bool Aktiv { get; set; }

@@ -143,11 +143,11 @@ namespace Innovation4Austria.web.Controllers
         {
             log.Info("Innovation4Austria - RechnungsUebersicht - GET");
 
-           
+
             List<RechnungsuebersichtModel> alleRechnungen = new List<RechnungsuebersichtModel>();
             for (int i = 1; i <= 12; i++)
             {
-              
+
                 RechnungsuebersichtModel Monatsabrechnung = new RechnungsuebersichtModel();
                 Monatsabrechnung.Monat = i;
                 Monatsabrechnung.Jahr = DateTime.Now.AddYears(-1).Year;
@@ -173,7 +173,7 @@ namespace Innovation4Austria.web.Controllers
                 alleRechnungen.Add(Monatsabrechnung);
                 alleRechnungen = alleRechnungen.OrderBy(x => x.Monat).ToList();
             }
-            for (int i = 1; i < 12; i++)
+            for (int i = 1; i <= 12; i++)
             {
                 RechnungsuebersichtModel Monatsabrechnung = new RechnungsuebersichtModel();
                 Monatsabrechnung.Monat = i;
@@ -190,19 +190,31 @@ namespace Innovation4Austria.web.Controllers
                     {
                         Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.RECHNUNGEN_JETZT_ERZEUGEN;
                     }
-                   
+
                 }
                 else
-                {                    
+                {
                     Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.KEINE_RECHNUNGEN_VORHANDEN;
                     Monatsabrechnung.schonBezahlt = true;
+                }
+                if (i>=DateTime.Now.Month)
+                {
+                    Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.RECHNUNG_KANN_NICHT_ERZEUGT_WERDEN;
                 }
                 alleRechnungen.Add(Monatsabrechnung);
             }
             return View(alleRechnungen);
-
-
         }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult RechnungenFuerMonatProduzieren(int Monat, int Jahr)
+        {
+            log.Info("Innovation4AustriaMitarbeiterController - RechnungenFuerMonatProduzieren - Post");
+            RechnungsVerwaltung.ErstelleRechnungenFuerMonat(Monat, Jahr);
+            return RedirectToAction("RechnungsUebersicht");
+        }
+
 
     }
 }
