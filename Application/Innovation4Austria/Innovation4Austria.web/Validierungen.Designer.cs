@@ -203,5 +203,14 @@ namespace Innovation4Austria.web {
                 return ResourceManager.GetString("SuchenFehlgeschlagen", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die ungültiges Datum ähnelt.
+        /// </summary>
+        internal static string UngueltigesDatum {
+            get {
+                return ResourceManager.GetString("UngueltigesDatum", resourceCulture);
+            }
+        }
     }
 }

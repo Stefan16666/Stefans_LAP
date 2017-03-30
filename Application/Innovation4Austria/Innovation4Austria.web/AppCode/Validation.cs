@@ -22,7 +22,7 @@ namespace Innovation4Austria.web.AppCode
         public const string FIRMAANLEGENSUCCESS = "FirmaAnlegegSuccess";
         public const string FIRMAANLEGENERROR = "FirmaAnlegenError";
 
-
+        public const string DATUMVORBEI = "UngueltigesDatum";
 
     }
 }

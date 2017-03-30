@@ -88,7 +88,11 @@ namespace Innovation4Austria.web.Controllers
 
                     // erstelle datetime
                     DateTime anfangsDatum = new DateTime(vonJahr, vonMonat, vonTag);
-
+                    if (anfangsDatum<DateTime.Now)
+                    {
+                        TempData[ConstStrings.ERROR_MESSAGE] = Validierungen.UngueltigesDatum;
+                        return RedirectToAction("Laden");
+                    }
                     // BIS
                     // "13/12/2017"
                     string bis = datumVonBis.Substring(13, 10);
