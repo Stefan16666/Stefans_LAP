@@ -16,6 +16,9 @@
                     <div class="col-md-4">
                         @Html.TextBoxFor(x => x.Bezeichnung)
                     </div>
+                    <div class="col-md-2">
+                        @Html.ValidationMessageFor(x => x.Bezeichnung, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
 
@@ -27,6 +30,9 @@
                     <div class="col-md-4">
                         @Html.TextBoxFor(x => x.Strasse)
                     </div>
+                    <div class="col-md-2">
+                        @Html.ValidationMessageFor(x => x.Strasse, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -36,6 +42,9 @@
                     </div>
                     <div class="col-md-4">
                         @Html.TextBoxFor(x => x.Nummer)
+                    </div>
+                    <div class="col-md-2">
+                        @Html.ValidationMessageFor(x => x.Nummer, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -47,6 +56,9 @@
                     <div class="col-md-4">
                         @Html.TextBoxFor(x => x.Plz)
                     </div>
+                    <div class="col-md-2">
+                        @Html.ValidationMessageFor(x => x.Plz , "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -56,6 +68,9 @@
                     </div>
                     <div class="col-md-4">
                         @Html.TextBoxFor(x => x.Ort)
+                    </div>
+                    <div class="col-md-2">
+                        @Html.ValidationMessageFor(x => x.Ort, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -67,4 +82,8 @@
 
         </div>
     </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

@@ -150,6 +150,9 @@
   <data name="PasswortwechselError" xml:space="preserve">
     <value>Passwortwechsel fehlgeschlagen</value>
   </data>
+  <data name="Postleitzahl" xml:space="preserve">
+    <value>max 5 Stellen</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>Pflichtfeld</value>
   </data>

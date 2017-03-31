@@ -9,13 +9,13 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="container BuchungsDetail">
+    <div class="container BuchungsDetail firmenauflistung">
         <div class="row">
             <div class="img-rounded" style="margin-top:2em">
                 <div class="col-md-6">
                     <img src="~/Bild/BildZuRaum/@Model.Id" data-toggle="tooltip" title="@Model.Beschreibung" class="imgBuchungsdetail img-responsive">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" style="margin-top:4em">
                     <div class="SchriftgroesseKarten">
                         <div>@Html.LabelFor(x => x.Bezeichnung): &nbsp</div>
                         <div>
@@ -30,7 +30,7 @@
                     <div class="SchriftgroesseKarten">€ @Model.Preis,- / Tag</div>
                     @foreach (var item in Model.RaumAusstattung)
                     {
-                        <img src="~/Bild/IconZuAusstattung/@item.Ausstattungs_Id" alt="..." class="img-thumbnail img-check" data-toggle="tooltip" title="@item.Bezeichnung" style="width:2.4em">                      
+                        <img src="~/Bild/IconZuAusstattung/@item.Ausstattungs_Id" alt="..." class="img-thumbnail img-check" data-toggle="tooltip" title="@item.Bezeichnung" style="width:4em; margin:1em">                      
                     }
                     @if (User.IsInRole(Innovation4Austria.web.AppCode.Validation.INNOVATION4AUSTRIAMITARBEITER))
                     {
@@ -42,9 +42,8 @@
                     @Html.Hidden("VonDatum")
                     @Html.Hidden("BisDatum")
                     @Html.Hidden("Preis")
-                    <div class="SchriftgroesseKarten">@Model.VonDatum.ToShortDateString()</div>
-                    <div class="SchriftgroesseKarten">@Model.BisDatum.ToShortDateString()</div>
-                    <div class="form-group">
+                    <div class="SchriftgroesseKarten">@Model.VonDatum.ToShortDateString()&nbsp;-&nbsp;@Model.BisDatum.ToShortDateString()</div>                  
+                    <div class="form-group" style="margin:1em">
                         <div>
                             <input type="submit" value="Verbindlich Buchen" class="btn btn-default" />
                         </div>

@@ -160,6 +160,15 @@ namespace Innovation4Austria.web {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die max 5 Stellen ähnelt.
+        /// </summary>
+        internal static string Postleitzahl {
+            get {
+                return ResourceManager.GetString("Postleitzahl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Pflichtfeld ähnelt.
         /// </summary>
         internal static string Required {

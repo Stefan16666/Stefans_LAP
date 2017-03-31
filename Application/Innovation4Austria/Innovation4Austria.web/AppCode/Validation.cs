@@ -24,5 +24,7 @@ namespace Innovation4Austria.web.AppCode
 
         public const string DATUMVORBEI = "UngueltigesDatum";
 
+        public const string POSTLEITZAHL = "Postleitzahl";
+
     }
 }

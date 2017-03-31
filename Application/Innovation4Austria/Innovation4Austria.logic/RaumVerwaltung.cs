@@ -192,6 +192,7 @@ namespace Innovation4Austria.logic
 
             List<Raum> raeume = new List<Raum>();
             List<Raum> gesuchteRaeume = new List<Raum>();
+            List<Raum> temp = new List<Raum>();
             try
             {
                 using (var context = new Innovation4AustriaEntities())
@@ -231,7 +232,7 @@ namespace Innovation4Austria.logic
                             raeume.RemoveAll(x => x.Id == belegterRaum.Id);
                         }
                     }
-
+                    temp.AddRange(raeume);
 
                     // hier wird nach der Ausstattung sortiert, jeder Raum, der die Ausstattung nicht enthält, wird entfernt
                     if (ausstattung.Length > 0)
@@ -240,12 +241,14 @@ namespace Innovation4Austria.logic
                         {
                             for (int i = 0; i < ausstattung.Length; i++)
                             {
-                                if (raum.AlleRaum_Ausstattungen.Any(x => x.Ausstattungs_Id == ausstattung[i]))
+                                if (raum.AlleRaum_Ausstattungen.Select(x => x.Ausstattungs_Id).Contains(ausstattung[i]))
                                 {
                                     gesuchteRaeume.Add(raum);
                                 }
                             }
                         }
+
+                        gesuchteRaeume = gesuchteRaeume.Distinct().ToList();
                     }
 
 
