@@ -8,10 +8,13 @@
 </div>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <table>
+        <table class="table table-bordered">
             <tr>
                 <th style="width:90px; color:white;">Jahr  </th>
                 <th style="width:90px; color:white;">Monat</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             @foreach (var item in Model)
             {
@@ -23,14 +26,14 @@
                         <td><input name="Monat" value="@item.Monat" type="hidden" /></td>
                         <td><input name="jahr" value="@item.Jahr" type="hidden" /></td>
                         @if (!item.schonBezahlt)
-	                    {
-		                    <td style="width:90px; color:white"><input type="submit" value="@item.Bezeichnung" class="btn btn-block"/></td>
+                        {
+                            <td style="width:90px; color:white"><input type="submit" value="@item.Bezeichnung" class="btn btn-block" /></td>
                         }
                         else
                         {
                             <td style="width:500px; color:white">@item.Bezeichnung</td>
                         }
-                        
+
                     </tr>
 
                 }

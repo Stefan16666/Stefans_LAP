@@ -82,24 +82,24 @@ namespace Innovation4Austria.web.Controllers
                     string von = datumVonBis.Substring(0, 10);
 
                     // aufteilen des strings in Datumsbestandteile
-                    int vonMonat = int.Parse(von.Substring(0, 2));
-                    int vonTag = int.Parse(von.Substring(3, 2));
+                    int vonTag = int.Parse(von.Substring(0, 2));
+                    int vonMonat = int.Parse(von.Substring(3, 2));                    
                     int vonJahr = int.Parse(von.Substring(6, 4));
 
                     // erstelle datetime
                     DateTime anfangsDatum = new DateTime(vonJahr, vonMonat, vonTag);
-                    if (anfangsDatum<DateTime.Now)
+                    if (anfangsDatum<System.DateTime.Today)
                     {
                         TempData[ConstStrings.ERROR_MESSAGE] = Validierungen.UngueltigesDatum;
-                        return RedirectToAction("Laden");
+                        return View();
                     }
                     // BIS
                     // "13/12/2017"
                     string bis = datumVonBis.Substring(13, 10);
 
                     // aufteilen des strings in Datumsbestandteile
-                    int bisMonat = int.Parse(bis.Substring(0, 2));
-                    int bisTag = int.Parse(bis.Substring(3, 2));
+                    int bisTag = int.Parse(bis.Substring(0, 2));
+                    int bisMonat = int.Parse(bis.Substring(3, 2));                    
                     int bisJahr = int.Parse(bis.Substring(6, 4));
 
                     // erstelle datetime

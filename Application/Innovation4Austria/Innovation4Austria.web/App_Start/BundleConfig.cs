@@ -22,6 +22,10 @@ namespace Innovation4Austria.web
             bundles.Add(new ScriptBundle("~/bundles/datepickerJS").Include(
                     "~/Scripts/moment.js", "~/Scripts/daterangepicker.js"));
 
+            //bundles.Add(new ScriptBundle("~/bundles/datepickerJS").Include(
+            //       "~/Scripts/daterangepicker.js"));
+
+
             // Verwenden Sie die Entwicklungsversion von Modernizr zum Entwickeln und Erweitern Ihrer Kenntnisse. Wenn Sie dann
             // für die Produktion bereit sind, verwenden Sie das Buildtool unter "http://modernizr.com", um nur die benötigten Tests auszuwählen.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
