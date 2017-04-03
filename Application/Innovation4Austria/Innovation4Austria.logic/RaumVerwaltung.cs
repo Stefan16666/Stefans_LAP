@@ -232,25 +232,12 @@ namespace Innovation4Austria.logic
                             raeume.RemoveAll(x => x.Id == belegterRaum.Id);
                         }
                     }
-                    temp.AddRange(raeume);
+                    // hier wird nach der Ausstattung gefiltert. 
+                    // wenn die Anzahl (in alle AlleRaum_Ausstattungen) Ausstattungs_Id gleich groß ist wie die in ausstattung[], dann soll es in die Liste aufgenommen werden
+                    raeume = raeume.Where(x => x.AlleRaum_Ausstattungen.Select(y => y.Ausstattungs_Id)
+                                          .Intersect(ausstattung).Count() == ausstattung.Count()).ToList();
 
-                    // hier wird nach der Ausstattung sortiert, jeder Raum, der die Ausstattung nicht enthält, wird entfernt
-                    if (ausstattung.Length > 0)
-                    {
-                        foreach (var raum in raeume)
-                        {
-                            for (int i = 0; i < ausstattung.Length; i++)
-                            {
-                                if (raum.AlleRaum_Ausstattungen.Select(x => x.Ausstattungs_Id).Contains(ausstattung[i]))
-                                {
-                                    gesuchteRaeume.Add(raum);
-                                }
-                            }
-                        }
-
-                        gesuchteRaeume = gesuchteRaeume.Distinct().ToList();
-                    }
-
+                  
 
                 }
             }
@@ -262,7 +249,7 @@ namespace Innovation4Austria.logic
                     log.Info(ex.InnerException);
                 }
             }
-            return gesuchteRaeume;
+            return raeume;
         }
 
         public static List<Raum> GesuchteRaeume()

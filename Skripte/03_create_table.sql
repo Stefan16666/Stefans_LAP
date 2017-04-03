@@ -57,7 +57,7 @@ CREATE TABLE Firma(
 	nummer NVARCHAR(5) NOT NULL,
 	plz NVARCHAR(5) NOT NULL,
 	ort NVARCHAR(50) NOT NULL,
-	bezeichnung NVARCHAR(50) NOT NULL	,
+	bezeichnung NVARCHAR(50) NOT NULL,
 	aktiv bit default 1 NOT NULL
 );
 

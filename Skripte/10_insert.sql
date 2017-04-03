@@ -135,9 +135,9 @@ VALUES('marco@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Marco', 'Wurz',1, 2
 INSERT INTO Benutzer(email, passwort, vorname, nachname, rolle_id, firma_id)
 VALUES('claudia@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Claudia', 'Stiegl', 1, 3);
 INSERT INTO Benutzer(email, passwort, vorname, nachname, rolle_id, firma_id)
-VALUES('daniel@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Daniel', 'Zalli', 2, 4);
+VALUES('daniel@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Daniel', 'Zalli', 1, 4);
 INSERT INTO Benutzer(email, passwort, vorname, nachname, rolle_id, firma_id)
-VALUES('stefan@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Stefan', 'Groinig', 1, null);
+VALUES('stefan@gmail.at', HASHBYTES('SHA2_512', '123user!'), 'Stefan', 'Groinig', 2, null);
 GO
 
 

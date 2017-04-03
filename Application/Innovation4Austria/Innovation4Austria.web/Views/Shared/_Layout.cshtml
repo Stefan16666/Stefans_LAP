@@ -50,13 +50,16 @@
                         <li>
                             <a>@Html.ActionLink("Raumübersicht", "Laden", "Raum", null, new { @class = "btn buttonAction" })</a>
                         </li>
+                        @if (!User.IsInRole(Innovation4Austria.web.AppCode.Validation.INNOVATION4AUSTRIAMITARBEITER))
+                        {
                         <li>
                             <a>@Html.ActionLink("meine Übersicht", "Dashboard", "Benutzer", null, new { @class = "btn buttonAction" })</a>
                         </li>
+                        }
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        @*@if (User.IsInRole(Innovation4Austria.web.AppCode.Validation.INNOVATION4AUSTRIAMITARBEITER))*@
-
+                        @if (User.IsInRole(Innovation4Austria.web.AppCode.Validation.INNOVATION4AUSTRIAMITARBEITER))
+                        {
                         <li>
                             <a>@Html.ActionLink("Alle Firmen", "FirmenAuflistung", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction" })</a>
                         </li>
@@ -66,7 +69,7 @@
                         <li>
                             <a>@Html.ActionLink("Rechnungsverwaltung", "RechnungsUebersicht", "Innovation4AustriaMitarbeiter", null, new { @class = "btn buttonAction" })</a>
                         </li>
-
+                        }
                     </ul>
                 </div>
             }

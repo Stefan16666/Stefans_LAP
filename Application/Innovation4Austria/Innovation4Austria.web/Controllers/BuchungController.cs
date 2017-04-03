@@ -64,6 +64,10 @@ namespace Innovation4Austria.web.Controllers
                 Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
                 fa_id = (int)aktBenutzer.Firma_id;
             }
+            else
+            {
+                fa_id = (int)Fa_Id;
+            }
 
             VerbindlichBuchenModel verbindlichBuchenModel = new VerbindlichBuchenModel();
             
