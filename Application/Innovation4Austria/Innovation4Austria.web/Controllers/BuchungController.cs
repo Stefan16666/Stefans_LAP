@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Innovation4Austria.web.Controllers
 {
-    public class BuchungController : Controller
+    public class BuchungController : BasisController
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 

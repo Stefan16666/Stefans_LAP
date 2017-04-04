@@ -13,7 +13,7 @@ using Verwaltung;
 
 namespace Innovation4Austria.web.Controllers
 {
-    public class Innovation4AustriaMitarbeiterController : Controller
+    public class Innovation4AustriaMitarbeiterController : BasisController
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -200,6 +200,7 @@ namespace Innovation4Austria.web.Controllers
                 if (i>=DateTime.Now.Month)
                 {
                     Monatsabrechnung.Bezeichnung = Innovation4Austria.web.AppCode.ConstStrings.RECHNUNG_KANN_NICHT_ERZEUGT_WERDEN;
+                    Monatsabrechnung.schonBezahlt = true;
                 }
                 alleRechnungen.Add(Monatsabrechnung);
             }

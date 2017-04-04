@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Laden";
 }
-@using (Ajax.BeginForm("KartenAnsicht", "Raum", new AjaxOptions() { UpdateTargetId = "zeigeRaeume" }))
+@using (Ajax.BeginForm("KartenAnsicht", "Raum", new AjaxOptions() { UpdateTargetId = "zeigeRaeume", OnSuccess = "ZeigeMeldung()" }))
 {
     @Html.AntiForgeryToken()
 
@@ -45,14 +45,12 @@
             </div>
 
         </div>
-
-
     </div>
 }
 
 <div class="row" id="zeigeRaeume">
     <div>
-        @Html.Partial("_KartenAnsicht", Model.gebuchteRaeume)
+        @*@Html.Partial("_KartenAnsicht", Model.gebuchteRaeume)*@
     </div>
 </div>
 
@@ -65,6 +63,14 @@
     @*<script type="text/javascript" src="~/Scripts/moment.js"></script>*@
 
     <script type="text/javascript">
+
+        function ZeigeMeldung() {
+            console.log($("#raumanzeige").data().message);
+
+            var message = $("#raumanzeige").data().message
+            if (message!=null && message!="")
+                toastr['warning'](message);
+        }
 
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
@@ -110,6 +116,7 @@
                         "Dezember"
                     ],
                     "firstDay": 1
+                    @*"minDate": "@DateTime.Today.ToShortDateString()"*@
                 }
             });
         });

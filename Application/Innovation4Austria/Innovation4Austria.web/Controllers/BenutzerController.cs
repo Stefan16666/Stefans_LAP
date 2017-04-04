@@ -17,7 +17,7 @@ using Verwaltung;
 namespace Innovation4Austria.web.Controllers
 {
 
-    public class BenutzerController : Controller
+    public class BenutzerController : BasisController
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 

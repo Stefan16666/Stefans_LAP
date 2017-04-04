@@ -10,7 +10,7 @@ using Innovation4Austria.web.AppCode;
 
 namespace Innovation4Austria.web.Controllers
 {
-    public class RaumController : Controller
+    public class RaumController : BasisController
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -35,7 +35,7 @@ namespace Innovation4Austria.web.Controllers
                 RaumAusstattungsModel ausstattungsModel = new RaumAusstattungsModel()
                 {
                     Id = item.Id,
-                    Bezeichnung=  item.Bezeichnung
+                    Bezeichnung = item.Bezeichnung
                 };
                 raumAusstattungsModel.Add(ausstattungsModel);
             }
@@ -58,7 +58,7 @@ namespace Innovation4Austria.web.Controllers
             List<RaumModel> gesuchteRaeume = AutoMapper.Mapper.Map<List<RaumModel>>(RaumVerwaltung.GesuchteRaeume());
             RaumBuchungsModel buchungenZeigen = new RaumBuchungsModel();
             buchungenZeigen.gesuchteRaumListe = gesuchteRaeume;
-            return View("_KartenAnsicht", gesuchteRaeume);
+            return View("_KartenAnsicht", buchungenZeigen);
         }
 
         [ValidateAntiForgeryToken]
@@ -83,36 +83,35 @@ namespace Innovation4Austria.web.Controllers
 
                     // aufteilen des strings in Datumsbestandteile
                     int vonTag = int.Parse(von.Substring(0, 2));
-                    int vonMonat = int.Parse(von.Substring(3, 2));                    
+                    int vonMonat = int.Parse(von.Substring(3, 2));
                     int vonJahr = int.Parse(von.Substring(6, 4));
 
                     // erstelle datetime
                     DateTime anfangsDatum = new DateTime(vonJahr, vonMonat, vonTag);
-                    if (anfangsDatum<System.DateTime.Today)
+                    if (anfangsDatum < System.DateTime.Today)
                     {
-                        TempData[ConstStrings.ERROR_MESSAGE] = Validierungen.UngueltigesDatum;
-                        return View();
+                        TempData[ConstStrings.WARNING_MESSAGE] = Validierungen.UngueltigesDatum;
+                        //return RedirectToAction("KartenAnsicht");
                     }
-                    // BIS
-                    // "13/12/2017"
-                    string bis = datumVonBis.Substring(13, 10);
+                    else
+                    {
+                        // BIS
+                        // "13/12/2017"
+                        string bis = datumVonBis.Substring(13, 10);
 
-                    // aufteilen des strings in Datumsbestandteile
-                    int bisTag = int.Parse(bis.Substring(0, 2));
-                    int bisMonat = int.Parse(bis.Substring(3, 2));                    
-                    int bisJahr = int.Parse(bis.Substring(6, 4));
+                        // aufteilen des strings in Datumsbestandteile
+                        int bisTag = int.Parse(bis.Substring(0, 2));
+                        int bisMonat = int.Parse(bis.Substring(3, 2));
+                        int bisJahr = int.Parse(bis.Substring(6, 4));
 
-                    // erstelle datetime
-                    DateTime endDatum = new DateTime(bisJahr, bisMonat, bisTag);
+                        // erstelle datetime
+                        DateTime endDatum = new DateTime(bisJahr, bisMonat, bisTag);
 
-                    gefilterteRaeume.StartDatum = anfangsDatum;
-                    gefilterteRaeume.EndDatum = endDatum;
-                    gefilterteRaeume.gesuchteRaumListe = new List<RaumModel>();
-                    gefilterteRaeume.gesuchteRaumListe = AutoMapper.Mapper.Map<List<RaumModel>>(RaumVerwaltung.GesuchteRaeume(anfangsDatum, endDatum, Art_id, ausstattung));
-
-                  
-
-
+                        gefilterteRaeume.StartDatum = anfangsDatum;
+                        gefilterteRaeume.EndDatum = endDatum;
+                        gefilterteRaeume.gesuchteRaumListe = new List<RaumModel>();
+                        gefilterteRaeume.gesuchteRaumListe = AutoMapper.Mapper.Map<List<RaumModel>>(RaumVerwaltung.GesuchteRaeume(anfangsDatum, endDatum, Art_id, ausstattung));
+                    }
                 }
                 catch (Exception ex)
                 {

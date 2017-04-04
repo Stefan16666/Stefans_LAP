@@ -163,6 +163,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BasisController.cs" />
     <Compile Include="Controllers\BenutzerController.cs" />
     <Compile Include="Controllers\BildController.cs" />
     <Compile Include="Controllers\BuchungController.cs" />
@@ -324,6 +325,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="img\" />
+    <Folder Include="Views\Basis\" />
     <Folder Include="Views\Bild\" />
     <Folder Include="Views\Buchen\" />
   </ItemGroup>

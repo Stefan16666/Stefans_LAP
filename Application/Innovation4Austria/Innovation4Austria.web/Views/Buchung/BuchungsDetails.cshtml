@@ -28,13 +28,14 @@
                     <div class="SchriftgroesseKarten">@Model.Groesse m²</div>
                     <div class="SchriftgroesseKarten">@Model.Beschreibung</div>
                     <div class="SchriftgroesseKarten">€ @Model.Preis,- / Tag</div>
+                    <div class="SchriftgroesseKarten">@Model.VonDatum.ToShortDateString()&nbsp;-&nbsp;@Model.BisDatum.ToShortDateString()</div>    
                     @foreach (var item in Model.RaumAusstattung)
                     {
                         <img src="~/Bild/IconZuAusstattung/@item.Ausstattungs_Id" alt="..." class="img-thumbnail img-check" data-toggle="tooltip" title="@item.Bezeichnung" style="width:4em; margin:1em">                      
                     }
                     @if (User.IsInRole(Innovation4Austria.web.AppCode.Validation.INNOVATION4AUSTRIAMITARBEITER))
                     {
-                        <div>
+                        <div class="FontSize">
                             @Html.DropDownListFor(x => x.Fa_Id, new SelectList(Model.Firma, "Id", "Bezeichnung"))
                         </div>
                     }
@@ -42,7 +43,7 @@
                     @Html.Hidden("VonDatum")
                     @Html.Hidden("BisDatum")
                     @Html.Hidden("Preis")
-                    <div class="SchriftgroesseKarten">@Model.VonDatum.ToShortDateString()&nbsp;-&nbsp;@Model.BisDatum.ToShortDateString()</div>                  
+                                  
                     <div class="form-group" style="margin:1em">
                         <div>
                             <input type="submit" value="Verbindlich Buchen" class="btn btn-default" />
