@@ -91,7 +91,7 @@
     <Property Name="Message" Type="varchar" MaxLength="4000" Nullable="false" />
     <Property Name="Exception" Type="varchar" MaxLength="2000" />
     <Property Name="InnerException" Type="varchar" MaxLength="2000" />
-    <Property Name="benutzer_id" Type="int" />
+    <Property Name="benutzer_id" Type="int" StoreGeneratedPattern="Computed" />
   </EntityType>
   <EntityType Name="Raum">
     <Key>

@@ -609,6 +609,7 @@ a.nivo-nextNav {
 }
 
 .imgTag {
+    height:18em;
     width: 30em;
     padding-right: 25px !important;
     margin: 1em !important;
@@ -664,4 +665,7 @@ a.nivo-nextNav {
  .ProfilAnzeigen{
      padding:5em;
      margin-top:8em
+ }
+ .RaumArtProperty{
+     font-weight:bold;
  }

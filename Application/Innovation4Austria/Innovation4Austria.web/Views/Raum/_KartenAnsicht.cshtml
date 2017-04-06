@@ -18,8 +18,8 @@
 
                     <div class="col-md-3 Kartenansicht">
                         <img src="~/Bild/BildZuRaum/@raum.Id" data-toggle="tooltip" title="@raum.Beschreibung" class="imgTag">
-                        <div class="SchriftgroesseKarten">@raum.Bezeichnung</div>
-                        <div class="SchriftgroesseKarten">@raum.RaumArt</div>
+                        <div class="SchriftgroesseKarten">Raum&nbsp;@raum.Bezeichnung</div>
+                        <div class="SchriftgroesseKarten RaumArtProperty">@raum.RaumArt</div>
                         <div class="SchriftgroesseKarten">@raum.Groesse m²</div>
                         <div class="SchriftgroesseKarten">@raum.Beschreibung</div>
                         <div class="SchriftgroesseKarten">€ @raum.Preis,- / Tag</div>
@@ -30,7 +30,7 @@
                         {
                             <div class="form-group">
                                 <div>
-                                    <input type="submit" value="Zur Buchung" class="btn btn-default" />
+                                    <input type="submit" value="Zur Buchung" class="btn btn-default" style="margin-top:2em"/>
                                 </div>
                             </div>
                         }

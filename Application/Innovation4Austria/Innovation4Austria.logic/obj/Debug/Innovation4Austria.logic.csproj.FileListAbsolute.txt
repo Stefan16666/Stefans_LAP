@@ -75,3 +75,4 @@ C:\Lap\Application\Innovation4Austria\Innovation4Austria.logic\bin\Debug\log4net
 C:\Lap\Application\Innovation4Austria\Innovation4Austria.logic\bin\Debug\de\EntityFramework.resources.dll
 C:\Lap\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.dll
 C:\Lap\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.pdb
+C:\Lap\Application\Innovation4Austria\Innovation4Austria.logic\obj\Debug\Innovation4Austria.logic.csprojResolveAssemblyReference.cache

@@ -96,7 +96,7 @@
           <Property Name="Message" Type="varchar" MaxLength="4000" Nullable="false" />
           <Property Name="Exception" Type="varchar" MaxLength="2000" />
           <Property Name="InnerException" Type="varchar" MaxLength="2000" />
-          <Property Name="benutzer_id" Type="int" />
+          <Property Name="benutzer_id" Type="int" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Raum">
           <Key>
@@ -611,7 +611,7 @@ FROM [dbo].[AlleRechnungenEinerFirma] AS [AlleRechnungenEinerFirma]</DefiningQue
           <Property Name="Logger" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="Message" Type="String" Nullable="false" MaxLength="4000" Unicode="false" FixedLength="false" />
           <Property Name="Exception" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
-          <Property Name="Benutzer_id" Type="Int32" />
+          <Property Name="Benutzer_id" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Benutzer" Relationship="Innovation4AustriaModel.FK_Log_benutzer" FromRole="Log" ToRole="Benutzer" />
           <Property Name="InnerException" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
         </EntityType>

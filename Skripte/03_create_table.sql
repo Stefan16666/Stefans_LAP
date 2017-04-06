@@ -76,7 +76,7 @@ CREATE TABLE [dbo].[Log] (
 CREATE TABLE Raum (
 	id INT IDENTITY NOT NULL,	
 	bezeichnung NVARCHAR(50) NOT NULL,
-	beschreibung NVARCHAR(50) NOT NULL,
+	beschreibung NVARCHAR(31) NOT NULL,
 	bilddaten VARBINARY(MAX) NOT NULL,
 	bauwerk_id INT NOT NULL,
 	groesse INT NOT NULL,
