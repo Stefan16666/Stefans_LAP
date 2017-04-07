@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Innovation4Austria.web.Models
 {
@@ -15,6 +16,7 @@ namespace Innovation4Austria.web.Models
         public int Id { get; set; }
 
         [DataType(DataType.EmailAddress)]
+        [Remote("EmailFrei", "Validierung", ErrorMessage = "Email Adresse bereits vergeben")]
         public string Emailadresse { get; set; }
 
         [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",ErrorMessageResourceType =typeof(Validierungen),ErrorMessageResourceName = Validation.NAMENSKONTROLLE)]

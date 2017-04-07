@@ -3,7 +3,7 @@
 @using (Html.BeginForm("MitarbeiterAnlegen", "Innovation4AustriaMitarbeiter", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade" id="myModal@(Model.Fa_id)" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -17,14 +17,19 @@
                     @Html.HiddenFor(x => x.Fa_id)
                     <p class="FontSize ModalFontColor">@Html.LabelFor(x => x.Emailadresse)</p>
                     <p class="FontSize">@Html.TextBoxFor(x => x.Emailadresse)</p>
+                    <div class="FontSize"  style="color:red">@Html.ValidationMessageFor(x => x.Emailadresse)</div>
                     <p class="FontSize ModalFontColor">@Html.LabelFor(x => x.Vorname)</p>
                     <p class="FontSize">@Html.TextBoxFor(x => x.Vorname)</p>
+                    <p class="FontSize"  style="color:red">@Html.ValidationMessageFor(x => x.Vorname)</p>
                     <p class="FontSize ModalFontColor">@Html.LabelFor(x => x.Nachname)</p>
                     <p class="FontSize">@Html.TextBoxFor(x => x.Nachname)</p>
+                    <p class="FontSize"  style="color:red">@Html.ValidationMessageFor(x => x.Nachname)</p>
                     <p class="FontSize ModalFontColor">@Html.LabelFor(x => x.NeuesPasswort)</p>
                     <p class="FontSize">@Html.EditorFor(x => x.NeuesPasswort)</p>
+                    <p class="FontSize"  style="color:red">@Html.ValidationMessageFor(x => x.NeuesPasswort)</p>
                     <p class="FontSize ModalFontColor">@Html.LabelFor(x => x.NeuesPasswortBestätigung)</p>
                     <p class="FontSize">@Html.EditorFor(x => x.NeuesPasswortBestätigung)</p>
+                    <p class="FontSize" style="color:red">@Html.ValidationMessageFor(x => x.NeuesPasswortBestätigung)</p>
                     <input style="text-align:center" type="submit" value="Speichern" class="btn btn-default  mitarbeiterbtn" />
                 </div>
                 <div class="modal-footer">
@@ -35,3 +40,7 @@
         </div>
     </div>
 }
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

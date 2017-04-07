@@ -20,7 +20,10 @@ namespace Innovation4Austria.web.Controllers
         private static readonly i4aMembershipProvider membershipProvider = new i4aMembershipProvider();
 
         private static readonly i4aRoleProvider roleProvider = new i4aRoleProvider();
-
+        /// <summary>
+        /// Lädt alle Firmen
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         [HttpGet]
         public ActionResult FirmenAuflistung()
@@ -35,6 +38,11 @@ namespace Innovation4Austria.web.Controllers
             return View(FirmenUI);
         }
 
+        /// <summary>
+        /// Hier werden die Daten einer Firma übergeben und zur Aktualisierung an die BL weitergeleitet
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [ValidateAntiForgeryToken]
         [Authorize]
         [HttpPost]
@@ -56,7 +64,12 @@ namespace Innovation4Austria.web.Controllers
             return RedirectToAction("FirmenAuflistung");
         }
 
-        //[ValidateAntiForgeryToken]
+        /// <summary>
+        /// alle Mitarbeiter einer Firma werden zur View geschickt
+        /// </summary>
+        /// <param name="fa_id"></param>
+        /// <returns></returns>
+        
         [Authorize]
         [HttpGet]
         public ActionResult MitarbeiterBearbeiten(int fa_id)
@@ -72,6 +85,11 @@ namespace Innovation4Austria.web.Controllers
             return View(alleBenutzer);
         }
 
+        /// <summary>
+        ///  Der Mitarbeiter der wird übergeben und die Daten werden zur Aktualisierung an die BL weitergeleitet
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         //[ValidateAntiForgeryToken]
         [Authorize]
         [HttpPost]
@@ -88,6 +106,11 @@ namespace Innovation4Austria.web.Controllers
 
         }
 
+        /// <summary>
+        /// Daten von einem neuen Mitarbeiter werden an die BL weitergeleitet
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         //[ValidateAntiForgeryToken]
         [Authorize]
         [HttpPost]
@@ -111,12 +134,23 @@ namespace Innovation4Austria.web.Controllers
             }
             return RedirectToAction("FirmenAuflistung");
         }
+
+        /// <summary>
+        /// Aufruf der View zum Anlegen einer Firma
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         [HttpGet]
         public ActionResult FirmaAnlegen()
         {
             return View();
         }
+
+        /// <summary>
+        /// Die Daten der neuen Firma werden entgegengenommen und an die BL weitergeleitet
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost]
         public ActionResult FirmaAnlegen(FirmaAnlegenModel model)
@@ -137,6 +171,11 @@ namespace Innovation4Austria.web.Controllers
             }
             return RedirectToAction("FirmenAuflistung", "Innovation4AustriaMitarbeiter");
         }
+
+        /// <summary>
+        /// Aufruf aller Rechnungen wobei unterschieden wird, zwischen "schon bezahlt", "noch nicht abrechenbar" und "abrechenbar" 
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         [HttpGet]
         public ActionResult RechnungsUebersicht()
@@ -207,6 +246,12 @@ namespace Innovation4Austria.web.Controllers
             return View(alleRechnungen);
         }
 
+        /// <summary>
+        /// Alle Rechnungen eines Monats und eines Jahres werden erzeugt
+        /// </summary>
+        /// <param name="Monat"></param>
+        /// <param name="Jahr"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost]
         public ActionResult RechnungenFuerMonatProduzieren(int Monat, int Jahr)

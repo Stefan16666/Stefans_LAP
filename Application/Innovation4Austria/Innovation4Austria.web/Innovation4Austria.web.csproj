@@ -170,6 +170,7 @@
     <Compile Include="Controllers\RaumController.cs" />
     <Compile Include="Controllers\Innovation4AustriaMitarbeiterController.cs" />
     <Compile Include="Controllers\RechnungController.cs" />
+    <Compile Include="Controllers\ValidierungController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -328,6 +329,7 @@
     <Folder Include="Views\Basis\" />
     <Folder Include="Views\Bild\" />
     <Folder Include="Views\Buchen\" />
+    <Folder Include="Views\Validierung\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

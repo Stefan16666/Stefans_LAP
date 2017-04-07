@@ -14,7 +14,7 @@ namespace Innovation4Austria.web.Models
         public string Bezeichnung { get; set; }
 
         [Required]
-        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessageResourceType = typeof(Validierungen), ErrorMessageResourceName = Validation.NAMENSKONTROLLE)]
+        [RegularExpression(@"^[a-zA-Z-\s]{1,40}$", ErrorMessageResourceType = typeof(Validierungen), ErrorMessageResourceName = Validation.NAMENSKONTROLLE)]
         public string Strasse { get; set; }
 
         [Required]       

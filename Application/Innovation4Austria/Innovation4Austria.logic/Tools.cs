@@ -25,6 +25,34 @@ namespace Innovation4Austria.logic
 
 
         }
+        /// <summary>
+        /// Prüft ob eine Email schon vergeben worden ist, wenn ja, dann gibt true zurück
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public static bool EmailVorhanden(string email)
+        {
+            log.Info("Tools - Email Vorhanden");        
 
+            bool emailVorhanden = false;          
+
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    emailVorhanden = context.AlleBenutzer.Any(x => x.Emailadresse == email);
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Tools - EmailVorhanden - DB-Verbindung fehlgeschlagen");
+                if (ex.InnerException!=null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }           
+            return emailVorhanden;
+        }
     }
 }
+

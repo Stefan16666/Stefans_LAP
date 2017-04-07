@@ -20,7 +20,7 @@ namespace Innovation4Austria.web.Models
         [StringLength(maximumLength: 16, MinimumLength = 8, ErrorMessageResourceType = typeof(Validierungen), ErrorMessageResourceName = Validation.PASSWORT_NORM)]
         [DataType(DataType.Password)]
         [DisplayName("Passwort wiederholen")]
-        [Compare("NeuesPasswort")]
+        [Compare("NeuesPasswort",ErrorMessage ="Passwort stimmt nicht überein")]
         public string NeuesPasswortBestätigung { get; set; }
     }
 }
