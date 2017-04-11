@@ -13,6 +13,11 @@ namespace Innovation4Austria.logic
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        /// <summary>
+        /// Generiert mit Hilfe des SHA512 ein Password (ByteArray)
+        /// </summary>
+        /// <param name="passwort"></param>
+        /// <returns></returns>
         public static byte[] GenerierePasswort(string passwort)
         {
             log.Info("Innovation4Austria.logic - GenerierePasswort");

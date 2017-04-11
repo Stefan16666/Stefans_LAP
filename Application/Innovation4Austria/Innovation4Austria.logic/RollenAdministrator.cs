@@ -12,6 +12,12 @@ namespace Innovation4Austria.logic
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+
+        /// <summary>
+        /// liefert alle user die der Rolle entsprechen
+        /// </summary>
+        /// <param name="roleName"></param>
+        /// <returns></returns>
         public static List<Benutzer> GetRoleUsers(string roleName)
         {
             log.Info("GetRoleUsers(rolenName)");
@@ -47,6 +53,10 @@ namespace Innovation4Austria.logic
             }
         }
 
+        /// <summary>
+        /// líefert alle Rollen
+        /// </summary>
+        /// <returns></returns>
         public static List<Rolle> GetRoles()
         {
             log.Info("GetRoles()");
@@ -70,6 +80,11 @@ namespace Innovation4Austria.logic
             return rollen;
         }
 
+        /// <summary>
+        /// liefert anhand der Emailadresse die Rolle des Benutzers
+        /// </summary>
+        /// <param name="emailadresse"></param>
+        /// <returns></returns>
         public static Rolle GetUserRole(string emailadresse)
         {
             log.Info("GetUserRoles(username)");

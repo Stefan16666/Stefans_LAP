@@ -36,7 +36,13 @@ namespace Innovation4Austria.logic
         }
 
 
-
+        /// <summary>
+        /// wechselt das Passwort
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="oldPassword"></param>
+        /// <param name="newPassword"></param>
+        /// <returns></returns>
         public static Passwortwechselergebnis WechselPasswort(string username, string oldPassword, string newPassword)
         {
             Passwortwechselergebnis result = Passwortwechselergebnis.UsernameInvalid;
@@ -92,6 +98,11 @@ namespace Innovation4Austria.logic
             return result;
         }
 
+        /// <summary>
+        /// Setzt den Benutzer auf inaktiv
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public static bool DeaktiviereBenutzer(string username)
         {
             log.Info("DeactivateUser(username)");
@@ -133,6 +144,11 @@ namespace Innovation4Austria.logic
             return success;
         }
 
+        /// <summary>
+        ///  setzt den Benutzer auf aktiv
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public static bool AktiviereBenutzer(string username)
         {
             log.Info("ActivateUser(username)");
@@ -174,6 +190,12 @@ namespace Innovation4Austria.logic
             return success;
         }
 
+        /// <summary>
+        /// findet den Benutzer anhand von Emailadresse und Password
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static LogonResult Anmelden(string username, string password)
         {
             log.Info("Logon(username, password)");
@@ -238,6 +260,12 @@ namespace Innovation4Austria.logic
             }
             return result;
         }
+        
+        /// <summary>
+        /// Findet den User anhand der Emailadresse
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public static Benutzer GetUser(string username)
         {
             log.Info("GetUser(username)");

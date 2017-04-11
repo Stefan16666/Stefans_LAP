@@ -13,6 +13,11 @@ namespace Innovation4Austria.logic
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        /// <summary>
+        /// retourniert die Ausstattung / Bilddaten werden im Controller ausgelesen
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static Ausstattung LadeAusstattung(int id)
         {
             log.Info("BildVerwaltung - LadeBild");
@@ -39,6 +44,12 @@ namespace Innovation4Austria.logic
             }
             return ausstattung;
         }
+
+        /// <summary>
+        /// retourniert den Raum / Bilddaten werden im Controller ausgelesen
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static Raum LadeBild(int id)
         {
             log.Info("BildVerwaltung - LadeBild");

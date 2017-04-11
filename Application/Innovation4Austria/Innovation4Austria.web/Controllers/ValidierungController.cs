@@ -9,11 +9,11 @@ namespace Innovation4Austria.web.Controllers
 {
     public class ValidierungController : Controller
     {
-        public JsonResult EmailFrei(string email)
+        public JsonResult EmailFrei(string Emailadresse)
         {
             bool benutzerExistiert = false;
 
-            benutzerExistiert = Tools.EmailVorhanden(email);
+            benutzerExistiert = Tools.EmailVorhanden(Emailadresse);
 
             if (benutzerExistiert)
                 return Json(false, JsonRequestBehavior.AllowGet);

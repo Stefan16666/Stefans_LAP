@@ -92,13 +92,18 @@ namespace Innovation4Austria.web.Controllers
             return RedirectToAction("Laden", "Raum");
         }
 
+        [Authorize]
         [HttpGet]
         public  ActionResult Stornieren(int Id)
         {
+            Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
+
+
+
             log.Info("BuchungController - Stornieren -Get");
             if (Id>0)
             {
-               bool storniert =  BuchungsVerwaltung.Stornieren(Id);
+               bool storniert =  BuchungsVerwaltung.Stornieren(Id, (int)aktBenutzer.Firma_id);
             }
             return RedirectToAction("Dashboard", "Benutzer");
         }

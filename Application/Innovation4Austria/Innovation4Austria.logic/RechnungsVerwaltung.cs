@@ -50,6 +50,12 @@ namespace Innovation4Austria.logic
             return detail;
         }
 
+        /// <summary>
+        /// Sucht alle Buchungsdetails einer Firma aus einem bestimmten Monat
+        /// </summary>
+        /// <param name="fa_id"></param>
+        /// <param name="monat"></param>
+        /// <returns></returns>
         public static List<Buchungsdetails> MonatsBuchungsDetails(int fa_id, int monat)
         {
             log.Info("RechnungsVerwaltung - MonatsRechnung");
@@ -86,6 +92,11 @@ namespace Innovation4Austria.logic
             return gesuchteBuchungsDetails;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="BgDetails"></param>
+        /// <returns></returns>
         public static Rechnung LiefereRechnungzuFirmaAusMonat(List<Buchungsdetails> BgDetails)
         {
             log.Info("Rechnungsverwaltung - LiefereRechnungzuFirmaAusMonat");

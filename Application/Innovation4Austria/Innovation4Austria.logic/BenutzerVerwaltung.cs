@@ -13,7 +13,12 @@ namespace Verwaltung
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-
+        /// <summary>
+        /// Sucht den Benutzer anhand der Emailadresse und dem Passwort heraus
+        /// </summary>
+        /// <param name="emailadresse"></param>
+        /// <param name="passwort"></param>
+        /// <returns></returns>
         public static bool Anmelden(string emailadresse, string passwort)
         {
             log.Info("BenutzerVerwaltung - Anmelden()");
@@ -27,7 +32,7 @@ namespace Verwaltung
                     {
                         try
                         {
-                            loginbenutzer = context.AlleBenutzer.Include(x => x.Firma).Where(x => x.Emailadresse == emailadresse).FirstOrDefault();
+                            loginbenutzer = context.AlleBenutzer.Include(x => x.Firma).Where(x => x.Emailadresse == emailadresse&& x.Aktiv==true).FirstOrDefault();
                             if (loginbenutzer != null)
                             {
                                 if (loginbenutzer.Passwort.SequenceEqual(Tools.GenerierePasswort(passwort)))
@@ -48,13 +53,13 @@ namespace Verwaltung
             return gefunden;
         }
 
-        public static bool Abmelden()
-        {
-            log.Info("Abmelden()");
-
-            return true;
-        }
-
+        /// <summary>
+        /// ersetzt das alte Passwort mit einem neuen
+        /// </summary>
+        /// <param name="emailadresse"></param>
+        /// <param name="neuesPassword"></param>
+        /// <param name="altesPasswort"></param>
+        /// <returns></returns>
         public static BenutzerAdministrator.Passwortwechselergebnis Wechselpasswort(string emailadresse, string neuesPassword, string altesPasswort)
         {
 
@@ -112,7 +117,7 @@ namespace Verwaltung
         }
 
         /// <summary>
-        /// Sending back the company where a person works
+        /// Ermittelt den Benutzer via der Emailadresse
         /// </summary>
         /// <param name="emailadress"></param>
         public static Benutzer SucheFirmaVonBenutzer(string emailadress)
@@ -146,7 +151,7 @@ namespace Verwaltung
         }
 
         /// <summary>
-        /// search where does the user with the emailadress works and send back the hole stuff of the company
+        /// Sucht alle Mitarbeiter einer Firma heraus und sendet diese zurück
         /// </summary>
         /// <param name="emailadresse"></param>
         /// <returns></returns>
@@ -182,6 +187,10 @@ namespace Verwaltung
             return AllStuffofCompany;
         }
 
+        /// <summary>
+        /// ladet alle Firmen die vorhanden sind
+        /// </summary>
+        /// <returns></returns>
         public static List<Firma> LadeAlleFirmen()
         {
             List<Firma> alleFirmen = null;
@@ -209,6 +218,11 @@ namespace Verwaltung
             return alleFirmen;
         }
 
+        /// <summary>
+        /// Findet den Benutzer zu einer  Emailadresse und setzt diesen auf inaktiv
+        /// </summary>
+        /// <param name="emailadresse"></param>
+        /// <returns></returns>
         public static bool DeaktiviereBenutzer(string emailadresse)
         {
             bool erfolgreich = false;
@@ -242,6 +256,12 @@ namespace Verwaltung
             }
             return true;
         }
+
+        /// <summary>
+        /// Findet den Benutzer zu einer  Emailadresse und setzt diesen auf aktiv
+        /// </summary>
+        /// <param name="emailadresse"></param>
+        /// <returns></returns>
         public static bool AktiviereBenutzer(string emailadresse)
         {
             Benutzer aktBenutzer = null;
@@ -272,9 +292,16 @@ namespace Verwaltung
             return erfolgreich;
         }
 
+        /// <summary>
+        /// aktualisiert Vorname und Nachname eines Benutzers
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="vorname"></param>
+        /// <param name="nachname"></param>
+        /// <returns></returns>
         public static bool AktualisiereBenutzer(int id, string vorname, string nachname)
         {
-            log.Info("BenutzerVerwaltung - AkrtualisiereBenutzer");
+            log.Info("BenutzerVerwaltung - AktualisiereBenutzer");
             Benutzer aktBenutzer = new Benutzer();
             bool erfolgreich = false;
 
@@ -310,6 +337,15 @@ namespace Verwaltung
             return erfolgreich;
         }
 
+        /// <summary>
+        /// aktutlisiert alle Daten eines Mitarbeiters und bestätigt dies, wenn es geklappt hat
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="emailadresse"></param>
+        /// <param name="vorname"></param>
+        /// <param name="nachname"></param>
+        /// <param name="aktiv"></param>
+        /// <returns></returns>
         public static bool AktualisiereMitarbeiterEinerFirma(int id, string emailadresse, string vorname, string nachname, bool aktiv)
         {
             log.Info("BenutzerVerwaltung - AktualisiereMitarbeiterEinerFirma");

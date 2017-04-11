@@ -14,7 +14,11 @@ namespace Innovation4Austria.logic
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 
-
+        /// <summary>
+        /// Sucht einen Raum anhand der ID
+        /// </summary>
+        /// <param name="raum_id"></param>
+        /// <returns></returns>
         public static Raum GesuchterRaum(int raum_id)
         {
             log.Info("RaumVerwaltung - gesuchterRaum");
@@ -46,7 +50,10 @@ namespace Innovation4Austria.logic
         }
 
 
-
+        /// <summary>
+        /// Liefert alle Räume retour
+        /// </summary>
+        /// <returns></returns>
         public static List<Raum> alleRaeume()
         {
             log.Info("RaumVerwaltung - alleRaeume");
@@ -76,6 +83,11 @@ namespace Innovation4Austria.logic
             return mAlleRaeume;
         }
 
+        /// <summary>
+        /// gibt den Raumnamen einer Buchung retour
+        /// </summary>
+        /// <param name="buchung_id"></param>
+        /// <returns></returns>
         public static string GesuchterRaumName(int buchung_id)
         {
             log.Info("RaumVerwaltung - GesuchterRaumName");
@@ -101,6 +113,11 @@ namespace Innovation4Austria.logic
             }
             return Raumname;
         }
+
+        /// <summary>
+        /// liefert alle RaumArten
+        /// </summary>
+        /// <returns></returns>
         public static List<Art> AlleRaumArten()
         {
 
@@ -130,6 +147,10 @@ namespace Innovation4Austria.logic
             return alleRaumArten;
         }
 
+        /// <summary>
+        /// Liefert alle Raumausstattungen
+        /// </summary>
+        /// <returns></returns>
         public static List<Ausstattung> AlleRaumAusstattungen()
         {
             log.Info("RaumVerwaltung - AlleRaumAusstattungen");
@@ -158,6 +179,11 @@ namespace Innovation4Austria.logic
             return alleAusstattungen;
         }
 
+        /// <summary>
+        /// Liefert alle RaumAusstattungen eines Raumes
+        /// </summary>
+        /// <param name="raum_id"></param>
+        /// <returns></returns>
         public static List<Raum_Ausstattung> RaumAusstattungEinesRaumes(int raum_id)
         {
             log.Info("RaumVerwaltung - RaumAusstattungEinesRaumes");
@@ -186,6 +212,14 @@ namespace Innovation4Austria.logic
             return raumAusstattungEinesRaumes;
         }
 
+        /// <summary>
+        /// Reourniert eine Liste von Räumen die in einem in einem Zeitraum frei sind mit der gesuchten Art und Ausstattung
+        /// </summary>
+        /// <param name="startdatum"></param>
+        /// <param name="enddatum"></param>
+        /// <param name="art_id"></param>
+        /// <param name="ausstattung"></param>
+        /// <returns></returns>
         public static List<Raum> GesuchteRaeume(DateTime startdatum, DateTime enddatum, int art_id, int[] ausstattung)
         {
             log.Info("RaumVerwaltung - GesuchteRaueme");
@@ -252,6 +286,10 @@ namespace Innovation4Austria.logic
             return raeume;
         }
 
+        /// <summary>
+        /// Retouniert alle Räume 
+        /// </summary>
+        /// <returns></returns>
         public static List<Raum> GesuchteRaeume()
         {
             log.Info("RaumVerwaltung - GesuchteRaeume");

@@ -12,7 +12,11 @@ namespace Innovation4Austria.logic
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-
+        /// <summary>
+        /// retourniert alle Räume die gebucht sind. Stornierte Räume (!Aktiv) werden nicht zurückgegen
+        /// </summary>
+        /// <param name="fa_id"></param>
+        /// <returns></returns>
         public static List<Buchung> GebuchteRaeume(int fa_id)
         {
             log.Info("RaumVerwaltung - BookedRooms");
@@ -23,7 +27,7 @@ namespace Innovation4Austria.logic
                 {
                     using (var context = new Innovation4AustriaEntities())
                     {
-                        bookedRooms = context.AlleBuchungen.Where(x => x.Firma_id == fa_id&& x.Aktiv==true).ToList();
+                        bookedRooms = context.AlleBuchungen.Where(x => x.Firma_id == fa_id && x.Aktiv == true).ToList();
 
                         if (bookedRooms == null)
                         {
@@ -44,6 +48,11 @@ namespace Innovation4Austria.logic
             return bookedRooms;
         }
 
+        /// <summary>
+        /// Gibt alle Buchungen zu einem bestimmten Monat zurück
+        /// </summary>
+        /// <param name="monatnummer"></param>
+        /// <returns></returns>
         public static List<Buchungsdetails> BuchungsDetailsVonMonat(int monatnummer)
         {
             log.Info("BuchungsVerwaltung - BuchungsDetailVonMonat");
@@ -55,7 +64,7 @@ namespace Innovation4Austria.logic
                 using (var context = new Innovation4AustriaEntities())
                 {
                     alleBuchungsDetailsvonEinemMonat = context.AlleBuchungsdetails.Where(x => x.Datum.Month == monatnummer).ToList();
-                   
+
                 }
             }
             catch (Exception ex)
@@ -65,7 +74,7 @@ namespace Innovation4Austria.logic
                 {
                     log.Info(ex.InnerException);
                 }
-            }      
+            }
             return alleBuchungsDetailsvonEinemMonat;
         }
 
@@ -109,7 +118,12 @@ namespace Innovation4Austria.logic
             return date;
         }
 
-        public static bool Stornieren(int id)
+        /// <summary>
+        /// Setzt das Aktiv bit einer Buchung auf false und storniert sie so
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static bool Stornieren(int id, int fa_id)
         {
             log.Info("BuchungsVerwaltung - Stornieren");
             bool storniert = false;
@@ -119,9 +133,12 @@ namespace Innovation4Austria.logic
                 using (var context = new Innovation4AustriaEntities())
                 {
                     Buchung gesBuchung = context.AlleBuchungen.Where(x => x.Id == id).FirstOrDefault();
-                    gesBuchung.Aktiv = false;                   
-                    context.SaveChanges();
-                    storniert = true;
+                    if (gesBuchung.Firma_id == fa_id)
+                    {
+                        gesBuchung.Aktiv = false;
+                        context.SaveChanges();
+                        storniert = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -135,17 +152,25 @@ namespace Innovation4Austria.logic
             return storniert;
         }
 
+        /// <summary>
+        /// trägt eine Buchungsdetails ein, jedes Datum vom Anfang-Enddatum wird tageweise in einen Buchungssatz
+        /// </summary>
+        /// <param name="buchung_id"></param>
+        /// <param name="vonDatum"></param>
+        /// <param name="BisDatum"></param>
+        /// <param name="preis"></param>
+        /// <returns></returns>
         public static bool ErstelleBuchungDetails(int buchung_id, DateTime vonDatum, DateTime BisDatum, decimal preis)
         {
             bool erfolgreich = false;
             log.Info("BuchungsVerwaltung - ErstelleBuchungDetails");
-            if (buchung_id >0)
+            if (buchung_id > 0)
             {
-                if (vonDatum!= null)
+                if (vonDatum != null)
                 {
-                    if (BisDatum !=null)                        
+                    if (BisDatum != null)
                     {
-                        int wievieleTage = (BisDatum-vonDatum).Days;
+                        int wievieleTage = (BisDatum - vonDatum).Days;
                         wievieleTage++;
                         try
                         {
@@ -160,12 +185,12 @@ namespace Innovation4Austria.logic
                                         Preis = preis
                                     };
                                     context.AlleBuchungsdetails.Add(neueBuchung);
-                                    if (vonDatum<BisDatum)
+                                    if (vonDatum < BisDatum)
                                     {
                                         vonDatum = vonDatum.AddDays(1);
                                     }
                                 }
-                                if (context.SaveChanges()==wievieleTage)
+                                if (context.SaveChanges() == wievieleTage)
                                 {
                                     erfolgreich = true;
                                 }
@@ -174,19 +199,24 @@ namespace Innovation4Austria.logic
                         catch (Exception ex)
                         {
                             log.Error("BuchungsVerwaltung - ErstelleBuchungDetals - fehlgeschlagen");
-                            if (ex.InnerException!=null)
+                            if (ex.InnerException != null)
                             {
                                 log.Info(ex.InnerException);
                             }
-                        }                  
+                        }
 
                     }
                 }
             }
             return erfolgreich;
-            
+
         }
 
+        /// <summary>
+        /// gibt alle Buchugnsdetails einer Buchung zurück
+        /// </summary>
+        /// <param name="buchung_id"></param>
+        /// <returns></returns>
         public static List<Buchungsdetails> BuchungsDetailsVonBuchung(int buchung_id)
         {
             log.Info("RaumVerwaltung - BuchungsDetailsVonBuchung");
@@ -196,9 +226,9 @@ namespace Innovation4Austria.logic
                 try
                 {
                     using (var context = new Innovation4AustriaEntities())
-                    { 
-                       
-                        detailVonBuchung = context.AlleBuchungsdetails.Include(x=>x.Rechnungsdetails).Where(x => x.Buchung_id == buchung_id).ToList();
+                    {
+
+                        detailVonBuchung = context.AlleBuchungsdetails.Include(x => x.Rechnungsdetails).Where(x => x.Buchung_id == buchung_id).ToList();
                         if (detailVonBuchung == null)
                         {
                             log.Warn("BuchungsVerwaltung - BuchungsDetailsVonBuchung - keine Details zur Buchung gefunden");
@@ -217,6 +247,13 @@ namespace Innovation4Austria.logic
             return detailVonBuchung;
         }
 
+
+        /// <summary>
+        /// Erstellt eine Buchung und retouniert die ID
+        /// </summary>
+        /// <param name="raum_id"></param>
+        /// <param name="firma_id"></param>
+        /// <returns></returns>
         public static int ErstelleBuchung(int raum_id, int firma_id)
         {
             Buchung neueBuchung = new Buchung();
@@ -234,14 +271,17 @@ namespace Innovation4Austria.logic
             }
             catch (Exception ex)
             {
-
-                throw;
+                log.Error("BuchungsVerwaltung - BuchungsDetailsVonBuchung - Datenbankverbindung fehlgeschlagen", ex);
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
             }
 
             return neueBuchung.Id;
         }
 
-        
+
     }
 }
 
