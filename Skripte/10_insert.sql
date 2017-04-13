@@ -182,6 +182,26 @@ INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, b
 														 FROM Openrowset( 
 														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\Raum789.jpg', Single_Blob) AS import)
 														 );
+INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, bilddaten) VALUES ('0615', 'Seminarraum', 3,1,34,12,
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\LAP\Application\Innovation4Austria\Innovation4Austria.web\img\seewli.jpg', Single_Blob) AS import)
+														 );	
+INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, bilddaten) VALUES ('0617', 'Seminare', 3,1,34,12,
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\LAP\Application\Innovation4Austria\Innovation4Austria.web\img\Seminar1.jpg', Single_Blob) AS import)
+														 );	
+INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, bilddaten) VALUES ('0618', 'Raum mit Fax', 3,1,34,12,
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\Seminar2.jpg', Single_Blob) AS import)
+														 );	
+INSERT INTO Raum(bezeichnung,beschreibung, art_id, bauwerk_id, groesse, preis, bilddaten) VALUES ('0619', 'Raum mit Fax', 3,1,34,12,
+														(SELECT BulkColumn
+														 FROM Openrowset( 
+														 Bulk 'C:\Lap\Application\Innovation4Austria\Innovation4Austria.web\img\Seminar3.jpg', Single_Blob) AS import)
+														 );															 
 GO
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(1,1, 10);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(1,2, 15);
@@ -201,7 +221,7 @@ INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES
 
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(7,1, 10);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(8,2, 15);
-INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(9,1, 12);
+INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(22,6, 12);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(10,3, 12);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(11,5, 12);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(13,1, 12);
@@ -225,9 +245,9 @@ INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(13,2, 12);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(15,5, 8);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(9,4, 6);
-INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(8,1, 12);
+INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(8,4, 12);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(11,2, 12);
-INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(8,2, 6);
+INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(8,6, 6);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(15,6, 5);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(13,1, 3);
 
@@ -241,7 +261,7 @@ INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(13,3, 12);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(15,3, 8);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(9,6, 6);
-INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(8,6, 12);
+INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(8,5, 12);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(11,1, 12);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(8,1, 6);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(15,4, 5);
@@ -262,6 +282,9 @@ INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(12,2, 6);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(11,6, 5);
 INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(10,2, 3);
+
+INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(24,4, 10);
+INSERT INTO Raum_Ausstattung(raum_id, ausstattung_id, Anzahl_Ausstattung) VALUES(25,1, 12);
 GO
 
 
