@@ -11,7 +11,7 @@ namespace Innovation4Austria.web.Models
     public class PasswortVerwaltungsModel
     {
 
-        [StringLength(maximumLength: 16, MinimumLength = 8, ErrorMessageResourceType = typeof(Validierungen), ErrorMessageResourceName = Validation.PASSWORT_NORM)]
+      
         [Required(AllowEmptyStrings = false, ErrorMessageResourceType = typeof(Validierungen), ErrorMessageResourceName = Validation.REQUIRED)]
         [DataType(DataType.Password)]
         [DisplayName("Passwort")]
@@ -23,7 +23,6 @@ namespace Innovation4Austria.web.Models
         [DisplayName("Passwort wiederholen")]
         [Compare("NeuesPasswort")]
         public string NeuesPasswortBestätigung { get; set; }
-
 
         [StringLength(maximumLength: 16, MinimumLength = 8, ErrorMessageResourceType = typeof(Validierungen), ErrorMessageResourceName = Validation.PASSWORT_NORM)]
         [Required(AllowEmptyStrings = false, ErrorMessageResourceType = typeof(Validierungen), ErrorMessageResourceName = Validation.REQUIRED)]

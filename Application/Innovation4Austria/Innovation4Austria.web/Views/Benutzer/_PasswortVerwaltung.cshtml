@@ -11,7 +11,7 @@
             <div class="FontSize">
                 @Html.Label("Altes Passwort", htmlAttributes: new { @class = "control-label col-md-5" })
             </div>
-            <div class="col-md-7">
+            <div class="col-md-7 FontSize">
                 @Html.EditorFor(x=>x.Passwort, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NeuesPasswort, "", new { @class = "text-danger" })
             </div>
@@ -20,7 +20,7 @@
                 <div class="FontSize">
                     @Html.Label("Neues Passwort", htmlAttributes: new { @class = "control-label col-md-5" })
                 </div>
-            <div class="col-md-7">
+            <div class="col-md-7 FontSize">
                 @Html.EditorFor(model => model.NeuesPasswort, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NeuesPasswort, "", new { @class = "text-danger" })
             </div>
@@ -30,7 +30,7 @@
             <div class="FontSize">
                 @Html.Label("Passwortwiederholung", htmlAttributes: new { @class = "control-label col-md-5" })
             </div>
-            <div class="col-md-7">
+            <div class="col-md-7 FontSize">
                 @Html.EditorFor(model => model.NeuesPasswortBestätigung, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NeuesPasswortBestätigung, "", new { @class = "text-danger" })
             </div>

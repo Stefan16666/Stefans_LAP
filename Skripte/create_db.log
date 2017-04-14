@@ -1,6 +1,6 @@
 ECHO ist ausgeschaltet (OFF).
 . 
-"starting database creation 16:07:15,93" 
+"starting database creation 10:51:31,60" 
 . 
 "try dropping database" 
 1> 2> 1> 2> 3> 4> Fr nicht gekennzeichnete Transaktionen wird ein Rollback ausgefhrt. Bereits
@@ -195,5 +195,5 @@ abgeschlossen (gesch„tzt): 100%.
 1> 2> 3>  
  
 . 
-"stopping database creation 16:07:20,97" 
+"stopping database creation 10:51:36,85" 
 . 

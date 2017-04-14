@@ -29,7 +29,7 @@
                             <div class="FontSize">
                                 @Html.LabelFor(model => model.Emailadresse, htmlAttributes: new { @class = "control-label col-md-4" })
                                 </div>
-                                <div class="col-md-4 text-center">
+                                <div class="col-md-4 text-center FontSize">
                                     @Html.EditorFor(model => model.Emailadresse, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Emailadresse, "", new { @class = "text-danger" })
                                 </div>
@@ -39,7 +39,7 @@
                             <div class="FontSize">
                                 @Html.LabelFor(model => model.Passwort, htmlAttributes: new { @class = "control-label col-md-4" })
                             </div>
-                                <div class="col-md-4 text-center">
+                                <div class="col-md-4 text-center FontSize">
                                     @Html.EditorFor(model => model.Passwort, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Passwort, "", new { @class = "text-danger" })
                                 </div>
