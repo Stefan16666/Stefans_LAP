@@ -37,11 +37,11 @@
                             <div>@buchungen.Raumnummer</div>
                             <div>@buchungen.RaumArt</div>
                             <div>@buchungen.VonDatum.ToShortDateString() &nbsp;  - &nbsp; @buchungen.BisDatum.ToShortDateString()</div>
-                            @if (buchungen.VonDatum > DateTime.Now.AddDays(3))
-                            {
+                          @*  @if (buchungen.VonDatum > DateTime.Now.AddDays(3))*@
+                            
                                
                                 <div>@Html.ActionLink("Stornieren", "Stornieren", "Buchung", new { Id = buchungen.Id }, new { @class = "sandybrown" })</div>
-                            }
+                            
                         </div>
                     }
 
@@ -52,9 +52,10 @@
                 {
 
                         <div class="dashboard">
-                            <div>@rechnungen.Monat</div>
+                            <div>@rechnungen.Monat</div>                            
                             @Html.HiddenFor(x=>rechnungen.Monatnummer)
                             <div>@Html.ActionLink("Erstellen", "Erstellen", "Rechnung", new { Monatnummer = rechnungen.Monatnummer }, new { @class = "sandybrown" })</div>
+                            <div>@Html.ActionLink("Bezahlen", "Bezahlen", "Rechnung", new { Monatnummer = rechnungen.Monatnummer }, new { @class = "sandybrown" })</div>
                         </div>
                     }
 

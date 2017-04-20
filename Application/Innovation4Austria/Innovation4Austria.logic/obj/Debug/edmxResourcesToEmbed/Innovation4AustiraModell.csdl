@@ -72,6 +72,8 @@
       <End Role="Firma" EntitySet="AlleFirmen" />
       <End Role="Rechnung" EntitySet="AlleRechnungen" />
     </AssociationSet>
+    <EntitySet Name="Kreditkarte" EntityType="Innovation4AustriaModel.Kreditkarte" />
+    <EntitySet Name="Stornierung" EntityType="Innovation4AustriaModel.Stornierung" />
   </EntityContainer>
   <EntityType Name="Art">
     <Key>
@@ -188,7 +190,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Beschreibung" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Beschreibung" Type="String" Nullable="false" MaxLength="31" Unicode="true" FixedLength="false" />
     <Property Name="Bauwerk_id" Type="Int32" Nullable="false" />
     <Property Name="Groesse" Type="Int32" Nullable="false" />
     <Property Name="Art_id" Type="Int32" Nullable="false" />
@@ -435,4 +437,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Kreditkarte">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Stornierung">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="Benutzer_id" />
+      <PropertyRef Name="Datum" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Benutzer_id" Type="Int32" Nullable="false" />
+    <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
 </Schema>

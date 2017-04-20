@@ -100,6 +100,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Innovation4AustiraModell.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Kreditkarte.cs">
+      <DependentUpon>Innovation4AustiraModell.tt</DependentUpon>
+    </Compile>
     <Compile Include="Log.cs">
       <DependentUpon>Innovation4AustiraModell.tt</DependentUpon>
     </Compile>
@@ -122,6 +125,9 @@
       <DependentUpon>Innovation4AustiraModell.tt</DependentUpon>
     </Compile>
     <Compile Include="RollenAdministrator.cs" />
+    <Compile Include="Stornierung.cs">
+      <DependentUpon>Innovation4AustiraModell.tt</DependentUpon>
+    </Compile>
     <Compile Include="Tools.cs" />
   </ItemGroup>
   <ItemGroup>

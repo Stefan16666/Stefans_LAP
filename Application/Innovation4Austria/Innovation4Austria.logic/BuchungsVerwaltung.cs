@@ -48,6 +48,38 @@ namespace Innovation4Austria.logic
             return bookedRooms;
         }
 
+        public static int AnzahlTage(int id)
+        {
+            log.Info("RaumVerwaltung - AnzahlTage");
+            Raum neuerRaum = new Raum();
+            int AnzahlTage = 0;
+            if (id != 0)
+            {
+                try
+                {
+                    using (var context = new Innovation4AustriaEntities())
+                    {
+                        List<Buchung> alleBuchungen = context.AlleBuchungen.Where(x => x.Raum_id == id).ToList();
+                        foreach (var buchung in alleBuchungen)
+                        {
+                            List<Buchungsdetails> alleDeatailsEinerBuchung = context.AlleBuchungsdetails.Where(x => x.Buchung_id == buchung.Id).ToList();
+                            AnzahlTage = AnzahlTage + alleDeatailsEinerBuchung.Count;
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Error("RaumVerwaltung - AnzahlTage - Connection to database failed", ex);
+                    if (ex.InnerException != null)
+                    {
+                        log.Info(ex.InnerException);
+                    }
+                }
+            }
+            return AnzahlTage;
+        }
+
         /// <summary>
         /// Gibt alle Buchungen zu einem bestimmten Monat zurück
         /// </summary>
@@ -76,6 +108,54 @@ namespace Innovation4Austria.logic
                 }
             }
             return alleBuchungsDetailsvonEinemMonat;
+        }
+
+        public static bool KontrolliereObBuchungMoeglich(int id)
+        {
+            log.Info("BuchungsVerwaltung - KontrolliereObBuchungMoeglich");
+            bool moeglich = true;
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    Stornierung stornomodel = context.Stornierung.Where(x => x.Benutzer_id == id).FirstOrDefault();
+                    if (stornomodel != null)
+                    {
+                        if (DateTime.Now < stornomodel.Datum.AddDays(3))
+                        {
+                            moeglich = false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("BuchungsVerwaltung - KontrolliereObBuchungMoeglich - DB-Verbindung fehlgeschlagen", ex);
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+            return moeglich;
+        }
+
+        public static Buchung HoleBuchung(int id)
+        {
+            Buchung gesBuchung = new Buchung();
+
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    gesBuchung = context.AlleBuchungen.Where(x => x.Id == id).Include(y => y.AlleBuchungsdetails).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return gesBuchung;
         }
 
         /// <summary>
@@ -118,12 +198,36 @@ namespace Innovation4Austria.logic
             return date;
         }
 
+        public static void SperreVonUser(int id)
+        {
+            log.Info("BuchungsVerwaltung - SperreVonUser");
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    Stornierung neueStornierung = new Stornierung();
+                    neueStornierung.Benutzer_id = id;
+                    neueStornierung.Datum = DateTime.Now;
+                    context.Stornierung.Add(neueStornierung);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("BuchungsVerwaltung - Buchung - es konnte keine Datenbankverbindung hergestellt werden", ex);
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+        }
+
         /// <summary>
         /// Setzt das Aktiv bit einer Buchung auf false und storniert sie so
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static bool Stornieren(int id, int fa_id)
+        public static bool Stornieren(int id)
         {
             log.Info("BuchungsVerwaltung - Stornieren");
             bool storniert = false;
@@ -133,12 +237,11 @@ namespace Innovation4Austria.logic
                 using (var context = new Innovation4AustriaEntities())
                 {
                     Buchung gesBuchung = context.AlleBuchungen.Where(x => x.Id == id).FirstOrDefault();
-                    if (gesBuchung.Firma_id == fa_id)
-                    {
-                        gesBuchung.Aktiv = false;
-                        context.SaveChanges();
-                        storniert = true;
-                    }
+
+                    gesBuchung.Aktiv = false;
+                    context.SaveChanges();
+                    storniert = true;
+
                 }
             }
             catch (Exception ex)

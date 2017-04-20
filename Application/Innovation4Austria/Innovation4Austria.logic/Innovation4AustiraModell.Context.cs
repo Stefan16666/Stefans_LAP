@@ -62,6 +62,10 @@ public partial class Innovation4AustriaEntities : DbContext
 
     public DbSet<AlleRechnungenEinerFirma> AlleRechnungenEinerFirma { get; set; }
 
+    public DbSet<Kreditkarte> Kreditkarte { get; set; }
+
+    public DbSet<Stornierung> Stornierung { get; set; }
+
 }
 
 }

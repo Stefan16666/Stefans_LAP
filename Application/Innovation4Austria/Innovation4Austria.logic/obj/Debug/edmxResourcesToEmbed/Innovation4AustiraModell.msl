@@ -174,5 +174,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Kreditkarte">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Kreditkarte">
+        <MappingFragment StoreEntitySet="Kreditkarte">
+          <ScalarProperty Name="bezeichnung" ColumnName="bezeichnung" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stornierung">
+      <EntityTypeMapping TypeName="Innovation4AustriaModel.Stornierung">
+        <MappingFragment StoreEntitySet="Stornierung">
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="Benutzer_id" ColumnName="Benutzer_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

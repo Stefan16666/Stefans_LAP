@@ -79,6 +79,13 @@
     <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="aktiv" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="Kreditkarte">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="Log">
     <Key>
       <PropertyRef Name="Id" />
@@ -99,7 +106,7 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="beschreibung" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="beschreibung" Type="nvarchar" MaxLength="31" Nullable="false" />
     <Property Name="bilddaten" Type="varbinary(max)" Nullable="false" />
     <Property Name="bauwerk_id" Type="int" Nullable="false" />
     <Property Name="groesse" Type="int" Nullable="false" />
@@ -141,6 +148,18 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="bezeichnung" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="aktiv" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'Innovation4Austria.dbo.Stornierung' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+  <EntityType Name="Stornierung">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="Benutzer_id" />
+      <PropertyRef Name="Datum" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Benutzer_id" Type="int" Nullable="false" />
+    <Property Name="Datum" Type="datetime" Nullable="false" />
   </EntityType>
   <!--Während der Generierung sind Fehler aufgetreten:
 Warnung 6002: Für Tabelle/Sicht 'Innovation4Austria.dbo.AlleRechnungenEinerFirma' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
@@ -345,12 +364,20 @@ Warnung 6002: Für Tabelle/Sicht 'Innovation4Austria.dbo.AlleRechnungenEinerFirm
     <EntitySet Name="Buchung" EntityType="Self.Buchung" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Buchungsdetails" EntityType="Self.Buchungsdetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Firma" EntityType="Self.Firma" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kreditkarte" EntityType="Self.Kreditkarte" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Raum" EntityType="Self.Raum" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Raum_Ausstattung" EntityType="Self.Raum_Ausstattung" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rechnung" EntityType="Self.Rechnung" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rechnungsdetails" EntityType="Self.Rechnungsdetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rolle" EntityType="Self.Rolle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stornierung" EntityType="Self.Stornierung" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[Stornierung].[id] AS [id], 
+[Stornierung].[Benutzer_id] AS [Benutzer_id], 
+[Stornierung].[Datum] AS [Datum]
+FROM [dbo].[Stornierung] AS [Stornierung]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="AlleRechnungenEinerFirma" EntityType="Self.AlleRechnungenEinerFirma" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
 [AlleRechnungenEinerFirma].[RechnungsAussstellungsDatum] AS [RechnungsAussstellungsDatum], 
