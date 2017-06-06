@@ -73,7 +73,7 @@ namespace Innovation4Austria.logic
                         List<Rechnungsdetails> alleRGDetails = context.AlleRechnungsdetails.Where(x => x.Rechnung_Id == eineRechnung.Id).ToList();
                         foreach (var rechnungsdetail in alleRGDetails)
                         {
-                            Buchungsdetails einBuchungsDetail = context.AlleBuchungsdetails.Where(x => x.Id == rechnungsdetail.Buchungsdetail_Id && x.Datum.Month == monat).FirstOrDefault();
+                            Buchungsdetails einBuchungsDetail = context.AlleBuchungsdetails.Where(x => x.Id == rechnungsdetail.Buchungsdetail_Id && x.Datum.Month == monat).Include(y => y.Rechnungsdetails).FirstOrDefault();
                             if (einBuchungsDetail != null)
                             {
                                 gesuchteBuchungsDetails.Add(einBuchungsDetail);
@@ -91,6 +91,76 @@ namespace Innovation4Austria.logic
             }
             return gesuchteBuchungsDetails;
         }
+
+        public static Rechnungsdetails RGDetailZuBuchung(int id)
+        {
+
+            Rechnungsdetails RGDeatailZuBuchungsdeatil = new Rechnungsdetails();
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    RGDeatailZuBuchungsdeatil = context.AlleRechnungsdetails.Where(x => x.Buchungsdetail_Id == id).FirstOrDefault();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return RGDeatailZuBuchungsdeatil;
+        }
+
+        public static List<Kreditkarte> AlleKreditKarten()
+        {
+            log.Info("RechnungsVerwaltung - AlleKreditKarten");
+
+            List<Kreditkarte> alleKreditkarten = new List<Kreditkarte>();
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    alleKreditkarten = context.Kreditkarte.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                log.Error("RechnungsVerwaltung - MonatsBuchungsDetails - DB-Verbindung fehlgeschlagen");
+            }
+            return alleKreditkarten;
+        }
+
+        public static bool RechnungIstBezahlt(int rechnungsnummer)
+        {
+            log.Info("RechnungsVerwaltung - Rechnung bezahlen");
+            bool bezahlt = false;
+            try
+            {
+                using (var context = new Innovation4AustriaEntities())
+                {
+                    Rechnung bezahlteRechnung = context.AlleRechnungen.Where(x => x.Id == rechnungsnummer).FirstOrDefault();
+                    if (!bezahlteRechnung.bezahlt)
+                    {
+                        bezahlteRechnung.bezahlt = true;
+                        bezahlt = true;
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+
+                log.Error("RechnungsVerwaltung - RechnungIstBezahlt - DB-Verbindung fehlgeschlagen");
+                if (ex.InnerException != null)
+                {
+                    log.Info(ex.InnerException);
+                }
+            }
+            return bezahlt;
+            
+        }
+
 
         /// <summary>
         /// 
@@ -253,7 +323,7 @@ namespace Innovation4Austria.logic
             {
                 using (var context = new Innovation4AustriaEntities())
                 {
-                    buchungsDetailsFuerMonat = context.AlleBuchungsdetails.Where(x => x.Datum.Year == jahr && x.Datum.Month == monat&&x.Buchung.Aktiv).ToList();
+                    buchungsDetailsFuerMonat = context.AlleBuchungsdetails.Where(x => x.Datum.Year == jahr && x.Datum.Month == monat && x.Buchung.Aktiv).ToList();
                     foreach (var buchungsDetail in buchungsDetailsFuerMonat)
                     {
                         List<Buchungsdetails> buchungsDetailsZuFirma = new List<Buchungsdetails>();

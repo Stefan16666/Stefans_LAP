@@ -146,7 +146,10 @@ namespace Innovation4Austria.web.Controllers
             dashboard.AlleBuchungen = dashboard.AlleBuchungen.OrderBy(x => x.BisDatum).ToList();
 
             List<Rechnung> alleRechnungenEinerFirma = RechnungsVerwaltung.RechnungenEinerFirma((int)aktBenutzer.Firma_id);
+
             List<RechnungsModel> alleRechnungenAnzeigen = new List<RechnungsModel>();
+
+
             List<Buchungsdetails> buchungsDetailsDieInRechnungsDetailsvorkommen = new List<Buchungsdetails>();
 
             Buchungsdetails buchungsDetail = new Buchungsdetails();
@@ -174,16 +177,17 @@ namespace Innovation4Austria.web.Controllers
             }
 
             List<RechnungsModel> alleRechnungen = new List<RechnungsModel>();
-
             foreach (var item in dates)
             {
                 RechnungsModel RgModel = new RechnungsModel()
                 {
+                   
                     Monat = Monat(item),
                     Monatnummer = item
                 };
                 alleRechnungen.Add(RgModel);
             };
+
 
             dashboard.AlleRechnungen = alleRechnungen;
            

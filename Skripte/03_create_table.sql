@@ -61,6 +61,17 @@ CREATE TABLE Firma(
 	aktiv bit default 1 NOT NULL
 );
 
+CREATE TABLE Kreditkarte(
+	id INT IDENTITY NOT NULL,	
+	bezeichnung NVARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Stornierung(
+	id INT IDENTITY NOT NULL,
+	Benutzer_id INT NOT NULL,
+	Datum DATETIME NOT NULL
+);
+
 CREATE TABLE [dbo].[Log] (
     [Id] [int] IDENTITY (1, 1) NOT NULL,
     [Date] [datetime] NOT NULL,

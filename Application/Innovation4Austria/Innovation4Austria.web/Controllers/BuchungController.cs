@@ -58,15 +58,16 @@ namespace Innovation4Austria.web.Controllers
         {
             bool gebucht = false;
             log.Info("BuchnungController - Raumbuchung - POST");
+            Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
             int fa_id = 0;
             if (Fa_Id == null)
-            {
-                Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
+            {                
                 fa_id = (int)aktBenutzer.Firma_id;
             }
-            else
+            if (BuchungsVerwaltung.KontrolliereObBuchungMoeglich(aktBenutzer.Id))
             {
-                fa_id = (int)Fa_Id;
+                TempData[ConstStrings.ERROR_MESSAGE] = Validierungen.BuchenFehlgeschlagen;
+                return RedirectToAction("Dashboard", "Benutzer");
             }
 
             VerbindlichBuchenModel verbindlichBuchenModel = new VerbindlichBuchenModel();
@@ -98,12 +99,38 @@ namespace Innovation4Austria.web.Controllers
         {
             Benutzer aktBenutzer = BenutzerAdministrator.GetUser(User.Identity.Name);
 
+            Buchung aktBuchung = BuchungsVerwaltung.HoleBuchung(Id);
+            List<Buchungsdetails> BuchungsDetailsZuBuchung = BuchungsVerwaltung.BuchungsDetailsVonBuchung(aktBuchung.Id);
+            BuchungsDetailsZuBuchung = BuchungsDetailsZuBuchung.OrderBy(x => x.Datum).ToList();
+            foreach (var item in BuchungsDetailsZuBuchung)
+            {
+                if (item.Datum<DateTime.Now.AddDays(1))
+                {
+                    KreditkartenModel StornoModel = new KreditkartenModel();
+                    StornoModel.KreditkartenBezeichnung = new List<KreditkartenArtModel>();
+                    List<Kreditkarte> alleKreditkarten = RechnungsVerwaltung.AlleKreditKarten();
+                    foreach (var kreditkarte in alleKreditkarten)
+                    {
+                        KreditkartenArtModel model = new KreditkartenArtModel()
+                        {
+                            bezeichnung = kreditkarte.bezeichnung,
+                            id = kreditkarte.id
+                        };
+                        StornoModel.Buchung_id = Id;
+                        StornoModel.KreditkartenBezeichnung.Add(model);
+                        StornoModel.Rechnungsbetrag = BuchungsDetailsZuBuchung.Sum(x => x.Preis)/2;
+                        
+                    }
+                    BuchungsVerwaltung.SperreVonUser(aktBenutzer.Id);
+                    return View(StornoModel);
+                }
+            }
 
 
             log.Info("BuchungController - Stornieren -Get");
             if (Id>0)
             {
-               bool storniert =  BuchungsVerwaltung.Stornieren(Id, (int)aktBenutzer.Firma_id);
+               bool storniert =  BuchungsVerwaltung.Stornieren(Id);
             }
             return RedirectToAction("Dashboard", "Benutzer");
         }

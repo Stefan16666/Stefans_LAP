@@ -70,6 +70,15 @@ namespace Innovation4Austria.web {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bezahlung hat nicht geklappt ähnelt.
+        /// </summary>
+        internal static string BezahlungNichtMoeglich {
+            get {
+                return ResourceManager.GetString("BezahlungNichtMoeglich", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Buchung erfolgreich erstellt ähnelt.
         /// </summary>
         internal static string BuchenErfolgreich {
@@ -111,6 +120,15 @@ namespace Innovation4Austria.web {
         internal static string FirmaAnlegenError {
             get {
                 return ResourceManager.GetString("FirmaAnlegenError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sie haben innerhalb von 3 Tagen storniert ähnelt.
+        /// </summary>
+        internal static string InnerhalbVon3TagenStroniert {
+            get {
+                return ResourceManager.GetString("InnerhalbVon3TagenStroniert", resourceCulture);
             }
         }
         
@@ -196,6 +214,15 @@ namespace Innovation4Austria.web {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Stronierung war erfolgreich ähnelt.
+        /// </summary>
+        internal static string StornoErfolreich {
+            get {
+                return ResourceManager.GetString("StornoErfolreich", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Minimum 8 Zeichen und max. 16 Zeichen ähnelt.
         /// </summary>
         internal static string StringLength {
@@ -219,6 +246,15 @@ namespace Innovation4Austria.web {
         internal static string UngueltigesDatum {
             get {
                 return ResourceManager.GetString("UngueltigesDatum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wurde schon bezahlt ähnelt.
+        /// </summary>
+        internal static string WurdeSchonBezahlt {
+            get {
+                return ResourceManager.GetString("WurdeSchonBezahlt", resourceCulture);
             }
         }
     }

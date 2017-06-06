@@ -343,4 +343,9 @@ INSERT INTO Rechnungsdetails (rechnung_id, buchungsdetails_id) VAlUES (1,7);
 INSERT INTO Rechnungsdetails (rechnung_id, buchungsdetails_id) VAlUES (4,8);
 GO
 
+INSERT INTO Kreditkarte (bezeichnung) VAlUES ('Mastercard');
+INSERT INTO Kreditkarte (bezeichnung) VAlUES ('Visa');
+INSERT INTO Kreditkarte (bezeichnung) VAlUES ('Diners');
+INSERT INTO Kreditkarte (bezeichnung) VAlUES ('Amex');
+GO
 --------

@@ -120,6 +120,9 @@
   <data name="BenutzerProfilAktualisierenErfolgreich" xml:space="preserve">
     <value>Profil wurde erfolgreich aktualisiert</value>
   </data>
+  <data name="BezahlungNichtMoeglich" xml:space="preserve">
+    <value>Bezahlung hat nicht geklappt</value>
+  </data>
   <data name="BuchenErfolgreich" xml:space="preserve">
     <value>Buchung erfolgreich erstellt</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="FirmaAnlegenError" xml:space="preserve">
     <value>Firma anlegen fehlgeschlagen</value>
+  </data>
+  <data name="InnerhalbVon3TagenStroniert" xml:space="preserve">
+    <value>Sie haben innerhalb von 3 Tagen storniert</value>
   </data>
   <data name="NamensKontrolle" xml:space="preserve">
     <value>Buchstaben von A - Z</value>
@@ -162,6 +168,9 @@
   <data name="SpeichernFehlgeschlagen" xml:space="preserve">
     <value>Speichern fehlgeschlagen!</value>
   </data>
+  <data name="StornoErfolreich" xml:space="preserve">
+    <value>Stronierung war erfolgreich</value>
+  </data>
   <data name="StringLength" xml:space="preserve">
     <value>Minimum 8 Zeichen und max. 16 Zeichen</value>
   </data>
@@ -170,5 +179,8 @@
   </data>
   <data name="UngueltigesDatum" xml:space="preserve">
     <value>ungültiges Datum</value>
+  </data>
+  <data name="WurdeSchonBezahlt" xml:space="preserve">
+    <value>Wurde schon bezahlt</value>
   </data>
 </root>
